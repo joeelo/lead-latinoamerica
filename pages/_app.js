@@ -1,10 +1,15 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
-  body {
+  html, *, body {
     margin: 0;
     padding: 0;
+  }
+
+  body {
     box-sizing: border-box;
+    position: relative; 
+    min-height: 100vh; 
   }
 `
 
