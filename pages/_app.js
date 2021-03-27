@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     position: relative; 
     min-height: 100vh; 
+    font-family: "Helvetica Neue", sans-serif;
   }
 `
 

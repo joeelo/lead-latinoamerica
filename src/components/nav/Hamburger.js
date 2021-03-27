@@ -3,6 +3,9 @@ import { useRef, useState } from 'react';
 
 const Hamburger = (props) => {
 
+  const lineHeight = 6;
+  const lineWidth = 40;
+
   const menuBtn = useRef();
   const [ menuOpen, setMenuOpen ] = useState(false);
 
@@ -13,7 +16,13 @@ const Hamburger = (props) => {
 
   return (
     <Menu ref={menuBtn} onClick={clickHandler}>
-      <Lines className={menuOpen ? 'open' : ''}></Lines>
+      <Lines 
+        className={menuOpen ? 'open' : ''}
+        lineHeight={lineHeight}
+        lineWidth={lineWidth}
+      >
+
+      </Lines>
     </Menu>
   )
 }
@@ -24,11 +33,11 @@ const Menu = styled.div`
   position: relative; 
   display: flex; 
   width: 50px;
-  height: 50px;
   transition: all .5s ease-in-out;
   align-items: center;
   left: 20px; 
-  top: 20px;
+  top: 10px;
+  height: 50px;
   cursor: pointer;
 
   div.open {
@@ -38,14 +47,11 @@ const Menu = styled.div`
   div.open::after {
     background: rgba(0, 0, 0, 1);
   }
-
-
-
 `
   
   const Lines = styled.div`
-  width: 40px;
-  height: 6px; 
+  width: ${props => props.lineWidth}px;
+  height: ${props => props.lineHeight}px; 
   border-radius:4px;
   transition: all .5s ease-in-out;
   background: #222;
@@ -53,8 +59,8 @@ const Menu = styled.div`
   &::before,
   &::after {
     content: '';
-    width: 40px;
-    height: 6px; 
+    width: ${props => props.lineWidth}px;
+    height: ${props => props.lineHeight}px; 
     border-radius:4px;
     transition: all .5s ease-in-out;
     background: #222;
