@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
     position: relative; 
     min-height: 100vh; 
     font-family: "Helvetica Neue", sans-serif;
+    max-width: 100vw;
   }
 `
 

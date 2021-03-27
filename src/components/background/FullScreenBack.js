@@ -25,4 +25,5 @@ const Container = styled.div`
   min-width: 100vw; 
   min-height: 90vh;
   background-color: azure; 
+  overflow-x: hidden;
 `

@@ -28,6 +28,7 @@ const PortalTitleContainer = styled.div`
   position: relative; 
   left: 20px; 
   top: 20px;
+  max-width: 90vw;
 `
 
 const PortalTitle = styled.h2`
@@ -36,14 +37,16 @@ const PortalTitle = styled.h2`
 
 const PortalSubTitle = styled.h3`
   font-size: 26px; 
-  margin-top: -15px;
-  margin-left: 30px;
+  position: relative; 
+  top: -15px;
+  left: 30px;
 `
 
 const MainTitleContainer = styled.div`
   position: relative; 
   top: 100px;
   left: 20px;
+  max-width: 90vw;
 `
 
 const MainTitle = styled.h1`
