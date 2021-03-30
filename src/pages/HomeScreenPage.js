@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import NavBar from '@/components/nav/NavBar';
 import FullScreenBack from '@/components/background/FullScreenBack';
+import CenterFlexContainer from '@/components/generic/CenterFlexContainer';
 
 
 const HomeScreenPage = () => {
@@ -12,11 +13,13 @@ const HomeScreenPage = () => {
           <PortalTitle>Web Portal</PortalTitle>
           <PortalSubTitle>Powered by LEAD.Latinoamérica</PortalSubTitle>
         </PortalTitleContainer>
-
         <MainTitleContainer>
           <MainTitleFirstLine>Connecting students to</MainTitleFirstLine>
           <MainTitleSecondLine>opportunities in the community</MainTitleSecondLine>
         </MainTitleContainer>
+        <CenterFlexContainer>
+
+        </CenterFlexContainer>
       </FullScreenBack>
     </>
   )

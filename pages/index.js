@@ -1,3 +1,3 @@
-import HomeScreenPage from '@/components/pages/HomeScreenPage';
+import HomeScreenPage from '@/pages/HomeScreenPage';
 
 export default HomeScreenPage;
