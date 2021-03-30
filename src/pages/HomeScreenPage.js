@@ -5,6 +5,9 @@ import CenterFlexContainer from '@/components/generic/CenterFlexContainer';
 
 
 const HomeScreenPage = () => {
+
+
+
   return (
     <>
       <NavBar />
@@ -13,14 +16,16 @@ const HomeScreenPage = () => {
           <PortalTitle>Web Portal</PortalTitle>
           <PortalSubTitle>Powered by LEAD.Latinoamérica</PortalSubTitle>
         </PortalTitleContainer>
+
         <MainTitleContainer>
           <MainTitleFirstLine>Connecting students to</MainTitleFirstLine>
           <MainTitleSecondLine>opportunities in the community</MainTitleSecondLine>
         </MainTitleContainer>
-        <CenterFlexContainer>
-
-        </CenterFlexContainer>
       </FullScreenBack>
+
+      <CenterFlexContainer backgroundColor={'#0077B6'}>
+        
+      </CenterFlexContainer>
     </>
   )
 }
