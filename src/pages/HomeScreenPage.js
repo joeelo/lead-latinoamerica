@@ -2,11 +2,34 @@ import styled from 'styled-components';
 import NavBar from '@/components/nav/NavBar';
 import FullScreenBack from '@/components/background/FullScreenBack';
 import CenterFlexContainer from '@/components/generic/CenterFlexContainer';
+import TitleWithBackground from '@/components/generic/TitleWithBackground';
+import FlexContentBox from '@/components/content/FlexContentBox';
 
 
 const HomeScreenPage = () => {
 
-
+  const opportunityInfo = [
+    { 
+      title: 'Scholarships', 
+      text:'Find scholarships to help fund your educational journey.', 
+      footer: 'See our Scholarship Opportunities'
+    }, 
+    {
+      title: 'Summer', 
+      text:'Find a summer opportunity that allows you to connect with peers while building on your educational and professional experience.', 
+      footer: 'See our Summer Opportunities'
+    }, 
+    {
+      title: 'Internships',
+      text:'Browse through internship opportunities that will allow you to build on your professional experience.', 
+      footer: 'See our Internship Opportunities'
+    }, 
+    {
+      title: 'Programs',
+      text:'Select from a broad range of programs in your community that will help you thrive.', 
+      footer: 'See our Program Opportunities'
+    }, 
+  ]
 
   return (
     <>
@@ -24,8 +47,21 @@ const HomeScreenPage = () => {
       </FullScreenBack>
 
       <CenterFlexContainer backgroundColor={'#0077B6'}>
-        
+        <TitleWithBackground text={'Opportunities'} topOffset={'-70px'}/>
+        {
+          opportunityInfo.map(info => <FlexContentBox 
+            key={info.name} 
+            size={'halves'} 
+            content={info} 
+            color={'white'}
+            backgroundColor={"#0077B6"}
+          />)
+        }
       </CenterFlexContainer>
+
+      <FullScreenBack src={'/images/hari-nandakumar-fbJr86YN574-unsplash.jpg'}>
+
+      </FullScreenBack>
     </>
   )
 }

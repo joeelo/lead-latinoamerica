@@ -41,11 +41,11 @@ const Menu = styled.div`
   cursor: pointer;
 
   div.open {
-    background: rgba(0, 0, 0, 0);
+    background: rgba(3, 4, 94, 0);
   }
   div.open::before, 
   div.open::after {
-    background: rgba(0, 0, 0, 1);
+    background: rgba(3, 4, 94, 1);
   }
 `
   
@@ -54,7 +54,7 @@ const Menu = styled.div`
   height: ${props => props.lineHeight}px; 
   border-radius:4px;
   transition: all .5s ease-in-out;
-  background: #222;
+  background: rgb(3, 4, 94);
   
   &::before,
   &::after {
@@ -63,7 +63,7 @@ const Menu = styled.div`
     height: ${props => props.lineHeight}px; 
     border-radius:4px;
     transition: all .5s ease-in-out;
-    background: #222;
+    background: rgb(3, 4, 94);
     position: absolute;
   }
 

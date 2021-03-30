@@ -7,6 +7,7 @@ const CenterFlexContainer = ({
   maxWidth, 
   minHeight
 }) => {
+
   return (
     <FullScreenContainerForBackground
       backgroundColor={ backgroundColor }
@@ -30,9 +31,10 @@ const Container = styled.div`
   position: relative; 
   display: flex; 
   align-items: center; 
-  justify-content: center; 
+  justify-content: space-between; 
   max-width: ${ props => props.maxWidth ? props.maxWidth : '100vw' };
   min-height: ${ props => props.minHeight ? props.minHeight : '400px' };
+  flex-wrap: wrap; 
 `
 
 const FullScreenContainerForBackground = styled.div`
