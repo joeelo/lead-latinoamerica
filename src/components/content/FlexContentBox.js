@@ -9,7 +9,7 @@ const FlexContentBox = ({ size, backgroundColor, content, color }) => {
     >
       <ContentTitle> { content.title } </ContentTitle>
       <ContentText> { content.text } </ContentText>
-      <ContentFooter> {content.footer } </ContentFooter>
+      <ContentFooter> { content.footer } </ContentFooter>
     </Container>
   )
 }
@@ -20,13 +20,18 @@ const Container = styled.div`
   display: flex;
   padding: 20px; 
   background-color: ${ props => props.backgroundColor ? props.backgroundColor : 'white' };
-  width: 48%; 
   margin-bottom: 100px; 
   box-sizing: border-box; 
   color: ${ props => props.color ? props.color : '#222' };
   flex-direction: column; 
   min-height: 300px;
-
+  width: ${props => {
+    if (props.size === 'halves') return '48%';
+    if (props.size === 'thirds') return '31%';
+    if (props.size === 'quarters') return '23%';
+    return '100%';
+  }};
+  
   @media screen and (max-width: 768px) {
     flex: 0 0 95%; 
     margin: 0 auto; 

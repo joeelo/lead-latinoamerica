@@ -31,6 +31,24 @@ const HomeScreenPage = () => {
     }, 
   ]
 
+  const recentlyPosted = [
+    { 
+      title: 'Opportunity 1 ', 
+      text:'Check out this opportunity ', 
+      footer: 'See our Scholarship Opportunities'
+    }, 
+    {
+      title: 'Opportunity 2', 
+      text:'This is another one. This information is not necessary right now.', 
+      footer: 'See our Summer Opportunities'
+    }, 
+    {
+      title: 'Opportunity 3 ',
+      text:'This is the last one, ', 
+      footer: 'See our Internship Opportunities'
+    },  
+  ]
+
   return (
     <>
       <NavBar />
@@ -50,7 +68,7 @@ const HomeScreenPage = () => {
         <TitleWithBackground text={'Opportunities'} topOffset={'-70px'}/>
         {
           opportunityInfo.map(info => <FlexContentBox 
-            key={info.name} 
+            key={info.title} 
             size={'halves'} 
             content={info} 
             color={'white'}
@@ -60,7 +78,16 @@ const HomeScreenPage = () => {
       </CenterFlexContainer>
 
       <FullScreenBack src={'/images/hari-nandakumar-fbJr86YN574-unsplash.jpg'}>
-
+        <TitleWithBackground text={'Recently Posted'} topOffset={'100px'} marginBottom/>
+        <CenterFlexContainer padding={'100px'} backgroundColor={'rgba(0, 0, 0, 0)'}>
+          {
+            recentlyPosted.map(info => <FlexContentBox 
+              key={info.title} 
+              size={'thirds'} 
+              content={info} 
+            />)
+          }
+        </CenterFlexContainer>
       </FullScreenBack>
     </>
   )
