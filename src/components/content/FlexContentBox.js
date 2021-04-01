@@ -1,11 +1,20 @@
+import { useState, useRef, useEffect } from 'react'; 
 import styled from 'styled-components';
 
-const FlexContentBox = ({ size, backgroundColor, content, color }) => {
+const FlexContentBox = ({ size, backgroundColor, content, color, minHeight }) => {
+  const ref = useRef();
+  
+  useEffect(() => {
+    const tallestDiv = ref.current.clientHeight;
+  },[ref?.current])
+
   return (
     <Container 
       size={ size }
       backgroundColor={ backgroundColor }
       color={ color }
+      ref={ref}
+      minHeight={minHeight}
     >
       <ContentTitle> { content.title } </ContentTitle>
       <ContentText> { content.text } </ContentText>
@@ -20,11 +29,11 @@ const Container = styled.div`
   display: flex;
   padding: 20px; 
   background-color: ${ props => props.backgroundColor ? props.backgroundColor : 'white' };
-  margin-bottom: 100px; 
+  margin-top: 50px; 
   box-sizing: border-box; 
   color: ${ props => props.color ? props.color : '#222' };
   flex-direction: column; 
-  min-height: 300px;
+  min-height: ${props => props.minHeight ? `${props.minHeight}px` : '300px'};
   width: ${props => {
     if (props.size === 'halves') return '48%';
     if (props.size === 'thirds') return '31%';

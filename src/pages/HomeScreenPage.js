@@ -65,7 +65,7 @@ const HomeScreenPage = () => {
       </FullScreenBack>
 
       <CenterFlexContainer backgroundColor={'#0077B6'}>
-        <TitleWithBackground text={'Opportunities'} topOffset={'-70px'}/>
+      <TitleWithBackground text={'Opportunities'} topOffset={-70}/>
         {
           opportunityInfo.map(info => <FlexContentBox 
             key={info.title} 
@@ -78,13 +78,14 @@ const HomeScreenPage = () => {
       </CenterFlexContainer>
 
       <FullScreenBack src={'/images/hari-nandakumar-fbJr86YN574-unsplash.jpg'}>
-        <TitleWithBackground text={'Recently Posted'} topOffset={'100px'} marginBottom/>
-        <CenterFlexContainer padding={'100px'} backgroundColor={'rgba(0, 0, 0, 0)'}>
+        <TitleWithBackground text={'Recently Posted'} topOffset={100} marginBottom/>
+        <CenterFlexContainer padding={100} backgroundColor={'rgba(0, 0, 0, 0)'}>
           {
             recentlyPosted.map(info => <FlexContentBox 
               key={info.title} 
               size={'thirds'} 
               content={info} 
+              minHeight={400}
             />)
           }
         </CenterFlexContainer>

@@ -36,10 +36,10 @@ const Container = styled.div`
   margin: 0 auto; 
   position: relative; 
   display: flex; 
-  padding-top: ${ props => props.padding ? props.padding : '0'};
+  padding-top: ${ props => props.padding ? `${props.padding}px` : '0'};
   align-items: center; 
   justify-content: space-between; 
-  max-width: ${ props => props.maxWidth ? props.maxWidth : '100vw' };
+  max-width: ${ props => props.maxWidth ? props.maxWidth : '1200px' };
   min-height: ${ props => props.minHeight ? props.minHeight : '400px' };
   flex-wrap: wrap; 
 `
