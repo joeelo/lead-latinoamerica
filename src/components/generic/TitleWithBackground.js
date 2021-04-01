@@ -6,9 +6,10 @@ const TitleWithBackground = ({
   opacity, 
   color, 
   backgroundColor, 
+  marginBottom
 }) => {
   return (
-    <TitleContainer topOffset={topOffset}>
+    <TitleContainer topOffset={topOffset} marginBottom={marginBottom}>
       <Title backgroundColor={ backgroundColor }>
         { text }
       </Title>
@@ -25,6 +26,7 @@ const TitleContainer = styled.div`
   position: relative;
   justify-content: center;
   width: 100vw; 
+  margin-bottom: ${props => props.marginBottom ? '80px' : 0};
 `
 
 const Title = styled.h2`
@@ -37,4 +39,5 @@ const Title = styled.h2`
   text-align: center;
   z-index: 2;
   background-color: ${ props => props.backgroundColor ? props.backgroundColor : 'white' };
+
 `

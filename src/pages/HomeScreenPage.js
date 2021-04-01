@@ -4,6 +4,7 @@ import FullScreenBack from '@/components/background/FullScreenBack';
 import CenterFlexContainer from '@/components/generic/CenterFlexContainer';
 import TitleWithBackground from '@/components/generic/TitleWithBackground';
 import FlexContentBox from '@/components/content/FlexContentBox';
+import Footer from '@/components/footer/Footer';
 
 
 const HomeScreenPage = () => {
@@ -78,7 +79,7 @@ const HomeScreenPage = () => {
       </CenterFlexContainer>
 
       <FullScreenBack src={'/images/hari-nandakumar-fbJr86YN574-unsplash.jpg'}>
-        <TitleWithBackground text={'Recently Posted'} topOffset={100} marginBottom/>
+        <TitleWithBackground text={'Recently Posted'} topOffset={100} marginBottom={true}/>
         <CenterFlexContainer padding={100} backgroundColor={'rgba(0, 0, 0, 0)'}>
           {
             recentlyPosted.map(info => <FlexContentBox 
@@ -90,6 +91,7 @@ const HomeScreenPage = () => {
           }
         </CenterFlexContainer>
       </FullScreenBack>
+      <Footer />
     </>
   )
 }

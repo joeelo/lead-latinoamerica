@@ -29,7 +29,7 @@ const Container = styled.div`
   display: flex;
   padding: 20px; 
   background-color: ${ props => props.backgroundColor ? props.backgroundColor : 'white' };
-  margin-top: 50px; 
+  margin-bottom: 50px;
   box-sizing: border-box; 
   color: ${ props => props.color ? props.color : '#222' };
   flex-direction: column; 

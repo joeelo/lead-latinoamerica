@@ -37,6 +37,7 @@ const Container = styled.div`
   position: relative; 
   display: flex; 
   padding-top: ${ props => props.padding ? `${props.padding}px` : '0'};
+  padding-bottom: ${ props => props.padding ? `${props.padding}px` : '0'};
   align-items: center; 
   justify-content: space-between; 
   max-width: ${ props => props.maxWidth ? props.maxWidth : '1200px' };
