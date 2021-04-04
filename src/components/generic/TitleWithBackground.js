@@ -39,5 +39,6 @@ const Title = styled.h2`
   text-align: center;
   z-index: 2;
   background-color: ${ props => props.backgroundColor ? props.backgroundColor : 'white' };
+  border-radius: 4px;
 
 `

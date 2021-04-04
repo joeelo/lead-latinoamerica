@@ -28,6 +28,7 @@ export default FlexContentBox;
 const Container = styled.div`
   display: flex;
   padding: 20px; 
+  border-radius: 4px;
   background-color: ${ props => props.backgroundColor ? props.backgroundColor : 'white' };
   margin-bottom: 50px;
   box-sizing: border-box; 
@@ -49,7 +50,7 @@ const Container = styled.div`
 `
 
 const ContentTitle = styled.h2`
-  font-size: 58px; 
+  font-size: 36px; 
   text-align: center;
   margin-bottom: 20px; 
 `
