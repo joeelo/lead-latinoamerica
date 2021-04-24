@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <Container>
+    <Container data-testid='footer'>
       <Column>
         <p>Explore</p>
         <p><Link href="#"> Programs </Link></p>
