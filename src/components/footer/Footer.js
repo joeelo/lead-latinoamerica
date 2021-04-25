@@ -48,4 +48,9 @@ const Column = styled.div`
     border-bottom: 1px solid rgba(0, 119, 182, 1);
     color: rgba(0, 119, 182, 1);
   }
+
+  @media screen and (max-width: 768px) {
+    font-size: 22px;
+    padding: 20px 20px 0 0;
+  }
 `

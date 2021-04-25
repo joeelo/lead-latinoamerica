@@ -149,6 +149,9 @@ const MainTitleFirstLine = styled(MainTitle)`
 `
 
 const MainTitleSecondLine = styled(MainTitle)`
-  left: 30px; 
   top: -20px;
+
+  @media screen and (max-width: 768px) {
+    top: 0;
+  }
 `

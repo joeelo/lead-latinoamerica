@@ -26,7 +26,6 @@ const TitleContainer = styled.div`
   position: relative;
   justify-content: center;
   width: 100vw; 
-  max-width: 90vw;
   margin-bottom: ${props => props.marginBottom ? '80px' : 0};
 
 `
@@ -35,7 +34,7 @@ const Title = styled.h2`
   margin: 0 auto; 
   position: relative;
   padding: 20px; 
-  width: 95%; 
+  width: 90vw; 
   max-width: 800px; 
   font-size: 68px; 
   text-align: center;
