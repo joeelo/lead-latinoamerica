@@ -106,7 +106,11 @@ const PortalTitleContainer = styled.div`
 `
 
 const PortalTitle = styled.h2`
-  font-size: 68px; 
+  font-size: 68px;
+  
+  @media screen and (max-width: 768px) {
+    font-size: 34px;
+  }
 `
 
 const PortalSubTitle = styled.h3`
@@ -114,6 +118,13 @@ const PortalSubTitle = styled.h3`
   position: relative; 
   top: -15px;
   left: 30px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 22px; 
+    top: 0px;
+    left: 0;
+    line-height: 20px; 
+  }
 `
 
 const MainTitleContainer = styled.div`
@@ -127,6 +138,10 @@ const MainTitle = styled.h1`
   color: white; 
   font-size: 68px;
   position: relative; 
+
+  @media screen and (max-width: 768px) {
+    font-size: 34px; 
+  }
 `
 
 const MainTitleFirstLine = styled(MainTitle)`
