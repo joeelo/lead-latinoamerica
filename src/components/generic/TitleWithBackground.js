@@ -26,7 +26,9 @@ const TitleContainer = styled.div`
   position: relative;
   justify-content: center;
   width: 100vw; 
+  max-width: 90vw;
   margin-bottom: ${props => props.marginBottom ? '80px' : 0};
+
 `
 
 const Title = styled.h2`
@@ -40,5 +42,9 @@ const Title = styled.h2`
   z-index: 2;
   background-color: ${ props => props.backgroundColor ? props.backgroundColor : 'white' };
   border-radius: 4px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 34px;
+  }
 
 `
