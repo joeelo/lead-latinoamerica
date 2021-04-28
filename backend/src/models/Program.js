@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const reviewSchema = new mongoose.Schema({
+const programSchema = new mongoose.Schema({
 
     title: {
         type: String,
@@ -24,7 +24,7 @@ const reviewSchema = new mongoose.Schema({
 
 })
 
-const Review = new mongoose.model("Review", reviewSchema);
+const Program = new mongoose.model("Program", programSchema);
 
-module.exports = Review
+module.exports = Program
 
