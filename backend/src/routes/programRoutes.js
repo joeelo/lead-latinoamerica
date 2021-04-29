@@ -1,6 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
+router.get("/programs", async (req, res) => {
+	try {
+		res.send({req, res});
+	} catch (error) {
+		res.send({message: error});
+	}
+})
 
 router.post("/program/:name", async (req, res) => {
 	try {
