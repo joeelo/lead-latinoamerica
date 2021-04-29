@@ -14,28 +14,28 @@ const userSchema = new mongoose.Schema({
         unique: true
     },
 
-    username: {
-        type: String, 
-        required: true,
-        unique: true
-    }, 
-
     password: {
         type: String,
         required: true
     },
 
-    books: [{
-        type: mongoose.Schema.Types.ObjectId, ref: "Book"
-    }],
+    preferredName: {
+        type: String, 
+    },
 
-    reviews: [{
-        type: mongoose.Schema.Types.ObjectId, ref: "Review"
-    }], 
+    nationality: {
+        type: String, 
+    },
 
-    notes: [{
-        type: mongoose.Schema.Types.ObjectId, ref: "Note"
-    }]
+    gradeLevel: {
+        type: Number, 
+        required: true,
+    }, 
+
+    Interests: {
+        type: Array, 
+        required: false, 
+    }
 
 })
 

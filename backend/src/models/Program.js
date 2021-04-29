@@ -1,26 +1,38 @@
 const mongoose = require("mongoose");
 
 const programSchema = new mongoose.Schema({
-
     title: {
         type: String,
         required: true
     },
-
     content: {
         type: String,
         required: true
     },
-
-    book: {
-        type: mongoose.Schema.Types.ObjectId, ref: "Book",
-        required: true
+    bio: {
+        type: String,
+        max: 500, 
+        required: true,
+    },
+    organization: {
+        type: String, 
+        required: true, 
+    },
+    helpsWith: {
+        type: Array, 
+    }, 
+    coverImage: {
+        type: String, 
+    },
+    tags: {
+        type: Array,
     },
 
-    user: {
-        type: mongoose.Schema.Types.ObjectId, ref: "User",
-        required: true
-    } 
+
+    // user: {
+    //     type: mongoose.Schema.Types.ObjectId, ref: "User",
+    //     required: true
+    // } 
 
 })
 
