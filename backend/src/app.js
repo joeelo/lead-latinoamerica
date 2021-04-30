@@ -17,6 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const port = process.env.PORT || 9000;
 
+app.get('/ping', (req, res) => res.send('pinged'));
+
 app.use(userRoutes);
 app.use(programRoutes);
 
