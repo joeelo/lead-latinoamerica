@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.get("/programs", async (req, res) => {
 	try {
+		const programs = await Program.find({});
+		res.send({ message: programs });
 		res.send('works');
 	} catch (error) {
 		res.send({message: error});
@@ -19,7 +21,7 @@ router.post("/program/:name", async (req, res) => {
 		res.send(book);
 	} catch (error) {
 		console.log(error);
-		res.send({message: error});
+		res.send({ message: error });
 	}
 })
 
@@ -27,9 +29,19 @@ router.post("/programs/seed", async (req, res) => {
 	try {
 		const response = await Program.insertMany(seed);
 		console.log('response', response);
-		res.send({message: response});
+		res.send({ message: response });
 	} catch (error) {
 		console.log(error);
+	}
+})
+
+router.delete("/programs/erase-all", async (req, res) => {
+	try {
+		const response = await Program.deleteMany({});
+		res.send({ message: 'Succesfully Deleted' })
+	} catch (error) {
+		console.log(error);
+		res.send({ message: error });
 	}
 })
 
