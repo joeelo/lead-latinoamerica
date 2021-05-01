@@ -4,7 +4,7 @@ import Form from '@/components/form/Form';
 const AddAndEditOrgs = () => {
   return (
     <>
-      <Form formData={ formFields } objKey={ 'addProgram' }/>
+      <Form formData={ formFields } objKey={ 'addProgram' } />
     </>
   )
 }

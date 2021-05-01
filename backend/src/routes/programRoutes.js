@@ -38,7 +38,7 @@ router.post("/programs/seed", async (req, res) => {
 router.delete("/programs/erase-all", async (req, res) => {
 	try {
 		const response = await Program.deleteMany({});
-		res.send({ message: 'Succesfully Deleted' })
+		res.send({ message: 'Succesfully Deleted', response });
 	} catch (error) {
 		console.log(error);
 		res.send({ message: error });

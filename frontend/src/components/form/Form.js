@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
+import FormInput from '@/components/form/FormInput';
 
 const Form = ({ formData, objKey }) => {
   const { register, handleSubmit } = useForm(); 
@@ -7,6 +8,9 @@ const Form = ({ formData, objKey }) => {
   return (
     <Container>
       <Title> { data.formTitle } </Title>
+      { data.list.map((obj, index) => {
+        return <FormInput key={index} data={obj}/>
+      })}
     </Container>
   )
 }
@@ -23,10 +27,13 @@ const Container = styled.div`
   max-width: 800px; 
   border-radius: 10px;
   padding: 20px;
+  display: flex; 
+  flex-direction: column;
 
 `
 
 const Title = styled.h2`
   font-size: 48px; 
   color: darkblue; 
+  font-weight: normal;
 `
