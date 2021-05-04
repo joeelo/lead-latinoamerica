@@ -10,6 +10,7 @@ const Footer = () => {
         <p><Link href="#"> Scholarships </Link></p>
         <p><Link href="#"> Internships </Link></p>
         <p><Link href="#"> Our Team </Link></p>
+        <p><Link href="/add-edit-orgs"> Add your org </Link></p>
       </Column>
     </Container>
   )
@@ -40,7 +41,7 @@ const Column = styled.div`
   a {
     color: inherit;
     text-decoration: none;
-    transition: .4s ease-in-out all;
+    transition: .2s ease-in-out all;
     border-bottom: 1px solid rgba(0, 0, 0, 0);
   }
 

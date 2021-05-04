@@ -9,7 +9,7 @@ const TitleWithBackground = ({
   marginBottom
 }) => {
   return (
-    <TitleContainer topOffset={topOffset} marginBottom={marginBottom}>
+    <TitleContainer topOffset={ topOffset } marginBottom={ marginBottom }>
       <Title backgroundColor={ backgroundColor }>
         { text }
       </Title>

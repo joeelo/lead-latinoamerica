@@ -1,0 +1,21 @@
+{
+  "name": "latino-americav2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1", 
+    "hsp": "git subtree push --prefix backend heroku master"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joeelo/lead-latinoamerica.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joeelo/lead-latinoamerica/issues"
+  },
+  "homepage": "https://github.com/joeelo/lead-latinoamerica#readme"
+}

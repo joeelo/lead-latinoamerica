@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import TitleWithBackground from '../generic/TitleWithBackground';
 
-const FullScreenBack = ({src, children}) => {
+const FullScreenBack = ({ src, children, titleInfo = {} }) => {
   return (
     <Container>
       <Image 
@@ -14,6 +15,11 @@ const FullScreenBack = ({src, children}) => {
       <div style={{zIndex: 10, position: 'relative'}}>
         { children }
       </div>
+
+      { !!titleInfo.show 
+        ? <TitleWithBackground titleInfo={titleInfo}/>
+        : null
+      }
     </Container>
   )
 }

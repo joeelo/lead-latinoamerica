@@ -13,8 +13,8 @@ const FlexContentBox = ({ size, backgroundColor, content, color, minHeight }) =>
       size={ size }
       backgroundColor={ backgroundColor }
       color={ color }
-      ref={ref}
-      minHeight={minHeight}
+      ref={ ref }
+      minHeight={ minHeight }
     >
       <ContentTitle> { content.title } </ContentTitle>
       <ContentText> { content.text } </ContentText>
@@ -30,11 +30,11 @@ const Container = styled.div`
   padding: 20px; 
   border-radius: 4px;
   background-color: ${ props => props.backgroundColor ? props.backgroundColor : 'white' };
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   box-sizing: border-box; 
   color: ${ props => props.color ? props.color : '#222' };
   flex-direction: column; 
-  min-height: ${props => props.minHeight ? `${props.minHeight}px` : '300px'};
+  min-height: ${props => props.minHeight ? `${props.minHeight}px` : '250px'};
   width: ${props => {
     if (props.size === 'halves') return '48%';
     if (props.size === 'thirds') return '31%';
@@ -51,9 +51,9 @@ const Container = styled.div`
 `
 
 const ContentTitle = styled.h2`
-  font-size: 36px; 
+  font-size: 48px; 
   text-align: center;
-  margin-bottom: 20px; 
+  margin-bottom: 10px; 
   
   @media screen and (max-width: 768px) {
     margin-bottom: 10px; 
@@ -61,7 +61,7 @@ const ContentTitle = styled.h2`
 `
 
 const ContentText = styled.p`
-  font-size: 26px; 
+  font-size: 24px; 
   text-align: center;
 
   @media screen and (max-width: 768px) {

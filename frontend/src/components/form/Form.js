@@ -10,6 +10,7 @@ const Form = ({ formData, objKey }) => {
   const submitHandler = async (data) => {
     try {
       const response = await postToDatabase(data, 'program');
+      console.log(response);
     } catch (error) {
       console.log('error: ', error);
     }
