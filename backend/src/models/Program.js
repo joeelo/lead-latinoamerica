@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const programSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true
+        required: true, 
     },
     content: {
         type: String,

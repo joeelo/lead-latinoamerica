@@ -8,17 +8,29 @@ router.get("/programs", async (req, res) => {
 	try {
 		const programs = await Program.find({});
 		res.send({ message: programs });
-		res.send('works');
 	} catch (error) {
 		res.send({message: error});
 	}
 })
 
-router.post("/program/:name", async (req, res) => {
+router.post("/program", async (req, res) => {
+	const errors = {};
 	try {
-		const book = req.params.name;
-		console.log(book);
-		res.send(book);
+		if (req.body.title.length < 3) {
+			errors.titleLength = 'Title Length is too short, must be at least 3 characters.';
+		}
+		if (Object.keys(errors).length) {
+			console.log('WEVE FOUND ERRORS: ', errors);
+			res.send({ error: true, message: errors});
+			return;
+		}
+		response = await Program.create(req.body, (error) => {
+			if (error) {
+				res.send({error: true, message: error._message});
+				return;
+			}
+		})
+		res.send({ message: response});
 	} catch (error) {
 		console.log(error);
 		res.send({ message: error });

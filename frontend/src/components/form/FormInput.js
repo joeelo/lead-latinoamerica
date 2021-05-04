@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
-const FormInput = ({ data }) => {
-  console.log(data);
+const FormInput = ({ data, register, hasError  }) => {
+
   return (
     <Container>
       <Label> { data.label } </Label>
-      <StyledInput placeholder={data.placeHolder} />
+      <StyledInput 
+        placeholder={data.placeHolder} 
+        {...register(data.label, { required: true})}
+        hasError={hasError}
+      />
     </Container>
   )
 }

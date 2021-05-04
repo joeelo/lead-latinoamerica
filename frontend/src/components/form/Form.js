@@ -1,16 +1,25 @@
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import FormInput from '@/components/form/FormInput';
+import { postToDatabase } from '@/fetch/requests';
 
 const Form = ({ formData, objKey }) => {
-  const { register, handleSubmit } = useForm(); 
+  const { register, handleSubmit, formState: { errors } } = useForm(); 
   const data = formData[objKey];
-  
+
+  const submitHandler = async (data) => {
+    try {
+      const response = await postToDatabase(data, 'program');
+    } catch (error) {
+      console.log('error: ', error);
+    }
+  }
+
   return (
-    <Container>
+    <Container onSubmit={handleSubmit(submitHandler)}>
       <Title> { data.formTitle } </Title>
       { data.list.map((obj, index) => {
-        return <FormInput key={index} data={obj}/>
+        return <FormInput key={index} data={obj} register={register} hasError={errors[obj.label]}/>
       })}
       <SubmitButton>submit</SubmitButton>
     </Container>
@@ -19,7 +28,7 @@ const Form = ({ formData, objKey }) => {
 
 export default Form;
 
-const Container = styled.div`
+const Container = styled.form`
   margin-left: 50px; 
   margin-top: 50px; 
   box-shadow: 10px 10px 25px -4px rgba(0,0,0,0.5);
@@ -42,7 +51,7 @@ const Title = styled.h2`
 
 const SubmitButton = styled.button`
   outline: none; 
-  border-radius: 10px; 
+  border-radius: 50px; 
   height: 50px; 
   margin-top: 20px; 
   color: white;
@@ -53,4 +62,11 @@ const SubmitButton = styled.button`
   margin-left: auto; 
   font-size: 24px; 
   cursor: pointer; 
+  transition: .2s ease-in-out;
+
+  :hover {
+    background-color: skyblue;
+    color: darkblue;  
+
+  }
 `
