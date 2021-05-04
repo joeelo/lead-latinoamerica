@@ -20,16 +20,15 @@ const Label = styled.label`
   font-size: 24px; 
   color: darkblue; 
   padding-left: 5px;
+  text-transform: capitalize;
 `
   
   const StyledInput = styled.input`
   width: 100%; 
-  margin-bottom: 
   min-height: 40px;
   height: 40px;
   font-size: 24px; 
   padding: 5px;
-  border-radius: 4px;
   border: 0px;
   border-bottom: 2px solid darkblue;
 
