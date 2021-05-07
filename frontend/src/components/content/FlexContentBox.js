@@ -19,7 +19,7 @@ const FlexContentBox = ({ size, backgroundColor, content, color, minHeight }) =>
     >
       <ContentTitle> { content.title } </ContentTitle>
       <ContentText> { content.text } </ContentText>
-      <Link href={`/resources/${content.title.toLowerCase()}`}>
+      <Link href={`/resources/[slug]`} as={`/resources/${content.title.toLowerCase()}`}>
         <ContentFooter> { content.footer } </ContentFooter>
       </Link>
     </Container>
