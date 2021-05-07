@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'; 
 import styled from 'styled-components';
+import Link from 'next/link';
 
 const FlexContentBox = ({ size, backgroundColor, content, color, minHeight }) => {
   const ref = useRef();
@@ -18,7 +19,9 @@ const FlexContentBox = ({ size, backgroundColor, content, color, minHeight }) =>
     >
       <ContentTitle> { content.title } </ContentTitle>
       <ContentText> { content.text } </ContentText>
-      <ContentFooter> { content.footer } </ContentFooter>
+      <Link href={`/resources/${content.title.toLowerCase()}`}>
+        <ContentFooter> { content.footer } </ContentFooter>
+      </Link>
     </Container>
   )
 }

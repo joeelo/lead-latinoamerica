@@ -13,7 +13,7 @@ const HomeScreenPage = () => {
     { 
       title: 'Scholarships', 
       text:'Find scholarships to help fund your educational journey.', 
-      footer: 'See our Scholarship Opportunities'
+      footer: 'See our Scholarship Opportunities', 
     }, 
     {
       title: 'Summer', 

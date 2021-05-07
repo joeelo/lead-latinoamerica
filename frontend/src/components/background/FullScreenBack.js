@@ -16,9 +16,10 @@ const FullScreenBack = ({ src, children, titleInfo = {} }) => {
         { children }
       </div>
 
-      { !!titleInfo.show 
-        ? <TitleWithBackground titleInfo={titleInfo}/>
-        : null
+      { titleInfo.show &&
+        <TitleContainer>
+          <TitleWithBackground text={ titleInfo.text } />
+        </TitleContainer>
       }
     </Container>
   )
@@ -32,4 +33,9 @@ const Container = styled.div`
   min-height: 90vh;
   background-color: azure; 
   overflow-x: hidden;
+`
+
+const TitleContainer = styled.div`
+  position: absolute;
+  bottom: -40px; 
 `
