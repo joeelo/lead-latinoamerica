@@ -10,7 +10,7 @@ const TitleWithBackground = ({
 }) => {
   return (
     <TitleContainer topOffset={ topOffset } marginBottom={ marginBottom }>
-      <Title backgroundColor={ backgroundColor }>
+      <Title backgroundColor={ backgroundColor } color={ color }>
         { text }
       </Title>
     </TitleContainer>
@@ -23,7 +23,10 @@ const TitleContainer = styled.div`
   top: ${ props => props.topOffset ? `${props.topOffset}px` : 'auto' };
   background-color: rgba(0, 0, 0, 0);
   display: flex; 
-  position: relative;
+  position: ${ props => {
+    if (props.absolute) return 'absolute';
+    return 'relative';
+  }};
   justify-content: center;
   width: 100vw; 
   margin-bottom: ${props => props.marginBottom ? '80px' : 0};
@@ -41,6 +44,7 @@ const Title = styled.h2`
   z-index: 2;
   background-color: ${ props => props.backgroundColor ? props.backgroundColor : 'white' };
   border-radius: 4px;
+  color: ${ props => props.color ? props.color : 'inherit' };
 
   @media screen and (max-width: 768px) {
     font-size: 34px;

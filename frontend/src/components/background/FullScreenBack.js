@@ -18,7 +18,7 @@ const FullScreenBack = ({ src, children, titleInfo = {} }) => {
 
       { titleInfo.show &&
         <TitleContainer>
-          <TitleWithBackground text={ titleInfo.text } />
+          <TitleWithBackground text={ titleInfo.text } backgroundColor={titleInfo.backgroundColor} color={titleInfo.color}/>
         </TitleContainer>
       }
     </Container>
