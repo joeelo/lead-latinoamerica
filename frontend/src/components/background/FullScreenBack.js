@@ -4,28 +4,34 @@ import TitleWithBackground from '../generic/TitleWithBackground';
 
 const FullScreenBack = ({ src, children, titleInfo = {} }) => {
   return (
-    <Container>
-      <Image 
-        src={src}
-        layout='fill'
-        objectFit='cover'
-        objectPosition='center'
-        style={{zIndex: -1, position: 'absolute'}}
-      />
-      <div style={{zIndex: 10, position: 'relative'}}>
-        { children }
-      </div>
+    <OuterWrapper>
+      <Container>
+        <Image 
+          src={src}
+          layout='fill'
+          objectFit='cover'
+          objectPosition='center'
+          style={{zIndex: -1, position: 'absolute'}}
+        />
+        <div style={{zIndex: 10, position: 'relative'}}>
+          { children }
+        </div>
+      </Container>
 
       { titleInfo.show &&
-        <TitleContainer>
-          <TitleWithBackground text={ titleInfo.text } backgroundColor={titleInfo.backgroundColor} color={titleInfo.color}/>
+        <TitleContainer className={'titleContainer'}>
+          <TitleWithBackground text={ titleInfo.text } backgroundColor={titleInfo.backgroundColor} color={titleInfo.color} absolute={true}/>
         </TitleContainer>
       }
-    </Container>
+    </OuterWrapper>
   )
 }
 
 export default FullScreenBack;
+
+const OuterWrapper = styled.div`
+  position: relative;
+`
 
 const Container = styled.div`
   position: relative; 
@@ -37,5 +43,6 @@ const Container = styled.div`
 
 const TitleContainer = styled.div`
   position: absolute;
-  bottom: -40px; 
+  z-index: 10;
+  bottom: 60px;
 `

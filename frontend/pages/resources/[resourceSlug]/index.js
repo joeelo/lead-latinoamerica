@@ -13,8 +13,7 @@ const ResourcePage = () => {
       { fakeData[resourceSlug] && 
         <FullScreenBack 
           src={ fakeData[resourceSlug].photo }
-          titleInfo={{show: true, text: `${resourceSlug}`, backgroundColor: '#0077B6', color: 'white', position: 'absolute'}}
-
+          titleInfo={{show: true, text: `${resourceSlug}`, backgroundColor: '#0077B6', color: 'white'}}
         />
       }
     </>
