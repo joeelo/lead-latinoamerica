@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 
-const PhotoWithTextBox = ({ src }) => {
+const PhotoWithTextBox = ({ src = '/'}) => {
+
   return (
     <Container>
       <PhotoWithTextOverlay>
@@ -15,6 +16,7 @@ const PhotoWithTextBox = ({ src }) => {
         <RightAlignedText> Working </RightAlignedText>
 
       </PhotoWithTextOverlay>
+      <div>working</div>
     </Container>
   )
 }
@@ -26,11 +28,12 @@ const Container = styled.div`
   flex-direction: column; 
   min-width: 300px; 
   min-height: 400px;
-
+  max-width: 400px;
+  position: relative;
 `
 
 const PhotoWithTextOverlay = styled.div`
-  display: relatve; 
+  position: relatve; 
   width: 100%; 
   min-height: 200px;
   text-align: right; 
