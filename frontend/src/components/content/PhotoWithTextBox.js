@@ -30,7 +30,7 @@ const PhotoWithTextBox = ({
         </PhotoWithTextOverlay> 
 
         <Bio> - { bio } </Bio>
-        <Link href={`/resources/[resourceSlug]/[programSlug]`} as={`${router.asPath}/${formattedLink}`}>
+        <Link href={`/resources/[resourceSlug]/[programSlug]`} as={`${router.asPath}/${formattedLink.toLowerCase()}`}>
           <StyledAnchor> explore { name } </StyledAnchor>
         </Link>
     </Container>

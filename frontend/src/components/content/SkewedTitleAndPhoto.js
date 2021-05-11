@@ -1,11 +1,24 @@
 import styled from 'styled-components';
 import fakeData from '@/data/fakeData';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 
 const SkewedTitleAndPhoto = () => {
+  const router = useRouter(); 
+  const [ program, setProgram ] = useState({name: ''});
+  
+  useEffect(() => {
+    // const programInfo = fakeData[router.query.resourceSlug].find(programs => programs.href === router.query.programSlug);
+    // setProgram(programInfo);
+  }, [])
+
   return (
     <Container>
-      <TextContainer></TextContainer>
+      <TextContainer>
+        <UnderlinedProgram> { router.query.resourceSlug } </UnderlinedProgram>
+        <Heading> Mission Bit </Heading>
+      </TextContainer>
       <ImageContainer>
         <Image 
           src='/images/airfocus-K_VeavYEfdA-unsplash.jpg'
@@ -34,8 +47,12 @@ const TextContainer = styled.div`
   background-color: #07004D;
   color: white;
   display: flex; 
-  align-items: center;
   position: relative;
+  z-index: 100;
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 100px; 
 
   &:after {
     width: 100%;
@@ -49,6 +66,10 @@ const TextContainer = styled.div`
     height: 200%; 
     z-index: 10;
   }
+
+  h2, p, span {
+    z-index: 100;
+  }
 `
 
 const ImageContainer = styled.div`
@@ -56,6 +77,11 @@ const ImageContainer = styled.div`
   position: relative; 
 `
 
-const Header = styled.h2`
+const UnderlinedProgram = styled.p`
+  font-size: 20px; 
+  text-decoration: underline; 
+`
+
+const Heading = styled.h2`
   font-size: 68px; 
 `
