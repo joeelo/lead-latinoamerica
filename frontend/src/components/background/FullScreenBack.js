@@ -37,7 +37,7 @@ export default FullScreenBack;
 
 const OuterWrapper = styled.div`
   position: relative;
-  margin-bottom: 140px;
+  // margin-bottom: 140px;
 `
 
 const Container = styled.div`

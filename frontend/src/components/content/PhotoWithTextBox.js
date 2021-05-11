@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import styled from 'styled-components';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const PhotoWithTextBox = ({  
   program: {
@@ -9,6 +11,10 @@ const PhotoWithTextBox = ({
     href,
   } 
 }) => {
+
+  const router = useRouter();
+  console.log('ROUTER: ', router);
+  const formattedLink = name.replaceAll(' ', '-');
 
   return (
     <Container>
@@ -23,9 +29,10 @@ const PhotoWithTextBox = ({
           <RightAlignedText> { name } </RightAlignedText>
         </PhotoWithTextOverlay> 
 
-      <BioAndLinkContainer>
-        <div> { bio } </div>
-      </BioAndLinkContainer>
+        <Bio> - { bio } </Bio>
+        <Link href={`/resources/[resourceSlug]/[programSlug]`} as={`${router.asPath}/${formattedLink}`}>
+          <StyledAnchor> explore { name } </StyledAnchor>
+        </Link>
     </Container>
   )
 }
@@ -36,7 +43,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column; 
   min-width: 300px; 
-  min-height: 400px;
+  min-height: 500px;
   max-width: 400px;
   width: 30%;
 `
@@ -46,7 +53,7 @@ const PhotoWithTextOverlay = styled.div`
   width: 100%; 
   height: 300px;
   text-align: right; 
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 `
 
 const RightAlignedText = styled.p`
@@ -64,6 +71,16 @@ const RightAlignedText = styled.p`
   font-weight: 300;
 `
 
-const BioAndLinkContainer = styled.div`
-  
+const Bio = styled.p`
+  font-size: 20px;
+  line-height: 26px;
+`
+
+const StyledAnchor = styled.a`
+  margin-top: auto; 
+  display: block;
+  cursor: pointer;
+  font-size: 20px;
+  color: inherit; 
+  text-decoration: none;
 `

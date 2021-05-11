@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const TitleWithBackground = ({ 
-  text, 
+  text = 'title', 
   topOffset, 
   opacity, 
   color, 
@@ -10,7 +10,7 @@ const TitleWithBackground = ({
   absolute = false
 }) => {
   return (
-    <TitleContainer topOffset={ topOffset } marginBottom={ marginBottom } absolute={absolute}>
+    <TitleContainer topOffset={ topOffset } marginBottom={ marginBottom } absolute={absolute} >
       <Title backgroundColor={ backgroundColor } color={ color } marginBottom={marginBottom}>
         { text }
       </Title>
@@ -27,8 +27,8 @@ const TitleContainer = styled.div`
   position: ${ props => props.absolute ? 'absolute' : 'relative' };
   justify-content: center;
   width: 100vw; 
-  margin-bottom: ${props => props.marginBottom ? '80px' : 0 };
-  
+  margin-bottom: ${props => props.marginBottom ? '80px' : '80px' };
+  text-transform: capitalize;
 `
 
 const Title = styled.h2`

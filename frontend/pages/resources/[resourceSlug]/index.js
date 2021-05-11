@@ -11,7 +11,6 @@ const ResourcePage = () => {
   const router = useRouter(); 
   const { resourceSlug } = router.query;
 
-  console.log('FAKEDATA: ', fakeData[resourceSlug]);
   return (
     <>
       <NavBar />
@@ -22,7 +21,7 @@ const ResourcePage = () => {
             titleInfo={{ show: true, text: `${ resourceSlug }`, backgroundColor: '#0077B6', color: 'white' }}
           />
 
-          <CenterFlexContainer>
+          <CenterFlexContainer padding='extraPad'>
             { fakeData[resourceSlug].programs.map(( program ) => 
                 <PhotoWithTextBox key={program.photo} src={program.photo} program={program} />
               )

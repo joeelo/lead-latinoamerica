@@ -53,7 +53,13 @@ const HomeScreenPage = () => {
   return (
     <>
       <NavBar />
-      <FullScreenBack src='/images/javier-trueba-iQPr1XkF5F0-unsplash.jpg'>
+      <FullScreenBack 
+        src='/images/javier-trueba-iQPr1XkF5F0-unsplash.jpg'
+        titleInfo={{
+          text: 'Opportunities', 
+          show: true,
+        }}
+      >
         <PortalTitleContainer>
           <PortalTitle>Web Portal</PortalTitle>
           <PortalSubTitle>Powered by LEAD.Latinoamérica</PortalSubTitle>
@@ -63,10 +69,10 @@ const HomeScreenPage = () => {
           <MainTitleFirstLine>Connecting students to</MainTitleFirstLine>
           <MainTitleSecondLine>opportunities in the community</MainTitleSecondLine>
         </MainTitleContainer>
+        
       </FullScreenBack>
 
-      <CenterFlexContainer backgroundColor={'#0077B6'}>
-      <TitleWithBackground text={'Opportunities'} topOffset={-70}/>
+      <CenterFlexContainer backgroundColor={'#0077B6'} padding={'padTop'}>
         {
           opportunityInfo.map(info => <FlexContentBox 
             key={info.title} 
@@ -82,12 +88,14 @@ const HomeScreenPage = () => {
         <TitleWithBackground text={'Recently Posted'} topOffset={100} marginBottom={true}/>
         <CenterFlexContainer padding={100} backgroundColor={'rgba(0, 0, 0, 0)'}>
           {
-            recentlyPosted.map(info => <FlexContentBox 
-              key={info.title} 
-              size={'thirds'} 
-              content={info} 
-              minHeight={400}
-            />)
+            recentlyPosted.map(info => (
+              <FlexContentBox 
+                key={info.title} 
+                size={'thirds'} 
+                content={info} 
+                minHeight={400}
+              />
+            ))
           }
         </CenterFlexContainer>
       </FullScreenBack>

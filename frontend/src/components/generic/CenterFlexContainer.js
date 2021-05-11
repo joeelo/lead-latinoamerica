@@ -37,9 +37,13 @@ const Container = styled.div`
   position: relative; 
   display: flex; 
   align-items: baseline;
-  padding-top: ${ props => props.padding ? `${props.padding}px` : '0'};
+  padding-top: ${ props => {
+    if (props.padding === 'padTop') return `100px`;
+    if (props.padding === 'extraPad') return `140px`;
+    if (props.padding) return `${props.padding}px`;
+    return 0;
+  }};
   padding-bottom: ${ props => props.padding ? `${props.padding}px` : '0'};
-  align-items: center; 
   justify-content: space-between; 
   max-width: ${ props => props.maxWidth ? props.maxWidth : '1200px' };
   min-height: ${ props => props.minHeight ? props.minHeight : '400px' };

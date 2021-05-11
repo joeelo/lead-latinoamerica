@@ -6,7 +6,7 @@ export default {
       {
         name: 'Book Club', 
         href: 'book-club', 
-        bio: 'Book club is a place all students can go to get their literature on. I\'ts where you go when you\'re unsure of what to do, why not escape to far off destination or somewhere else in the cosmos.', 
+        bio: 'Book club is a place all students can go to get their literature on. It\'s where you go when you\'re unsure of what to do, why not escape to far off destination or somewhere else in the cosmos.', 
         photo: '/images/terry-tran-EG9GnUX3Wkw-unsplash.jpg'
       }, 
       {
@@ -31,7 +31,7 @@ export default {
       {
         name: 'Book Club', 
         href: 'book-club', 
-        bio: 'Book club is a place all students can go to get their literature on. I\'ts where you go when you\'re unsure of what to do, why not escape to far off destination or somewhere else in the cosmos.', 
+        bio: 'Book club is a place all students can go to get their literature on. It\'s where you go when you\'re unsure of what to do, why not escape to far off destination or somewhere else in the cosmos.', 
         photo: '/images/terry-tran-EG9GnUX3Wkw-unsplash.jpg'
       }, 
       {
@@ -56,7 +56,7 @@ export default {
       {
         name: 'Book Club', 
         href: 'book-club', 
-        bio: 'Book club is a place all students can go to get their literature on. I\'ts where you go when you\'re unsure of what to do, why not escape to far off destination or somewhere else in the cosmos.', 
+        bio: 'Book club is a place all students can go to get their literature on. It\'s where you go when you\'re unsure of what to do, why not escape to far off destination or somewhere else in the cosmos.', 
         photo: '/images/terry-tran-EG9GnUX3Wkw-unsplash.jpg'
       }, 
       {
@@ -81,7 +81,7 @@ export default {
       {
         name: 'Book Club', 
         href: 'book-club', 
-        bio: 'Book club is a place all students can go to get their literature on. I\'ts where you go when you\'re unsure of what to do, why not escape to far off destination or somewhere else in the cosmos.', 
+        bio: 'Book club is a place all students can go to get their literature on. It\'s where you go when you\'re unsure of what to do, why not escape to far off destination or somewhere else in the cosmos.', 
         photo: '/images/terry-tran-EG9GnUX3Wkw-unsplash.jpg'
       }, 
       {
