@@ -1,22 +1,31 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 
-const PhotoWithTextBox = ({ src = '/'}) => {
+const PhotoWithTextBox = ({  
+  program: {
+    name, 
+    photo, 
+    bio, 
+    href,
+  } 
+}) => {
 
   return (
     <Container>
-      <PhotoWithTextOverlay>
-        <Image 
-          src={src}
-          layout='fill'
-          objectFit='cover'
-          objectPosition='center'
-          style={{zIndex: -1, position: 'absolute'}}
-        />
-        <RightAlignedText> Working </RightAlignedText>
+        <PhotoWithTextOverlay>
+          <Image 
+            src={ photo }
+            layout='fill'
+            objectFit='cover'
+            objectPosition='center'
+            style={{ zIndex: -1, position: 'absolute' }}
+          />
+          <RightAlignedText> { name } </RightAlignedText>
+        </PhotoWithTextOverlay> 
 
-      </PhotoWithTextOverlay>
-      <div>working</div>
+      <BioAndLinkContainer>
+        <div> { bio } </div>
+      </BioAndLinkContainer>
     </Container>
   )
 }
@@ -29,19 +38,32 @@ const Container = styled.div`
   min-width: 300px; 
   min-height: 400px;
   max-width: 400px;
-  position: relative;
+  width: 30%;
 `
 
 const PhotoWithTextOverlay = styled.div`
-  position: relatve; 
+  position: relative; 
   width: 100%; 
-  min-height: 200px;
+  height: 300px;
   text-align: right; 
+  margin-bottom: 40px;
 `
 
 const RightAlignedText = styled.p`
   width: 100px; 
   color: white; 
-  font-size: 26px; 
+  font-size: 34px; 
   line-height: 34px; 
+  z-index: 10; 
+  color: white;
+  position: relative;
+  text-align: right;
+  width: 100%;
+  padding-right: 15px;
+  padding-top: 15px;
+  font-weight: 300;
+`
+
+const BioAndLinkContainer = styled.div`
+  
 `

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 
-const Footer = () => {
+const Footer = ({ marginTop }) => {
   return (
-    <Container data-testid='footer'>
+    <Container data-testid='footer' marginTop={marginTop}>
       <Column>
         <p>Explore</p>
         <p><Link href="#"> Programs </Link></p>
@@ -24,6 +24,7 @@ const Container = styled.div`
   width: 100vw; 
   display: flex; 
   padding-left: 20px; 
+  margin-top: ${ props => props.marginTop ? '200px' : 0 };
 `
 
 const Column = styled.div`

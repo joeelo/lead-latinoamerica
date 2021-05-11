@@ -19,7 +19,8 @@ export default {
       {
         name: 'Youth Mentorship', 
         href: 'mentorship', 
-        bio: 'Help the younger kids coming up get ahead by giving them guidance. Only you can provide your experience, and help them get ahead before they even know they need it. '
+        bio: 'Help the younger kids coming up get ahead by giving them guidance. Only you can provide your experience, and help them get ahead before they even know they need it. ', 
+        photo: '/images/airfocus-K_VeavYEfdA-unsplash.jpg'
       }
     ], 
 
@@ -43,7 +44,9 @@ export default {
       {
         name: 'Youth Mentorship', 
         href: 'mentorship', 
-        bio: 'Help the younger kids coming up get ahead by giving them guidance. Only you can provide your experience, and help them get ahead before they even know they need it. '
+        bio: 'Help the younger kids coming up get ahead by giving them guidance. Only you can provide your experience, and help them get ahead before they even know they need it. ', 
+        photo: '/images/airfocus-K_VeavYEfdA-unsplash.jpg'
+
       }
     ], 
   },
@@ -66,7 +69,9 @@ export default {
       {
         name: 'Youth Mentorship', 
         href: 'mentorship', 
-        bio: 'Help the younger kids coming up get ahead by giving them guidance. Only you can provide your experience, and help them get ahead before they even know they need it. '
+        bio: 'Help the younger kids coming up get ahead by giving them guidance. Only you can provide your experience, and help them get ahead before they even know they need it. ', 
+        photo: '/images/airfocus-K_VeavYEfdA-unsplash.jpg'
+
       }
     ], 
   },
@@ -89,7 +94,8 @@ export default {
       {
         name: 'Youth Mentorship', 
         href: 'mentorship', 
-        bio: 'Help the younger kids coming up get ahead by giving them guidance. Only you can provide your experience, and help them get ahead before they even know they need it. '
+        bio: 'Help the younger kids coming up get ahead by giving them guidance. Only you can provide your experience, and help them get ahead before they even know they need it. ', 
+        photo: '/images/airfocus-K_VeavYEfdA-unsplash.jpg'
       }
     ], 
   }

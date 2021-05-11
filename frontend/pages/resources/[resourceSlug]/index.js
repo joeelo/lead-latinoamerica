@@ -1,6 +1,8 @@
 import FullScreenBack from '@/components/background/FullScreenBack';
 import PhotoWithTextBox from '@/components/content/PhotoWithTextBox';
+import Footer from '@/components/footer/Footer';
 import CenterFlexContainer from '@/components/generic/CenterFlexContainer';
+import NavBar from '@/components/nav/NavBar';
 import fakeData from '@/data/fakeData';
 import { useRouter } from 'next/router';
 
@@ -12,23 +14,24 @@ const ResourcePage = () => {
   console.log('FAKEDATA: ', fakeData[resourceSlug]);
   return (
     <>
+      <NavBar />
       { fakeData[resourceSlug] && 
         <>
           <FullScreenBack 
             src={ fakeData[resourceSlug].photo }
-            titleInfo={{show: true, text: `${resourceSlug}`, backgroundColor: '#0077B6', color: 'white'}}
+            titleInfo={{ show: true, text: `${ resourceSlug }`, backgroundColor: '#0077B6', color: 'white' }}
           />
 
           <CenterFlexContainer>
-            { fakeData[resourceSlug].programs.map((obj, index) => 
-                <PhotoWithTextBox key={obj.photo} src={obj.photo}/>
+            { fakeData[resourceSlug].programs.map(( program ) => 
+                <PhotoWithTextBox key={program.photo} src={program.photo} program={program} />
               )
             }
           </CenterFlexContainer>
-          
+            
         </>
       }
-
+      <Footer marginTop />
 
     </>
   )

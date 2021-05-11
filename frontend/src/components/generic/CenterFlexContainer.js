@@ -36,6 +36,7 @@ const Container = styled.div`
   margin: 0 auto; 
   position: relative; 
   display: flex; 
+  align-items: baseline;
   padding-top: ${ props => props.padding ? `${props.padding}px` : '0'};
   padding-bottom: ${ props => props.padding ? `${props.padding}px` : '0'};
   align-items: center; 
