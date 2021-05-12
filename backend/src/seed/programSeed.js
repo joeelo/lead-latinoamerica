@@ -8,9 +8,6 @@ module.exports = [
     tags: ['code', 'program', 'summer', 'teaching'],
     organization: 'Mission Bit'
   }, 
-]
-
-module.exports = [
   {
     title: 'SF Youth Theater', 
     content: 'This program introduces students to theater and performance.', 
@@ -20,9 +17,6 @@ module.exports = [
     tags: ['theater', 'performance', 'creativity', 'arts'],
     organization: 'SF Youth Theater'
   }, 
-]
-
-module.exports = [
   {
     title: 'YBike', 
     content: 'This program introduces students to bicycle mechanics. Students receive their own bike at the end of the program!', 
