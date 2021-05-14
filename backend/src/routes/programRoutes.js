@@ -30,7 +30,7 @@ router.post("/program", async (req, res) => {
 				return;
 			}
 		})
-		res.send({ message: response});
+		res.send({ message: response });
 	} catch (error) {
 		console.log(error);
 		res.send({ message: error });

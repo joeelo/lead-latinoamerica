@@ -9,25 +9,29 @@ const SkewedTitleAndPhoto = () => {
   const [ program, setProgram ] = useState({name: ''});
   
   useEffect(() => {
-    // const programInfo = fakeData[router.query.resourceSlug].find(programs => programs.href === router.query.programSlug);
-    // setProgram(programInfo);
+    const programInfo = fakeData[router.query.resourceSlug].programs.find(programs => programs.href === router.query.programSlug);
+    setProgram(programInfo);
   }, [])
 
   return (
     <Container>
       <TextContainer>
         <UnderlinedProgram> { router.query.resourceSlug } </UnderlinedProgram>
-        <Heading> Mission Bit </Heading>
+        <Heading> { program.name } </Heading>
+        <Bio> { program.bio } </Bio>
       </TextContainer>
       <ImageContainer>
         <Image 
           src='/images/airfocus-K_VeavYEfdA-unsplash.jpg'
           layout='fill'
           objectFit='cover'
-          objectPosition='center'
+          objectPosition='center' 
           quality='100'
         />
       </ImageContainer>
+      <CategoriesContainer>
+
+      </CategoriesContainer>
     </Container>
   )
 }
@@ -53,6 +57,7 @@ const TextContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   padding-left: 100px; 
+  padding-top: 60px;
 
   &:after {
     width: 100%;
@@ -84,4 +89,13 @@ const UnderlinedProgram = styled.p`
 
 const Heading = styled.h2`
   font-size: 68px; 
+`
+
+const Bio = styled.p`
+  font-size: 26px; 
+  line-height: 34px; 
+`
+
+const CategoriesContainer = styled.div`
+  
 `
