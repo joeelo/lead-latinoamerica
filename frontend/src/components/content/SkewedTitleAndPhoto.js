@@ -1,22 +1,12 @@
 import styled from 'styled-components';
-import fakeData from '@/data/fakeData';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
 
-const SkewedTitleAndPhoto = () => {
-  const router = useRouter(); 
-  const [ program, setProgram ] = useState({name: ''});
+const SkewedTitleAndPhoto = ({ program, router }) => {
   
-  useEffect(() => {
-    const programInfo = fakeData[router.query.resourceSlug].programs.find(programs => programs.href === router.query.programSlug);
-    setProgram(programInfo);
-  }, [])
-
   return (
     <Container>
       <TextContainer>
-        <UnderlinedProgram> { router.query.resourceSlug } </UnderlinedProgram>
+        {/* <UnderlinedProgram> { router.query.resourceSlug } </UnderlinedProgram> */}
         <Heading> { program.name } </Heading>
         <Bio> { program.bio } </Bio>
       </TextContainer>
@@ -29,9 +19,6 @@ const SkewedTitleAndPhoto = () => {
           quality='100'
         />
       </ImageContainer>
-      <CategoriesContainer>
-
-      </CategoriesContainer>
     </Container>
   )
 }
