@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 const SkewedTitleAndPhoto = ({ program, router }) => {
   
+  if ( !program ) return <></>
   return (
     <Container>
       <TextContainer>
