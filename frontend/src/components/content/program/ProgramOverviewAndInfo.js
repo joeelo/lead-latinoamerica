@@ -1,5 +1,6 @@
 import CenterFlexContainer from "@/components/generic/CenterFlexContainer";
 import styled from 'styled-components';
+import CategoryTiles from '@/components/content/program/CategoryTiles';
 
 const ProgramOverviewAndInfo = ({ program }) => {
   return (
@@ -10,7 +11,7 @@ const ProgramOverviewAndInfo = ({ program }) => {
       </LeftContainer>
       <RightContainer>
         <UnderlinedSectionHeader> Categories </UnderlinedSectionHeader>
-        
+        <CategoryTiles adjectives={ program.helpsWith }/>
         <UnderlinedSectionHeader> Start Date </UnderlinedSectionHeader>
         <StartDateText> { program.startData ? program.startData : 'TBD' } </StartDateText>
 
