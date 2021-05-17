@@ -32,4 +32,5 @@ const Tile = styled.div`
   margin-right: 10px; 
   color: white; 
   margin-bottom: 10px;
+  font-size: 18px;
 `

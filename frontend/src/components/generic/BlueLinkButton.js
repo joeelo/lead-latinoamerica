@@ -14,8 +14,8 @@ const BlueLinkButton = ({ text, hrefLocation }) => {
 export default BlueLinkButton;
 
 const Container = styled.div`
-  height: 50px; 
-  width: 200px; 
+  height: 60px; 
+  width: 250px; 
   font-size: 26px; 
   color: white; 
   background-color: #0077B6;
@@ -26,4 +26,9 @@ const Container = styled.div`
   border-radius: 4px;
   cursor: pointer;
   margin-left: 20px; 
+  transition: .2s ease-in-out;
+
+  :hover {
+    background-color: #07004D; 
+  }
 `

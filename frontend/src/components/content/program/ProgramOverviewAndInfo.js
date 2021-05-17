@@ -2,10 +2,8 @@ import CenterFlexContainer from "@/components/generic/CenterFlexContainer";
 import styled from 'styled-components';
 import CategoryTiles from '@/components/content/program/CategoryTiles';
 import BlueLinkButton from "@/components/generic/BlueLinkButton";
-import { useRouter } from 'next/router';
 
 const ProgramOverviewAndInfo = ({ program }) => {
-  const router = useRouter();
 
   return (
     <>
