@@ -5,7 +5,7 @@ const CategoryTiles = ({ adjectives }) => {
   if (!adjectives) return <></>
   return (
     <Container>
-      { adjectives.map(adj => <Tile> { adj } </Tile>)}
+      { adjectives.map(adj => <Tile key={ adj }> { adj } </Tile>)}
     </Container>
   )
 }

@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 
-const BlueLinkButton = ({ text, hrefLocation }) => {
+const BlueLinkButton = ({ text, hrefFormatted, hrefAs }) => {
+
+
   return (
     <Container>
-      {/* <Link> */}
-        { text }
-      {/* </Link> */}
+      <Link href={ hrefFormatted } as={`${ hrefAs }`}>
+        <Span> { text } </Span>
+      </Link>
     </Container>
   )
 }
@@ -31,4 +33,8 @@ const Container = styled.div`
   :hover {
     background-color: #07004D; 
   }
+`
+
+const Span = styled.span`
+  color: white; 
 `

@@ -17,12 +17,12 @@ const Form = ({ formData, objKey }) => {
   }
 
   return (
-    <Container onSubmit={handleSubmit(submitHandler)}>
+    <Container onSubmit={ handleSubmit(submitHandler) }>
       <Title> { data.formTitle } </Title>
       { data.list.map((obj, index) => {
         return <FormInput key={index} data={obj} register={register} hasError={errors[obj.label]}/>
       })}
-      <SubmitButton>submit</SubmitButton>
+      <SubmitButton>Submit</SubmitButton>
     </Container>
   )
 }

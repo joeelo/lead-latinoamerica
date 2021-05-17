@@ -14,7 +14,6 @@ const ProgramPage = () => {
   useEffect(() => {
     if ( !fakeData[router.query.resourceSlug] ) return;
     const programInfo = fakeData[router.query.resourceSlug].programs.find( p => p.href === router.query.programSlug )
-    console.log('PROGRAMINFO :', programInfo);
     setProgram(programInfo);
   }, [router.query])
 

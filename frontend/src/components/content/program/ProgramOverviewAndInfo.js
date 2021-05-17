@@ -2,8 +2,11 @@ import CenterFlexContainer from "@/components/generic/CenterFlexContainer";
 import styled from 'styled-components';
 import CategoryTiles from '@/components/content/program/CategoryTiles';
 import BlueLinkButton from "@/components/generic/BlueLinkButton";
+import useGetRouterPath from "@/hooks/useGetRouterPath";
 
 const ProgramOverviewAndInfo = ({ program }) => {
+  const path = useGetRouterPath();
+  console.log(path);
 
   return (
     <>
@@ -20,7 +23,7 @@ const ProgramOverviewAndInfo = ({ program }) => {
         </RightContainer>
       </CenterFlexContainer>
       <CenterFlexContainer>
-        <BlueLinkButton text={ 'Sign Up' }/>
+        <BlueLinkButton text={ 'Sign Up' } hrefFormatted={'/resources/[resourceSlug]/[programSlug]/sign-up'} hrefAs={`${path}/sign-up`} />
       </CenterFlexContainer>
     </>
   )
