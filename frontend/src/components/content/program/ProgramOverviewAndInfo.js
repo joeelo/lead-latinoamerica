@@ -1,22 +1,30 @@
 import CenterFlexContainer from "@/components/generic/CenterFlexContainer";
 import styled from 'styled-components';
 import CategoryTiles from '@/components/content/program/CategoryTiles';
+import BlueLinkButton from "@/components/generic/BlueLinkButton";
+import { useRouter } from 'next/router';
 
 const ProgramOverviewAndInfo = ({ program }) => {
-  return (
-    <CenterFlexContainer marginTop={ true }>
-      <LeftContainer>
-        <LargeText> Overview </LargeText>
-        <OverviewText> { program.overview } </OverviewText>
-      </LeftContainer>
-      <RightContainer>
-        <UnderlinedSectionHeader> Categories </UnderlinedSectionHeader>
-        <CategoryTiles adjectives={ program.helpsWith }/>
-        <UnderlinedSectionHeader> Start Date </UnderlinedSectionHeader>
-        <StartDateText> { program.startData ? program.startData : 'TBD' } </StartDateText>
+  const router = useRouter();
 
-      </RightContainer>
-    </CenterFlexContainer>
+  return (
+    <>
+      <CenterFlexContainer marginTop={ true }>
+        <LeftContainer>
+          <LargeText> Overview </LargeText>
+          <OverviewText> { program.overview } </OverviewText>
+        </LeftContainer>
+        <RightContainer>
+          <UnderlinedSectionHeader> Categories </UnderlinedSectionHeader>
+          <CategoryTiles adjectives={ program.helpsWith }/>
+          <UnderlinedSectionHeader> Start Date </UnderlinedSectionHeader>
+          <StartDateText> { program.startData ? program.startData : 'TBD' } </StartDateText>
+        </RightContainer>
+      </CenterFlexContainer>
+      <CenterFlexContainer>
+        <BlueLinkButton text={ 'Sign Up' }/>
+      </CenterFlexContainer>
+    </>
   )
 }
 
