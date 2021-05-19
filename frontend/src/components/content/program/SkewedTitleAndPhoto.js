@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 
 const SkewedTitleAndPhoto = ({ program, router }) => {
   
@@ -10,6 +9,7 @@ const SkewedTitleAndPhoto = ({ program, router }) => {
   }
   
   if ( !program ) return <></>
+  console.log('program: ', program.photo);
   return (
     <Container>
       <TextContainer>
@@ -18,13 +18,15 @@ const SkewedTitleAndPhoto = ({ program, router }) => {
         <Bio> { program.bio } </Bio>
       </TextContainer>
       <ImageContainer>
-        <Image 
-          src='/images/airfocus-K_VeavYEfdA-unsplash.jpg'
-          layout='fill'
-          objectFit='cover'
-          objectPosition='center' 
-          quality='100'
-        />
+        { program.photo && 
+          <Image 
+            src={ `${ program.photo }` }
+            layout='fill'
+            objectFit='cover'
+            objectPosition='center' 
+            quality='100'
+          />
+        }
       </ImageContainer>
     </Container>
   )

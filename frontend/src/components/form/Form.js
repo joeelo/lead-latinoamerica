@@ -20,7 +20,7 @@ const Form = ({ formData, objKey }) => {
     <Container onSubmit={ handleSubmit(submitHandler) }>
       <Title> { data.formTitle } </Title>
       { data.list.map((obj, index) => {
-        return <FormInput key={index} data={obj} register={register} hasError={errors[obj.label]}/>
+        return <FormInput key={ index } data={ obj } register={ register } hasError={ errors[obj.label] }/>
       })}
       <SubmitButton>Submit</SubmitButton>
     </Container>
