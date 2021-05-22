@@ -45,6 +45,7 @@ const Container = styled.div`
     return '100%';
   }};
   
+  
   @media screen and (max-width: 768px) {
     flex: 0 0 95%; 
     margin: 0 auto 40px auto; 

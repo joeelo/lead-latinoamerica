@@ -24,7 +24,7 @@ const PhotoWithTextBox = ({
             layout='fill'
             objectFit='cover'
             objectPosition='center'
-            style={{ zIndex: -1, position: 'absolute' }}
+            style={{ zIndex: -1, position: 'absolute', borderRadius: 4 }}
           />
           <RightAlignedText> { name } </RightAlignedText>
         </PhotoWithTextOverlay> 
@@ -43,9 +43,14 @@ const Container = styled.div`
   display: flex;
   flex-direction: column; 
   min-width: 300px; 
-  min-height: 500px;
+  min-height: 550px;
   max-width: 400px;
   width: 30%;
+  min-width: 300px;
+  box-shadow: 1px 2px 15px 0px rgba(184,177,184,1);
+  border-radius: 4px;
+  padding-bottom: 15px;
+  margin-bottom: 40px;
 `
 
 const PhotoWithTextOverlay = styled.div`
@@ -74,6 +79,8 @@ const RightAlignedText = styled.p`
 const Bio = styled.p`
   font-size: 20px;
   line-height: 26px;
+  padding: 20px; 
+  padding-top: 5px;
 `
 
 const StyledAnchor = styled.a`
@@ -83,4 +90,5 @@ const StyledAnchor = styled.a`
   font-size: 20px;
   color: inherit; 
   text-decoration: none;
+  margin-left: 20px;
 `
