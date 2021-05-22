@@ -1,27 +1,24 @@
 import styled from 'styled-components';
 import { useRef, useState } from 'react';
 
-const Hamburger = (props) => {
+const Hamburger = ({ navOpen, setNavOpen }) => {
 
   const lineHeight = 6;
   const lineWidth = 40;
 
   const menuBtn = useRef();
-  const [ menuOpen, setMenuOpen ] = useState(false);
 
   const clickHandler = () => {
-    setMenuOpen(!menuOpen);
-    console.log('MENU OPEN: ', menuOpen);
+    setNavOpen(!navOpen);
   }
 
   return (
     <Menu ref={menuBtn} onClick={clickHandler}>
       <Lines 
-        className={menuOpen ? 'open' : ''}
+        className={navOpen ? 'open' : ''}
         lineHeight={lineHeight}
         lineWidth={lineWidth}
       >
-
       </Lines>
     </Menu>
   )
