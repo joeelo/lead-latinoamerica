@@ -15,6 +15,7 @@ router.get("/programs", async (req, res) => {
 
 router.post("/program", async (req, res) => {
 	const errors = {};
+	console.log(req);
 	try {
 		if (req.body.title.length < 3) {
 			errors.titleLength = 'Title Length is too short, must be at least 3 characters.';
