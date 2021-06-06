@@ -41,8 +41,8 @@ const Container = styled.nav`
     background-size: 0% 2px;
     background-repeat: no-repeat;
     transition:
-      background-size 0.3s,
-      background-position 0s 0.3s; /*change after the size immediately*/
+    background-size 0.3s,
+    background-position 0s 0.3s; /*change after the size immediately*/
   }
   
   a:hover {

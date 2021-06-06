@@ -29,7 +29,21 @@ const GlobalStyle = createGlobalStyle`
 const theme = {
   colors: {
     primary: '#0070f3',
+    darkBlue: '#07004D', 
+    cyan: '#0077B6', 
+    red: '#DA5552',
   },
+  fonts: {
+    mont: 'Montserrat', 
+    sans: 'source sans pro',
+  }, 
+  fontSizes: {
+    extraLarge: '', 
+    large: '', 
+    regular: '', 
+    small: '',
+    body: ''
+  }
 }
 
 export default function App({ Component, pageProps }) {
