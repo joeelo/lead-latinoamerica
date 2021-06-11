@@ -70,8 +70,9 @@ const BottomSection = styled.div`
 
 const SectionHeader = styled.p`
   font-size: 34px;
-  margin-bottom: 10px; 
+  margin-bottom: 5px; 
   font-weight: 300;
+  margin-top: 20px;
 
   a {
     font-size: 26px; 
