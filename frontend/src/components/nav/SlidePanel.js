@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import Link from 'next/link';
+import LanguageButtons from './LanguageButtons';
 
 const SlidePanel = ({ navOpen }) => {
 
-  console.log(navOpen);
-
   return (
     <Container navOpen={ navOpen }>
+        <LanguageButtons />
+        <SectionHeader>Students</SectionHeader>
         <p><Link href="#"> Programs </Link></p>
         <p><Link href="#"> Scholarships </Link></p>
         <p><Link href="#"> Internships </Link></p>
@@ -49,4 +50,10 @@ const Container = styled.nav`
     background-position: 100% 100%; /*OR bottom right*/
     background-size: 100% 2px;
   }
+`
+
+const SectionHeader = styled.p`
+  font-size: 34px;
+  margin-bottom: 10px; 
+  font-weidght: 300;
 `

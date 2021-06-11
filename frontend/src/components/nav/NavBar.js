@@ -26,7 +26,7 @@ const Container = styled.div`
   position: fixed;
   min-height: 70px;
   top: 0;
-  z-index: 10000;
+  z-index: 100000;
 `
 
 const PlaceHolderContainer = styled.div` // To take up the fixed height at the top of page and force content down

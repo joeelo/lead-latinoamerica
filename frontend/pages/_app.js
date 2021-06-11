@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
     min-height: 100vh; 
     font-family: "Helvetica Neue", sans-serif;
     max-width: 100vw;
+    font-weight: 300;
   }
 
   h2 {
