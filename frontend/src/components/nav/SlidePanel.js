@@ -7,12 +7,22 @@ const SlidePanel = ({ navOpen }) => {
   return (
     <Container navOpen={ navOpen }>
         <LanguageButtons />
-        <SectionHeader>Students</SectionHeader>
+        <SectionHeader>Student Resources</SectionHeader>
+        <p><Link href="#"> Sign in </Link></p>
         <p><Link href="#"> Programs </Link></p>
         <p><Link href="#"> Scholarships </Link></p>
         <p><Link href="#"> Internships </Link></p>
-        <p><Link href="#"> Our Team </Link></p>
-        <p><Link href="/add-edit-orgs"> Add your org </Link></p>
+
+        <SectionHeader>Org Portal</SectionHeader>
+        <p><Link href="/add-edit-orgs"> Add your Org </Link></p>
+        <p><Link href="#"> Partner with us </Link></p>
+
+        <BottomSection>
+            <Link href="/frequently-asked-questions">FAQ</Link>
+            <br/>
+            <Link href="/mission-statement">Our Mission</Link>
+        </BottomSection>
+
     </Container>
   )
 }
@@ -25,10 +35,12 @@ const Container = styled.nav`
   width: 400px; 
   height: 100vh;
   position: absolute; 
+  top: 70px;
   left: ${ props => props.navOpen === false ? '-400px' : '0'}; 
   padding: 10px;
   transition: .4s ease-in-out;
   padding: 50px 20px;
+  box-shadow: ${props => props.navOpen ? '5px 5px 9px -2px #000000' : 'none'} ; 
 
   a {
     margin-bottom: 10px;
@@ -52,8 +64,17 @@ const Container = styled.nav`
   }
 `
 
+const BottomSection = styled.div`
+  margin-top: 40px; 
+`
+
 const SectionHeader = styled.p`
   font-size: 34px;
   margin-bottom: 10px; 
-  font-weidght: 300;
+  font-weight: 300;
+
+  a {
+    font-size: 26px; 
+    color: rgba(0, 119, 182, 1);
+  }
 `
