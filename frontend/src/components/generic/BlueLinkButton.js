@@ -1,11 +1,17 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 
-const BlueLinkButton = ({ text, hrefFormatted, hrefAs }) => {
+const BlueLinkButton = ({ 
+  text, 
+  hrefFormatted, 
+  hrefAs, 
+  marginLeft, 
+  marginTop 
+}) => {
 
 
   return (
-    <Container>
+    <Container style={ style }>
       <Link href={ hrefFormatted } as={`${ hrefAs }`}>
         <Span> { text } </Span>
       </Link>

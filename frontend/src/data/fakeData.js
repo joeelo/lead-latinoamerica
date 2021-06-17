@@ -15,7 +15,7 @@ export default {
         href: 'mission-bit', 
         bio: 'Helping students get ahead by giving them the knowledge in modern programming practices and algorithmic thinking', 
         overview: 'Mission Bit programming is here to help students excel, giving them a boost in critical thinking through practice and repition of building incredible small projects. There are several languages out there, so we teach the underlying fundamentals so that students can feel comfortable picking up any language from C to Javascript.', 
-        photo: '/images/juanjo-jaramillo-mZnx9429i94-unsplash.jpg', 
+        photo: '/images/pankaj-patel-ruiU36AR5zo-unsplash.jpg', 
         helpsWith: ['Programming Skills', 'Critical Thinking', 'Javascript', 'Algorithms', 'Communication'],
       }, 
       {
@@ -43,7 +43,7 @@ export default {
         href: 'mission-bit', 
         bio: 'Helping students get ahead by giving them the knowledge in modern programming practices and algorithmic thinking', 
         overview: 'Mission Bit programming is here to help students excel, giving them a boost in critical thinking through practice and repition of building incredible small projects. There are several languages out there, so we teach the underlying fundamentals so that students can feel comfortable picking up any language from C to Javascript.', 
-        photo: '/images/juanjo-jaramillo-mZnx9429i94-unsplash.jpg', 
+        photo: '/images/pankaj-patel-ruiU36AR5zo-unsplash.jpg', 
         helpsWith: ['Programming Skills', 'Critical Thinking', 'Javascript', 'Algorithms', 'Communication'],
       }, 
       {
@@ -71,7 +71,7 @@ export default {
         href: 'mission-bit', 
         bio: 'Helping students get ahead by giving them the knowledge in modern programming practices and algorithmic thinking', 
         overview: 'Mission Bit programming is here to help students excel, giving them a boost in critical thinking through practice and repition of building incredible small projects. There are several languages out there, so we teach the underlying fundamentals so that students can feel comfortable picking up any language from C to Javascript.', 
-        photo: '/images/juanjo-jaramillo-mZnx9429i94-unsplash.jpg', 
+        photo: '/images/pankaj-patel-ruiU36AR5zo-unsplash.jpg', 
         helpsWith: ['Programming Skills', 'Critical Thinking', 'Javascript', 'Algorithms', 'Communication'],
       }, 
       {
@@ -99,7 +99,7 @@ export default {
         href: 'mission-bit', 
         bio: 'Helping students get ahead by giving them the knowledge in modern programming practices and algorithmic thinking', 
         overview: 'Mission Bit programming is here to help students excel, giving them a boost in critical thinking through practice and repition of building incredible small projects. There are several languages out there, so we teach the underlying fundamentals so that students can feel comfortable picking up any language from C to Javascript.', 
-        photo: '/images/juanjo-jaramillo-mZnx9429i94-unsplash.jpg', 
+        photo: '/images/pankaj-patel-ruiU36AR5zo-unsplash.jpg', 
         helpsWith: ['Programming Skills', 'Critical Thinking', 'Javascript', 'Algorithms', 'Communication'],
       }, 
       {

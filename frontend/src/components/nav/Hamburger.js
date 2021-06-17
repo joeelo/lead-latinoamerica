@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 
 const Hamburger = ({ navOpen, setNavOpen }) => {
 
-  const lineHeight = 6;
+  const lineHeight = 4;
   const lineWidth = 40;
 
   const menuBtn = useRef();

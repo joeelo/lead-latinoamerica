@@ -24,7 +24,8 @@ const SkewedTitleAndPhoto = ({ program, router }) => {
             layout='fill'
             objectFit='cover'
             objectPosition='center' 
-            quality='100'
+            quality={100}
+            loading='eager'
           />
         }
       </ImageContainer>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Hamburger from '@/components/nav/Hamburger';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import SlidePanel from './SlidePanel';
 
 const NavBar = () => {

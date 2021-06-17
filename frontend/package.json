@@ -9,7 +9,7 @@
     "alt-port": "npm run dev -- -p 3005"
   },
   "dependencies": {
-    "next": "latest",
+    "next": "^11.0.0",
     "query-string": "^7.0.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",

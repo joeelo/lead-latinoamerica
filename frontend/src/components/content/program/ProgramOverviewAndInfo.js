@@ -14,6 +14,7 @@ const ProgramOverviewAndInfo = ({ program }) => {
         <LeftContainer>
           <LargeText> Overview </LargeText>
           <OverviewText> { program.overview } </OverviewText>
+          <BlueLinkButton text={ 'Sign Up' } hrefFormatted={'/resources/[resourceSlug]/[programSlug]/sign-up'} hrefAs={`${path}/sign-up`} />
         </LeftContainer>
         <RightContainer>
           <UnderlinedSectionHeader> Categories </UnderlinedSectionHeader>
@@ -21,9 +22,6 @@ const ProgramOverviewAndInfo = ({ program }) => {
           <UnderlinedSectionHeader> Start Date </UnderlinedSectionHeader>
           <StartDateText> { program.startData ? program.startData : 'TBD' } </StartDateText>
         </RightContainer>
-      </CenterFlexContainer>
-      <CenterFlexContainer>
-        <BlueLinkButton text={ 'Sign Up' } hrefFormatted={'/resources/[resourceSlug]/[programSlug]/sign-up'} hrefAs={`${path}/sign-up`} />
       </CenterFlexContainer>
     </>
   )
