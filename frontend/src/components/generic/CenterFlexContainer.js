@@ -7,6 +7,7 @@ const CenterFlexContainer = ({
   maxWidth, 
   minHeight, 
   marginTop,
+  align
 }) => {
 
   return (
@@ -18,6 +19,7 @@ const CenterFlexContainer = ({
         maxWidth={ maxWidth }
         minHeight={ minHeight } 
         marginTop={ marginTop }
+        align={ align }
         >
         { children }
       </Container>
@@ -38,7 +40,10 @@ const Container = styled.div`
   margin: ${ props => props.marginTop ? '100px auto 0 auto' : '0 auto' }; 
   position: relative; 
   display: flex; 
-  align-items: baseline;
+  align-items: ${ props => {
+    if (props.align === 'center') return 'center'; 
+    return 'baseline';
+  }};
   padding-top: ${ props => {
     if (props.padding === 'padTop') return `100px`;
     if (props.padding === 'extraPad') return `140px`;

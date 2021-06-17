@@ -11,7 +11,7 @@ const BlueLinkButton = ({
 
 
   return (
-    <Container style={ style }>
+    <Container>
       <Link href={ hrefFormatted } as={`${ hrefAs }`}>
         <Span> { text } </Span>
       </Link>
@@ -33,7 +33,7 @@ const Container = styled.div`
   justify-content: center;
   border-radius: 4px;
   cursor: pointer;
-  margin-left: 20px; 
+  margin-top: 40px;
   transition: .2s ease-in-out;
 
   :hover {

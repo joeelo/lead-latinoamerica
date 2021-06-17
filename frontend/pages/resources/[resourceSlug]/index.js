@@ -30,7 +30,7 @@ const ResourcePage = () => {
             
         </>
       }
-      <Footer marginTop />
+      <Footer/>
 
     </>
   )
