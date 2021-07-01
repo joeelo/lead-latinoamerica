@@ -29,21 +29,23 @@ const GlobalStyle = createGlobalStyle`
 
 const theme = {
   colors: {
-    primary: '#0070f3',
-    darkBlue: '#07004D', 
+    primary: '#0077B6',
+    darkBlue: '#1F2041', 
     cyan: '#0077B6', 
     red: '#DA5552',
+    cultured: '#F8FAFA', 
+    white: '#FFFFFF'
   },
   fonts: {
     mont: 'Montserrat', 
     sans: 'source sans pro',
   }, 
   fontSizes: {
-    extraLarge: '', 
-    large: '', 
-    regular: '', 
-    small: '',
-    body: ''
+    extraLarge: '48px', 
+    large: '34px', 
+    regular: '24px', 
+    small: '12px',
+    body: '24px'
   }
 }
 

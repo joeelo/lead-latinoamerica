@@ -17,6 +17,7 @@ const FlexContentBox = ({ size, backgroundColor, content, color, minHeight }) =>
       ref={ ref }
       minHeight={ minHeight }
     >
+      { content.svg && <ContentPhoto src={`${ content.svg }`} /> }
       <ContentTitle> { content.title } </ContentTitle>
       <ContentText> { content.text } </ContentText>
       <Link href={`/resources/[slug]`} as={`/resources/${content.title.toLowerCase()}`}>
@@ -37,7 +38,8 @@ const Container = styled.div`
   box-sizing: border-box; 
   color: ${ props => props.color ? props.color : '#222' };
   flex-direction: column; 
-  min-height: ${props => props.minHeight ? `${props.minHeight}px` : '250px'};
+  min-height: ${props => props.minHeight ? `${props.minHeight}px` : '300px'};
+  min-height: 500px;
   width: ${props => {
     if (props.size === 'halves') return '48%';
     if (props.size === 'thirds') return '31%';
@@ -50,14 +52,20 @@ const Container = styled.div`
     flex: 0 0 95%; 
     margin: 0 auto 40px auto; 
     padding: 10px; 
-    min-height: 250px;
   }
+`
+
+const ContentPhoto = styled.img`
+  margin: 0 auto; 
+  max-width: 100px; 
+  min-height: 100px; 
+  max-height: 120px; 
 `
 
 const ContentTitle = styled.h2`
   font-size: 48px; 
   text-align: center;
-  margin-bottom: 10px; 
+  margin-bottom: 20px; 
   
   @media screen and (max-width: 768px) {
     margin-bottom: 10px; 

@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 
 const Hamburger = ({ navOpen, setNavOpen }) => {
 
-  const lineHeight = 4;
+  const lineHeight = 5;
   const lineWidth = 40;
 
   const menuBtn = useRef();
@@ -49,7 +49,7 @@ const Menu = styled.div`
   const Lines = styled.div`
   width: ${props => props.lineWidth}px;
   height: ${props => props.lineHeight}px; 
-  border-radius:4px;
+  border-radius: 8px;
   transition: all .5s ease-in-out;
   background: rgb(3, 4, 94);
   
@@ -58,7 +58,7 @@ const Menu = styled.div`
     content: '';
     width: ${props => props.lineWidth}px;
     height: ${props => props.lineHeight}px; 
-    border-radius:4px;
+    border-radius:8px;
     transition: all .5s ease-in-out;
     background: rgb(3, 4, 94);
     position: absolute;

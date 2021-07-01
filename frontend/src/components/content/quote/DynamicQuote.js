@@ -22,7 +22,6 @@ const DynamicQuote = () => {
 	)
 }
 
-// export default withTheme(DynamicQuote);
 export default DynamicQuote;
 
 const Container = styled.div`

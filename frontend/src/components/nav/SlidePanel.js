@@ -40,7 +40,7 @@ const Container = styled.nav`
   padding: 10px;
   transition: .4s ease-in-out;
   padding: 50px 20px;
-  box-shadow: ${props => props.navOpen ? '5px 5px 9px -2px #000000' : 'none'} ; 
+  box-shadow: ${props => props.navOpen ? '0px 15px 9px -2px #000000' : 'none'} ; 
 
   a {
     margin-bottom: 10px;

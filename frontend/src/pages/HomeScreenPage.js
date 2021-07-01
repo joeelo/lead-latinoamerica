@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import { useContext } from 'react';
+import styled, { ThemeContext } from 'styled-components';
 import NavBar from '@/components/nav/NavBar';
 import FullScreenBack from '@/components/background/FullScreenBack';
 import CenterFlexContainer from '@/components/generic/CenterFlexContainer';
@@ -9,26 +10,33 @@ import Footer from '@/components/footer/Footer';
 
 const HomeScreenPage = () => {
 
+  const theme = useContext(ThemeContext);
+  console.log('CULTURED: ', theme.colors);
+
   const opportunityInfo = [
     { 
       title: 'Scholarships', 
       text:'Find scholarships to help fund your educational journey.', 
-      footer: 'See our Scholarship Opportunities', 
+      footer: 'See our Scholarship Opportunities',
+      svg: '/images/svg/scholarship-svgrepo-com.svg'
     }, 
     {
       title: 'Summer', 
       text:'Find a summer opportunity that allows you to connect with peers while building on your educational and professional experience.', 
-      footer: 'See our Summer Opportunities'
+      footer: 'See our Summer Opportunities',
+      svg: '/images/svg/summer-svgrepo-com.svg'
     }, 
     {
       title: 'Internships',
       text:'Browse through internship opportunities that will allow you to build on your professional experience.', 
-      footer: 'See our Internship Opportunities'
+      footer: 'See our Internship Opportunities',
+      svg: '/images/svg/learning-svgrepo-com.svg'
     }, 
     {
       title: 'Programs',
       text:'Select from a broad range of programs in your community that will help you thrive.', 
-      footer: 'See our Program Opportunities'
+      footer: 'See our Program Opportunities',
+      svg: '/images/svg/online-class-svgrepo-com.svg'
     }, 
   ]
 
@@ -72,28 +80,28 @@ const HomeScreenPage = () => {
         
       </FullScreenBack>
 
-      <CenterFlexContainer backgroundColor={'#0077B6'} padding={'padTop'}>
+      <CenterFlexContainer backgroundColor={ theme.colors.cultured } padding={'padTop'}>
         {
           opportunityInfo.map(info => <FlexContentBox 
-            key={info.title} 
-            size={'halves'} 
-            content={info} 
-            color={'white'}
-            backgroundColor={"#0077B6"}
+            key={ info.title } 
+            size={ 'halves' } 
+            content={ info } 
+            color={ theme.white }
+            backgroundColor={ theme.white }
           />)
         }
       </CenterFlexContainer>
 
-      <FullScreenBack src={'/images/hari-nandakumar-fbJr86YN574-unsplash.jpg'}>
-        <TitleWithBackground text={'Recently Posted'} topOffset={100} marginBottom={true}/>
-        <CenterFlexContainer padding={100} backgroundColor={'rgba(0, 0, 0, 0)'}>
+      <FullScreenBack src={ '/images/hari-nandakumar-fbJr86YN574-unsplash.jpg' }>
+        <TitleWithBackground text={ 'Recently Posted' } topOffset={ 100 } marginBottom={ true }/>
+        <CenterFlexContainer padding={ 100 } backgroundColor={ 'rgba(0, 0, 0, 0)' }>
           {
             recentlyPosted.map(info => (
               <FlexContentBox 
-                key={info.title} 
-                size={'thirds'} 
-                content={info} 
-                minHeight={400}
+                key={ info.title } 
+                size={ 'thirds' } 
+                content={ info } 
+                minHeight={ 400 }
               />
             ))
           }
