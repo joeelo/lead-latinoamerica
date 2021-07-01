@@ -20,9 +20,11 @@ const FlexContentBox = ({ size, backgroundColor, content, color, minHeight }) =>
       { content.svg && <ContentPhoto src={`${ content.svg }`} /> }
       <ContentTitle> { content.title } </ContentTitle>
       <ContentText> { content.text } </ContentText>
-      <Link href={`/resources/[slug]`} as={`/resources/${content.title.toLowerCase()}`}>
-        <ContentFooter> { content.footer } </ContentFooter>
-      </Link>
+      <ContentFooter> 
+        <Link href={`/resources/[slug]`} as={`/resources/${content.title.toLowerCase()}`}>
+          { content.footer }
+        </Link>        
+      </ContentFooter>
     </Container>
   )
 }
@@ -31,7 +33,7 @@ export default FlexContentBox;
 
 const Container = styled.div`
   display: flex;
-  padding: 20px; 
+  padding: 40px 20px; 
   border-radius: 4px;
   background-color: ${ props => props.backgroundColor ? props.backgroundColor : 'white' };
   margin-bottom: 60px;
@@ -40,8 +42,9 @@ const Container = styled.div`
   flex-direction: column; 
   min-height: ${props => props.minHeight ? `${props.minHeight}px` : '300px'};
   min-height: 500px;
+  max-width: 600px;
   width: ${props => {
-    if (props.size === 'halves') return '48%';
+    if (props.size === 'halves') return '47%';
     if (props.size === 'thirds') return '31%';
     if (props.size === 'quarters') return '23%';
     return '100%';
@@ -52,6 +55,27 @@ const Container = styled.div`
     flex: 0 0 95%; 
     margin: 0 auto 40px auto; 
     padding: 10px; 
+  }
+
+  a {
+    margin-bottom: 10px;
+    text-decoration: none;
+    font-size: 22px;
+    color: rgba(0, 119, 182, 1);
+    display: inline-block;
+    padding-bottom:2px;
+    background-image: linear-gradient(#000, #000);
+    background-position: 0 100%; /*OR bottom left*/
+    background-size: 0% 2px;
+    background-repeat: no-repeat;
+    transition:
+    background-size 0.3s,
+    background-position 0s 0.3s; /*change after the size immediately*/
+  }
+  
+  a:hover {
+    background-position: 100% 100%; /*OR bottom right*/
+    background-size: 100% 2px;
   }
 `
 
@@ -79,9 +103,9 @@ const ContentText = styled.p`
   @media screen and (max-width: 768px) {
     font-size: 22px; 
   }
-  `
+`
   
-  const ContentFooter = styled.p`
+const ContentFooter = styled.div`
   font-size: 26px; 
   margin-top: auto; 
   text-align: center; 

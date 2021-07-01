@@ -63,10 +63,10 @@ const HomeScreenPage = () => {
       <NavBar />
       <FullScreenBack 
         src='/images/javier-trueba-iQPr1XkF5F0-unsplash.jpg'
-        titleInfo={{
-          text: 'Opportunities', 
-          show: true,
-        }}
+        // titleInfo={{
+        //   text: 'Opportunities', 
+        //   show: true,
+        // }}
       >
         <PortalTitleContainer>
           <PortalTitle>Web Portal</PortalTitle>
