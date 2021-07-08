@@ -6,6 +6,7 @@ import CenterFlexContainer from '@/components/generic/CenterFlexContainer';
 import TitleWithBackground from '@/components/generic/TitleWithBackground';
 import FlexContentBox from '@/components/content/FlexContentBox';
 import Footer from '@/components/footer/Footer';
+import ChangingBackgroundText from '@/components/content/ChangingBackgroundTitle';
 
 
 const HomeScreenPage = () => {
@@ -73,6 +74,15 @@ const HomeScreenPage = () => {
         </MainTitleContainer>
         
       </FullScreenBack>
+
+      <ChangingBackgroundText 
+        secondaryColor={ 'green' }
+        text={ 'Test Component' }
+      />
+
+      <>
+
+      </>
 
       <CenterFlexContainer backgroundColor={ theme.colors.cultured } padding={'padTop'}>
         {

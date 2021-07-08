@@ -1,11 +1,15 @@
-import sytled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 
-const ChangingBackgroundText = ({ fontSize, initialColor, secondaryColor }) => {
+const ChangingBackgroundText = ({ fontSize, initialColor, secondaryColor, text }) => {
 	return (
 		<Container>
-			<InnerContainer>
-
+			<StyledSpan> { text } </StyledSpan>
+			<InnerContainer 
+				fontSize={ fontSize }
+				initialColor={ initialColor }
+				secondaryColor={ secondaryColor }
+			>
 			</InnerContainer>
 		</Container>
 	)
@@ -45,6 +49,10 @@ const Container = styled.div`
 	position: relative; 
 	width: 90%;
 	max-width: 300px; 
+	display: flex; 
+	align-items: center; 
+	justify-content: center; 
+	padding: 20px; 
 `
 
 const InnerContainer = styled.div`
@@ -53,7 +61,14 @@ const InnerContainer = styled.div`
 	left: 0; 
 	top: 0; 
 	background-color: 
-	animation: 1s ${ slideRight } forwards;
+	width: 0%;
+	animation-name: ${ slideRight }; 
+	animation-duration: 3s;
+	animation-fill-mode: forwards;
+	background-color: ${ props => props.secondaryColor }; 
 	// animation-fill-mode: forwards;
 `
 
+const StyledSpan = styled.span`
+	z-index: 10;
+`
