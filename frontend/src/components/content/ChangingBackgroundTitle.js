@@ -1,4 +1,5 @@
 import sytled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const ChangingBackgroundText = ({ fontSize, initialColor, secondaryColor }) => {
 	return (
@@ -10,7 +11,31 @@ const ChangingBackgroundText = ({ fontSize, initialColor, secondaryColor }) => {
 	)
 }
 
-export default ChangingBackgroundText; 
+export default ChangingBackgroundText;
+
+ChangingBackgroundText.propTypes = {
+	fontSize: PropTypes.any, 
+	intialColor: PropTypes.string, 
+	secondaryColor: PropTypes.string,
+}
+
+ChangingBackgroundText.defaultProps = {
+	fontSize: null, 
+	intialColor: '#222', 
+	secondaryColor: 'white',
+}
+
+const slideRight = keyframes`
+	0% {
+		width: 0%; 
+	}
+	30% {
+		width: 15%; 
+	}
+	100% {
+		width: 100%; 
+	}
+`
 
 const Container = styled.div`
 	margin: 0 auto; 
@@ -23,6 +48,12 @@ const Container = styled.div`
 `
 
 const InnerContainer = styled.div`
-	
+	position: absolute; 
+	height: 100%; 
+	left: 0; 
+	top: 0; 
+	background-color: 
+	animation: 1s ${ slideRight } forwards;
+	// animation-fill-mode: forwards;
 `
 
