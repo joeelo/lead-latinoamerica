@@ -61,13 +61,7 @@ const HomeScreenPage = () => {
   return (
     <>
       <NavBar />
-      <FullScreenBack 
-        src='/images/javier-trueba-iQPr1XkF5F0-unsplash.jpg'
-        // titleInfo={{
-        //   text: 'Opportunities', 
-        //   show: true,
-        // }}
-      >
+      <FullScreenBack src='/images/javier-trueba-iQPr1XkF5F0-unsplash.jpg'>
         <PortalTitleContainer>
           <PortalTitle>Web Portal</PortalTitle>
           <PortalSubTitle>Powered by LEAD.Latinoamérica</PortalSubTitle>
@@ -86,7 +80,7 @@ const HomeScreenPage = () => {
             key={ info.title } 
             size={ 'halves' } 
             content={ info } 
-            color={ theme.white }
+            color={ theme.colors.darkText }
             backgroundColor={ theme.white }
           />)
         }

@@ -20,7 +20,7 @@ const CenterFlexContainer = ({
         minHeight={ minHeight } 
         marginTop={ marginTop }
         align={ align }
-        >
+      >
         { children }
       </Container>
     </FullScreenContainerForBackground>

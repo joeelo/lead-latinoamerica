@@ -34,7 +34,8 @@ const theme = {
     cyan: '#0077B6', 
     red: '#DA5552',
     cultured: '#F8FAFA', 
-    white: '#FFFFFF'
+    white: '#FFFFFF', 
+    darkText: '#222222'
   },
   fonts: {
     mont: 'Montserrat', 
