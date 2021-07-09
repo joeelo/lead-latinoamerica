@@ -1,10 +1,21 @@
+import { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 
 const ChangingBackgroundText = ({ fontSize, initialColor, secondaryColor, text }) => {
+
+	const [ changeTextColor, setChangeTextColor ] = useState(false);
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setChangeTextColor(true);
+		}, 1000);
+		return () => clearTimeout(timer);
+	}, []);
+
 	return (
 		<Container>
-			<StyledSpan> { text } </StyledSpan>
+			<StyledSpan textColor={ changeTextColor }> { text } </StyledSpan>
 			<InnerContainer 
 				fontSize={ fontSize }
 				initialColor={ initialColor }
@@ -71,4 +82,6 @@ const InnerContainer = styled.div`
 
 const StyledSpan = styled.span`
 	z-index: 10;
+	transition: 1s ease-in all;
+	color: ${props => props.textColor ? 'black' : 'white' }; 
 `
