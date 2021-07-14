@@ -72,17 +72,16 @@ const HomeScreenPage = () => {
           <MainTitleFirstLine>Connecting students to</MainTitleFirstLine>
           <MainTitleSecondLine>opportunities in the community</MainTitleSecondLine>
         </MainTitleContainer>
-        
       </FullScreenBack>
 
-      <ChangingBackgroundText 
-        secondaryColor={ 'green' }
-        text={ 'Test Component' }
-      />
 
-      <>
+      <CenterFlexContainer backgroundColor={ theme.colors.darkBlue } padding={'padTop'}>
+        <ChangingBackgroundText 
+          secondaryColor={ 'white' }
+          text={ 'Thousands of Students' }
+        />
 
-      </>
+      </CenterFlexContainer>
 
       <CenterFlexContainer backgroundColor={ theme.colors.cultured } padding={'padTop'}>
         {

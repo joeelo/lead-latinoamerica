@@ -1,10 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
+import useOnScreen from '@/hooks/useOnScreen';
 
 const ChangingBackgroundText = ({ fontSize, initialColor, secondaryColor, text }) => {
 
+	const ref = useRef(); 
 	const [ changeTextColor, setChangeTextColor ] = useState(false);
+	const isOnScreen = useOnScreen(ref);
+
+	console.log('isOnScreen: ', isOnScreen);
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
@@ -12,16 +17,24 @@ const ChangingBackgroundText = ({ fontSize, initialColor, secondaryColor, text }
 		}, 1000);
 		return () => clearTimeout(timer);
 	}, []);
+	
 
 	return (
-		<Container>
-			<StyledSpan textColor={ changeTextColor }> { text } </StyledSpan>
-			<InnerContainer 
-				fontSize={ fontSize }
-				initialColor={ initialColor }
-				secondaryColor={ secondaryColor }
-			>
-			</InnerContainer>
+		<Container ref={ ref } >
+			{
+				isOnScreen ?
+					<>
+						<StyledSpan textColor={ changeTextColor } isOnScreen={ isOnScreen }> { text } </StyledSpan>
+						<InnerContainer 
+							fontSize={ fontSize }
+							initialColor={ initialColor }
+							secondaryColor={ secondaryColor }
+							>
+						</InnerContainer>
+					</>
+				: 
+					<></>
+			}
 		</Container>
 	)
 }
@@ -83,5 +96,5 @@ const InnerContainer = styled.div`
 const StyledSpan = styled.span`
 	z-index: 10;
 	transition: 1s ease-in all;
-	color: ${props => props.textColor ? 'black' : 'white' }; 
+	color: ${props => props.textColor && props.isOnScreen ? 'black' : 'white' }; 
 `
