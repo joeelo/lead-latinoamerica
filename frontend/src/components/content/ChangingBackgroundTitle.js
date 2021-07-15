@@ -21,13 +21,13 @@ const ChangingBackgroundText = ({ fontSize, initialColor, secondaryColor, text }
 	return (
 		<Container ref={ ref } >
 			<>
-				<StyledSpan 
+				<StyledHeading 
 					textColor={ changeTextColor } 
 					isOnScreen={ isOnScreen }
 					style={{ color: isOnScreen === true ? 'black' : 'white'}}
 				> 
 					{ text } 
-				</StyledSpan>
+				</StyledHeading>
 				<InnerContainer 
 					fontSize={ fontSize }
 					initialColor={ initialColor }
@@ -75,7 +75,7 @@ const Container = styled.div`
 	font-weight: ${ props => props.fontWeight ? '700' : '400' };
 	position: relative; 
 	width: 90%;
-	max-width: 300px; 
+	max-width: 500px; 
 	display: flex; 
 	align-items: center; 
 	justify-content: center; 
@@ -96,7 +96,7 @@ const InnerContainer = styled.div`
 	// animation-fill-mode: forwards;
 `
 
-const StyledSpan = styled.span`
+const StyledHeading = styled.h2`
 	z-index: 10;
 	transition: 2s ease-in all;
 	color: ${ props => props.isOnScreen === true ? 'black' : 'white'}; 
