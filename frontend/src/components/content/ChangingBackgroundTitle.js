@@ -18,23 +18,26 @@ const ChangingBackgroundText = ({ fontSize, initialColor, secondaryColor, text }
 		return () => clearTimeout(timer);
 	}, []);
 	
-
 	return (
 		<Container ref={ ref } >
-			{
-				isOnScreen ?
-					<>
-						<StyledSpan textColor={ changeTextColor } isOnScreen={ isOnScreen }> { text } </StyledSpan>
-						<InnerContainer 
-							fontSize={ fontSize }
-							initialColor={ initialColor }
-							secondaryColor={ secondaryColor }
-							>
-						</InnerContainer>
-					</>
-				: 
-					<></>
-			}
+			<>
+				<StyledSpan 
+					textColor={ changeTextColor } 
+					isOnScreen={ isOnScreen }
+					style={{ color: isOnScreen === true ? 'black' : 'white'}}
+				> 
+					{ text } 
+				</StyledSpan>
+				<InnerContainer 
+					fontSize={ fontSize }
+					initialColor={ initialColor }
+					secondaryColor={ secondaryColor }
+					isOnScreen={ isOnScreen }
+				>
+				</InnerContainer>
+			</>
+				
+			
 		</Container>
 	)
 }
@@ -86,7 +89,7 @@ const InnerContainer = styled.div`
 	top: 0; 
 	background-color: 
 	width: 0%;
-	animation-name: ${ slideRight }; 
+	animation-name: ${props => props.isOnScreen ? slideRight : null }; 
 	animation-duration: 3s;
 	animation-fill-mode: forwards;
 	background-color: ${ props => props.secondaryColor }; 
@@ -95,6 +98,6 @@ const InnerContainer = styled.div`
 
 const StyledSpan = styled.span`
 	z-index: 10;
-	transition: 1s ease-in all;
-	color: ${props => props.textColor && props.isOnScreen ? 'black' : 'white' }; 
+	transition: 2s ease-in all;
+	color: ${ props => props.isOnScreen === true ? 'black' : 'white'}; 
 `
