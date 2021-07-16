@@ -12,8 +12,7 @@ import ChangingBackgroundText from '@/components/content/ChangingBackgroundTitle
 const HomeScreenPage = () => {
 
   const theme = useContext(ThemeContext);
-  console.log('CULTURED: ', theme.colors);
-
+  
   const opportunityInfo = [
     { 
       title: 'Scholarships', 
