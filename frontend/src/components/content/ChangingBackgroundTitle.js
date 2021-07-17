@@ -98,6 +98,6 @@ const InnerContainer = styled.div`
 
 const StyledHeading = styled.h2`
 	z-index: 10;
-	transition: 2s ease-in all;
+	transition: 3s ease-in all;
 	color: ${ props => props.isOnScreen === true ? 'black' : 'white'}; 
 `

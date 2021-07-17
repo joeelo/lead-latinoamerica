@@ -7,12 +7,13 @@ import TitleWithBackground from '@/components/generic/TitleWithBackground';
 import FlexContentBox from '@/components/content/FlexContentBox';
 import Footer from '@/components/footer/Footer';
 import ChangingBackgroundText from '@/components/content/ChangingBackgroundTitle';
+import ContentWithSideImage from '@/components/content/ContentWithSideImage';
 
 
 const HomeScreenPage = () => {
 
   const theme = useContext(ThemeContext);
-  
+
   const opportunityInfo = [
     { 
       title: 'Scholarships', 
@@ -80,6 +81,17 @@ const HomeScreenPage = () => {
           text={ 'Thousands of Students' }
         />
 
+        <ContentWithSideImage 
+          backgroundColor={ theme.colors.darkBlue }
+          imageSrc={'/images/tony-luginsland-yXnnR9smke0-unsplash.jpg'}
+          text={
+            [
+              'Countless students experience lack of funding,  and  opportunities simply because they didn\'t know that they were available to them. ', 
+              'We\'re trying to change this by bringing all the resources together in one place. No more looking on several sites or pages for that scholarship you\'ve heard about or that internship you want.', 
+              'What you see is the most updated list we have available in your area. If you know something exists and you don\'t see it here, please let us know and we\'ll add it so everyone can prosper with the same knowledge.'
+            ]
+          }
+        />
       </CenterFlexContainer>
 
       <CenterFlexContainer backgroundColor={ theme.colors.cultured } padding={'padTop'}>

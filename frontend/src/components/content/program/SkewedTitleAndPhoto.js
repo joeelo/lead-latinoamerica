@@ -2,18 +2,9 @@ import styled from 'styled-components';
 import Image from 'next/image';
 
 const SkewedTitleAndPhoto = ({ program, router }) => {
-  
-  let programCategory = ''; 
-  if (router.query) {
-    programCategory = router.query.resourceSlug; 
-  }
-  
-  if ( !program ) return <></>
-  console.log('program: ', program.photo);
   return (
     <Container>
       <TextContainer>
-        <UnderlinedProgram> { programCategory } </UnderlinedProgram>
         <Heading> { program.name } </Heading>
         <Bio> { program.bio } </Bio>
       </TextContainer>
