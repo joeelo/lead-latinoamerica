@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 const FormInput = ({ data, register, hasError  }) => {
-
+  // register and hasError are properties of parent
   return (
     <Container>
       <Label> { data.label } </Label>
       <StyledInput 
-        placeholder={data.placeHolder} 
         {...register(data.label, { required: true})}
-        hasError={hasError}
+        placeholder={ data.placeHolder }
+        hasError={ hasError }
       />
     </Container>
   )
@@ -21,7 +21,7 @@ const Container = styled.div`
 `
 
 const Label = styled.label`
-  font-size: 24px; 
+  font-size: 32px; 
   color: darkblue; 
   padding-left: 5px;
   text-transform: capitalize;
@@ -32,11 +32,15 @@ const Label = styled.label`
   min-height: 40px;
   height: 40px;
   font-size: 24px; 
-  padding: 5px;
+  padding: 5px 5px 2px 5px;
   border: 0px;
-  border-bottom: 2px solid darkblue;
+  border-bottom: 1px solid darkblue;
 
   &:focus {
     outline: none;
+  }
+
+  ::placeholder {
+    font-size: 18px; 
   }
 `

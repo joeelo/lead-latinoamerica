@@ -1,30 +1,33 @@
 import styled from 'styled-components';
-import { useForm } from 'react-hook-form';
 import FormInput from '@/components/form/FormInput';
+import FormTextarea from '@/components/form/FormTextarea';
+import { useForm } from 'react-hook-form';
 import { postToDatabase } from '@/fetch/requests';
 
 const Form = ({ formData, objKey }) => {
-  const { register, handleSubmit, formState: { errors } } = useForm(); 
-  const data = formData[objKey];
+	const { register, handleSubmit, formState: { errors } } = useForm(); 
+	const data = formData[objKey];
 
-  const submitHandler = async (data) => {
-    try {
-      const response = await postToDatabase(data, 'program');
-      console.log(response);
-    } catch (error) {
-      console.log('error: ', error);
-    }
-  }
+	const submitHandler = async (data) => {
+		try {
+			const response = await postToDatabase(data, 'program');
+			console.log(response);
+		} catch (error) {
+			console.log('error: ', error);
+		}
+	}
 
-  return (
-    <Container onSubmit={ handleSubmit(submitHandler) }>
-      <Title> { data.formTitle } </Title>
-      { data.list.map((obj, index) => {
-        return <FormInput key={ index } data={ obj } register={ register } hasError={ errors[obj.label] }/>
-      })}
-      <SubmitButton>Submit</SubmitButton>
-    </Container>
-  )
+	return (
+		<Container onSubmit={ handleSubmit(submitHandler) }>
+			<Title> { data.formTitle } </Title>
+			{ data.list.map((obj, index) => {
+				return obj.type !== 'textArea' 
+				? <FormInput key={ index } data={ obj } register={ register } hasError={ errors[obj.label] }/>
+				: <FormTextarea key={ index } data={ obj } register={ register } hasError={ errors[obj.label] } />
+			})}
+			<SubmitButton>Submit</SubmitButton>
+		</Container>
+	)
 }
 
 export default Form;

@@ -22,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 600;
   }
 
-  p, div, span {
+  p, div, span, textarea {
     font-family: "source sans pro", sans-serif;
   }
 `
