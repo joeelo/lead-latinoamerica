@@ -1,39 +1,55 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import TitleWithBackground from '../generic/TitleWithBackground';
+import PropTypes from 'prop-types';
 
-const FullScreenBack = ({ src, children, titleInfo = {} }) => {
-  return (
-    <OuterWrapper>
-      <Container>
-        <Image 
-          src={src}
-          layout='fill'
-          objectFit='cover'
-          objectPosition='center'
-          style={{zIndex: -1, position: 'absolute'}}
-        />
-        <div style={{zIndex: 10, position: 'relative'}}>
-          { children }
-        </div>
-      </Container>
+const FullScreenBack = ({ src, children, titleInfo }) => {
 
-      { titleInfo.show &&
-        <TitleContainer className={'titleContainer'}>
-          <TitleWithBackground 
-            text={ titleInfo.text } 
-            backgroundColor={titleInfo.backgroundColor} 
-            color={titleInfo.color} 
-            absolute={true}
-            marginBottom={true}
-          />
-        </TitleContainer>
-      }
-    </OuterWrapper>
-  )
+	console.log(src);
+
+	return (
+		<OuterWrapper>
+			<Container>
+				<Image 
+					src={ src }
+					  layout='fill'
+					  objectFit='cover'
+					  objectPosition='center'
+					style={{ zIndex: -1, position: 'absolute' }}
+				/>
+				<div style={{ zIndex: 10, position: 'relative' }}>
+					{ children }
+				</div>
+			</Container>
+
+			{ titleInfo.show &&
+				<TitleContainer className={'titleContainer'}>
+					<TitleWithBackground 
+						text={ titleInfo.text } 
+						backgroundColor={ titleInfo.backgroundColor } 
+						color={ titleInfo.color } 
+						absolute={ true }
+						marginBottom={ true }
+					/>
+				</TitleContainer>
+			}
+		</OuterWrapper>
+	)
 }
 
 export default FullScreenBack;
+
+FullScreenBack.propTypes = {
+	src: PropTypes.string, 
+	children: PropTypes.node, 
+	titleInfo: PropTypes.object, 
+}
+
+FullScreenBack.defaultProps = {
+	src: '', 
+	children: '', 
+	titleInfo: PropTypes.object, 
+}
 
 const OuterWrapper = styled.div`
   position: relative;

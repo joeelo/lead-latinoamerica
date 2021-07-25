@@ -4,37 +4,36 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const PhotoWithTextBox = ({  
-  program: {
-    name, 
-    photo, 
-    bio, 
-    href,
-  } 
+	program: {
+		name, 
+		photo, 
+		bio, 
+		href,
+	} 
 }) => {
 
-  const router = useRouter();
-  console.log('ROUTER: ', router);
-  const formattedLink = name.replaceAll(' ', '-');
+	const router = useRouter();
+	const formattedLink = name.replaceAll(' ', '-');
 
-  return (
-    <Container>
-        <PhotoWithTextOverlay>
-          <Image 
-            src={ photo }
-            layout='fill'
-            objectFit='cover'
-            objectPosition='center'
-            style={{ zIndex: -1, position: 'absolute', borderRadius: 4 }}
-          />
-          <RightAlignedText> { name } </RightAlignedText>
-        </PhotoWithTextOverlay> 
+	return (
+		<Container>
+			<PhotoWithTextOverlay>
+			<Image 
+				src={ photo }
+				layout='fill'
+				objectFit='cover'
+				objectPosition='center'
+				style={{ zIndex: -1, position: 'absolute', borderRadius: 4 }}
+			/>
+			<RightAlignedText> { name } </RightAlignedText>
+			</PhotoWithTextOverlay> 
 
-        <Bio> - { bio } </Bio>
-        <Link href={`/resources/[resourceSlug]/[programSlug]`} as={`${router.asPath}/${formattedLink.toLowerCase()}`}>
-          <StyledAnchor> explore { name } </StyledAnchor>
-        </Link>
-    </Container>
-  )
+			<Bio> - { bio } </Bio>
+			<Link href={`/resources/[resourceSlug]/[programSlug]`} as={`${router.asPath}/${formattedLink.toLowerCase()}`}>
+			<StyledAnchor> explore { name } </StyledAnchor>
+			</Link>
+		</Container>
+	)
 }
 
 export default PhotoWithTextBox;

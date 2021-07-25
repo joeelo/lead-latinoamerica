@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const ContentWithSideImage = ({ text, backgroundColor, imageSrc, textColor }) => {
 	return (
 		<Container bgColor={ backgroundColor }>
-				<Section> { text.map((sentence) => <P textColor={ textColor }> { sentence } <br/></P> ) } </Section>
+				<Section> { text.map((sentence) => <P key={ sentence } textColor={ textColor }> { sentence } <br/></P> ) } </Section>
 				<ImageContainer>
 					<Image src={ `${ imageSrc }` } layout='fill' quality='100' objectFit='cover'/>
 				</ImageContainer>
@@ -15,7 +15,7 @@ const ContentWithSideImage = ({ text, backgroundColor, imageSrc, textColor }) =>
 }
 
 ContentWithSideImage.propTypes = {
-	text: PropTypes.Array, 
+	text: PropTypes.array, 
 	backgroundColor: PropTypes.string, 
 	imageSrc: PropTypes.string, 
 	textColor: PropTypes.string
@@ -54,7 +54,11 @@ const Section = styled.div`
 	margin-top: 40px; 
 
 	p {
-		font-size: 
+		font-size: 24px; 
+	}
+
+	@media screen and (max-width: 768px) {
+		width: 90%; 
 	}
 `
 

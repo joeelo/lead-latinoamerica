@@ -8,9 +8,7 @@ const ChangingBackgroundText = ({ fontSize, initialColor, secondaryColor, text }
 	const ref = useRef(); 
 	const [ changeTextColor, setChangeTextColor ] = useState(false);
 	const isOnScreen = useOnScreen(ref);
-
-	console.log('isOnScreen: ', isOnScreen);
-
+	
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			setChangeTextColor(true);
