@@ -1,10 +1,19 @@
-import styled from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
+import { useContext } from 'react';
 
 const FormTextarea = ({ data, register, hasErrors, }) => {
+
+    const theme = useContext(ThemeContext);
+    console.log('theme: ', theme);
+
     return (
         <Container>
-            <Label for={ data.label }> { data.label }</Label>
-            <Textarea name={ data.label } placeholder={ data.placeHolder }>
+            <Label htmlFor={ data.label }> { data.label }</Label>
+            <Textarea 
+                name={ data.label } 
+                placeholder={ data.placeHolder }
+                theme={ theme }
+            >
             </Textarea>
         </Container>
     )
@@ -31,4 +40,5 @@ const Textarea = styled.textarea`
     height: 200px;
     resize: none;
     padding: 10px;
+    border: 1px solid ${ props => props.theme.colors.darkBlue };
 `

@@ -37,13 +37,14 @@ const Container = styled.form`
   margin-top: 50px; 
   box-shadow: 10px 10px 25px -4px rgba(0,0,0,0.5);
   min-width: 300px; 
-  width: 50vw; 
+  width: 90vw; 
   min-height: 600px; 
   max-width: 800px; 
   border-radius: 10px;
   padding: 20px;
   display: flex; 
   flex-direction: column;
+  margin: 40px auto; 
 
 `
 

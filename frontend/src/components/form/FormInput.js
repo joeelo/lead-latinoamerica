@@ -1,7 +1,10 @@
-import styled from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
+import { useContext } from 'react';
 
 const FormInput = ({ data, register, hasError  }) => {
   // register and hasError are properties of parent
+  const theme = useContext(ThemeContext);
+
   return (
     <Container>
       <Label> { data.label } </Label>
@@ -9,6 +12,7 @@ const FormInput = ({ data, register, hasError  }) => {
         {...register(data.label, { required: true})}
         placeholder={ data.placeHolder }
         hasError={ hasError }
+        theme={ theme }
       />
     </Container>
   )
@@ -34,7 +38,7 @@ const Label = styled.label`
   font-size: 24px; 
   padding: 5px 5px 2px 5px;
   border: 0px;
-  border-bottom: 1px solid darkblue;
+  border-bottom: ${ props => '1px solid ' + props.theme.colors.darkBlue };
 
   &:focus {
     outline: none;

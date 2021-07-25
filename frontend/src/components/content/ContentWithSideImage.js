@@ -22,7 +22,7 @@ ContentWithSideImage.propTypes = {
 }
 
 ContentWithSideImage.defaultProps = {
-	children: {}, 
+	text: [],
 	backgroundColor: '#000000', 
 	imageSrc: '/', 
 	textColor: 'white',
