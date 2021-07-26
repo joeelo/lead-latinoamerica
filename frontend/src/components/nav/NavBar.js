@@ -1,21 +1,21 @@
 import styled from 'styled-components';
 import Hamburger from '@/components/nav/Hamburger';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SlidePanel from './SlidePanel';
 
 const NavBar = () => {
 
-  const [ navOpen, setNavOpen ] = useState(false);
+	const [ navOpen, setNavOpen ] = useState(false);
 
-  return (
-    <>
-      <PlaceHolderContainer></PlaceHolderContainer>
-      <Container>
-        <Hamburger { ...{ navOpen, setNavOpen } }/>
-        <SlidePanel { ...{ navOpen } }/>
-      </Container>
-    </>
-  )
+	return (
+		<>
+			<PlaceHolderContainer></PlaceHolderContainer>
+			<Container>
+				<Hamburger { ...{ navOpen, setNavOpen } }/>
+				<SlidePanel { ...{ navOpen } }/>
+			</Container>
+		</>
+	)
 }
 
 export default NavBar;
@@ -35,5 +35,5 @@ const PlaceHolderContainer = styled.div` // To take up the fixed height at the t
   width: 100vw; 
   background-color: white; 
   z-index: 1000;
-  
+
 `

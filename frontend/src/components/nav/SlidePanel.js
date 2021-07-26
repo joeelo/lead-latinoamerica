@@ -1,11 +1,32 @@
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import LanguageButtons from './LanguageButtons';
 
 const SlidePanel = ({ navOpen }) => {
 
+	const wrapperRef = useRef(null);
+
+	const handleClickOutside = (event) => {
+
+	}
+
+  	useEffect(() => {
+		if (navOpen === true) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = 'visible';
+		}
+	}, [ navOpen ]);
+
+	useEffect(() => {
+		document.addEventListener(handleClickOutside);
+
+		return () => document.removeEventListener(handleClickOutside);
+	}, [])
+
   return (
-    <Container navOpen={ navOpen }>
+    <Container navOpen={ navOpen } ref={ wrapperRef }>
         <LanguageButtons />
         <SectionHeader>Student Resources</SectionHeader>
         <p><Link href="#"> Sign in </Link></p>
