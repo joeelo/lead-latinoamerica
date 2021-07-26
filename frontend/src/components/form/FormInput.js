@@ -7,7 +7,7 @@ const FormInput = ({ data, register, hasError  }) => {
 
   return (
     <Container>
-      <Label> { data.label } </Label>
+      <Label theme={ theme }> { data.label } </Label>
       <StyledInput 
         {...register(data.label, { required: true})}
         placeholder={ data.placeHolder }
@@ -26,7 +26,7 @@ const Container = styled.div`
 
 const Label = styled.label`
   font-size: 32px; 
-  color: darkblue; 
+  color: ${ props => props.theme.colors.darkBlue }; 
   padding-left: 5px;
   text-transform: capitalize;
 `
@@ -39,9 +39,11 @@ const Label = styled.label`
   padding: 5px 5px 2px 5px;
   border: 0px;
   border-bottom: ${ props => '1px solid ' + props.theme.colors.darkBlue };
+  transition: .4s ease-in-out all; 
 
   &:focus {
     outline: none;
+    border-bottom: ${ props => '1px solid ' + props.theme.colors.cyan };
   }
 
   ::placeholder {
