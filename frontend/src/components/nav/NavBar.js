@@ -27,7 +27,7 @@ const Container = styled.div`
   min-height: 70px;
   top: 0;
   z-index: 100000;
-  box-shadow: 3px 10px 25px -4px rgba(156,156,156,1); 
+  box-shadow: 3px 0px 35px -4px rgba(156,156,156,1); 
 `
 
 const PlaceHolderContainer = styled.div` // To take up the fixed height at the top of page and force content down

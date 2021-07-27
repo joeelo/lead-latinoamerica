@@ -45,6 +45,7 @@ const Container = styled.form`
   display: flex; 
   flex-direction: column;
   margin: 40px auto; 
+  background-color: white;
 
 `
 

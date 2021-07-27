@@ -6,7 +6,7 @@ import CenterFlexContainer from '@/components/generic/CenterFlexContainer';
 import TitleWithBackground from '@/components/generic/TitleWithBackground';
 import FlexContentBox from '@/components/content/FlexContentBox';
 import Footer from '@/components/footer/Footer';
-import ChangingBackgroundText from '@/components/content/ChangingBackgroundTitle';
+import ChangingBackgroundText from '@/components/content/ChangingBackgroundText';
 import ContentWithSideImage from '@/components/content/ContentWithSideImage';
 
 

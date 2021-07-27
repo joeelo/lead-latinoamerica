@@ -48,7 +48,7 @@ FullScreenBack.propTypes = {
 FullScreenBack.defaultProps = {
 	src: '', 
 	children: '', 
-	titleInfo: PropTypes.object, 
+	titleInfo: {}, 
 }
 
 const OuterWrapper = styled.div`

@@ -11,10 +11,10 @@ const useOnScreen = (ref, rootMargin  = '0px') => {
 			},
 			{ rootMargin });
 			if (ref.current) {
-			observer.observe(ref.current);
+				observer.observe(ref.current);
 			}
 			return () => {
-			observer.unobserve(ref.current);
+				observer.unobserve(ref.current);
 			};
 		}, []);
 

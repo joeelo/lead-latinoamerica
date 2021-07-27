@@ -3,35 +3,39 @@ import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import useOnScreen from '@/hooks/useOnScreen';
 
-const ChangingBackgroundText = ({ fontSize, initialColor, secondaryColor, text }) => {
+const ChangingBackgroundText = ({ 
+	fontSize, 
+	initialColor, 
+	secondaryColor, 
+	text, 
+	fontColorInitial, 
+	fontColorSecondary, 
+	onlyRunOneTransition
+}) => {
 
 	const ref = useRef(); 
 	const [ changeTextColor, setChangeTextColor ] = useState(false);
-	const isOnScreen = useOnScreen(ref);
-	
+	let isOnScreen = useOnScreen(ref);
+
 	useEffect(() => {
-		const timer = setTimeout(() => {
+		if (isOnScreen) {
 			setChangeTextColor(true);
-		}, 1000);
-		return () => clearTimeout(timer);
-	}, []);
+		} else if (!onlyRunOneTransition && !isOnScreen) {
+			setChangeTextColor(false);
+		}
+
+	}, [ isOnScreen ])
 	
 	return (
 		<Container ref={ ref } >
 			<>
 				<StyledHeading 
-					textColor={ changeTextColor } 
-					isOnScreen={ isOnScreen }
-					style={{ color: isOnScreen === true ? 'black' : 'white'}}
+					{...{ text, changeTextColor, fontColorInitial, fontColorSecondary }}
+					style={{ color: !changeTextColor ? fontColorInitial : fontColorSecondary }}
 				> 
 					{ text } 
 				</StyledHeading>
-				<InnerContainer 
-					fontSize={ fontSize }
-					initialColor={ initialColor }
-					secondaryColor={ secondaryColor }
-					isOnScreen={ isOnScreen }
-				>
+				<InnerContainer {...{ fontSize, initialColor, secondaryColor, changeTextColor }}>
 				</InnerContainer>
 			</>
 				
@@ -46,12 +50,18 @@ ChangingBackgroundText.propTypes = {
 	fontSize: PropTypes.any, 
 	intialColor: PropTypes.string, 
 	secondaryColor: PropTypes.string,
+	text: PropTypes.string, 
+	fontColorInitial: PropTypes.string, 
+	fontColorSecondary: PropTypes.string
 }
 
 ChangingBackgroundText.defaultProps = {
 	fontSize: null, 
 	intialColor: '#222', 
 	secondaryColor: 'white',
+	text: 'Im text!', 
+	fontColorInitial: 'white', 
+	fontColorSecondary: 'black'
 }
 
 const slideRight = keyframes`
@@ -87,7 +97,8 @@ const InnerContainer = styled.div`
 	top: 0; 
 	background-color: 
 	width: 0%;
-	animation-name: ${props => props.isOnScreen ? slideRight : null }; 
+	border-radius: 4px; 
+	animation-name: ${ props => props.changeTextColor ? slideRight : null }; 
 	animation-duration: 3s;
 	animation-fill-mode: forwards;
 	background-color: ${ props => props.secondaryColor }; 
@@ -97,5 +108,4 @@ const InnerContainer = styled.div`
 const StyledHeading = styled.h2`
 	z-index: 10;
 	transition: 3s ease-in all;
-	color: ${ props => props.isOnScreen === true ? 'black' : 'white'}; 
 `
