@@ -22,7 +22,7 @@ const SlidePanel = ({ navOpen }) => {
 	useEffect(() => {
 		document.addEventListener('click', handleClickOutside);
 
-		return () => document.removeEventListener(handleClickOutside);
+		return () => document.removeEventListener('click', handleClickOutside);
 	}, [])
 
   return (

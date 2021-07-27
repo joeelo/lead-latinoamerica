@@ -56,7 +56,7 @@ const Title = styled.h2`
 
 const SubmitButton = styled.button`
   outline: none; 
-  border-radius: 50px; 
+  border-radius: 4px; 
   height: 50px; 
   margin-top: 20px; 
   color: white;
@@ -71,7 +71,7 @@ const SubmitButton = styled.button`
 
   :hover {
     background-color: skyblue;
-    color: darkblue;  
+    // color: white;  
 
   }
 `
