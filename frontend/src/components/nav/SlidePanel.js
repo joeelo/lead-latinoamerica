@@ -8,7 +8,7 @@ const SlidePanel = ({ navOpen }) => {
 	const wrapperRef = useRef(null);
 
 	const handleClickOutside = (event) => {
-
+		console.log(event);
 	}
 
   	useEffect(() => {
@@ -20,7 +20,7 @@ const SlidePanel = ({ navOpen }) => {
 	}, [ navOpen ]);
 
 	useEffect(() => {
-		document.addEventListener(handleClickOutside);
+		document.addEventListener('click', handleClickOutside);
 
 		return () => document.removeEventListener(handleClickOutside);
 	}, [])
