@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 import DynamicQuote from '../content/quote/DynamicQuote';
+import PropTypes from 'prop-types';
 
-const Footer = ({ marginTop, showQuote = true }) => {
+const Footer = ({ marginTop, showQuote }) => {
     return (
         <>
             { showQuote && <DynamicQuote /> }
@@ -21,6 +22,16 @@ const Footer = ({ marginTop, showQuote = true }) => {
 }
 
 export default Footer;
+
+Footer.propTypes = {
+    marginTop: PropTypes.string, 
+    showQuote: PropTypes.bool
+}
+
+Footer.defaultProps = {
+    marginTop: '0', 
+    showQuote: true
+}
 
 const Container = styled.div`
     min-height: 300px; 

@@ -10,7 +10,8 @@ const Form = ({ formData, objKey }) => {
 
 	const submitHandler = async (data) => {
 		try {
-			const response = await postToDatabase(data, 'program');
+      console.log('FORM DATA: ', data);
+			const response = await postToDatabase(data, 'programs/add');
 			console.log(response);
 		} catch (error) {
 			console.log('error: ', error);
@@ -66,12 +67,13 @@ const SubmitButton = styled.button`
   max-width: 200px; 
   width: 200px;
   margin-left: auto; 
-  font-size: 24px; 
+  font-size: 18px; 
   cursor: pointer; 
   transition: .2s ease-in-out;
+  font-family: 'Montserrat'
 
   :hover {
-    background-color: skyblue;
+    background-color: #0000FF;
     // color: white;  
 
   }

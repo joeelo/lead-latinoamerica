@@ -9,6 +9,7 @@ const getFromDatabase = async (data, endpoint) => {
 }
 
 const postToDatabase = async (data, endpoint) => {
+  console.log('POST TO DATABASE DATA: ', data);
   try {
     const options = {
       method: 'POST', 
@@ -20,6 +21,7 @@ const postToDatabase = async (data, endpoint) => {
     const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/${endpoint}`, options);
     const json = await response.json(); 
     console.log(json);
+    console.log('POST TO DATABASE RESPONSE JSON: ', json);
     return json; 
   } catch (error) {
     console.log(error);

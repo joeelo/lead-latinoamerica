@@ -4,12 +4,15 @@ import { useContext } from 'react';
 const FormTextarea = ({ data, register, hasErrors, }) => {
 
     const theme = useContext(ThemeContext);
-    console.log('theme: ', theme);
 
     return (
         <Container>
             <Label htmlFor={ data.label }> { data.label }</Label>
             <Textarea 
+                {...register(
+                    data.label, 
+                    { required: true }
+                )}
                 name={ data.label } 
                 placeholder={ data.placeHolder }
                 theme={ theme }

@@ -1,26 +1,15 @@
 const sgMail = require('@sendgrid/mail');
+const { emailFormatter } = require('./emailFormatter');
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const sendMail = async () => {
+const sendMail = async (data) => {
 	try {
-		const msg = {
-			to: 'josephclorenzo@gmail.com', // Change to your recipient
-			from: 'joeephus@gmail.com', // Change to your verified sender
-			subject: 'Sending with SendGrid is Fun',
-			text: 'and easy to do anywhere, even with Node.js',
-			html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-			mail_settings: {
-				sandbox_mode: {
-					enable: true
-				}
-			}
-		}
+		const formattedMessageAndOptions = emailFormatter(data);
 
-		const response = await sgMail.send(msg);
+		const response = await sgMail.send(formattedMessageAndOptions);
 		console.log('email sent: ', response[0].statusCode);
 		return true;
-	
 	} catch (error) {
 		console.log('error in sendMail: ', error);
 	}

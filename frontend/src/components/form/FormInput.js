@@ -9,7 +9,11 @@ const FormInput = ({ data, register, hasError  }) => {
     <Container>
       <Label theme={ theme }> { data.label } </Label>
       <StyledInput 
-        {...register(data.label, { required: true})}
+        {...register(
+          data.label, 
+          { required: true, }
+        )}
+        type={ data.validations? data.validations : null}
         placeholder={ data.placeHolder }
         hasError={ hasError }
         theme={ theme }

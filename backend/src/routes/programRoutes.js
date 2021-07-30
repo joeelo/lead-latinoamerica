@@ -4,6 +4,17 @@ const seed = require('../seed/programSeed');
 const router = express.Router();
 const sendMail = require('../email/sendGrid');
 
+router.post("/programs/add", async (req, res) => {
+	try {
+		const data = req.body;		
+		const emailResponse = await sendMail(data);
+		console.log('emailResponse: ', emailResponse);
+		res.send({ message: 'success' });
+	} catch (error) {
+		console.log('ERROR ON PROGRAMS/ADD ROUTE', error);
+		res.send({ message: error, error: true });
+	}
+})
 
 router.get("/programs", async (req, res) => {
 	try {
@@ -18,6 +29,7 @@ router.post("/program", async (req, res) => {
 	const errors = {};
 	console.log(req);
 	try {
+		if (!req.body.title) return;
 		if (req.body.title.length < 3) {
 			errors.titleLength = 'Title Length is too short, must be at least 3 characters.';
 		}
@@ -56,17 +68,6 @@ router.delete("/programs/erase-all", async (req, res) => {
 	} catch (error) {
 		console.log(error);
 		res.send({ message: error });
-	}
-})
-
-router.post("/programs/add", async (req, res) => {
-	try {
-		const emailResponse = await sendMail();
-		console.log('emailResponse: ', emailResponse);
-		res.send({ message: 'success' });
-	} catch (error) {
-		console.log('ERROR ON PROGRAMS/ADD ROUTE', error);
-		res.send({ message: error, error: true });
 	}
 })
 
