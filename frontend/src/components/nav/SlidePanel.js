@@ -8,9 +8,9 @@ const SlidePanel = ({ navOpen }) => {
 	const wrapperRef = useRef(null);
 
 	const handleClickOutside = (event) => {
-    if (navOpen === true) {
-      console.log(event);
-    }
+		if (navOpen === true) {
+		console.log(event);
+		}
 	}
 
   	useEffect(() => {
@@ -30,11 +30,11 @@ const SlidePanel = ({ navOpen }) => {
   return (
     <Container navOpen={ navOpen } ref={ wrapperRef }>
         <LanguageButtons />
-        <SectionHeader>Student Resources</SectionHeader>
-        <p><Link href="#"> Sign in </Link></p>
-        <p><Link href="#"> Programs </Link></p>
-        <p><Link href="#"> Scholarships </Link></p>
-        <p><Link href="#"> Internships </Link></p>
+        <SectionHeader> Student Resources </SectionHeader>
+        <p><Link href="/sign-in"> Sign in </Link></p>
+        <p><Link href="/resources/programs"> Programs </Link></p>
+        <p><Link href="/resources/scholarships"> Scholarships </Link></p>
+        <p><Link href="/resources/internships"> Internships </Link></p>
 
         <SectionHeader>Org Portal</SectionHeader>
         <p><Link href="/add-edit-orgs"> Add your Org </Link></p>

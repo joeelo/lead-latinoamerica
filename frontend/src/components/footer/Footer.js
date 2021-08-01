@@ -10,10 +10,10 @@ const Footer = ({ marginTop, showQuote }) => {
             <Container data-testid='footer' marginTop={ marginTop }>
                 <Column>
                 <p>Explore</p>
-                <p><Link href="#"> Programs </Link></p>
-                <p><Link href="#"> Scholarships </Link></p>
-                <p><Link href="#"> Internships </Link></p>
-                <p><Link href="#"> Our Team </Link></p>
+                <p><Link href="/resources/programs"> Programs </Link></p>
+                <p><Link href="/resources/scholarships"> Scholarships </Link></p>
+                <p><Link href="/resources/internships"> Internships </Link></p>
+                <p><Link href="/our-team"> Our Team </Link></p>
                 <p><Link href="/add-edit-orgs"> Add your org </Link></p>
                 </Column>
             </Container>
