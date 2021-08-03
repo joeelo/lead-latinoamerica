@@ -3,11 +3,11 @@ import Link from 'next/link';
 import DynamicQuote from '../content/quote/DynamicQuote';
 import PropTypes from 'prop-types';
 
-const Footer = ({ marginTop, showQuote }) => {
+const Footer = ({ showQuote }) => {
     return (
         <>
             { showQuote && <DynamicQuote /> }
-            <Container data-testid='footer' marginTop={ marginTop }>
+            <Container data-testid='footer'>
                 <Column>
                 <p>Explore</p>
                 <p><Link href="/resources/programs"> Programs </Link></p>
@@ -24,12 +24,10 @@ const Footer = ({ marginTop, showQuote }) => {
 export default Footer;
 
 Footer.propTypes = {
-    marginTop: PropTypes.string, 
     showQuote: PropTypes.bool
 }
 
 Footer.defaultProps = {
-    marginTop: '0', 
     showQuote: true
 }
 
@@ -39,7 +37,6 @@ const Container = styled.div`
     width: 100vw; 
     display: flex; 
     padding-left: 20px; 
-    margin-top: ${ props => props.marginTop ? '200px' : 0 };
 `
 
 const Column = styled.div`

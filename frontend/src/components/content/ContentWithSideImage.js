@@ -68,6 +68,12 @@ const ImageContainer = styled.div`
 	max-width: 48%;
 	position: relative;
 	margin-top: 40px;
+
+	@media screen and (max-width: 768px) {
+		max-width: 95%;
+		width: 100%;
+		max-height: 400px;
+	}
 `
 
 const P = styled.p`
