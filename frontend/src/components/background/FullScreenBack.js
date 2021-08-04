@@ -12,9 +12,9 @@ const FullScreenBack = ({ src, children, titleInfo }) => {
 			<Container>
 				<Image 
 					src={ src }
-					  layout='fill'
-					  objectFit='cover'
-					  objectPosition='top'
+					layout='fill'
+					objectFit='cover'
+					objectPosition='top'
 					style={{ zIndex: -1, position: 'absolute' }}
 				/>
 				<div style={{ zIndex: 10, position: 'relative' }}>

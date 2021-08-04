@@ -94,7 +94,7 @@ const HomeScreenPage = () => {
         />
       </CenterFlexContainer>
 
-      <CenterFlexContainer backgroundColor={ theme.colors.cultured } padding={'padTop'}>
+      <CenterFlexContainer backgroundColor={ theme.colors.cultured } padding={ 'padTop' }>
         {
           opportunityInfo.map(info => <FlexContentBox 
             key={ info.title } 

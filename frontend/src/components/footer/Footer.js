@@ -1,20 +1,25 @@
-import styled from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
+import { useContext } from 'react';
 import Link from 'next/link';
 import DynamicQuote from '../content/quote/DynamicQuote';
 import PropTypes from 'prop-types';
+import LinkUnderlineEffect from '@/components/generic/LinkUnderlineEffect';
 
 const Footer = ({ showQuote }) => {
+
+    const theme = useContext(ThemeContext);
+
     return (
         <>
             { showQuote && <DynamicQuote /> }
-            <Container data-testid='footer'>
+            <Container data-testid='footer' theme={ theme }>
                 <Column>
                 <p>Explore</p>
-                <p><Link href="/resources/programs"> Programs </Link></p>
-                <p><Link href="/resources/scholarships"> Scholarships </Link></p>
-                <p><Link href="/resources/internships"> Internships </Link></p>
-                <p><Link href="/our-team"> Our Team </Link></p>
-                <p><Link href="/add-edit-orgs"> Add your org </Link></p>
+                    <LinkUnderlineEffect hrefFormatted="/resources/programs" text={ 'Programs' }/>
+                    <LinkUnderlineEffect hrefFormatted="/resources/internships" text={ 'Internships' }/>
+                    <LinkUnderlineEffect hrefFormatted="/our-team" text={ 'Our Team' }/>
+                    <LinkUnderlineEffect hrefFormatted="/resources/add-edit-orgs" text={ 'Add your org' }/>
+                    <LinkUnderlineEffect hrefFormatted="/resources/programs" text={ 'programs' }/>
                 </Column>
             </Container>
         </>
@@ -33,10 +38,11 @@ Footer.defaultProps = {
 
 const Container = styled.div`
     min-height: 300px; 
-    background-color: white;
+    background-color: ${ props => props.theme.colors.cyan };
     width: 100vw; 
     display: flex; 
     padding-left: 20px; 
+    color: white;
 `
 
 const Column = styled.div`

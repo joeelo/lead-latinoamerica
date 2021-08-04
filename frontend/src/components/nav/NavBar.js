@@ -35,5 +35,4 @@ const PlaceHolderContainer = styled.div` // To take up the fixed height at the t
   width: 100vw; 
   background-color: white; 
   z-index: 1000;
-
 `
