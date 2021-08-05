@@ -55,7 +55,7 @@ const TextContainer = styled.div`
     transform: rotate(-20deg);
     transform-origin: bottom right;
     right: -65%; 
-    top: -50%; 
+    top: -65%; 
     height: 200%; 
     z-index: 10;
   }

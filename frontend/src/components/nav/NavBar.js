@@ -1,18 +1,27 @@
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Hamburger from '@/components/nav/Hamburger';
-import { useState, useEffect } from 'react';
 import SlidePanel from './SlidePanel';
 
 const NavBar = () => {
 
 	const [ navOpen, setNavOpen ] = useState(false);
 
+  const router = useRouter();
+
+	useEffect(() => {
+		if (navOpen) {
+			setNavOpen(false);
+		}
+	}, [ router.asPath ])
+
 	return (
 		<>
 			<PlaceHolderContainer></PlaceHolderContainer>
 			<Container>
 				<Hamburger { ...{ navOpen, setNavOpen } }/>
-				<SlidePanel { ...{ navOpen } }/>
+				<SlidePanel { ...{ navOpen, setNavOpen } }/>
 			</Container>
 		</>
 	)

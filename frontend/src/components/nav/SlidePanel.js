@@ -27,6 +27,7 @@ const SlidePanel = ({ navOpen }) => {
 		return () => document.removeEventListener('click', handleClickOutside);
 	}, [])
 
+
 	return (
 		<Container navOpen={ navOpen } ref={ wrapperRef }>
 			<LanguageButtons />

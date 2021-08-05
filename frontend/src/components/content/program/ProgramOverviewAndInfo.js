@@ -5,65 +5,67 @@ import BlueLinkButton from "@/components/generic/BlueLinkButton";
 import useGetRouterPath from "@/hooks/useGetRouterPath";
 
 const ProgramOverviewAndInfo = ({ program }) => {
-  const path = useGetRouterPath();
-  console.log(path);
+	const path = useGetRouterPath();
+	console.log(path);
 
-  return (
-    <>
-      <CenterFlexContainer marginTop={ true }>
-        <LeftContainer>
-          <LargeText> Overview </LargeText>
-          <OverviewText> { program.overview } </OverviewText>
-          <BlueLinkButton text={ 'Sign Up' } hrefFormatted={'/resources/[resourceSlug]/[programSlug]/sign-up'} hrefAs={`${path}/sign-up`} />
-        </LeftContainer>
-        <RightContainer>
-          <UnderlinedSectionHeader> Categories </UnderlinedSectionHeader>
-          <CategoryTiles adjectives={ program.helpsWith }/>
-          <UnderlinedSectionHeader> Start Date </UnderlinedSectionHeader>
-          <StartDateText> { program.startData ? program.startData : 'TBD' } </StartDateText>
-        </RightContainer>
-      </CenterFlexContainer>
-    </>
-  )
+	return (
+		<>
+			<CenterFlexContainer paddingTop={ true } paddingBottom={ true } align={ 'start' }>
+				<LeftContainer>
+					<LargeText> Overview </LargeText>
+					<OverviewText> { program.overview } </OverviewText>
+					<BlueLinkButton text={ 'Sign Up' } hrefFormatted={'/resources/[resourceSlug]/[programSlug]/sign-up'} hrefAs={`${path}/sign-up`} />
+				</LeftContainer>
+				<RightContainer>
+					<UnderlinedSectionHeader> Categories </UnderlinedSectionHeader>
+					<CategoryTiles adjectives={ program.helpsWith }/>
+					<UnderlinedSectionHeader> Start Date </UnderlinedSectionHeader>
+					<StartDateText> { program.startData ? program.startData : 'TBD' } </StartDateText>
+				</RightContainer>
+			</CenterFlexContainer>
+		</>
+	)
 }
 
 export default ProgramOverviewAndInfo;
 
 const LargeText = styled.h2`
-  font-weight: bold;
-  font-size: 72px; 
-  margin-bottom: 40px; 
+	font-weight: bold;
+	font-size: 72px; 
+	margin-bottom: 40px; 
 `
 
 const InnerContainer = styled.div`
-  padding: 10px 20px; 
-  display: flex; 
-  flex-direction: column; 
+	padding: 10px 20px; 
+	display: flex; 
+	flex-direction: column; 
+	justify-content: flex-start;
 `
 
 const LeftContainer = styled(InnerContainer)`
-  width: 60%; 
+	width: 60%; 
 `
 
 const RightContainer = styled(InnerContainer)`
-  width: 40%; 
+	width: 40%; 
 `
 
 const MidSizeText = styled.p`
-  font-size: 26px; 
-  line-height: 32px
+	font-size: 26px; 
+	line-height: 32px
 `
 
 const OverviewText = styled(MidSizeText)`
-  font-size: 26px;
+	font-size: 26px;
 `
 
 const StartDateText = styled(MidSizeText)`
-  font-size: 26px;
+	font-size: 26px;
 `
 
 const UnderlinedSectionHeader = styled.h3`
-  font-size: 32px; 
-  text-decoration: underline; 
+	font-size: 32px; 
+	text-decoration: underline; 
+	margin-top: 15px;
 `
 
