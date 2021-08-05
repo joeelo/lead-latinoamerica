@@ -6,20 +6,20 @@ const CenterFlexContainer = ({
   padding, 
   maxWidth, 
   minHeight, 
-  marginTop,
+  paddingTop,
   align
 }) => {
 
   return (
     <FullScreenContainerForBackground
       backgroundColor={ backgroundColor }
-      marginTop={ marginTop }
+      paddingTop={ paddingTop }
     >
       <Container 
         padding={ padding }
         maxWidth={ maxWidth }
         minHeight={ minHeight } 
-        marginTop={ marginTop }
+        paddingTop={ paddingTop }
         align={ align }
       >
         { children }
@@ -34,7 +34,8 @@ const FullScreenContainerForBackground = styled.div`
   display: flex; 
   min-width: 100vw; 
   background-color: ${ props => props.backgroundColor ? props.backgroundColor : 'white' };
-  margin: ${ props => props.marginTop ? '100px auto 0 auto' : '0 auto' }; 
+  margin: 0 auto; 
+  padding: ${ props => props.paddingTop ? '100px 0 0 0' : '0' }; 
 `
 
 const Container = styled.div`

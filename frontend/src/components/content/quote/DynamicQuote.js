@@ -7,7 +7,7 @@ const DynamicQuote = () => {
 	const theme = useContext(ThemeContext);
 	
 	return (
-		<CenterFlexContainer backgroundColor={theme.colors.darkBlue} align='center' marginTop={ true }>
+		<CenterFlexContainer backgroundColor={theme.colors.darkBlue} align='center'>
 			<Container>
 				<QuoteText>
 					Education is the most powerful weapon which you could use to change the world. 

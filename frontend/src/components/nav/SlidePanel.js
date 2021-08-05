@@ -36,12 +36,12 @@ const SlidePanel = ({ navOpen }) => {
 			<LinkUnderlineEffect hrefFormatted="/resources/scholarships" text={ 'Scholarships' } color={ 'cyan' }/>
 			<LinkUnderlineEffect hrefFormatted="/resources/internships" text={ 'Internships' } color={ 'cyan' }/>
 			<SectionHeader>Org Portal</SectionHeader>
-			<LinkUnderlineEffect hrefFormatted="/add-edit-org" text={ 'Add your Org' } color={ 'cyan' }/>
+			<LinkUnderlineEffect hrefFormatted="/add-edit-orgs" text={ 'Add your Org' } color={ 'cyan' }/>
 			<LinkUnderlineEffect hrefFormatted="/support" text={ 'Partner with Us' } color={ 'cyan' }/>
 			<LinkUnderlineEffect hrefFormatted="/donate" text={ 'Donate' } color={ 'cyan' }/>
 			<BottomSection>
 				<LinkUnderlineEffect hrefFormatted="/frequently-asked-questions" text={ 'FAQ' } color={ 'cyan' }/>
-				<LinkUnderlineEffect hrefFormatted='/mission-statement' text={' Our Mission '}  color={ 'cyan' }/>
+				<LinkUnderlineEffect hrefFormatted='/mission-statement' text={'Our Mission'}  color={ 'cyan' }/>
 			</BottomSection>
 
 		</Container>
@@ -73,9 +73,4 @@ const SectionHeader = styled.p`
 	margin-bottom: 10px; 
 	font-weight: 300;
 	margin-top: 20px;
-
-	a {
-		font-size: 26px; 
-		color: rgba(0, 119, 182, 1);
-	}
 `

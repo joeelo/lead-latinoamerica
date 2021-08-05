@@ -10,7 +10,7 @@ const AddAndEditOrgs = () => {
 	return (
 		<>
 			<NavBar />
-			<CenterFlexContainer backgroundColor={ '#F8FAFA' } marginTop>
+			<CenterFlexContainer backgroundColor={ '#F8FAFA' } paddingTop={ true }>
 			<ChangingBackgroundText 
 				fontSize={'48px'}
 				 initialColor={'#1F2041'}

@@ -18,6 +18,11 @@ const LinkUnderlineEffect = ({ text, hrefFormatted, color }) => {
 export default LinkUnderlineEffect;
 
 const P = styled.p`
+	margin: 0; 
+	padding: 0; 
+	font-size: inherit;
+	height: 35px;
+
 	a {
 		text-decoration: none;
 		font-size: 22px;
@@ -38,7 +43,7 @@ const P = styled.p`
 	a:hover {
 		background-position: 100% 100%; /*OR bottom right*/
 		background-size: 100% 2px;
-		color: inherit;
+		color: ${ props => props.color ? props.theme.colors[props.color] : '#222' };
 	}
 
 	a:visited {

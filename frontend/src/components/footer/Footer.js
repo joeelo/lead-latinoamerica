@@ -15,11 +15,11 @@ const Footer = ({ showQuote }) => {
             <Container data-testid='footer' theme={ theme }>
                 <Column>
                 <p>Explore</p>
-                    <LinkUnderlineEffect hrefFormatted="/resources/programs" text={ 'Programs' }/>
-                    <LinkUnderlineEffect hrefFormatted="/resources/internships" text={ 'Internships' }/>
-                    <LinkUnderlineEffect hrefFormatted="/our-team" text={ 'Our Team' }/>
-                    <LinkUnderlineEffect hrefFormatted="/resources/add-edit-orgs" text={ 'Add your org' }/>
-                    <LinkUnderlineEffect hrefFormatted="/resources/programs" text={ 'programs' }/>
+                    <LinkUnderlineEffect hrefFormatted="/resources/programs" text={ 'Programs' } color={'white'}/>
+                    <LinkUnderlineEffect hrefFormatted="/resources/internships" text={ 'Internships' } color={'white'}/>
+                    <LinkUnderlineEffect hrefFormatted="/our-team" text={ 'Our Team' } color={'white'}/>
+                    <LinkUnderlineEffect hrefFormatted="/resources/add-edit-orgs" text={ 'Add your org' } color={'white'}/>
+                    <LinkUnderlineEffect hrefFormatted="/resources/programs" text={ 'Programs' } color={'white'}/>
                 </Column>
             </Container>
         </>
