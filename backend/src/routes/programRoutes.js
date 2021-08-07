@@ -8,7 +8,14 @@ router.post("/programs/add", async (req, res) => {
 	try {
 		const data = req.body;		
 		const emailResponse = await sendMail(data);
-		console.log('emailResponse: ', emailResponse);
+		console.log(emailResponse);
+		const newProgram = new Program(req.body);
+		newProgram.save((err) => {
+			if (err) {
+				console.log('ERROR IN PROGRAM SAVE: ', err);
+			}
+			console.log('saved');
+		})
 		res.send({ message: 'success' });
 	} catch (error) {
 		console.log('ERROR ON PROGRAMS/ADD ROUTE', error);

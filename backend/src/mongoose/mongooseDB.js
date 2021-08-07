@@ -1,12 +1,18 @@
 const mongoose = require("mongoose");
 
-const server = '127.0.0.1:27017'; 
-const database = "latino-america"; 
+const server = 'mongodb+srv://joeeloee:Ve5APLRc3cNAXW30@cluster0.nnv78.mongodb.net/lead-latinoamerica?retryWrites=true&w=majority'; 
+const database = "lead-latinoamerica"; 
 
-mongoose.connect(`mongodb://${server}/${database}`, 
+
+mongoose.connect(server, 
 {
     useCreateIndex: true, 
     useNewUrlParser: true, 
     useFindAndModify: false, 
-    useUnifiedTopology: true
+    useUnifiedTopology: true, 
+    ssl: true,
 });
+
+// mongoose.connection
+//     .once('open', () => console.log('connected to MONGODB'))
+//     .on((err) => console.log('CONNECTION ERROR: ', error));
