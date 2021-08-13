@@ -1,22 +1,14 @@
 const mongoose = require("mongoose");
 
 const programSchema = new mongoose.Schema({
-    title: {
+    organization: {
         type: String,
         required: true, 
-    },
-    content: {
-        type: String,
-        required: true
     },
     bio: {
         type: String,
         max: 500, 
         required: true,
-    },
-    organization: {
-        type: String, 
-        required: true, 
     },
     helpsWith: {
         type: Array, 
@@ -24,15 +16,18 @@ const programSchema = new mongoose.Schema({
     coverImage: {
         type: String, 
     },
+    approved: {
+        type: Boolean,
+        default: false,
+    }, 
+    email: {
+        type: String, 
+        required: true,
+    }, 
     tags: {
-        type: Array,
-    },
-
-
-    // user: {
-    //     type: mongoose.Schema.Types.ObjectId, ref: "User",
-    //     required: true
-    // } 
+        type: Array, 
+        default: []
+    }
 
 })
 

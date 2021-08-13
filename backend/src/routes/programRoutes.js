@@ -8,8 +8,11 @@ router.post("/programs/add", async (req, res) => {
 	try {
 		const data = req.body;		
 		const emailResponse = await sendMail(data);
-		console.log(emailResponse);
-		const newProgram = new Program(req.body);
+		console.log('NEW PROGRAM', req.body);
+		const { organization, bio, helpsWith, coverImage, email } = req.body;
+		const helpsWithArr = helpsWith.split(',');
+		const newProgram = new Program({ organization, bio, helpsWithArr, coverImage, email });
+		console.log('NEW PROGRAM: ', newProgram); 
 		newProgram.save((err) => {
 			if (err) {
 				console.log('ERROR IN PROGRAM SAVE: ', err);
@@ -36,7 +39,7 @@ router.post("/program", async (req, res) => {
 	const errors = {};
 	console.log(req);
 	try {
-		if (!req.body.title) return;
+		if (!req.body.organization) return;
 		if (req.body.title.length < 3) {
 			errors.titleLength = 'Title Length is too short, must be at least 3 characters.';
 		}

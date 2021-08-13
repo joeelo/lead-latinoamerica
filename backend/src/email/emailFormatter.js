@@ -7,13 +7,13 @@ const emailFormatter = (data) => {
 		to: 'josephclorenzo@gmail.com', // Change to your recipient
 		from: 'joeephus@gmail.com', // Change to your verified sender
 		subject: 'An org wants to partner with you! ',
-		text: 'data: - ' + str ,
-		html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-		// mail_settings: {
-		// 	sandbox_mode: { // sandbox mode keeps emails from sending but gives proper sendgrid responses.
-		// 		enable: true
-		// 	}
-		// }
+		text: 'data: - ' + str + 'https://lead-latinoamerica.vercel.app/approve/',
+		// html: '<strong> and easy to do anywhere, even with Node.js </strong> <br/> ' + str + ' <br/><a href="https://lead-latinoamerica.vercel.app/approve">approve</a> ',
+		mail_settings: {
+			sandbox_mode: { // sandbox mode keeps emails from sending but gives proper sendgrid responses.
+				enable: true
+			}
+		}
 	}
 	console.log('msg: ', msg);
 	return msg;
