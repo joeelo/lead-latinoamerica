@@ -3,16 +3,19 @@ import styled from 'styled-components';
 import LanguageButtons from './LanguageButtons';
 import LinkUnderlineEffect from '../generic/LinkUnderlineEffect';
 
-const SlidePanel = ({ navOpen }) => {
+const SlidePanel = ({ navOpen, setNavOpen }) => {
 
 	const wrapperRef = useRef(null);
 
 	const handleClickOutside = (event) => {
+		if (navOpen === false) return;
 		if (navOpen === true) {
-		console.log(event);
+			if (wrapperRef && !wrapperRef.current.contains(event.target)) {
+				setNavOpen(false);
+			}
 		}
 	}
-
+		
 	useEffect(() => {
 		if (navOpen === true) {
 			document.body.style.overflow = 'hidden';
@@ -23,13 +26,13 @@ const SlidePanel = ({ navOpen }) => {
 
 	useEffect(() => {
 		document.addEventListener('click', handleClickOutside);
-
+		
 		return () => document.removeEventListener('click', handleClickOutside);
-	}, [])
+	}, [ navOpen ])
 
 
 	return (
-		<Container navOpen={ navOpen } ref={ wrapperRef }>
+		<Container className='slide-panel' navOpen={ navOpen } ref={ wrapperRef } onClick={ (event) => handleClickOutside(event) }>
 			<LanguageButtons />
 			<SectionHeader> Student Resources </SectionHeader>
 			<LinkUnderlineEffect hrefFormatted="/Sign-in" text={ 'Sign In' } color={ 'cyan' }/>

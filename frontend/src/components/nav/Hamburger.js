@@ -13,11 +13,11 @@ const Hamburger = ({ navOpen, setNavOpen }) => {
   }
 
   return (
-    <Menu ref={menuBtn} onClick={clickHandler}>
+    <Menu ref={ menuBtn } onClick={ clickHandler }>
       <Lines 
-        className={navOpen ? 'open' : ''}
-        lineHeight={lineHeight}
-        lineWidth={lineWidth}
+        className={ navOpen ? 'open' : '' }
+        lineHeight={ lineHeight }
+        lineWidth={ lineWidth }
       >
       </Lines>
     </Menu>
