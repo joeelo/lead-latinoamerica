@@ -9,11 +9,11 @@ const emailFormatter = (data) => {
 		subject: 'An org wants to partner with you! ',
 		text: 'data: - ' + str ,
 		html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-		mail_settings: {
-			sandbox_mode: { // sandbox mode keeps emails from sending but gives proper sendgrid responses.
-				enable: true
-			}
-		}
+		// mail_settings: {
+		// 	sandbox_mode: { // sandbox mode keeps emails from sending but gives proper sendgrid responses.
+		// 		enable: true
+		// 	}
+		// }
 	}
 	console.log('msg: ', msg);
 	return msg;
