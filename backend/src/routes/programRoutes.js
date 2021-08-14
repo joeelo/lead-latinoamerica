@@ -11,7 +11,7 @@ router.post("/programs/add", async (req, res) => {
 		console.log('NEW PROGRAM', req.body);
 		const { organization, bio, helpsWith, coverImage, email } = req.body;
 		const helpsWithArr = helpsWith.split(',');
-		const newProgram = new Program({ organization, bio, helpsWithArr, coverImage, email });
+		const newProgram = new Program({ organization, bio, helpsWith: helpsWithArr, coverImage, email });
 		console.log('NEW PROGRAM: ', newProgram); 
 		newProgram.save((err) => {
 			if (err) {

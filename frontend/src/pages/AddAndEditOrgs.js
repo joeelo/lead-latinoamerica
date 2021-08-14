@@ -12,15 +12,20 @@ const AddAndEditOrgs = () => {
 			<NavBar />
 			<CenterFlexContainer backgroundColor={ '#F8FAFA' } paddingTop={ true }>
 			<ChangingBackgroundText 
-				fontSize={'48px'}
-				 initialColor={'#1F2041'}
-				 secondaryColor={'#1F2041'}
-				 text={'Join Us!'}
-				 fontColorInitial={'#1F2041'}
-				 fontColorSecondary={'#F8FAFA'}
-				 onlyRunOneTransition={true}
+				fontSize={ '48px' }
+				initialColor={ '#1F2041' }
+				secondaryColor={ '#1F2041' }
+				text={ 'Lead With Us!' }
+				fontColorInitial={ '#1F2041' }
+				fontColorSecondary={ '#F8FAFA' }
+				onlyRunOneTransition={ true }
 			/>
-			<Form formData={ formFields } objKey={ 'addProgram' } />
+			<Form 
+				formData={ formFields } 
+				objKey={ 'addProgram' } 
+				endpoint={ 'programs/add' } 
+				method={ 'POST' }
+			/>
 			</CenterFlexContainer>
 			<Footer />
 		</>

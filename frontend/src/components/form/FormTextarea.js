@@ -10,7 +10,7 @@ const FormTextarea = ({ data, register, hasErrors, }) => {
             <Label htmlFor={ data.label }> { data.label }</Label>
             <Textarea 
                 {...register(
-                    data.label, 
+                    data.data, 
                     { required: true }
                 )}
                 name={ data.label } 
