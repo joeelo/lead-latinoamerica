@@ -4,7 +4,7 @@ import FormTextarea from '@/components/form/FormTextarea';
 import { useForm } from 'react-hook-form';
 import { postToDatabase } from '@/fetch/requests';
 
-const Form = ({ formData, objKey, endpoint, method }) => {
+const Form = ({ formData, objKey, endpoint, method, cb, local }) => {
 	const { register, handleSubmit, formState: { errors } } = useForm(); 
 	const data = formData[objKey];
 
@@ -12,6 +12,9 @@ const Form = ({ formData, objKey, endpoint, method }) => {
 		try {
 			if (method === 'POST') {
 				const response = await postToDatabase(data, endpoint);
+        if (response === 'success' || local === true) {
+          cb(true);
+        }
 				return response;
 			}
 		} catch (error) {

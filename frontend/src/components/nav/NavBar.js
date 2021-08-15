@@ -16,8 +16,6 @@ const NavBar = () => {
 		}
 	}, [ router.asPath ])
 
-  console.log('NAV OPEN, ', navOpen);
-
 	return (
 		<>
 			<PlaceHolderContainer></PlaceHolderContainer>

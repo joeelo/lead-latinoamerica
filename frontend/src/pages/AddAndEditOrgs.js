@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import formFields from '@/data/formFields';
 import Form from '@/components/form/Form';
 import styled from 'styled-components';
@@ -7,6 +9,16 @@ import Footer from '@/components/footer/Footer';
 import ChangingBackgroundText from '@/components/content/ChangingBackgroundText';
 
 const AddAndEditOrgs = () => {
+
+	const [ formSubmitted, setFormSubmitted ] = useState(false);
+	const router = useRouter(); 
+
+	useEffect(() => {
+		if (!!formSubmitted) {
+			
+		}
+	}, [ formSubmitted ])
+
 	return (
 		<>
 			<NavBar />
@@ -25,6 +37,8 @@ const AddAndEditOrgs = () => {
 				objKey={ 'addProgram' } 
 				endpoint={ 'programs/add' } 
 				method={ 'POST' }
+				cb={ setFormSubmitted }
+				local={ router.query.local }
 			/>
 			</CenterFlexContainer>
 			<Footer />

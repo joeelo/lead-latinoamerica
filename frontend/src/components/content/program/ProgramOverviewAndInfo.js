@@ -6,7 +6,6 @@ import useGetRouterPath from "@/hooks/useGetRouterPath";
 
 const ProgramOverviewAndInfo = ({ program }) => {
 	const path = useGetRouterPath();
-	console.log(path);
 
 	return (
 		<>
