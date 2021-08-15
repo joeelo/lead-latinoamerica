@@ -13,9 +13,11 @@ const AddAndEditOrgs = () => {
 	const [ formSubmitted, setFormSubmitted ] = useState(false);
 	const router = useRouter(); 
 
+	console.log('formSubmitted: ', formSubmitted);
+	
 	useEffect(() => {
 		if (!!formSubmitted) {
-			
+			router.push('/thanks-partner');
 		}
 	}, [ formSubmitted ])
 
@@ -37,7 +39,7 @@ const AddAndEditOrgs = () => {
 				objKey={ 'addProgram' } 
 				endpoint={ 'programs/add' } 
 				method={ 'POST' }
-				cb={ setFormSubmitted }
+				setFormSubmitted={ setFormSubmitted }
 				local={ router.query.local }
 			/>
 			</CenterFlexContainer>
