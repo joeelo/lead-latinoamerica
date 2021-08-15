@@ -6,7 +6,6 @@ const useGetRouterPath = () => {
   const router = useRouter(); 
   if (!router) return;
   useEffect(() => {
-    console.log(router);
     const path = router.asPath; 
     setRoutePath(path);
   }, [])

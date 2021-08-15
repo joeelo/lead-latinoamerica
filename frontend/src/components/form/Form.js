@@ -4,7 +4,7 @@ import FormTextarea from '@/components/form/FormTextarea';
 import { useForm } from 'react-hook-form';
 import { postToDatabase } from '@/fetch/requests';
 
-const Form = ({ formData, objKey, endpoint, method }) => {
+const Form = ({ formData, objKey, endpoint, method, setFormSubmitted, local }) => {
 	const { register, handleSubmit, formState: { errors } } = useForm(); 
 	const data = formData[objKey];
 
