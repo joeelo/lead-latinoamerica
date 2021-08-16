@@ -8,7 +8,10 @@ const getFromDatabase = async (data, endpoint) => {
   }
 }
 
-const postToDatabase = async (data, endpoint) => {
+const postToDatabase = async (data, endpoint, query) => {
+  if (query.local) {
+    return { message: 'success' };
+  }
   try {
     const options = {
       method: 'POST', 

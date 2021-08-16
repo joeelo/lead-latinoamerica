@@ -7,13 +7,13 @@ const FormTextarea = ({ data, register, hasErrors, }) => {
 
     return (
         <Container>
-            <Label htmlFor={ data.label }> { data.label }</Label>
+            <Label htmlFor={ data.data }> { data.label }</Label>
             <Textarea 
                 {...register(
                     data.data, 
                     { required: true }
                 )}
-                name={ data.label } 
+                name={ data.data } 
                 placeholder={ data.placeHolder }
                 theme={ theme }
             >

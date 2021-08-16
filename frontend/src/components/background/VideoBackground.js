@@ -13,7 +13,7 @@ const VideoBackground = ({ children }) => {
 export default VideoBackground;
 
 const Container = styled.div`
-    min-height: 500px; 
+    min-height: 800px; 
     min-width: 100vw; 
     position: relative; 
     overflow: hidden;
@@ -21,9 +21,9 @@ const Container = styled.div`
 
 const Video = styled.video`
     position: absolute;
-    height: 100vh;
+    height: %;
     width: 100%;
-    object-fit: cover;
+    // object-fit: cover;
     // top: 20%;
     // transform: translate(-50%, -50%);
     // left: 50%;

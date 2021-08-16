@@ -1,18 +1,23 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import FormInput from '@/components/form/FormInput';
 import FormTextarea from '@/components/form/FormTextarea';
 import { useForm } from 'react-hook-form';
 import { postToDatabase } from '@/fetch/requests';
 
-const Form = ({ formData, objKey, endpoint, method, setFormSubmitted, local }) => {
+const Form = ({ formData, objKey, endpoint, method, setFormSubmitted, query }) => {
 	const { register, handleSubmit, formState: { errors } } = useForm(); 
 	const data = formData[objKey];
 
 	const submitHandler = async (data) => {
+		console.log('SUBMITTED');
 		try {
 			if (method === 'POST') {
-				const response = await postToDatabase(data, endpoint);
-				return response;
+				const response = await postToDatabase(data, endpoint, query);
+				if (response.message === 'success') {
+					setFormSubmitted(true);
+					return response;
+				}
 			}
 		} catch (error) {
 				console.log('error: ', error);
@@ -33,6 +38,20 @@ const Form = ({ formData, objKey, endpoint, method, setFormSubmitted, local }) =
 }
 
 export default Form;
+
+Form.propTypes = {
+	formData: PropTypes.object, 
+	endpoint: PropTypes.string, 
+	method: PropTypes.string, 
+	query: PropTypes.object,
+}
+
+Form.defaultProps = {
+	formData: {}, 
+	endpoint: '', 
+	method: 'GET', 
+	query: {}
+}
 
 const Container = styled.form`
   margin-left: 50px; 
