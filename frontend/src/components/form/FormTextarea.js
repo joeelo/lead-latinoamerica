@@ -43,6 +43,11 @@ const Textarea = styled.textarea`
     height: 200px;
     resize: none;
     padding: 10px;
-    border: 1px solid ${ props => props.theme.colors.cyan };
+    border: 1px solid ${ props => props.theme.colors.darkBlue };
     border-radius: 4px; 
+
+    :focus {
+        border: 1px solid ${ props => props.theme.colors.cyan };
+        outline: none;
+    }
 `

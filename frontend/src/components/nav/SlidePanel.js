@@ -42,8 +42,9 @@ const SlidePanel = ({ navOpen, setNavOpen }) => {
 			<LinkUnderlineEffect hrefFormatted="/support" text={ 'Partner with Us' } color={ 'cyan' }/>
 			<LinkUnderlineEffect hrefFormatted="/donate" text={ 'Donate' } color={ 'cyan' }/>
 			<BottomSection>
-				<LinkUnderlineEffect hrefFormatted="/frequently-asked-questions" text={ 'FAQ' } color={ 'cyan' }/>
+				<LinkUnderlineEffect hrefFormatted='/' text={'Home'}  color={ 'cyan' }/>
 				<LinkUnderlineEffect hrefFormatted='/mission-statement' text={'Our Mission'}  color={ 'cyan' }/>
+				<LinkUnderlineEffect hrefFormatted="/frequently-asked-questions" text={ 'FAQ' } color={ 'cyan' }/>
 			</BottomSection>
 
 		</Container>

@@ -10,7 +10,6 @@ const Form = ({ formData, objKey, endpoint, method, setFormSubmitted, query }) =
 	const data = formData[objKey];
 
 	const submitHandler = async (data) => {
-		console.log('SUBMITTED');
 		try {
 			if (method === 'POST') {
 				const response = await postToDatabase(data, endpoint, query);
@@ -54,47 +53,45 @@ Form.defaultProps = {
 }
 
 const Container = styled.form`
-  margin-left: 50px; 
-  margin-top: 50px; 
-  box-shadow: 10px 10px 25px -4px rgba(0,0,0,0.5);
-  min-width: 300px; 
-  width: 90vw; 
-  min-height: 600px; 
-  max-width: 800px; 
-  border-radius: 10px;
-  padding: 20px;
-  display: flex; 
-  flex-direction: column;
-  margin: 40px auto; 
-  background-color: white;
+	margin-left: 50px; 
+	margin-top: 50px; 
+	box-shadow: 10px 10px 25px -4px rgba(0,0,0,0.5);
+	min-width: 300px; 
+	width: 90vw; 
+	min-height: 600px; 
+	max-width: 800px; 
+	border-radius: 10px;
+	padding: 20px;
+	display: flex; 
+	flex-direction: column;
+	margin: 40px auto; 
+	background-color: white;
 
 `
 
 const Title = styled.h2`
-  font-size: 48px; 
-  color: darkblue; 
-  font-weight: normal;
+	font-size: 48px; 
+	color: darkblue; 
+	font-weight: normal;
 `
 
 const SubmitButton = styled.button`
-  outline: none; 
-  border-radius: 4px; 
-  height: 50px; 
-  margin-top: 20px; 
-  color: white;
-  background-color: darkblue;
-  border: 0; 
-  max-width: 200px; 
-  width: 200px;
-  margin-left: auto; 
-  font-size: 18px; 
-  cursor: pointer; 
-  transition: .2s ease-in-out;
-  font-family: 'Montserrat'
+	outline: none; 
+	border-radius: 4px; 
+	height: 50px; 
+	margin-top: 20px; 
+	color: white;
+	background-color: darkblue;
+	border: 0; 
+	max-width: 200px; 
+	width: 200px;
+	margin-left: auto; 
+	font-size: 18px; 
+	cursor: pointer; 
+	transition: .2s ease-in-out all;
+	font-family: 'Montserrat';
 
-  :hover {
-    background-color: #0000FF;
-    // color: white;  
-
-  }
+	:hover {
+		background-color: #0066ff;
+	}
 `

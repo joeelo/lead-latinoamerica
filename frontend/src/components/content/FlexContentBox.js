@@ -68,7 +68,6 @@ const Container = styled.div`
     background-position: 0 100%; /*OR bottom left*/
     background-size: 0% 2px;
     background-repeat: no-repeat;
-    transition:
     background-size 0.3s,
     background-position 0s 0.3s; /*change after the size immediately*/
   }
