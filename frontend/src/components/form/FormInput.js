@@ -29,7 +29,7 @@ const Container = styled.div`
 `
 
 const Label = styled.label`
-  font-size: 32px; 
+  font-size: ${ props => props.theme.fontSizes.large }; 
   color: ${ props => props.theme.colors.darkBlue }; 
   padding-left: 5px;
   text-transform: capitalize;
@@ -41,6 +41,7 @@ const Label = styled.label`
   height: 40px;
   font-size: 24px; 
   padding: 5px 5px 2px 5px;
+  margin-bottom: 10px;
   border: 0px;
   border-bottom: ${ props => '1px solid ' + props.theme.colors.darkBlue };
   transition: .4s ease-in-out all; 

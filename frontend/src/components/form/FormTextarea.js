@@ -7,7 +7,7 @@ const FormTextarea = ({ data, register, hasErrors, }) => {
 
     return (
         <Container>
-            <Label htmlFor={ data.data }> { data.label }</Label>
+            <Label htmlFor={ data.data } theme={ theme }> { data.label }</Label>
             <Textarea 
                 {...register(
                     data.data, 
@@ -31,8 +31,8 @@ const Container = styled.div`
 `
 
 const Label = styled.label`
-    font-size: 24px; 
-    color: darkblue; 
+    font-size: ${ props => props.theme.fontSizes.large }; 
+    color: ${ props => props.theme.colors.darkBlue }; 
     padding-left: 5px;
     text-transform: capitalize;
     margin-bottom: 10px; 

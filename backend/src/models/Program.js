@@ -10,9 +10,10 @@ const programSchema = new mongoose.Schema({
         max: 500, 
         required: true,
     },
-    overview: {
+    missionStatement: {
         type: String, 
-        default: ''
+        default: '',
+        max: 200
     },
     helpsWith: {
         type: Array, 
