@@ -10,6 +10,10 @@ const programSchema = new mongoose.Schema({
         max: 500, 
         required: true,
     },
+    overview: {
+        type: String, 
+        default: ''
+    },
     helpsWith: {
         type: Array, 
     }, 

@@ -4,7 +4,7 @@ import fakeData from '@/data/fakeData';
 import NavBar from '@/components/nav/NavBar';
 import Footer from '@/components/footer/Footer';
 import SkewedTitleAndPhoto from '@/components/content/program/SkewedTitleAndPhoto';
-import ProgramOverViewAndInfo from '@/components/content/program/ProgramOverViewAndInfo';
+import ProgramOverviewAndInfo from '@/components/content/program/ProgramOverviewAndInfo';
 
 const ProgramPage = () => {
   const router = useRouter(); 
@@ -22,7 +22,7 @@ const ProgramPage = () => {
     <>
       <NavBar />
       <SkewedTitleAndPhoto program={ program } router={ router }/>
-      <ProgramOverViewAndInfo program={ program } marginTop={ true }/>
+      <ProgramOverviewAndInfo program={ program } marginTop={ true }/>
       <Footer marginTop={ true }/>
     </>
   )

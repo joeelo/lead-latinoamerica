@@ -4,15 +4,15 @@ import CategoryTiles from '@/components/content/program/CategoryTiles';
 import BlueLinkButton from "@/components/generic/BlueLinkButton";
 import useGetRouterPath from "@/hooks/useGetRouterPath";
 
-const ProgramOverViewAndInfo = ({ program }) => {
+const ProgramOverviewAndInfo = ({ program }) => {
 	const path = useGetRouterPath();
 
 	return (
 		<>
 			<CenterFlexContainer paddingTop={ true } paddingBottom={ true } align={ 'start' }>
 				<LeftContainer>
-					<LargeText> Overview </LargeText>
-					<OverViewText> { program.overView } </OverViewText>
+					<LargeText> overview </LargeText>
+					<OverviewText> { program.overview } </OverviewText>
 					<BlueLinkButton text={ 'Sign Up' } hrefFormatted={'/resources/[resourceSlug]/[programSlug]/sign-up'} hrefAs={`${path}/sign-up`} />
 				</LeftContainer>
 				<RightContainer>
@@ -26,7 +26,7 @@ const ProgramOverViewAndInfo = ({ program }) => {
 	)
 }
 
-export default ProgramOverViewAndInfo;
+export default ProgramOverviewAndInfo;
 
 const LargeText = styled.h2`
 	font-weight: bold;
@@ -54,7 +54,7 @@ const MidSizeText = styled.p`
 	line-height: 32px
 `
 
-const OverViewText = styled(MidSizeText)`
+const OverviewText = styled(MidSizeText)`
 	font-size: 26px;
 `
 
