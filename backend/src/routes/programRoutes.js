@@ -19,6 +19,8 @@ router.post("/programs/add", async (req, res) => {
 		await newProgram.save((err) => {
 			if (err) {
 				console.log('ERROR IN PROGRAM SAVE FUNCTION: ', err);
+				res.send({ message: 'something went wrong', err });
+				return null;
 			}
 			console.log('saved');
 		})
