@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { getProgramBySlug } from "@/fetch/requests";
 import NavBar from "@/components/nav/NavBar";
 import Footer from "@/components/footer/Footer";
-import ProgramoverViewAndInfo from "@/components/content/program/ProgramoverViewAndInfo";
+import ProgramOverViewAndInfo from "@/components/content/program/ProgramOverViewAndInfo";
 import SkewedTitleAndPhoto from "@/components/content/program/SkewedTitleAndPhoto";
 
 const ApproveProgramPage = () => {
@@ -35,7 +35,7 @@ const ApproveProgramPage = () => {
         <>
             <NavBar />
             <SkewedTitleAndPhoto program={ program } router={ router }/>
-            <ProgramoverViewAndInfo program={ program } marginTop={ true }/>
+            <ProgramOverViewAndInfo program={ program } marginTop={ true }/>
             <Footer marginTop={ true }/>
         </>
         
