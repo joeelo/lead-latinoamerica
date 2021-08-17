@@ -37,7 +37,7 @@ router.get('/program/:href', async (req, res) => {
 		}
 		res.send({ message: 'success', program: program }); 
 	} catch (error) {
-		console.log(error);
+		console.log('ERROR IN PROGRAM/:HREF ', error);
 	}
 })
 
@@ -46,6 +46,7 @@ router.get("/programs", async (req, res) => {
 		const programs = await Program.find({});
 		res.send({ message: programs });
 	} catch (error) {
+		console.log('PROGRAMS ERROR: ', error);
 		res.send({message: error});
 	}
 })
