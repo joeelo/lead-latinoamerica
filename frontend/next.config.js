@@ -7,5 +7,8 @@ module.exports = {
             'images.pexels.com',
             'localhost',
         ],
-    }
+    },
+    future: {
+        webpack5: true
+    } 
 }
