@@ -1,4 +1,5 @@
 module.exports = {
+    webpack5: true,
     images: {
         domains: [
             '*',
@@ -8,7 +9,4 @@ module.exports = {
             'localhost',
         ],
     },
-    future: {
-        webpack5: true
-    } 
 }
