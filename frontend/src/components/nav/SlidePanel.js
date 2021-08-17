@@ -8,7 +8,7 @@ const SlidePanel = ({ navOpen, setNavOpen }) => {
 	const wrapperRef = useRef(null);
 
 	const handleClickOutside = (event) => {
-		if (navOpen === false) return;
+		if (!navOpen) return;
 		if (wrapperRef && !wrapperRef.current.contains(event.target)) {
 			setNavOpen(false);
 		}

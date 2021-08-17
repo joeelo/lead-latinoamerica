@@ -3,12 +3,10 @@ const { emailFormatter } = require('./emailFormatter');
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const sendMail = async (data) => {
+const sendMail = async (data, href) => {
 	try {
-		const formattedMessageAndOptions = emailFormatter(data);
-
+		const formattedMessageAndOptions = emailFormatter(data, href);
 		const response = await sgMail.send(formattedMessageAndOptions);
-		console.log('email sent: ', response[0].statusCode);
 		return true;
 	} catch (error) {
 		console.log('error in sendMail: ', error);

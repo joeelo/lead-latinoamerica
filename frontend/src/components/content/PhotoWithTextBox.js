@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 const PhotoWithTextBox = ({  
 	program: {
 		name, 
-		photo, 
+		coverImage, 
 		bio, 
 		href,
 	} 
@@ -19,7 +19,7 @@ const PhotoWithTextBox = ({
 		<Container>
 			<PhotoWithTextOverlay>
 			<Image 
-				src={ photo }
+				src={ coverImage }
 				layout='fill'
 				objectFit='cover'
 				objectPosition='center'
@@ -39,55 +39,55 @@ const PhotoWithTextBox = ({
 export default PhotoWithTextBox;
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column; 
-  min-width: 300px; 
-  min-height: 550px;
-  max-width: 400px;
-  width: 30%;
-  min-width: 300px;
-  box-shadow: 1px 2px 15px 0px rgba(184,177,184,1);
-  border-radius: 4px;
-  padding-bottom: 15px;
-  margin-bottom: 40px;
+	display: flex;
+	flex-direction: column; 
+	min-width: 300px; 
+	min-height: 550px;
+	max-width: 400px;
+	width: 30%;
+	min-width: 300px;
+	box-shadow: 1px 2px 15px 0px rgba(184,177,184,1);
+	border-radius: 4px;
+	padding-bottom: 15px;
+	margin-bottom: 40px;
 `
 
 const PhotoWithTextOverlay = styled.div`
-  position: relative; 
-  width: 100%; 
-  height: 300px;
-  text-align: right; 
-  margin-bottom: 20px;
+	position: relative; 
+	width: 100%; 
+	height: 300px;
+	text-align: right; 
+	margin-bottom: 20px;
 `
 
 const RightAlignedText = styled.p`
-  width: 100px; 
-  color: white; 
-  font-size: 34px; 
-  line-height: 34px; 
-  z-index: 10; 
-  color: white;
-  position: relative;
-  text-align: right;
-  width: 100%;
-  padding-right: 15px;
-  padding-top: 15px;
-  font-weight: 300;
+	width: 100px; 
+	color: white; 
+	font-size: 34px; 
+	line-height: 34px; 
+	z-index: 10; 
+	color: white;
+	position: relative;
+	text-align: right;
+	width: 100%;
+	padding-right: 15px;
+	padding-top: 15px;
+	font-weight: 300;
 `
 
 const Bio = styled.p`
-  font-size: 20px;
-  line-height: 26px;
-  padding: 20px; 
-  padding-top: 5px;
+	font-size: 20px;
+	line-height: 26px;
+	padding: 20px; 
+	padding-top: 5px;
 `
 
 const StyledAnchor = styled.a`
-  margin-top: auto; 
-  display: block;
-  cursor: pointer;
-  font-size: 20px;
-  color: inherit; 
-  text-decoration: none;
-  margin-left: 20px;
+	margin-top: auto; 
+	display: block;
+	cursor: pointer;
+	font-size: 20px;
+	color: inherit; 
+	text-decoration: none;
+	margin-left: 20px;
 `

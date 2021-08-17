@@ -3,7 +3,9 @@ module.exports = {
         domains: [
             '*',
             'unsplash.com',
-            'localhost'
+            'pexels.com',
+            'images.pexels.com',
+            'localhost',
         ],
     }
 }

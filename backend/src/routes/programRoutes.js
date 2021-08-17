@@ -3,15 +3,18 @@ const Program = require("../models/Program");
 const seed = require('../seed/programSeed');
 const router = express.Router();
 const sendMail = require('../email/sendGrid');
+const { replaceSingleCharGlobal } = require('../customFuncs/replaceSingleCharGlobal');
 
 router.post("/programs/add", async (req, res) => {
 	try {
 		const data = req.body;		
-		const emailResponse = await sendMail(data);
-		console.log('NEW PROGRAM', req.body);
 		const { organization, bio, helpsWith, coverImage, email } = req.body;
+		let href = replaceSingleCharGlobal(organization, ' ', '-');
+		href = href.toLowerCase(); 
+		console.log('href: ', href);
 		const helpsWithArr = helpsWith.split(',');
-		const newProgram = new Program({ organization, bio, helpsWith: helpsWithArr, coverImage, email });
+		const emailResponse = await sendMail(data, href);
+		const newProgram = new Program({ organization, bio, helpsWith: helpsWithArr, coverImage, email, href });
 		console.log('NEW PROGRAM: ', newProgram); 
 		newProgram.save((err) => {
 			if (err) {
@@ -26,38 +29,24 @@ router.post("/programs/add", async (req, res) => {
 	}
 })
 
+router.get('/program/:href', async (req, res) => {
+	try {
+		const program = await Program.findOne({ href: req.params.href });
+		if (!program) {
+			res.send({ message: 'We could not find that program'})
+		}
+		res.send({ message: 'success', program: program }); 
+	} catch (error) {
+		console.log(error);
+	}
+})
+
 router.get("/programs", async (req, res) => {
 	try {
 		const programs = await Program.find({});
 		res.send({ message: programs });
 	} catch (error) {
 		res.send({message: error});
-	}
-})
-
-router.post("/program", async (req, res) => {
-	const errors = {};
-	console.log(req);
-	try {
-		if (!req.body.organization) return;
-		if (req.body.title.length < 3) {
-			errors.titleLength = 'Title Length is too short, must be at least 3 characters.';
-		}
-		if (Object.keys(errors).length) {
-			console.log('WEVE FOUND ERRORS: ', errors);
-			res.send({ error: true, message: errors});
-			return;
-		}
-		response = await Program.create(req.body, (error) => {
-			if (error) {
-				res.send({error: true, message: error._message});
-				return;
-			}
-		})
-		res.send({ message: response });
-	} catch (error) {
-		console.log(error);
-		res.send({ message: error });
 	}
 })
 

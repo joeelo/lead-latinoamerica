@@ -27,6 +27,10 @@ const programSchema = new mongoose.Schema({
     tags: {
         type: Array, 
         default: []
+    }, 
+    href: {
+        type: String, 
+        required: true,
     }
 
 })

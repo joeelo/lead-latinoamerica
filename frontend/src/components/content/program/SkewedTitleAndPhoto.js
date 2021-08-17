@@ -1,7 +1,10 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Image from 'next/image';
 
-const SkewedTitleAndPhoto = ({ program, router }) => {
+const SkewedTitleAndPhoto = ({ program }) => {
+
+  const coverImage = program.coverImage || '';
   return (
     <Container>
       <TextContainer>
@@ -9,9 +12,9 @@ const SkewedTitleAndPhoto = ({ program, router }) => {
         <Bio> { program.bio } </Bio>
       </TextContainer>
       <ImageContainer>
-        { program.photo && 
+        { program.coverImage && 
           <Image 
-            src={ `${ program.photo }` }
+            src={ `${ coverImage }` }
             layout='fill'
             objectFit='cover'
             objectPosition='center' 

@@ -1,7 +1,8 @@
-const getFromDatabase = async (data, endpoint) => {
+const getProgramBySlug = async (endpoint) => {
   try {
-    const response = await fetch(`${process.env.DB_LOCATION}/${endpoint}`); 
-    return response;
+    const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/${endpoint}`); 
+    const json = await response.json(); 
+    return json;
   } catch (error) {
     console.log(error);
     return { message: error };
@@ -31,6 +32,6 @@ const postToDatabase = async (data, endpoint, query) => {
 }
 
 export {
-  getFromDatabase, 
+  getProgramBySlug, 
   postToDatabase
 }

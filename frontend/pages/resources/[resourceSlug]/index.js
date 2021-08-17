@@ -11,29 +11,28 @@ const ResourcePage = () => {
   const router = useRouter(); 
   const { resourceSlug } = router.query;
 
-  return (
-    <>
-      <NavBar />
-      { fakeData[resourceSlug] && 
-        <>
-          <FullScreenBack 
-            src={ fakeData[resourceSlug].photo }
-            titleInfo={{ show: true, text: `${ resourceSlug }`, backgroundColor: '#0077B6', color: 'white' }}
-          />
+	return (
+		<>
+		<NavBar />
+			{ fakeData[resourceSlug] && 
+				<>
+					<FullScreenBack 
+						src={ fakeData[resourceSlug].coverImage }
+						titleInfo={{ show: true, text: `${ resourceSlug }`, backgroundColor: '#0077B6', color: 'white' }}
+					/>
 
-          <CenterFlexContainer padding='extraPad'>
-            { fakeData[resourceSlug].programs.map(( program ) => 
-                <PhotoWithTextBox key={program.photo} src={program.photo} program={program} />
-              )
-            }
-          </CenterFlexContainer>
-            
-        </>
-      }
-      <Footer/>
+					<CenterFlexContainer padding='extraPad'>
+						{ fakeData[resourceSlug].programs.map(( program, index ) => 
+							<PhotoWithTextBox key={ program.href } coverImage={ program.coverImage } program={ program } />
+						)}
+					</CenterFlexContainer>
+					
+				</>
+			}
+		<Footer/>
 
-    </>
-  )
+		</>
+	)
 }
 
 export default ResourcePage; 

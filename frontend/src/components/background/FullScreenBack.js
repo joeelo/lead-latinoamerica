@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 
 const FullScreenBack = ({ src, children, titleInfo }) => {
 
+	console.log('SRC: ', src);
+
 	return (
 		<OuterWrapper>
 			<Container>

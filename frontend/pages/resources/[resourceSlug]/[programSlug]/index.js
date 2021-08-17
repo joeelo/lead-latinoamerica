@@ -4,7 +4,7 @@ import SkewedTitleAndPhoto from '@/components/content/program/SkewedTitleAndPhot
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import fakeData from '@/data/fakeData';
-import ProgramOverviewAndInfo from '@/components/content/program/ProgramOverviewAndInfo';
+import ProgramOverViewAndInfo from '@/components/content/program/ProgramoverViewAndInfo';
 
 const ProgramPage = () => {
   const router = useRouter(); 
@@ -23,7 +23,7 @@ const ProgramPage = () => {
     <>
       <NavBar />
       <SkewedTitleAndPhoto program={ program } router={ router }/>
-      <ProgramOverviewAndInfo program={ program } marginTop={ true }/>
+      <ProgramOverViewAndInfo program={ program } marginTop={ true }/>
       <Footer marginTop={ true }/>
     </>
   )
