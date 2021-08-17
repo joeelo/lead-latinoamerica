@@ -8,7 +8,7 @@ const SkewedTitleAndPhoto = ({ program }) => {
   return (
     <Container>
       <TextContainer>
-        <Heading> { program.name } </Heading>
+        <Heading> { program.organization } </Heading>
         <MissionStatement> { program.missionStatement } </MissionStatement>
       </TextContainer>
       <ImageContainer>
