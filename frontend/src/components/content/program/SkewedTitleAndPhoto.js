@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
+import LoadingScreenVariableWidth from '@/components/generic/LoadingScreenVariableWidth';
 
 const SkewedTitleAndPhoto = ({ program }) => {
 

@@ -59,7 +59,11 @@ const Container = styled.div`
     return 0;
   }};
   padding-bottom: ${ props => props.padding ? `${props.padding}px` : '0'};
-  justify-content: space-around; 
+  justify-content: ${ props => {
+    if (props.justify === 'center') return 'center'; 
+    if (props.justify === 'start') return 'flex-start';
+    return 'space-around';
+  }}; 
   max-width: ${ props => props.maxWidth ? props.maxWidth : '1200px' };
   min-height: ${ props => props.minHeight ? props.minHeight : '400px' };
   flex-wrap: wrap; 

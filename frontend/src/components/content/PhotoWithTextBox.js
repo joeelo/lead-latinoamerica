@@ -4,16 +4,18 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const PhotoWithTextBox = ({  
+	program, 
 	program: {
-		name, 
+		organization = '', 
 		coverImage, 
 		bio, 
 		href,
 	} 
 }) => {
 
+	console.log( 'program', program);
 	const router = useRouter();
-	const formattedLink = name.replaceAll(' ', '-');
+	const formattedLink = organization.replaceAll(' ', '-');
 
 	return (
 		<Container>
@@ -25,12 +27,12 @@ const PhotoWithTextBox = ({
 				objectPosition='center'
 				style={{ zIndex: -1, position: 'absolute', borderRadius: 4 }}
 			/>
-			<RightAlignedText> { name } </RightAlignedText>
+			<RightAlignedText> { organization } </RightAlignedText>
 			</PhotoWithTextOverlay> 
 
 			<Bio> - { bio } </Bio>
 			<Link href={`/resources/[resourceSlug]/[programSlug]`} as={`${router.asPath}/${formattedLink.toLowerCase()}`}>
-			<StyledAnchor> explore { name } </StyledAnchor>
+			<StyledAnchor> explore { organization } </StyledAnchor>
 			</Link>
 		</Container>
 	)

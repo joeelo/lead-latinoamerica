@@ -4,8 +4,8 @@ const VideoBackground = ({ children }) => {
     return (
         <Container>
             <Video playsInline autoPlay muted loop src='/pexels-pavel-danilyuk-7945680.mp4'>
-                { children }
             </Video>    
+                { children }
         </Container>
     )
 }
