@@ -31,7 +31,7 @@ const postToDatabase = async (data, endpoint, query) => {
 	}
 }
 
-const findProgramAndUpdate = async (data) => {
+const findProgramAndUpdate = async (data, endpoint) => {
 	try {
 		const options = {
 			method: 'PATCH', 
@@ -51,5 +51,6 @@ const findProgramAndUpdate = async (data) => {
 
 export {
 	getProgramBySlug, 
-	postToDatabase
+	postToDatabase, 
+	findProgramAndUpdate,
 }

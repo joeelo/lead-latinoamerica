@@ -1,9 +1,12 @@
 import styled from 'styled-components'; 
+import { findProgramAndUpdate } from '@/fetch/requests';
 
-const FixedButton = ({ approve, deny, text, bgColor }) => {
+const FixedButton = ({ approve, deny, text, bgColor, org }) => {
 
 	const handleClick = () => {
-		console.log('clicked');
+		let data = approve ? 'approve' : 'deny'; 
+		
+		findProgramAndUpdate(data, `org/edit/${org}`);
 	}
 
 	return (

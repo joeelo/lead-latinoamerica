@@ -62,6 +62,10 @@ router.post("/programs/seed", async (req, res) => {
 	}
 })
 
+router.patch("/programs/edit/:org", async (req, res) => {
+	
+})
+
 router.delete("/programs/erase-all", async (req, res) => {
 	try {
 		const response = await Program.deleteMany({});
