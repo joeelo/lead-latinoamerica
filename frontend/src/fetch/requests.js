@@ -31,7 +31,7 @@ const postToDatabase = async (data, endpoint, query) => {
 	}
 }
 
-const findProgramAndUpdate = async (data, endpoint) => {
+const findProgramAndUpdate = async (data = {}, endpoint) => {
 	try {
 		const options = {
 			method: 'PATCH', 
@@ -40,8 +40,8 @@ const findProgramAndUpdate = async (data, endpoint) => {
 			}, 
 			body: JSON.stringify(data)
 		}
-		const request = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/${endpoint}`, options);
-		const json = request.json(); 
+		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/${endpoint}`, options);
+		const json = await response.json();
 		console.log(json);
 		return json; 
 	} catch (error) {

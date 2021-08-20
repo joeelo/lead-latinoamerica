@@ -35,8 +35,20 @@ const ApproveProgramPage = () => {
     return (
         <>
             <NavBar />
-            <FixedButton text={ 'Approve Org' } approve={ true } bgColor={ '#00B43C' } org={ program.organization } />
-			<FixedButton text={ 'Deny Org'} deny={ true } bgColor={ '#FF4F3D' } org={ program.organization } />
+            <FixedButton 
+                text={ 'Approve Org' } 
+                approve={ true } 
+                bgColor={ '#00B43C' } 
+                href={ program.href } 
+                bgColorHover={ '#0ACC14' }
+             />
+			<FixedButton 
+                text={ 'Deny Org'} 
+                deny={ true } 
+                bgColor={ '#FF4F3D' } 
+                href={ program.href }
+                bgColorHover={ '#E82C4A' } 
+            />
             <SkewedTitleAndPhoto program={ program } router={ router }/>
             <ProgramOverviewAndInfo program={ program } marginTop={ true }/>
             <Footer marginTop={ true }/>
