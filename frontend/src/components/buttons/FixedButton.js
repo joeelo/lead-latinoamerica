@@ -1,7 +1,7 @@
 import styled from 'styled-components'; 
 import { findProgramAndUpdate } from '@/fetch/requests';
 
-const FixedButton = ({ approve, deny, text, bgColor, href }) => {
+const FixedButton = ({ approve, deny, text, bgColor, bgColorHover, href }) => {
 
 	const handleClick = () => {
 		if (approve || deny) {
@@ -11,7 +11,7 @@ const FixedButton = ({ approve, deny, text, bgColor, href }) => {
 	}
 
 	return (
-		<Button onClick={ handleClick } {...{ bgColor, approve }}>
+		<Button onClick={ handleClick } {...{ bgColor, approve, bgColorHover }}>
 			{ text }
 		</Button>
 	)
