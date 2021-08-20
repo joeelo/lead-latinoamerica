@@ -62,8 +62,17 @@ router.post("/programs/seed", async (req, res) => {
 	}
 })
 
-router.patch("/programs/edit/:org", async (req, res) => {
-	
+router.patch("/program/edit/:href", async (req, res) => {
+	const filter = { organization: req.params.href }; 
+	const update = { approved: true };
+	console.log(req.params.href);
+	try {
+		const updatedProgram = await Program.findOneAndUpdate(filter, update, { returnOriginal: false }).exec(); 
+		res.send({ message: 'success', program: updatedProgram });
+	} catch (error) {
+		console.log('ERROR UPDATING: ', error); 
+		res.send({ error: true, message: error });
+	}
 })
 
 router.delete("/programs/erase-all", async (req, res) => {
