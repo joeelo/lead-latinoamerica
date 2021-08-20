@@ -62,6 +62,24 @@ router.post("/programs/seed", async (req, res) => {
 	}
 })
 
+router.patch("/program/edit/:href/:approve", async (req, res) => {
+	const filter = { href: req.params.href }; 
+	const update = { approved: req.params.approve };
+	const options = { returnOriginal: false, strict: false };
+	try {
+		const updatedProgram = await Program.findOneAndUpdate(filter, update, options, (error) => {
+			if (error) {
+				console.log('ERROR IN UPDATED PROGRAM: ', error); 
+				res.send({ message: error, error: true, });
+			}
+		}); 
+		res.send({ message: 'success', program: updatedProgram });
+	} catch (error) {
+		console.log('ERROR UPDATING: ', error); 
+		res.send({ error: true, message: error });
+	}
+})
+
 router.delete("/programs/erase-all", async (req, res) => {
 	try {
 		const response = await Program.deleteMany({});
