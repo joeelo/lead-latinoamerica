@@ -8,6 +8,8 @@ import FlexContentBox from '@/components/content/FlexContentBox';
 import Footer from '@/components/footer/Footer';
 import ChangingBackgroundText from '@/components/content/ChangingBackgroundText';
 import ContentWithSideImage from '@/components/content/ContentWithSideImage';
+import VideoBackground from '@/components/background/VideoBackground';
+import FadeInText from '@/components/generic/FadeInText';
 
 
 const HomeScreenPage = () => {
@@ -78,7 +80,7 @@ const HomeScreenPage = () => {
 			<CenterFlexContainer backgroundColor={ theme.colors.darkBlue } padding={'padTop'}>
 				<ChangingBackgroundText 
 					secondaryColor={ 'white' }
-					text={ 'Thousands of Students' }
+					text={ 'Mission District' }
 				/>
 
 				<ContentWithSideImage 
@@ -86,9 +88,9 @@ const HomeScreenPage = () => {
 					imageSrc={'/images/tony-luginsland-yXnnR9smke0-unsplash.jpg'}
 					text={
 						[
-						'Countless students experience lack of funding,  and  opportunities simply because they didn\'t know that they were available to them. ', 
-						'We\'re trying to change this by bringing all the resources together in one place. No more looking on several sites or pages for that scholarship you\'ve heard about or that internship you want.', 
-						'What you see is the most updated list we have available in your area. If you know something exists and you don\'t see it here, please let us know and we\'ll add it so everyone can prosper with the same knowledge.'
+						'The goal of this portal is to ensure that students are made aware of the abundance of scholarships and opportunities available to them. ', 
+						'Our goal is to streamline scholarship and opportunity listings, so that students and parents no longer have to review several sites or pages to see all that’s available to them.', 
+						'What is provided in this portal is the most updated list we have available in your area. If you know of an opportunity that exists and you don\'t see it here, please let us know and we\'ll add it to ensure everyone has access to the same opportunities.'
 						]
 					}
 				/>
@@ -105,6 +107,10 @@ const HomeScreenPage = () => {
 					/>)
 				}
 			</CenterFlexContainer>
+
+			<VideoBackground src='/pexels-rodnae-productions-8419363.mp4'>
+				<FadeInText onlyRunOneTransition={ true }/>
+			</VideoBackground>
 			<Footer showQuote={ false }/>
 		</>
 	)

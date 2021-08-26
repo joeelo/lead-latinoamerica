@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-const VideoBackground = ({ children }) => {
+const VideoBackground = ({ children, src }) => {
     return (
         <Container>
-            <Video playsInline autoPlay muted loop src='/pexels-pavel-danilyuk-7945680.mp4'>
+            <Video playsInline autoPlay muted loop src={ src }>
             </Video>    
                 { children }
         </Container>
@@ -21,10 +21,11 @@ const Container = styled.div`
 
 const Video = styled.video`
     position: absolute;
-    height: %;
-    width: 100%;
-    // object-fit: cover;
-    // top: 20%;
-    // transform: translate(-50%, -50%);
-    // left: 50%;
+    height: 100%;
+    width: 177.77777778vh; /* 100 * 16 / 9 */
+    min-width: 100%;
+    min-height: 56.25vw; /* 100 * 9 / 16 */
+    left: 50%; /* % of surrounding element */
+    top: 50%;
+    transform: translate(-50%, -50%); /* % of current element */
 `

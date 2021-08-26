@@ -18,8 +18,6 @@ const ProgramOverviewAndInfo = ({ program }) => {
 				<RightContainer>
 					<UnderlinedSectionHeader> Categories </UnderlinedSectionHeader>
 					<CategoryTiles adjectives={ program.helpsWith }/>
-					<UnderlinedSectionHeader> Start Date </UnderlinedSectionHeader>
-					<StartDateText> { program.startData ? program.startData : 'TBD' } </StartDateText>
 				</RightContainer>
 			</CenterFlexContainer>
 		</>

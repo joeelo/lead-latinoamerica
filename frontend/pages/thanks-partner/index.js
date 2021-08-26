@@ -13,7 +13,7 @@ const ThanksPartnerPage = () => {
     return (
         <>
             <NavBar/>
-            <VideoBackground > 
+            <VideoBackground src='/pexels-pavel-danilyuk-7945680.mp4'> 
                 <CenterFlexContainer align='center'>
                     <ChangingBackgroundText 
                         text={ 'Hooray! Thanks for Joining Us!' }
