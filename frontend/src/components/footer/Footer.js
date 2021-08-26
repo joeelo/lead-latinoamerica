@@ -56,21 +56,4 @@ const Column = styled.div`
         font-weight: bold;
         margin-bottom: 20px;
     }
-
-    a {
-        color: inherit;
-        text-decoration: none;
-        transition: .2s ease-in-out all;
-        border-bottom: 1px solid rgba(0, 0, 0, 0);
-    }
-
-    a:hover {
-        border-bottom: 1px solid rgba(0, 119, 182, 1);
-        color: rgba(0, 119, 182, 1);
-    }
-
-    @media screen and (max-width: 768px) {
-        font-size: 22px;
-        padding: 20px 20px 0 0;
-    }
 `

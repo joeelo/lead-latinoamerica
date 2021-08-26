@@ -105,23 +105,7 @@ const HomeScreenPage = () => {
 					/>)
 				}
 			</CenterFlexContainer>
-
-			<FullScreenBack src={ '/images/hari-nandakumar-fbJr86YN574-unsplash.jpg' }>
-				<TitleWithBackground text={ 'Recently Posted' } topOffset={ 100 } marginBottom={ true }/>
-				<CenterFlexContainer padding={ 100 } backgroundColor={ 'rgba(0, 0, 0, 0)' }>
-					{
-						recentlyPosted.map(info => (
-							<FlexContentBox 
-								key={ info.title } 
-								size={ 'thirds' } 
-								content={ info } 
-								minHeight={ 400 }
-							/>
-						))
-					}
-				</CenterFlexContainer>
-			</FullScreenBack>
-			<Footer />
+			<Footer showQuote={ false }/>
 		</>
 	)
 }
