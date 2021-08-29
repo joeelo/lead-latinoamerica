@@ -109,7 +109,9 @@ const HomeScreenPage = () => {
 			</CenterFlexContainer>
 
 			<VideoBackground src='/pexels-rodnae-productions-8419363.mp4'>
-				<FadeInText onlyRunOneTransition={ true }/>
+				<CenterFlexContainer justify='start' align='start' paddingTop>
+					<FadeInText onlyRunOneTransition={ true }/>
+				</CenterFlexContainer>
 			</VideoBackground>
 			<Footer showQuote={ false }/>
 		</>

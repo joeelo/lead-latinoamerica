@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import useOnScreen from '@/hooks/useOnScreen';
 
-const FadeInText = ({ textArray, onlyRunOneTransition }) => {
+const FadeInText = ({ textArray, onlyRunOneTransition, fontSize }) => {
 
 	const [ animate, setAnimation ] = useState(false);
 	const ref = useRef(); 
@@ -21,11 +21,13 @@ const FadeInText = ({ textArray, onlyRunOneTransition }) => {
 			setAnimation(false);
 		}
 
-	}, [isOnScreen]);
+	}, [ isOnScreen ]);
 
 	return (
 		<Container ref={ref}>
-		
+			{ isOnScreen &&
+				<P {...{ fontSize }}> this is some text, should fade in </P>
+			}	
 		</Container>
 	)
 }
@@ -41,13 +43,26 @@ FadeInText.defaultProps = {
 }
 
 const fadeIn = keyframes`
-
+	0% {
+		opacity: 0;
+		top: 30px; 
+	}
+	100% {
+		opacity: 1;
+		top: 0;
+	}
 `
 
 const Container = styled.div`
 	width: auto; 
+	position: relative; 
 `
 
 const P = styled.p`
-
+	animation: ${fadeIn} 2s; 
+	animation-iteration-count: 1;  
+	color: white; 
+	position: relative; 
+	color: white;
+	font-size: ${ props => props.fontSize ? props.fontSize : '24px' };
 `
