@@ -77,27 +77,16 @@ const HomeScreenPage = () => {
 				</MainTitleContainer>
 			</FullScreenBack>
 
-
-			<CenterFlexContainer backgroundColor={ theme.colors.darkBlue } padding={'padTop'}>
+			<CenterFlexContainer backgroundColor={ theme.colors.cultured } minHeight={ 'auto' } padding={ 60 }>
 				<ChangingBackgroundText 
-					secondaryColor={ 'white' }
+					initialColor={ theme.colors.cultured }
+					secondaryColor={ theme.colors.darkBlue }
 					text={ 'Mission District' }
-				/>
-
-				<ContentWithSideImage 
-					backgroundColor={ theme.colors.darkBlue }
-					imageSrc={'/images/tony-luginsland-yXnnR9smke0-unsplash.jpg'}
-					text={
-						[
-						'The goal of this portal is to ensure that students are made aware of the abundance of scholarships and opportunities available to them. ', 
-						'Our goal is to streamline scholarship and opportunity listings, so that students and parents no longer have to review several sites or pages to see all that’s available to them.', 
-						'What is provided in this portal is the most updated list we have available in your area. If you know of an opportunity that exists and you don\'t see it here, please let us know and we\'ll add it to ensure everyone has access to the same opportunities.'
-						]
-					}
+					fontColorInitial={ theme.colors.darkBlue }
+					fontColorSecondary={ theme.colors.cultured }
 				/>
 			</CenterFlexContainer>
-
-			<CenterFlexContainer backgroundColor={ theme.colors.cultured } padding={ 'padTop' }>
+			<CenterFlexContainer backgroundColor={ theme.colors.cultured }>
 				{
 					opportunityInfo.map(info => <FlexContentBox 
 						key={ info.title } 
@@ -107,6 +96,25 @@ const HomeScreenPage = () => {
 						backgroundColor={ theme.white }
 					/>)
 				}
+			</CenterFlexContainer>
+
+
+			<CenterFlexContainer backgroundColor={ theme.colors.darkBlue } padding={'padTop'}>
+				<ChangingBackgroundText 
+					secondaryColor={ 'white' }
+					text={ 'Our Purpose' }
+				/>
+				<ContentWithSideImage 
+					backgroundColor={ theme.colors.darkBlue }
+					imageSrc={'/images/tony-luginsland-yXnnR9smke0-unsplash.jpg'}
+					text={
+						[
+							'This portal ensures that students are made aware of all of the scholarships and opportunities available to them. . ', 
+							'Our goal is to streamline scholarship and opportunity listings, so that students and parents no longer have to review several sites or pages to see all that’s available to them.', 
+							'This portal provides our most updated list of opportunities available in your area. If you know of an opportunity that exists and you don\'t see it here, please let us know and we\'ll add it to ensure everyone has access to the same opportunities. '
+						]
+					}
+				/>
 			</CenterFlexContainer>
 
 			<VideoBackground src='/pexels-rodnae-productions-8419363.mp4'>
