@@ -1,20 +1,22 @@
+import { useContext } from 'react';
 import CenterFlexContainer from '@/components/generic/CenterFlexContainer';
 import styled, { ThemeContext } from 'styled-components';
-import { useContext } from 'react';
+import useGetRandomQuote from '@/hooks/useGetRandomQuote';
 
 const DynamicQuote = () => {
 	
 	const theme = useContext(ThemeContext);
+	const quote = useGetRandomQuote(); 
 	
 	return (
 		<CenterFlexContainer backgroundColor={theme.colors.darkBlue} align='center' minHeight='300px'>
 			<Container>
 				<QuoteText>
-					Education is the most powerful weapon which you could use to change the world. 
+					{ quote?.text }
 				</QuoteText>
 				<br/>
 				<QuoteAuthor>
-					- Nelson Mandela
+					- { quote?.author }
 				</QuoteAuthor>
 			</Container>
 
