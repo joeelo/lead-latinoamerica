@@ -25,7 +25,7 @@ const FadeInText = ({ textArray, onlyRunOneTransition, fontSize }) => {
 
 	return (
 		<Container ref={ref}>
-			{ isOnScreen &&
+			{ animate &&
 				<P {...{ fontSize }}> this is some text, should fade in </P>
 			}	
 		</Container>

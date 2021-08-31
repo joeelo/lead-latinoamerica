@@ -10,6 +10,7 @@ import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
 import ContentWithSideImage from '@/components/content/ContentWithSideImage';
 import VideoBackground from '@/components/background/VideoBackground';
 import FadeInText from '@/components/generic/FadeInText';
+import DynamicQuote from '@/components/content/quote/DynamicQuote';
 
 
 const HomeScreenPage = () => {
@@ -110,6 +111,7 @@ const HomeScreenPage = () => {
 
 			<VideoBackground src='/pexels-rodnae-productions-8419363.mp4'>
 				<CenterFlexContainer justify='start' align='start' paddingTop>
+					<DynamicQuote/>
 					<FadeInText onlyRunOneTransition={ true }/>
 				</CenterFlexContainer>
 			</VideoBackground>
