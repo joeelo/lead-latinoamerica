@@ -3,7 +3,12 @@ import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import useOnScreen from '@/hooks/useOnScreen';
 
-const FadeInText = ({ textArray, onlyRunOneTransition, fontSize }) => {
+const FadeInText = ({ 
+	textArray, 
+	onlyRunOneTransition, 
+	fontSize, 
+	maxWidth 
+}) => {
 
 	const [ animate, setAnimation ] = useState(false);
 	const ref = useRef(); 
@@ -24,9 +29,9 @@ const FadeInText = ({ textArray, onlyRunOneTransition, fontSize }) => {
 	}, [ isOnScreen ]);
 
 	return (
-		<Container ref={ref}>
+		<Container ref={ref} maxWidth={maxWidth}>
 			{ animate &&
-				<P {...{ fontSize }}> this is some text, should fade in </P>
+				textArray && textArray.map((text) => <P key={text} {...{ fontSize }}> { text } </P>)
 			}	
 		</Container>
 	)
@@ -56,6 +61,10 @@ const fadeIn = keyframes`
 const Container = styled.div`
 	width: auto; 
 	position: relative; 
+
+	${({ maxWidth }) => maxWidth && `
+		max-width: ${maxWidth}px; 
+	`}	
 `
 
 const P = styled.p`
@@ -64,5 +73,5 @@ const P = styled.p`
 	color: white; 
 	position: relative; 
 	color: white;
-	font-size: ${ props => props.fontSize ? props.fontSize : '24px' };
+	font-size: ${ props => props.fontSize ? `${props.fontSize}px` : '24px' };
 `

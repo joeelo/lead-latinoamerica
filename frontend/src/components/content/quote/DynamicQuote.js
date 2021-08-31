@@ -1,20 +1,12 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import CenterFlexContainer from '@/components/generic/CenterFlexContainer';
 import styled, { ThemeContext } from 'styled-components';
-import { quotes } from '@/data/quotes';
+import useGetRandomQuote from '@/hooks/useGetRandomQuote';
 
-const DynamicQuote = ({ setQuoteAndReturn }) => {
-
-	const randomIndex = Math.floor( Math.random() * quotes.length);
-	const quote = quotes[randomIndex];
+const DynamicQuote = () => {
 	
 	const theme = useContext(ThemeContext);
-
-	if (setQuoteAndReturn) {
-		setQuoteAndReturn(quote);
-		return <></>
-	}
-	console.log(quote);
+	const quote = useGetRandomQuote(); 
 	
 	return (
 		<CenterFlexContainer backgroundColor={theme.colors.darkBlue} align='center' minHeight='300px'>

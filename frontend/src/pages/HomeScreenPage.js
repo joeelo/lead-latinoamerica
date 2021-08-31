@@ -3,19 +3,19 @@ import styled, { ThemeContext } from 'styled-components';
 import NavBar from '@/components/nav/NavBar';
 import FullScreenBack from '@/components/background/FullScreenBack';
 import CenterFlexContainer from '@/components/generic/CenterFlexContainer';
-import TitleWithBackground from '@/components/generic/TitleWithBackground';
 import FlexContentBox from '@/components/content/FlexContentBox';
 import Footer from '@/components/footer/Footer';
 import ChangingBackgroundText from '@/components/content/ChangingBackgroundText';
 import ContentWithSideImage from '@/components/content/ContentWithSideImage';
 import VideoBackground from '@/components/background/VideoBackground';
 import FadeInText from '@/components/generic/FadeInText';
-import DynamicQuote from '@/components/content/quote/DynamicQuote';
+import useGetRandomQuote from '@/hooks/useGetRandomQuote';
 
 
 const HomeScreenPage = () => {
 
 	const theme = useContext(ThemeContext);
+	const quote = useGetRandomQuote(); 
 
 	const opportunityInfo = [
 		{ 
@@ -111,8 +111,12 @@ const HomeScreenPage = () => {
 
 			<VideoBackground src='/pexels-rodnae-productions-8419363.mp4'>
 				<CenterFlexContainer justify='start' align='start' paddingTop>
-					<DynamicQuote/>
-					<FadeInText onlyRunOneTransition={ true }/>
+					<FadeInText 
+						onlyRunOneTransition={ true } 
+						textArray={[quote?.text, `- ${quote?.author}`]} 
+						maxWidth='800'
+						fontSize={48}
+					/>
 				</CenterFlexContainer>
 			</VideoBackground>
 			<Footer showQuote={ false }/>
