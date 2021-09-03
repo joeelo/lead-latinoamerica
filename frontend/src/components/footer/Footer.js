@@ -14,11 +14,11 @@ const Footer = ({ showQuote }) => {
             { showQuote && <DynamicQuote /> }
             <Container data-testid='footer' theme={ theme }>
                 <Column>
-                <p>Explore</p>
+                    <p>Explore</p>
                     <LinkUnderlineEffect hrefFormatted="/resources/programs" text={ 'Programs' } color={'white'}/>
                     <LinkUnderlineEffect hrefFormatted="/resources/internships" text={ 'Internships' } color={'white'}/>
                     <LinkUnderlineEffect hrefFormatted="/our-team" text={ 'Our Team' } color={'white'}/>
-                    <LinkUnderlineEffect hrefFormatted="/resources/add-edit-orgs" text={ 'Add your org' } color={'white'}/>
+                    <LinkUnderlineEffect hrefFormatted="/add-edit-orgs" text={ 'Add your org' } color={'white'}/>
                     <LinkUnderlineEffect hrefFormatted="/resources/programs" text={ 'Programs' } color={'white'}/>
                 </Column>
             </Container>
@@ -50,7 +50,6 @@ const Column = styled.div`
     flex-direction: column; 
     padding: 20px;
     font-size: 26px;
-    line-height: 36px;
     
     & > p:first-child {
         font-weight: bold;

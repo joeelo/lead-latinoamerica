@@ -109,7 +109,7 @@ const HomeScreenPage = () => {
 					imageSrc={'/images/tony-luginsland-yXnnR9smke0-unsplash.jpg'}
 					text={
 						[
-							'This portal ensures that students are made aware of all of the scholarships and opportunities available to them. . ', 
+							'This portal ensures that students are made aware of all of the scholarships and opportunities available to them.', 
 							'Our goal is to streamline scholarship and opportunity listings, so that students and parents no longer have to review several sites or pages to see all that’s available to them.', 
 							'This portal provides our most updated list of opportunities available in your area. If you know of an opportunity that exists and you don\'t see it here, please let us know and we\'ll add it to ensure everyone has access to the same opportunities. '
 						]

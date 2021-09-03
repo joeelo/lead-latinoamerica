@@ -38,14 +38,12 @@ const SlidePanel = ({ navOpen, setNavOpen }) => {
 			<LinkUnderlineEffect hrefFormatted="/resources/scholarships" text={ 'Scholarships' } color={ 'cyan' }/>
 			<LinkUnderlineEffect hrefFormatted="/resources/internships" text={ 'Internships' } color={ 'cyan' }/>
 			<SectionHeader>Org Portal</SectionHeader>
+			<LinkUnderlineEffect hrefFormatted='/' text={'Home'}  color={ 'cyan' }/>
 			<LinkUnderlineEffect hrefFormatted="/add-edit-orgs" text={ 'Add your Org' } color={ 'cyan' }/>
-			<LinkUnderlineEffect hrefFormatted="/support" text={ 'Partner with Us' } color={ 'cyan' }/>
-			<LinkUnderlineEffect hrefFormatted="/donate" text={ 'Donate' } color={ 'cyan' }/>
-			<BottomSection>
-				<LinkUnderlineEffect hrefFormatted='/' text={'Home'}  color={ 'cyan' }/>
-				<LinkUnderlineEffect hrefFormatted='/mission-statement' text={'Our Mission'}  color={ 'cyan' }/>
-				<LinkUnderlineEffect hrefFormatted="/frequently-asked-questions" text={ 'FAQ' } color={ 'cyan' }/>
-			</BottomSection>
+			{/* <LinkUnderlineEffect hrefFormatted="/support" text={ 'Partner with Us' } color={ 'cyan' }/> */}
+			<LinkUnderlineEffect hrefFormatted="https://www.leadlatinoamerica.org/copy-of-contact" text={ 'Donate' } color={ 'cyan' }/>
+			{/* <LinkUnderlineEffect hrefFormatted='/mission-statement' text={'Our Mission'}  color={ 'cyan' }/>
+			<LinkUnderlineEffect hrefFormatted="/frequently-asked-questions" text={ 'FAQ' } color={ 'cyan' }/> */}
 
 		</Container>
 	)
