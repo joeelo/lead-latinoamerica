@@ -1,6 +1,7 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'; 
 import Head from 'next/head';
 import { appWithTranslation } from 'next-i18next';
+import { LanguageWrapper } from '@/context/LanguageContext';
 
 const GlobalStyle = createGlobalStyle`
   	html, *, body {
@@ -60,7 +61,9 @@ const App = ({ Component, pageProps }) => {
 			</Head>
 			<GlobalStyle />
 			<ThemeProvider theme={theme}>
-				<Component {...pageProps} />
+				<LanguageWrapper>
+					<Component {...pageProps} />
+				</LanguageWrapper>
 			</ThemeProvider>
 		</>
 	)

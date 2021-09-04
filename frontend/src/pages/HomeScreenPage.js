@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import router, { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import styled, { ThemeContext } from 'styled-components';
 import NavBar from '@/components/nav/NavBar';
@@ -22,7 +22,7 @@ const HomeScreenPage = () => {
 	const router = useRouter(); 
 
 	useEffect(() => {
-
+		router.push('/en', null, { shallow: true, locale: router.locale });
 	}, [router.locale])
 
 	const opportunityInfo = [
@@ -52,8 +52,6 @@ const HomeScreenPage = () => {
 		}, 
 	]
 	
-	console.log('T: ', t, t('common:headline1'));	
-
 	return (
 		<>
 			<NavBar />
@@ -64,8 +62,8 @@ const HomeScreenPage = () => {
 				</PortalTitleContainer>
 
 				<MainTitleContainer>
-				<MainTitleFirstLine>Connecting students to</MainTitleFirstLine>
-				<MainTitleSecondLine>opportunities in the community</MainTitleSecondLine>
+				<MainTitleFirstLine>{t('headline3')}</MainTitleFirstLine>
+				<MainTitleSecondLine>{t('headline4')}</MainTitleSecondLine>
 				</MainTitleContainer>
 			</FullScreenBack>
 
