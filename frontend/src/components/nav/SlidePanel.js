@@ -2,10 +2,14 @@ import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import LanguageButtons from './LanguageButtons';
 import LinkUnderlineEffect from '../generic/LinkUnderlineEffect';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 
 const SlidePanel = ({ navOpen, setNavOpen }) => {
 
+	const { i18n } = useTranslation(); 
 	const wrapperRef = useRef(null);
+	const router = useRouter(); 
 
 	const handleClickOutside = (event) => {
 		if (!navOpen) return;
@@ -15,17 +19,23 @@ const SlidePanel = ({ navOpen, setNavOpen }) => {
 	}
 		
 	useEffect(() => {
+		document.addEventListener('click', handleClickOutside);
+
 		if (navOpen === true) {
 			document.body.style.overflow = 'hidden';
 		} else {
 			document.body.style.overflow = 'visible';
 		}
+		
+		
+		return () => document.removeEventListener('click', handleClickOutside);
 	}, [ navOpen ]);
 
 	useEffect(() => {
-		document.addEventListener('click', handleClickOutside);
-		
-		return () => document.removeEventListener('click', handleClickOutside);
+		router.locale = 'es';
+		i18n.language = 'es';
+		i18n.changeLanguage('es');
+		console.log('router', router, i18n);
 	}, [ navOpen ])
 
 

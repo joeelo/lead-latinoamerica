@@ -1,4 +1,6 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import styled, { ThemeContext } from 'styled-components';
 import NavBar from '@/components/nav/NavBar';
 import FullScreenBack from '@/components/background/FullScreenBack';
@@ -16,6 +18,12 @@ const HomeScreenPage = () => {
 
 	const theme = useContext(ThemeContext);
 	const quote = useGetRandomQuote(); 
+	const { t } = useTranslation(); 
+	const router = useRouter(); 
+
+	useEffect(() => {
+
+	}, [router.locale])
 
 	const opportunityInfo = [
 		{ 
@@ -43,32 +51,16 @@ const HomeScreenPage = () => {
 			svg: '/images/svg/online-class-svgrepo-com.svg'
 		}, 
 	]
-
-	const recentlyPosted = [
-		{ 
-			title: 'Opportunity 1 ', 
-			text:'Check out this opportunity ', 
-			footer: 'See our Scholarship Opportunities'
-		}, 
-		{
-			title: 'Opportunity 2', 
-			text:'This is another one. This information is not necessary right now.', 
-			footer: 'See our Summer Opportunities'
-		}, 
-		{
-			title: 'Opportunity 3 ',
-			text:'This is the last one, ', 
-			footer: 'See our Internship Opportunities'
-		},  
-	]
+	
+	console.log('T: ', t, t('common:headline1'));	
 
 	return (
 		<>
 			<NavBar />
 			<FullScreenBack src='/images/javier-trueba-iQPr1XkF5F0-unsplash.jpg'>
 				<PortalTitleContainer>
-				<PortalTitle>Web Portal</PortalTitle>
-				<PortalSubTitle>Powered by LEAD.Latinoamérica</PortalSubTitle>
+				<PortalTitle>{t('headline1')}</PortalTitle>
+				<PortalSubTitle>{t('headline2')}</PortalSubTitle>
 				</PortalTitleContainer>
 
 				<MainTitleContainer>
