@@ -4,7 +4,10 @@ const LanguageContext = createContext();
 
 export const LanguageWrapper = ({ children }) => {
 	let language = {
-		activeLanguage: 'en',
+		// activeLanguage: 'en',
+		// changeLanguage: (lang) => {
+		// 	activeLanguage: lang;
+		// }
 	}
 
 	return (

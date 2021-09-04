@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import styled, { ThemeContext } from 'styled-components';
 import NavBar from '@/components/nav/NavBar';
@@ -12,18 +12,17 @@ import ContentWithSideImage from '@/components/content/ContentWithSideImage';
 import VideoBackground from '@/components/background/VideoBackground';
 import FadeInText from '@/components/generic/FadeInText';
 import useGetRandomQuote from '@/hooks/useGetRandomQuote';
+import en from '../../public/locales/en/common.json';
+import es from '../../public/locales/es/common.json';
 
 
 const HomeScreenPage = () => {
 
 	const theme = useContext(ThemeContext);
 	const quote = useGetRandomQuote(); 
-	const { t } = useTranslation(); 
 	const router = useRouter(); 
-
-	useEffect(() => {
-		router.push('/en', null, { shallow: true, locale: router.locale });
-	}, [router.locale])
+	const { locale } = router; 
+	const t = locale === 'en' ? en : es;
 
 	const opportunityInfo = [
 		{ 
@@ -57,13 +56,13 @@ const HomeScreenPage = () => {
 			<NavBar />
 			<FullScreenBack src='/images/javier-trueba-iQPr1XkF5F0-unsplash.jpg'>
 				<PortalTitleContainer>
-				<PortalTitle>{t('headline1')}</PortalTitle>
-				<PortalSubTitle>{t('headline2')}</PortalSubTitle>
+				<PortalTitle>{t.headline1}</PortalTitle>
+				<PortalSubTitle>{t.headline2}</PortalSubTitle>
 				</PortalTitleContainer>
 
 				<MainTitleContainer>
-				<MainTitleFirstLine>{t('headline3')}</MainTitleFirstLine>
-				<MainTitleSecondLine>{t('headline4')}</MainTitleSecondLine>
+				<MainTitleFirstLine>{t.headline3}</MainTitleFirstLine>
+				<MainTitleSecondLine>{t.headline4}</MainTitleSecondLine>
 				</MainTitleContainer>
 			</FullScreenBack>
 

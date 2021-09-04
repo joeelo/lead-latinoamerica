@@ -21,7 +21,7 @@ const NavBar = () => {
 			<PlaceHolderContainer></PlaceHolderContainer>
 			<Container>
 				<Hamburger { ...{ navOpen, setNavOpen } }/>
-				<SlidePanel { ...{ navOpen, setNavOpen, router } }/>
+				<SlidePanel { ...{ navOpen, setNavOpen } }/>
 			</Container>
 		</>
 	)

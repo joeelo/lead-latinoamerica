@@ -1,16 +1,29 @@
 import styled from 'styled-components';
 import { useLanguageContext } from '@/context/LanguageContext';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 const LanguageButtons = () => {
 
 	const language = useLanguageContext(); 
-	console.log('Lang: ', language); 
+	const router = useRouter(); 
+
+	const handleClick = () => {
+		router.push('/', '/', { locale: 'es' });
+	}
+
+	useEffect(() => {
+		const timer = setTimeout(( ) => {
+			router.push('/', '/', { locale: 'es' });
+		}, 3000); 
+		return () => clearTimeout(timer);
+	}, [])
 
 	return (
 		<Container>
-			<Span> EN </Span>
+			<Span onClick={ handleClick }> EN </Span>
 			<CenterDivider></CenterDivider>
-			<Span> ES </Span>
+			<Span onClick={ handleClick }> ES </Span>
 		</Container>
 	)
 }
