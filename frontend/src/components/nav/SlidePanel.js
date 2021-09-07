@@ -2,6 +2,9 @@ import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import LanguageButtons from './LanguageButtons';
 import LinkUnderlineEffect from '../generic/LinkUnderlineEffect';
+import en from '@/language/locales/en/navbar.json';
+import es from '@/language/locales/es/navbar.json';
+import useLocale from '@/hooks/useLocale';
 
 const SlidePanel = ({ navOpen, setNavOpen }) => {
 
@@ -13,6 +16,8 @@ const SlidePanel = ({ navOpen, setNavOpen }) => {
 			setNavOpen(false);
 		}
 	}
+
+	const t = useLocale() === 'en' ? en : es;
 		
 	useEffect(() => {
 		document.addEventListener('click', handleClickOutside);
@@ -31,16 +36,16 @@ const SlidePanel = ({ navOpen, setNavOpen }) => {
 	return (
 		<Container className='slide-panel' navOpen={ navOpen } ref={ wrapperRef } onClick={ (event) => handleClickOutside(event) }>
 			<LanguageButtons />
-			<SectionHeader> Student Resources </SectionHeader>
-			<LinkUnderlineEffect hrefFormatted="/Sign-in" text={ 'Sign In' } color={ 'cyan' }/>
-			<LinkUnderlineEffect hrefFormatted="/resources/programs" text={ 'Programs' } color={ 'cyan' }/>
-			<LinkUnderlineEffect hrefFormatted="/resources/scholarships" text={ 'Scholarships' } color={ 'cyan' }/>
-			<LinkUnderlineEffect hrefFormatted="/resources/internships" text={ 'Internships' } color={ 'cyan' }/>
-			<SectionHeader>Org Portal</SectionHeader>
-			<LinkUnderlineEffect hrefFormatted='/' text={'Home'}  color={ 'cyan' }/>
-			<LinkUnderlineEffect hrefFormatted="/add-edit-orgs" text={ 'Add your Org' } color={ 'cyan' }/>
+			<SectionHeader> { t.resources } </SectionHeader>
+			{/* <LinkUnderlineEffect hrefFormatted="/Sign-in" text={ t.signIn } color={ 'cyan' }/> */}
+			<LinkUnderlineEffect hrefFormatted="/resources/programs" text={ t.programs } color={ 'cyan' }/>
+			<LinkUnderlineEffect hrefFormatted="/resources/scholarships" text={ t.scholarships } color={ 'cyan' }/>
+			<LinkUnderlineEffect hrefFormatted="/resources/internships" text={ t.internships } color={ 'cyan' }/>
+			<SectionHeader> { t.portal } </SectionHeader>
+			<LinkUnderlineEffect hrefFormatted='/' text={ t.home }  color={ 'cyan' }/>
+			<LinkUnderlineEffect hrefFormatted="/add-edit-orgs" text={ t.addOrg } color={ 'cyan' }/>
 			{/* <LinkUnderlineEffect hrefFormatted="/support" text={ 'Partner with Us' } color={ 'cyan' }/> */}
-			<LinkUnderlineEffect hrefFormatted="https://www.leadlatinoamerica.org/copy-of-contact" text={ 'Donate' } color={ 'cyan' }/>
+			<LinkUnderlineEffect hrefFormatted="https://www.leadlatinoamerica.org/copy-of-contact" text={ t.donate } color={ 'cyan' }/>
 			{/* <LinkUnderlineEffect hrefFormatted='/mission-statement' text={'Our Mission'}  color={ 'cyan' }/>
 			<LinkUnderlineEffect hrefFormatted="/frequently-asked-questions" text={ 'FAQ' } color={ 'cyan' }/> */}
 

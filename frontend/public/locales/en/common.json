@@ -1,0 +1,34 @@
+{
+	"headline1": "Web Portal", 
+	"headline2": "Powered by LEAD.Latinoamérica", 
+	"headline3": "Connecting Students to ", 
+	"headline4": "opportunities in the community", 
+	"missionDistrict": "Mission District", 
+	"scholarships": {
+		"headline": "Scholarships", 
+		"bio": "Find scholarships to help fund your educational journey.", 
+		"link": "See our Scholarship Opportunities"
+	},
+	"summer": {
+		"headline": "Summer", 
+		"bio": "Find scholarships to help fund your educational journey.", 
+		"link": "See our Summer Opportunities"
+	}, 
+	"internships": {
+		"headline": "Internships", 
+		"bio": "Browse through internship opportunities that will allow you to build on your professional experience.", 
+		"link": "See our Internship Opportunities"
+	},
+	"programs": {
+		"headline": "Programas", 
+		"bio": "Seleccione entre una amplia gama de programas en su comunidad que lo ayudarán a prosperar.", 
+		"link": "Vea nuestras Oportunidades de Programas"
+	}, 
+	"purpose": "Our Purpose", 
+	"purposeArray": {
+		"sentence1": "This portal ensures that students are made aware of all of the scholarships and opportunities available to them.", 
+		"sentence2": "Our goal is to streamline scholarship and opportunity listings, so that students and parents no longer have to review several sites or pages to see all that’s available to them.", 
+		"sentence3": "This portal provides our most updated list of opportunities available in your area. If you know of an opportunity that exists and you don't see it here, please let us know and we'll add it to ensure everyone has access to the same opportunities."
+	}
+	
+}
