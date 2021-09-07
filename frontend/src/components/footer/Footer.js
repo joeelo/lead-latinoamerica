@@ -18,7 +18,7 @@ const Footer = ({ showQuote }) => {
             { showQuote && <DynamicQuote /> }
             <Container data-testid='footer' theme={ theme }>
                 <Column>
-                    <p>Explore</p>
+                    <p> { t.explore } </p>
                     <LinkUnderlineEffect hrefFormatted="/resources/programs" text={ t.programs } color={'white'}/>
                     <LinkUnderlineEffect hrefFormatted="/resources/internships" text={ t.internships } color={'white'}/>
                     <LinkUnderlineEffect hrefFormatted="/our-team" text={ t.ourTeam } color={'white'}/>
