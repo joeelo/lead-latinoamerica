@@ -13,7 +13,6 @@ const PhotoWithTextBox = ({
 	} 
 }) => {
 
-	console.log( 'program', program);
 	const router = useRouter();
 	const formattedLink = organization.replaceAll(' ', '-');
 

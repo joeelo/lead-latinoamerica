@@ -8,22 +8,19 @@ const LanguageButtons = () => {
 	const language = useLanguageContext(); 
 	const router = useRouter(); 
 
-	const handleClick = () => {
-		router.push('/', '/', { locale: 'es' });
+	const handleClick = (lang) => {
+		router.push('/', '/', { locale: lang, shallow: true });
 	}
 
 	useEffect(() => {
-		const timer = setTimeout(( ) => {
-			router.push('/', '/', { locale: 'es' });
-		}, 3000); 
-		return () => clearTimeout(timer);
+		console.log(router);
 	}, [])
 
 	return (
 		<Container>
-			<Span onClick={ handleClick }> EN </Span>
+			<Span onClick={ () => handleClick('en') }> EN </Span>
 			<CenterDivider></CenterDivider>
-			<Span onClick={ handleClick }> ES </Span>
+			<Span onClick={ () => handleClick('es') }> ES </Span>
 		</Container>
 	)
 }
