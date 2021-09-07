@@ -14,9 +14,7 @@ const ApproveProgramPage = () => {
 
     const getProgram = async () => {
         try {
-            console.log(router.query);
             const fetchedProgram = await getProgramBySlug(`program/${ router.query.nameSlug }`);
-            console.log('fetchedProgram: ', fetchedProgram); 
             setProgram(fetchedProgram.program);
             return fetchedProgram; 
         } catch (error) {
@@ -29,7 +27,7 @@ const ApproveProgramPage = () => {
         getProgram(); 
     }, [ router.isReady ])
 
-    console.log('program: ', program);
+    // console.log('program: ', program);
 
     if (!program) return <></>
     return (
@@ -41,7 +39,7 @@ const ApproveProgramPage = () => {
                 bgColor={ '#00B43C' } 
                 href={ program.href } 
                 bgColorHover={ '#0ACC14' }
-             />
+            />
 			<FixedButton 
                 text={ 'Deny Org'} 
                 deny={ true } 

@@ -1,5 +1,14 @@
 module.exports = {
-    webpack5: true,
+    i18n: {
+        locales: ['en', 'es'], 
+        defaultLocale: 'en',
+    },
+    webpack: (config, { isServer }) => {
+    if (!isServer) {
+        config.resolve.fallback.fs = false;
+    }
+        return config;
+    },
     images: {
         domains: [
             '*',

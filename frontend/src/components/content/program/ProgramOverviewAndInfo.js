@@ -12,7 +12,7 @@ const ProgramOverviewAndInfo = ({ program }) => {
 			<CenterFlexContainer paddingTop={ true } paddingBottom={ true } align={ 'start' }>
 				<LeftContainer>
 					<LargeText> Overview </LargeText>
-					<BioText> { program.bio } </BioText>
+					<BioText> { program.content } </BioText>
 					<BlueLinkButton text={ 'Sign Up' } hrefFormatted={'/resources/[resourceSlug]/[programSlug]/sign-up'} hrefAs={`${path}/sign-up`} />
 				</LeftContainer>
 				<RightContainer>

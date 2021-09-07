@@ -8,12 +8,31 @@ const { replaceSingleCharGlobal } = require('../customFuncs/replaceSingleCharGlo
 router.post("/programs/add", async (req, res) => {
 	try {
 		const data = req.body;		
-		const { organization, bio, helpsWith, coverImage, email, missionStatement } = req.body;
+		const { 
+			organization, 
+			bio, 
+			helpsWith, 
+			coverImage, 
+			email, 
+			content, 
+			signUpLink, 
+			partnerUrl
+		} = req.body;
 		let href = replaceSingleCharGlobal(organization, ' ', '-');
 		href = href.toLowerCase(); 
 		const helpsWithArr = helpsWith.split(',');
 		const emailResponse = await sendMail(data, href);
-		const newProgram = new Program({ organization, bio, helpsWith: helpsWithArr, coverImage, email, href, missionStatement });
+		const newProgram = new Program({ 
+			organization, 
+			bio, 
+			helpsWith: helpsWithArr, 
+			coverImage, 
+			email, 
+			href, 
+			content, 
+			signUpLink, 
+			partnerUrl
+		});
 		console.log('NEW PROGRAM: ', newProgram); 
 		await newProgram.save((err) => {
 			if (err) {

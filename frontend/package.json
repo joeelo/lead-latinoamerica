@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "next": "^11.0.0",
+    "next-i18next": "^8.6.0",
     "query-string": "^7.0.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",

@@ -1,5 +1,7 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'; 
 import Head from 'next/head';
+import { appWithTranslation } from 'next-i18next';
+import { LanguageWrapper } from '@/context/LanguageContext';
 
 const GlobalStyle = createGlobalStyle`
   	html, *, body {
@@ -50,7 +52,7 @@ const theme = {
 	}
 }
 
-export default function App({ Component, pageProps }) {
+const App = ({ Component, pageProps }) => {
 	return (
 		<>
 			<Head>
@@ -59,8 +61,12 @@ export default function App({ Component, pageProps }) {
 			</Head>
 			<GlobalStyle />
 			<ThemeProvider theme={theme}>
-				<Component {...pageProps} />
+				<LanguageWrapper>
+					<Component {...pageProps} />
+				</LanguageWrapper>
 			</ThemeProvider>
 		</>
 	)
 }
+
+export default appWithTranslation(App);

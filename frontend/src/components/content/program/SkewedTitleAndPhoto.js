@@ -10,7 +10,7 @@ const SkewedTitleAndPhoto = ({ program }) => {
     <Container>
       <TextContainer>
         <Heading> { program.organization } </Heading>
-        <MissionStatement> { program.missionStatement } </MissionStatement>
+        <MissionStatement> { program.bio } </MissionStatement>
       </TextContainer>
       <ImageContainer>
         { program.coverImage && 
@@ -81,6 +81,8 @@ const UnderlinedProgram = styled.p`
 
 const Heading = styled.h2`
   font-size: 68px; 
+  line-height: 60px; 
+  margin-bottom: 5px;
 `
 
 const MissionStatement = styled.p`

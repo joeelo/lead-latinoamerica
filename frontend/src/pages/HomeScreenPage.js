@@ -1,4 +1,6 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import styled, { ThemeContext } from 'styled-components';
 import NavBar from '@/components/nav/NavBar';
 import FullScreenBack from '@/components/background/FullScreenBack';
@@ -10,70 +12,59 @@ import ContentWithSideImage from '@/components/content/ContentWithSideImage';
 import VideoBackground from '@/components/background/VideoBackground';
 import FadeInText from '@/components/generic/FadeInText';
 import useGetRandomQuote from '@/hooks/useGetRandomQuote';
+import en from '@/language/locales/en/common.json';
+import es from '@/language/locales/es/common.json';
+import useLocale from '@/hooks/useLocale';
 
 
 const HomeScreenPage = () => {
 
 	const theme = useContext(ThemeContext);
 	const quote = useGetRandomQuote(); 
+	const router = useRouter(); 
+	const { locale } = router; 
+	const t = useLocale() === 'en' ? en : es;
+
 
 	const opportunityInfo = [
 		{ 
-			title: 'Scholarships', 
-			text:'Find scholarships to help fund your educational journey.', 
-			footer: 'See our Scholarship Opportunities',
+			title: t.scholarships.headline, 
+			text:t.scholarships.bio, 
+			footer: t.scholarships.link,
 			svg: '/images/svg/scholarship-svgrepo-com.svg'
 		}, 
 		{
-			title: 'Summer', 
-			text:'Find a summer opportunity that allows you to connect with peers while building on your educational and professional experience.', 
-			footer: 'See our Summer Opportunities',
+			title: t.summer.headline, 
+			text:t.summer.bio, 
+			footer: t.summer.link,
 			svg: '/images/svg/summer-svgrepo-com.svg'
 		}, 
 		{
-			title: 'Internships',
-			text:'Browse through internship opportunities that will allow you to build on your professional experience.', 
-			footer: 'See our Internship Opportunities',
+			title: t.internships.headline,
+			text:t.internships.bio, 
+			footer: t.internships.link,
 			svg: '/images/svg/learning-svgrepo-com.svg'
 		}, 
 		{
-			title: 'Programs',
-			text:'Select from a broad range of programs in your community that will help you thrive.', 
-			footer: 'See our Program Opportunities',
+			title: t.programs.headline,
+			text:t.programs.bio, 
+			footer: t.programs.link,
 			svg: '/images/svg/online-class-svgrepo-com.svg'
 		}, 
 	]
-
-	const recentlyPosted = [
-		{ 
-			title: 'Opportunity 1 ', 
-			text:'Check out this opportunity ', 
-			footer: 'See our Scholarship Opportunities'
-		}, 
-		{
-			title: 'Opportunity 2', 
-			text:'This is another one. This information is not necessary right now.', 
-			footer: 'See our Summer Opportunities'
-		}, 
-		{
-			title: 'Opportunity 3 ',
-			text:'This is the last one, ', 
-			footer: 'See our Internship Opportunities'
-		},  
-	]
-
+	
 	return (
 		<>
 			<NavBar />
 			<FullScreenBack src='/images/javier-trueba-iQPr1XkF5F0-unsplash.jpg'>
 				<PortalTitleContainer>
-				<PortalTitle>Web Portal</PortalTitle>
-				<PortalSubTitle>Powered by LEAD.Latinoamérica</PortalSubTitle>
+				<PortalTitle>{t.headline1}</PortalTitle>
+				<PortalSubTitle>{t.headline2}</PortalSubTitle>
 				</PortalTitleContainer>
 
 				<MainTitleContainer>
-				<MainTitleFirstLine>Connecting students to</MainTitleFirstLine>
-				<MainTitleSecondLine>opportunities in the community</MainTitleSecondLine>
+				<MainTitleFirstLine>{t.headline3}</MainTitleFirstLine>
+				<MainTitleSecondLine>{t.headline4}</MainTitleSecondLine>
 				</MainTitleContainer>
 			</FullScreenBack>
 
@@ -81,7 +72,7 @@ const HomeScreenPage = () => {
 				<ChangingBackgroundText 
 					initialColor={ theme.colors.cultured }
 					secondaryColor={ theme.colors.darkBlue }
-					text={ 'Mission District' }
+					text={ t.missionDistrict }
 					fontColorInitial={ theme.colors.darkBlue }
 					fontColorSecondary={ theme.colors.cultured }
 				/>
@@ -102,16 +93,16 @@ const HomeScreenPage = () => {
 			<CenterFlexContainer backgroundColor={ theme.colors.darkBlue } padding={'padTop'}>
 				<ChangingBackgroundText 
 					secondaryColor={ 'white' }
-					text={ 'Our Purpose' }
+					text={ t.purpose }
 				/>
 				<ContentWithSideImage 
 					backgroundColor={ theme.colors.darkBlue }
 					imageSrc={'/images/tony-luginsland-yXnnR9smke0-unsplash.jpg'}
 					text={
 						[
-							'This portal ensures that students are made aware of all of the scholarships and opportunities available to them.', 
-							'Our goal is to streamline scholarship and opportunity listings, so that students and parents no longer have to review several sites or pages to see all that’s available to them.', 
-							'This portal provides our most updated list of opportunities available in your area. If you know of an opportunity that exists and you don\'t see it here, please let us know and we\'ll add it to ensure everyone has access to the same opportunities. '
+							t.purposeArray.sentence1, 
+							t.purposeArray.sentence2, 
+							t.purposeArray.sentence3, 
 						]
 					}
 				/>

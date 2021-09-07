@@ -7,13 +7,13 @@ const programSchema = new mongoose.Schema({
     },
     bio: {
         type: String,
-        max: 500, 
+        max: 200, 
         required: true,
     },
-    missionStatement: {
+    content: {
         type: String, 
         default: '',
-        max: 200
+        max: 500
     },
     helpsWith: {
         type: Array, 
@@ -36,6 +36,9 @@ const programSchema = new mongoose.Schema({
     href: {
         type: String, 
         required: true,
+    }, 
+    partnerUrl: {
+        type: String,
     }
 
 })
