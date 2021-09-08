@@ -4,6 +4,7 @@ import FormInput from '@/components/form/FormInput';
 import FormTextarea from '@/components/form/FormTextarea';
 import { useForm } from 'react-hook-form';
 import { postToDatabase } from '@/fetch/requests';
+import FormCheckbox from '@/components/form/FormCheckbox';
 
 const Form = ({ formData, objKey, endpoint, method, setFormSubmitted, query }) => {
 	const { register, handleSubmit, formState: { errors } } = useForm(); 
@@ -23,14 +24,18 @@ const Form = ({ formData, objKey, endpoint, method, setFormSubmitted, query }) =
 			}
 	}
 
+	const returnInput = (type, index, obj, register, errors) => {
+		if (!type) return <FormInput key={ index } data={ obj } register={ register } hasError={ errors }/>
+		if (type === 'textArea') return <FormTextarea key={ index } data={ obj } register={ register } hasError={ errors } />
+		if (type === 'checkbox') {
+			return obj.options.map(option => <FormCheckbox key={ option } data={ obj } register={ register } hasError={ errors } option={ option }/>)
+		}
+	}
+
 	return (
 		<Container onSubmit={ handleSubmit(submitHandler) }>
 			<Title> { data.formTitle } </Title>
-			{ data.list.map((obj, index) => {
-				return obj.type !== 'textArea' 
-				? <FormInput key={ index } data={ obj } register={ register } hasError={ errors[obj.label] }/>
-				: <FormTextarea key={ index } data={ obj } register={ register } hasError={ errors[obj.label] } />
-			})}
+			{ data.list.map((obj, index) => returnInput(obj.type, index, obj, register, errors[obj.label]) )}
 			<SubmitButton>Submit</SubmitButton>
 		</Container>
 	)

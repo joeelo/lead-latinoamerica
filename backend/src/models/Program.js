@@ -39,6 +39,24 @@ const programSchema = new mongoose.Schema({
     }, 
     partnerUrl: {
         type: String,
+    }, 
+    programType: {
+        program: {
+            type: Boolean, 
+            default: false
+        }, 
+        summerProgram: {
+            type: Boolean, 
+            default: false, 
+        },
+        internship: {
+            type: Boolean, 
+            default: false, 
+        },
+        scholarship: {
+            type: Boolean, 
+            default: false, 
+        },
     }
 
 })
