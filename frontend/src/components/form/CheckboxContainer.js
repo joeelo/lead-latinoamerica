@@ -11,7 +11,8 @@ const CheckboxContainer = ({ data, register }) => {
 					<FormCheckbox 
 						key={ option } 
 						option={ option } 
-						register={ register } 
+						label={ data.label }
+						{...register(data.data)}
 					/>
 				) 
 			}
@@ -28,4 +29,8 @@ const Container = styled.div`
 	display: flex; 
 	flex-direction: column; 
 	font-size: 26px;
+
+	::first-child {
+		margin-bottom: 10px;
+	}
 `

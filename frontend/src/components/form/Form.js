@@ -4,14 +4,21 @@ import FormInput from '@/components/form/FormInput';
 import FormTextarea from '@/components/form/FormTextarea';
 import { useForm } from 'react-hook-form';
 import { postToDatabase } from '@/fetch/requests';
-import FormCheckbox from '@/components/form/FormCheckbox';
 import CheckboxContainer from '@/components/form/CheckboxContainer';
+import queryString from 'query-string'
 
 const Form = ({ formData, objKey, endpoint, method, setFormSubmitted, query }) => {
 	const { register, handleSubmit, formState: { errors } } = useForm(); 
 	const data = formData[objKey];
 
+	const queryObj = queryString.parse(window?.location.search);
+	console.log('queryObj: ', queryObj)
+
 	const submitHandler = async (data) => {
+		if (!!queryObj.dev) {
+			console.log('FORM DATA: ', data); 
+			return;
+		}
 		try {
 			if (method === 'POST') {
 				const response = await postToDatabase(data, endpoint, query);
