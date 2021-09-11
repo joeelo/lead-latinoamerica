@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import FormCheckbox from '@/components/form/FormCheckbox';
 
 const CheckboxContainer = ({ data, register }) => {
-	console.log('data', data);
 	return (
 		<Container>
 			{ data.label }
@@ -12,7 +11,7 @@ const CheckboxContainer = ({ data, register }) => {
 						key={ option } 
 						option={ option } 
 						label={ data.label }
-						{...register(data.data)}
+						register={ register }
 					/>
 				) 
 			}

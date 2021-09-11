@@ -11,7 +11,7 @@ const Form = ({ formData, objKey, endpoint, method, setFormSubmitted, query }) =
 	const { register, handleSubmit, formState: { errors } } = useForm(); 
 	const data = formData[objKey];
 
-	const queryObj = queryString.parse(window?.location.search);
+	const queryObj = typeof window !== 'undefined' ? queryString.parse(window?.location.search) : {};
 	console.log('queryObj: ', queryObj)
 
 	const submitHandler = async (data) => {

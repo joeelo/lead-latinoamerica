@@ -1,27 +1,16 @@
-import { useState } from 'react';
 import styled, { keyframes } from 'styled-components'; 
 
 const FormCheckbox = ({ option, register, label }) => {
 	
-	const [ checked, setChecked ] = useState(false);
-	console.log('register: ', register);
-
-	const changeHandler = (event) => {
-		setChecked(!checked);
-	}
-
 	return (
 		<Container>
-			<Input
-				name={ option }
-				value={ option }
-				checked={ checked }
-				type='checkbox'
-				onChange={ changeHandler }
-				{...register(label)}
-				// className={'.cbx'}
-			/>
 			<Label>
+				<Input
+					name={ option }
+					value={ option }
+					type='checkbox'
+					{...register(option)}
+				/>
 				{ option }
 			</Label>
 		</Container>
