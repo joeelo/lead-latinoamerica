@@ -1,13 +1,40 @@
+import { useState } from 'react';
 import styled from 'styled-components'; 
 
-const FormCheckbox = ({ data, register, hasErrors }) => {
-	console.log('DATA' , data);
+const FormCheckbox = ({ option, register }) => {
+	
+	const [ checked, setChecked ] = useState(false);
+	const label = option; 
+	console.log('register: ', register);
+
+	const changeHandler = (event) => {
+		setChecked(!checked);
+	}
+
 	return (
-		<>
-			<polyline points='1.5 6 4.5 9 10.5 1'></polyline>
-		</>
+		<Container>
+			<input
+				name={ option }
+				value={ option }
+				checked={ checked }
+				type='checkbox'
+				onChange={ changeHandler }
+				{...register(option)}
+			/>
+			<Label>
+				{ label }
+			</Label>
+		</Container>
 	)
 }
 
 export default FormCheckbox; 
 
+const Container = styled.div`
+	display: flex; 
+`
+
+const Label = styled.label`
+	margin-left: 10px;
+	font-size: 26px;
+`

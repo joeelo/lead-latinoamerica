@@ -5,6 +5,7 @@ import FormTextarea from '@/components/form/FormTextarea';
 import { useForm } from 'react-hook-form';
 import { postToDatabase } from '@/fetch/requests';
 import FormCheckbox from '@/components/form/FormCheckbox';
+import CheckboxContainer from '@/components/form/CheckboxContainer';
 
 const Form = ({ formData, objKey, endpoint, method, setFormSubmitted, query }) => {
 	const { register, handleSubmit, formState: { errors } } = useForm(); 
@@ -27,9 +28,7 @@ const Form = ({ formData, objKey, endpoint, method, setFormSubmitted, query }) =
 	const returnInput = (type, index, obj, register, errors) => {
 		if (!type) return <FormInput key={ index } data={ obj } register={ register } hasError={ errors }/>
 		if (type === 'textArea') return <FormTextarea key={ index } data={ obj } register={ register } hasError={ errors } />
-		if (type === 'checkbox') {
-			return obj.options.map(option => <FormCheckbox key={ option } data={ obj } register={ register } hasError={ errors } option={ option }/>)
-		}
+		if (type === 'checkbox') return <CheckboxContainer key={ index } data={ obj } register={ register } />
 	}
 
 	return (
