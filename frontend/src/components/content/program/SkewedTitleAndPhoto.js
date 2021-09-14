@@ -10,7 +10,7 @@ const SkewedTitleAndPhoto = ({ program }) => {
     <Container>
       <TextContainer>
         <Heading> { program.organization } </Heading>
-        <MissionStatement> { program.bio } </MissionStatement>
+        <MissionStatement> { program.missionStatement } </MissionStatement>
       </TextContainer>
       <ImageContainer>
         { program.coverImage && 

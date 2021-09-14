@@ -48,11 +48,16 @@ const Container = styled.div`
 `
 
 const Label = styled.label`
-	margin-left: 10px;
 	font-size: 26px;
+
+	:hover {
+		cursor: pointer;
+	}
 `
 
 const Input = styled.input`
+	margin-right: 20px;
+
 	.cbx:checked ~ .cbx {
 		border-color: transparent;
 		background: #6871f1;

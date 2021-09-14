@@ -14,9 +14,11 @@ router.post("/programs/add", async (req, res) => {
 			helpsWith, 
 			coverImage, 
 			email, 
-			content, 
+			missionStatement, 
 			signUpLink, 
-			partnerUrl
+			partnerUrl, 
+			programType,
+			query = {},
 		} = req.body;
 		let href = replaceSingleCharGlobal(organization, ' ', '-');
 		href = href.toLowerCase(); 
@@ -29,9 +31,10 @@ router.post("/programs/add", async (req, res) => {
 			coverImage, 
 			email, 
 			href, 
-			content, 
+			missionStatement, 
 			signUpLink, 
-			partnerUrl
+			partnerUrl, 
+			programType
 		});
 		console.log('NEW PROGRAM: ', newProgram); 
 		await newProgram.save((err) => {

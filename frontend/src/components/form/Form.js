@@ -5,23 +5,24 @@ import FormTextarea from '@/components/form/FormTextarea';
 import { useForm } from 'react-hook-form';
 import { postToDatabase } from '@/fetch/requests';
 import CheckboxContainer from '@/components/form/CheckboxContainer';
-import queryString from 'query-string'
+import queryString from 'query-string'; 
+import nestData from '@/data/nestData';
 
 const Form = ({ formData, objKey, endpoint, method, setFormSubmitted, query }) => {
 	const { register, handleSubmit, formState: { errors } } = useForm(); 
 	const data = formData[objKey];
 
 	const queryObj = typeof window !== 'undefined' ? queryString.parse(window?.location.search) : {};
-	console.log('queryObj: ', queryObj)
 
 	const submitHandler = async (data) => {
+		const formattedData = formatCheckboxData(data);
 		if (!!queryObj.dev) {
-			console.log('FORM DATA: ', data); 
+			console.log(formattedData); 
 			return;
 		}
 		try {
 			if (method === 'POST') {
-				const response = await postToDatabase(data, endpoint, query);
+				const response = await postToDatabase(formattedData, endpoint, query);
 				if (response.message === 'success') {
 					setFormSubmitted(true);
 					return response;
@@ -30,6 +31,24 @@ const Form = ({ formData, objKey, endpoint, method, setFormSubmitted, query }) =
 		} catch (error) {
 				console.log('error: ', error);
 			}
+	}
+
+	const formatCheckboxData = (data) => {
+		const list = formData[objKey].list; 
+			for (const el of list) {
+				if (el.type === 'checkbox') {
+					data[el.data] = {};
+					const obj = data[el.data];
+					const options = el.options;
+					for (const option of options) {
+						if (data[option]) {
+							obj[data[option]] = true;
+							delete data[option];
+						}						
+					}
+				}
+			}
+		return data; 
 	}
 
 	const returnInput = (type, index, obj, register, errors) => {

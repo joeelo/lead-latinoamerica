@@ -12,7 +12,7 @@ const ProgramOverviewAndInfo = ({ program }) => {
 			<CenterFlexContainer paddingTop={ true } paddingBottom={ true } align={ 'start' }>
 				<LeftContainer>
 					<LargeText> Overview </LargeText>
-					<BioText> { program.content } </BioText>
+					<BioText> { program.bio } </BioText>
 					<BlueLinkButton text={ 'Sign Up' } hrefFormatted={'/resources/[resourceSlug]/[programSlug]/sign-up'} hrefAs={`${path}/sign-up`} />
 				</LeftContainer>
 				<RightContainer>
@@ -29,7 +29,6 @@ export default ProgramOverviewAndInfo;
 const LargeText = styled.h2`
 	font-weight: bold;
 	font-size: 72px; 
-	margin-bottom: 40px; 
 `
 
 const InnerContainer = styled.div`
