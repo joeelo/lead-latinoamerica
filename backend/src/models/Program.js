@@ -10,7 +10,7 @@ const programSchema = new mongoose.Schema({
         max: 200, 
         required: true,
     },
-    content: {
+    missionStatement: {
         type: String, 
         default: '',
         max: 500
@@ -39,6 +39,24 @@ const programSchema = new mongoose.Schema({
     }, 
     partnerUrl: {
         type: String,
+    }, 
+    programType: {
+        program: {
+            type: Boolean, 
+            default: false
+        }, 
+        summer: {
+            type: Boolean, 
+            default: false, 
+        },
+        internship: {
+            type: Boolean, 
+            default: false, 
+        },
+        scholarship: {
+            type: Boolean, 
+            default: false, 
+        },
     }
 
 })

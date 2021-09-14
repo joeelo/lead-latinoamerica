@@ -13,6 +13,7 @@ const postToDatabase = async (data, endpoint, query) => {
 	if (query.local) {
 		return { message: 'success' };
 	}
+	data.query = query; 
 	try {
 		const options = {
 			method: 'POST', 
