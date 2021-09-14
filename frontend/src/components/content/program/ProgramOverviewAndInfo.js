@@ -9,7 +9,7 @@ const ProgramOverviewAndInfo = ({ program }) => {
 
 	return (
 		<>
-			<CenterFlexContainer paddingTop={ true } paddingBottom={ true } align={ 'start' }>
+			<CenterFlexContainer paddingTop={ true } paddingBottom={ true } align={ 'start' } maxWidth='1550px'>
 				<LeftContainer>
 					<LargeText> Overview </LargeText>
 					<BioText> { program.bio } </BioText>
