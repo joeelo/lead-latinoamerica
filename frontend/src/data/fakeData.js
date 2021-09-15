@@ -56,7 +56,7 @@ export default {
       }
     ], 
   },
-  programs: {
+  program: {
     coverImage: '/images/heylagostechie-IgUR1iX0mqM-unsplash.jpg',
     programs: [
       {

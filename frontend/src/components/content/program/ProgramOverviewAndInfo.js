@@ -13,7 +13,11 @@ const ProgramOverviewAndInfo = ({ program }) => {
 				<LeftContainer>
 					<LargeText> Overview </LargeText>
 					<BioText> { program.bio } </BioText>
-					<BlueLinkButton text={ 'Sign Up' } hrefFormatted={'/resources/[resourceSlug]/[programSlug]/sign-up'} hrefAs={`${path}/sign-up`} />
+					<BlueLinkButton 
+						text={ 'Sign Up' } 
+						hrefFormatted={'/resources/[resourceSlug]/[programSlug]/sign-up'} 
+						hrefAs={`${path}/sign-up`} 
+					/>
 				</LeftContainer>
 				<RightContainer>
 					<UnderlinedSectionHeader> Categories </UnderlinedSectionHeader>

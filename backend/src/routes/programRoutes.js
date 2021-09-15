@@ -54,9 +54,11 @@ router.post("/programs/add", async (req, res) => {
 
 router.get('/program/:href', async (req, res) => {
 	try {
+		console.log('href: ', req.params.href);
 		const program = await Program.findOne({ href: req.params.href });
 		if (!program) {
-			res.send({ message: 'We could not find that program'})
+			res.send({ message: 'We could not find that program'}); 
+			return; 
 		}
 		res.send({ message: 'success', program: program }); 
 	} catch (error) {
@@ -67,6 +69,19 @@ router.get('/program/:href', async (req, res) => {
 router.get("/programs", async (req, res) => {
 	try {
 		const programs = await Program.find({});
+		res.send({ message: programs });
+	} catch (error) {
+		console.log('PROGRAMS ERROR: ', error);
+		res.send({message: error});
+	}
+})
+
+router.get("/programs/resources", async (req, res) => {
+	try {
+		console.log(req.query.programType);
+		const key = `programType.${req.query.programType}`;
+		const programs = await Program.find({ [key]: true });
+		console.log('programs: ', programs, req.query.programType);
 		res.send({ message: programs });
 	} catch (error) {
 		console.log('PROGRAMS ERROR: ', error);

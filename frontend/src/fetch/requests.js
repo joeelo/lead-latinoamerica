@@ -9,6 +9,18 @@ const getProgramBySlug = async (endpoint) => {
 	}
 }
 
+const getProgramArray = async (endpoint, programType) => {
+	try {
+		console.log('ENDPOINT: ', endpoint, programType);
+		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/${endpoint}?programType=${programType}`); 
+		const json = await response.json(); 
+		return json;
+	} catch (error) {
+		console.log(error);
+		return { message: error };
+	}
+}
+
 const postToDatabase = async (data, endpoint, query) => {
 	if (query.local) {
 		return { message: 'success' };
@@ -52,6 +64,7 @@ const findProgramAndUpdate = async (data = {}, endpoint) => {
 
 export {
 	getProgramBySlug, 
+	getProgramArray, 
 	postToDatabase, 
 	findProgramAndUpdate,
 }

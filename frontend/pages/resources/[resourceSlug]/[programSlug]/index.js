@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { getProgramBySlug } from '@/fetch/requests';
 import fakeData from '@/data/fakeData';
 import NavBar from '@/components/nav/NavBar';
 import Footer from '@/components/footer/Footer';
@@ -8,15 +9,19 @@ import ProgramOverviewAndInfo from '@/components/content/program/ProgramOverview
 
 const ProgramPage = () => {
   const router = useRouter(); 
-  const [ program, setProgram ] = useState({ name: '' });
+  const [ program, setProgram ] = useState(null);
+
+  const getProgram = async () => {
+    const data = await getProgramBySlug(`program/${router.query.programSlug}`);
+    setProgram(data.program);
+  }
 
   useEffect(() => {
-    if ( !fakeData[router.query.resourceSlug] ) return;
-    const programInfo = fakeData[router.query.resourceSlug].programs.find( p => p.href === router.query.programSlug )
-    setProgram(programInfo);
+    getProgram(); 
   }, [router.query])
 
-  if (!router.query) return <>Loading</>
+  console.log('PROGRAM: ', program);
+
   if ( !program ) return <>Loading</>
   return (
     <>

@@ -15,6 +15,7 @@ module.exports = {
             'unsplash.com',
             'pexels.com',
             'images.pexels.com',
+            'images.unsplash.com',
             'localhost',
         ],
     },

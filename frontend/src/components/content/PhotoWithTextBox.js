@@ -15,12 +15,13 @@ const PhotoWithTextBox = ({
 
 	const router = useRouter();
 	const formattedLink = organization.replaceAll(' ', '-');
+	console.log('CoverImage: ', typeof coverImage, coverImage);
 
 	return (
 		<Container>
 			<PhotoWithTextOverlay>
 			<Image 
-				src={ coverImage }
+				src={ `${coverImage}` }
 				layout='fill'
 				objectFit='cover'
 				objectPosition='center'
