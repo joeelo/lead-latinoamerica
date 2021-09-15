@@ -14,6 +14,7 @@ const getProgramArray = async (endpoint, programType) => {
 		console.log('ENDPOINT: ', endpoint, programType);
 		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/${endpoint}?programType=${programType}`); 
 		const json = await response.json(); 
+		console.log('JSON', json);
 		return json;
 	} catch (error) {
 		console.log(error);

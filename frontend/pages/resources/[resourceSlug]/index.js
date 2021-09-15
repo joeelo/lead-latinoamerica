@@ -24,8 +24,11 @@ const ResourcePage = () => {
 	const getPrograms = async () => {
 		try {
 			const data = await getProgramArray('programs/resources', router.query.resourceSlug); 
+			if (!data) {
+				console.log('DATA: ', data); 
+				return; 
+			}
 			setProgramsArray(data.message);
-			console.log('PROGRAMS FETCHED: ', data.message); 
 		} catch (error) {
 			console.log('ERROR IN GETPROGRAMS: ', error);
 		}
