@@ -66,9 +66,12 @@ router.get('/program/:href', async (req, res) => {
 	}
 })
 
-router.get("/programs", async (req, res) => {
+router.get("/programs/resources", async (req, res) => {
 	try {
-		const programs = await Program.find({});
+		console.log(req.query.programType);
+		const key = `programType.${req.query.programType}`;
+		const programs = await Program.find({ [key]: true });
+		console.log('programs: ', programs, req.query.programType);
 		res.send({ message: programs });
 	} catch (error) {
 		console.log('PROGRAMS ERROR: ', error);
@@ -76,12 +79,9 @@ router.get("/programs", async (req, res) => {
 	}
 })
 
-router.get("/programs/resources", async (req, res) => {
+router.get("/programs", async (req, res) => {
 	try {
-		console.log(req.query.programType);
-		const key = `programType.${req.query.programType}`;
-		const programs = await Program.find({ [key]: true });
-		console.log('programs: ', programs, req.query.programType);
+		const programs = await Program.find({});
 		res.send({ message: programs });
 	} catch (error) {
 		console.log('PROGRAMS ERROR: ', error);
