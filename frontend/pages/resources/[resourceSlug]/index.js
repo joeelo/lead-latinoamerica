@@ -22,8 +22,12 @@ const ResourcePage = () => {
 	}, [router.query]) 
 
 	const getPrograms = async () => {
+		const { resourceSlug } = router.query;
+		const singularSlug = resourceSlug[resourceSlug.length - 1] === 's' 
+			? resourceSlug.slice(0, resourceSlug.length - 1) 
+			: resourceSlug;
 		try {
-			const data = await getProgramArray('programs/resources', router.query.resourceSlug); 
+			const data = await getProgramArray('programs/resources', singularSlug); 
 			if (!data) {
 				console.log('DATA: ', data); 
 				return; 

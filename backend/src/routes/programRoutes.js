@@ -68,10 +68,10 @@ router.get('/program/:href', async (req, res) => {
 
 router.get("/programs/resources", async (req, res) => {
 	try {
-		console.log(req.query.programType);
-		const key = `programType.${req.query.programType}`;
+		const { programType } = req.query
+		const key = `programType.${ programType }`;
 		const programs = await Program.find({ [key]: true });
-		console.log('programs: ', programs, req.query.programType);
+		console.log('programs: ', programs, programType);
 		res.send({ message: programs });
 	} catch (error) {
 		console.log('PROGRAMS ERROR: ', error);

@@ -38,7 +38,7 @@ const SlidePanel = ({ navOpen, setNavOpen }) => {
 			<LanguageButtons />
 			<SectionHeader> { t.resources } </SectionHeader>
 			{/* <LinkUnderlineEffect hrefFormatted="/Sign-in" text={ t.signIn } color={ 'cyan' }/> */}
-			<LinkUnderlineEffect hrefFormatted="/resources/programs" text={ t.programs } color={ 'cyan' }/>
+			<LinkUnderlineEffect hrefFormatted="/resources/program" text={ t.programs } color={ 'cyan' }/>
 			<LinkUnderlineEffect hrefFormatted="/resources/scholarships" text={ t.scholarships } color={ 'cyan' }/>
 			<LinkUnderlineEffect hrefFormatted="/resources/internships" text={ t.internships } color={ 'cyan' }/>
 			<SectionHeader> { t.portal } </SectionHeader>
