@@ -15,10 +15,12 @@ const PhotoWithTextBox = ({
 
 	const router = useRouter();
 	const formattedLink = organization.replaceAll(' ', '-');
-	console.log('CoverImage: ', typeof coverImage, coverImage);
+	const clickHandler = () => {
+		router.push(`${router.asPath}/${formattedLink.toLowerCase()}`);
+	}
 
 	return (
-		<Container>
+		<Container onClick={ clickHandler }>
 			<PhotoWithTextOverlay>
 			<Image 
 				src={ `${coverImage}` }
@@ -52,6 +54,12 @@ const Container = styled.div`
 	border-radius: 4px;
 	padding-bottom: 15px;
 	margin-bottom: 40px;
+	transition: .2s ease-in-out all;
+
+	:hover {
+		transform: translate(-3px, -3px); 
+		cursor: pointer;
+	}
 `
 
 const PhotoWithTextOverlay = styled.div`

@@ -3,11 +3,11 @@ import Image from 'next/image';
 import TitleWithBackground from '../generic/TitleWithBackground';
 import PropTypes from 'prop-types';
 
-const FullScreenBack = ({ src, children, titleInfo }) => {
+const FullScreenBack = ({ src, children, titleInfo, height }) => {
 
 	return (
 		<OuterWrapper>
-			<Container>
+			<Container {...{ height }}>
 				<Image 
 					src={ src }
 					layout='fill'
@@ -41,6 +41,7 @@ FullScreenBack.propTypes = {
 	src: PropTypes.string, 
 	children: PropTypes.node, 
 	titleInfo: PropTypes.object, 
+	height: PropTypes.string,
 }
 
 FullScreenBack.defaultProps = {
@@ -50,20 +51,20 @@ FullScreenBack.defaultProps = {
 }
 
 const OuterWrapper = styled.div`
-  position: relative;
-  // margin-bottom: 140px;
+	position: relative;
+	// margin-bottom: 140px;
 `
 
 const Container = styled.div`
-  position: relative; 
-  min-width: 100vw; 
-  min-height: 90vh;
-  background-color: azure; 
-  overflow-x: hidden;
+	position: relative; 
+	min-width: 100vw; 
+	min-height: ${ props => props.height ? props.height : '90vh'};
+	background-color: azure; 
+	overflow-x: hidden;
 `
 
 const TitleContainer = styled.div`
-  position: absolute;
-  z-index: 10;
-  bottom: 60px;
+	position: absolute;
+	z-index: 10;
+	bottom: 60px;
 `
