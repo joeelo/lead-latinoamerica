@@ -19,20 +19,22 @@ const PhotoWithTextBox = ({
 		router.push(`${router.asPath}/${formattedLink.toLowerCase()}`);
 	}
 
+	const truncatedString = bio.length < 100 ? bio : `${bio.slice(0, 150)}...`;
+
 	return (
 		<Container onClick={ clickHandler }>
 			<PhotoWithTextOverlay>
-			<Image 
-				src={ `${coverImage}` }
-				layout='fill'
-				objectFit='cover'
-				objectPosition='center'
-				style={{ zIndex: -1, position: 'absolute', borderRadius: 4 }}
-			/>
-			<RightAlignedText> { organization } </RightAlignedText>
+				<Image 
+					src={ `${coverImage}` }
+					layout='fill'
+					objectFit='cover'
+					objectPosition='center'
+					style={{ zIndex: -1, position: 'absolute', borderRadius: 4 }}
+				/>
+				<RightAlignedText> { organization } </RightAlignedText>
 			</PhotoWithTextOverlay> 
 
-			<Bio> - { bio } </Bio>
+			<Bio> - { truncatedString } </Bio>
 			<Link href={`/resources/[resourceSlug]/[programSlug]`} as={`${router.asPath}/${formattedLink.toLowerCase()}`}>
 			<StyledAnchor> explore { organization } </StyledAnchor>
 			</Link>
@@ -55,6 +57,7 @@ const Container = styled.div`
 	padding-bottom: 15px;
 	margin-bottom: 40px;
 	transition: .2s ease-in-out all;
+	max-height: 550px;
 
 	:hover {
 		transform: translate(-3px, -3px); 
@@ -68,6 +71,7 @@ const PhotoWithTextOverlay = styled.div`
 	height: 300px;
 	text-align: right; 
 	margin-bottom: 20px;
+	min-height: 300px;
 `
 
 const RightAlignedText = styled.p`
