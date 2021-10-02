@@ -45,7 +45,7 @@ const SlidePanel = ({ navOpen, setNavOpen }) => {
 			<LinkUnderlineEffect hrefFormatted='/' text={ t.home }  color={ 'cyan' }/>
 			<LinkUnderlineEffect hrefFormatted="/add-edit-orgs" text={ t.addOrg } color={ 'cyan' }/>
 			{/* <LinkUnderlineEffect hrefFormatted="/support" text={ 'Partner with Us' } color={ 'cyan' }/> */}
-			<LinkUnderlineEffect hrefFormatted="https://www.leadlatinoamerica.org/copy-of-our-team" text={ t.ourTeam } color={ 'cyan' }/>
+			<LinkUnderlineEffect target="_blank" rel="noopener noreferrer" hrefFormatted="https://www.leadlatinoamerica.org/copy-of-our-team" text={ t.ourTeam } color={ 'cyan' }/>
 			{/* <LinkUnderlineEffect hrefFormatted='/mission-statement' text={'Our Mission'}  color={ 'cyan' }/>
 			<LinkUnderlineEffect hrefFormatted="/frequently-asked-questions" text={ 'FAQ' } color={ 'cyan' }/> */}
 
