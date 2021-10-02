@@ -5,6 +5,10 @@ import PropTypes from 'prop-types';
 
 const FullScreenBack = ({ src, children, titleInfo, height }) => {
 
+	const loadHandler = () => {
+		console.log('loaded');
+	}
+
 	return (
 		<OuterWrapper>
 			<Container {...{ height }}>
@@ -14,6 +18,7 @@ const FullScreenBack = ({ src, children, titleInfo, height }) => {
 					objectFit='cover'
 					objectPosition='top'
 					style={{ zIndex: -1, position: 'absolute' }}
+					onLoad={loadHandler}
 				/>
 				<div style={{ zIndex: 10, position: 'relative' }}>
 					{ children }
