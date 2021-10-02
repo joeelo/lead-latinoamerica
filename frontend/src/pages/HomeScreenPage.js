@@ -85,6 +85,7 @@ const HomeScreenPage = () => {
 						content={ info } 
 						color={ theme.colors.darkText }
 						backgroundColor={ theme.white }
+						minHeight={ 400 }
 					/>)
 				}
 			</CenterFlexContainer>
