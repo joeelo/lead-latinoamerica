@@ -7,7 +7,8 @@ const sendMail = async (data, href) => {
 	try {
 		const formattedMessageAndOptions = emailFormatter(data, href);
 		const response = await sgMail.send(formattedMessageAndOptions);
-		return true;
+		console.log('RESPONSE: ', response);
+		return response;
 	} catch (error) {
 		console.log('error in sendMail: ', error);
 	}

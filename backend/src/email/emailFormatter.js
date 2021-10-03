@@ -19,7 +19,7 @@ const emailFormatter = (data, href) => {
 		// 	}
 		// }
 	}
-	console.log('msg: ', msg);
+	// console.log('msg: ', msg);
 	return msg;
 }
 

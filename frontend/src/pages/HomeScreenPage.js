@@ -47,7 +47,7 @@ const HomeScreenPage = () => {
 		}, 
 		{
 			title: t.programs.headline,
-			text:t.programs.bio, 
+			text: t.programs.bio, 
 			footer: t.programs.link,
 			svg: '/images/svg/online-class-svgrepo-com.svg'
 		}, 
