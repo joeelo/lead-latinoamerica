@@ -13,6 +13,7 @@ const ApproveProgramPage = () => {
     const [ program, setProgram ] = useState({}); 
 
     const getProgram = async () => {
+        console.log(router.query.nameSlug)
         try {
             const fetchedProgram = await getProgramBySlug(`program/${ router.query.nameSlug }`);
             setProgram(fetchedProgram.program);
