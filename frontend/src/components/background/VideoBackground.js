@@ -17,12 +17,16 @@ const Container = styled.div`
     min-width: 100vw; 
     position: relative; 
     overflow: hidden;
+
+    @media screen and (max-width: 1400px) {
+        min-height: 650px;
+    }
 `
 
 const Video = styled.video`
     position: absolute;
     height: 100%;
-    width: 190.77777778vh; /* 100 * 16 / 9 */
+    width: 177.77777778vh; /* 100 * 16 / 9 */
     min-width: 100%;
     min-height: 56.25vw; /* 100 * 9 / 16 */
     left: 50%; /* % of surrounding element */

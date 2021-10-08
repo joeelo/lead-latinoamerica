@@ -1,10 +1,8 @@
-import Image from 'next/image';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const PhotoWithTextBox = ({  
-	program, 
 	program: {
 		organization = '', 
 		coverImage, 
@@ -13,6 +11,7 @@ const PhotoWithTextBox = ({
 	} 
 }) => {
 
+	console.log('COVER IMAGE: ', typeof coverImage);
 	const router = useRouter();
 	const formattedLink = organization.replaceAll(' ', '-');
 	const clickHandler = () => {
@@ -24,13 +23,7 @@ const PhotoWithTextBox = ({
 	return (
 		<Container onClick={ clickHandler }>
 			<PhotoWithTextOverlay>
-				<Image 
-					src={ `${coverImage}` }
-					layout='fill'
-					objectFit='cover'
-					objectPosition='center'
-					style={{ zIndex: -1, position: 'absolute', borderRadius: 4 }}
-				/>
+				<StyledImage src={ `${coverImage}` }/>
 				<RightAlignedText> { organization } </RightAlignedText>
 			</PhotoWithTextOverlay> 
 
@@ -104,4 +97,15 @@ const StyledAnchor = styled.a`
 	color: inherit; 
 	text-decoration: none;
 	margin-left: 20px;
+`
+
+const StyledImage = styled.img`
+	object-fit: cover; 
+	border-radius: 4px;
+	max-width: 100%; 
+	min-height: 100%;
+	width: 100%;
+	position: absolute;
+	left: 0; 
+	top: 0; 
 `
