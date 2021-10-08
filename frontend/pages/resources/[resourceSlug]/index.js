@@ -32,7 +32,8 @@ const ResourcePage = () => {
 				console.log('DATA: ', data); 
 				return; 
 			}
-			setProgramsArray(data.message);
+			const approvedPrograms = data.message.filter( program => program.approved === true );
+			setProgramsArray(approvedPrograms);
 		} catch (error) {
 			console.log('ERROR IN GETPROGRAMS: ', error);
 		}
