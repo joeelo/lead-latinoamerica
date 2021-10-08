@@ -9,11 +9,12 @@ const LanguageButtons = () => {
 	const router = useRouter(); 
 
 	const handleClick = (lang) => {
-		router.push('/', '/', { locale: lang, shallow: true });
+		const { asPath } = router;
+		router.push(`/${lang}${asPath}`, `/${lang}${asPath}`, { locale: lang, shallow: true });
 	}
 
 	useEffect(() => {
-		console.log(router);
+		console.log('ROUTER: ', router);
 	}, [])
 
 	return (
