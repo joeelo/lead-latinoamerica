@@ -70,8 +70,7 @@ router.get("/programs/resources", async (req, res) => {
 	try {
 		const { programType } = req.query
 		const key = `programType.${ programType }`;
-		const programs = await Program.find({ [key]: true });
-		console.log('programs: ', programs, programType);
+		const programs = await Program.find({ [key]: true, approved: true });
 		res.send({ message: programs });
 	} catch (error) {
 		console.log('PROGRAMS ERROR: ', error);

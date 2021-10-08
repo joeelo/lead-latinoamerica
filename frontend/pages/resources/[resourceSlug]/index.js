@@ -32,6 +32,7 @@ const ResourcePage = () => {
 				console.log('DATA: ', data); 
 				return; 
 			}
+			console.log('DATA: ', data);
 			const approvedPrograms = data.message.filter( program => program.approved === true );
 			setProgramsArray(approvedPrograms);
 		} catch (error) {
@@ -43,20 +44,25 @@ const ResourcePage = () => {
 	return (
 		<>
 		<NavBar />
-			{ programsArray[0] && 
+			{ programsArray[0] && (
 				<>
 					<FullScreenBack 
 						src={ fakeData[resourceSlug].coverImage }
-						titleInfo={{ show: true, text: `${ resourceSlug }`, backgroundColor: '#0077B6', color: 'white' }}
+						titleInfo={{ 
+							show: true, 
+							text: `${ resourceSlug }`, 
+							backgroundColor: '#0077B6', 
+							color: 'white' 
+						}}
 					/>
 					<CenterFlexContainer padding='extraPad'>
-						{ programsArray.map(( program, index ) => 
+						{ programsArray.map(( program, index ) => (
 							<PhotoWithTextBox key={ program.href } coverImage={ program.coverImage } program={ program } />
-						)}
+						))}
 					</CenterFlexContainer>
 					
 				</>
-			}
+			)}
 		<Footer/>
 
 		</>
