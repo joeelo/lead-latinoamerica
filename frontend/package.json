@@ -9,9 +9,11 @@
     "alt-port": "npm run dev -- -p 3005"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.16",
     "next": "^11.0.0",
     "next-i18next": "^8.6.0",
-    "query-string": "^7.0.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "react-hook-form": "^7.3.6",

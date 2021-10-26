@@ -40,11 +40,10 @@ export default PhotoWithTextBox;
 const Container = styled.div`
 	display: flex;
 	flex-direction: column; 
-	min-width: 300px; 
+	min-width: 350px; 
 	min-height: 550px;
 	max-width: 400px;
 	width: 30%;
-	min-width: 300px;
 	box-shadow: 1px 2px 15px 0px rgba(184,177,184,1);
 	border-radius: 4px;
 	padding-bottom: 15px;
