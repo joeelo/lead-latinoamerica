@@ -56,7 +56,7 @@ const HomeScreenPage = () => {
 	return (
 		<>
 			<NavBar />
-			<FullScreenBack src='/images/javier-trueba-iQPr1XkF5F0-unsplash.jpg'>
+			<FullScreenBack src='/images/mission-high.jpeg'>
 				<PortalTitleContainer>
 				<PortalTitle>{t.headline1}</PortalTitle>
 				<PortalSubTitle>{t.headline2}</PortalSubTitle>
