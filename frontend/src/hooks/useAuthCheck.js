@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-export default useAuthCheck = () => {
+const useAuthCheck = () => {
     const router = useRouter(); 
     const [isAuthed, setIsAuthed] = useState(false);
     
@@ -17,3 +17,5 @@ export default useAuthCheck = () => {
 
     return isAuthed
 }
+
+export default useAuthCheck

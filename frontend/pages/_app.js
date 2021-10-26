@@ -2,6 +2,7 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Head from 'next/head';
 import { appWithTranslation } from 'next-i18next';
 import { LanguageWrapper } from '@/context/LanguageContext';
+import { config, dom } from "@fortawesome/fontawesome-svg-core";
 
 const GlobalStyle = createGlobalStyle`
   	html, *, body {
@@ -52,12 +53,15 @@ const theme = {
 	}
 }
 
+config.autoAddCss = false;
+
 const App = ({ Component, pageProps }) => {
 	return (
 		<>
 			<Head>
 				<link rel="preconnect" href="https://fonts.gstatic.com"></link>
 				<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap&family=Source+Sans+Pro:wght@300;500;700;900&display=swap" rel="stylesheet"></link> 
+				<style>{dom.css()}</style>
 			</Head>
 			<GlobalStyle />
 			<ThemeProvider theme={theme}>

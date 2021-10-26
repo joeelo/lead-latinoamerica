@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
+import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { getProgramBySlug } from "@/fetch/requests";
 import NavBar from "@/components/nav/NavBar";
 import Footer from "@/components/footer/Footer";
 import ProgramOverviewAndInfo from "@/components/content/program/ProgramOverviewAndInfo";
 import SkewedTitleAndPhoto from "@/components/content/program/SkewedTitleAndPhoto";
-import FixedButton from "@/components/buttons/FixedButton";
+import FaButton from "@/components/buttons/FaButton";
+import Modal from "@/components/modal/Modal";
 
-const DeleteProgramPage = () => {
+const DeleteOrgPage = () => {
 
     const router = useRouter(); 
     const [ program, setProgram ] = useState({}); 
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const getProgram = async () => {
-        console.log(router.query.nameSlug)
         try {
             const fetchedProgram = await getProgramBySlug(`program/${ router.query.nameSlug }`);
             setProgram(fetchedProgram.program);
@@ -28,32 +30,38 @@ const DeleteProgramPage = () => {
         getProgram(); 
     }, [ router.isReady ])
 
-    // console.log('program: ', program);
-
     if (!program) return <></>
     return (
         <>
             <NavBar />
-            <FixedButton 
-                text={ 'Approve Org' } 
-                approve={ true } 
-                bgColor={ '#00B43C' } 
-                href={ program.href } 
-                bgColorHover={ '#0ACC14' }
-            />
-			<FixedButton 
-                text={ 'Deny Org'} 
-                deny={ true } 
-                bgColor={ '#FF4F3D' } 
-                href={ program.href }
-                bgColorHover={ '#E82C4A' } 
-            />
             <SkewedTitleAndPhoto program={ program } router={ router }/>
             <ProgramOverviewAndInfo program={ program } marginTop={ true }/>
+            <ButtonContainer onClick={() => setIsModalOpen(true)}>
+                <FaButton size="2x" color="white"/>
+            </ButtonContainer>
+            <Modal isOpen={isModalOpen} setOpen={setIsModalOpen}> truth fam </Modal>
             <Footer marginTop={ true }/>
         </>
         
     )
 }
 
-export default DeleteProgramPage;
+export default DeleteOrgPage
+
+const ButtonContainer = styled.div`
+    width: 75px; 
+    height: 75px; 
+    border-radius: 50%; 
+    background-color: #CE1620;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    position: fixed; 
+    top: 120px; 
+    right: 50px; 
+
+    :hover {
+        cursor: pointer;
+    }
+`
+
