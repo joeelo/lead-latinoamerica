@@ -5,18 +5,18 @@ import FormTextarea from '@/components/form/FormTextarea';
 import { useForm } from 'react-hook-form';
 import { postToDatabase } from '@/fetch/requests';
 import CheckboxContainer from '@/components/form/CheckboxContainer';
-import queryString from 'query-string'; 
 import nestData from '@/data/nestData';
+import { useRouter } from 'next/router';
+
 
 const Form = ({ formData, objKey, endpoint, method, setFormSubmitted, query }) => {
 	const { register, handleSubmit, formState: { errors } } = useForm(); 
 	const data = formData[objKey];
-
-	const queryObj = typeof window !== 'undefined' ? queryString.parse(window?.location.search) : {};
+	const router = useRouter(); 
 
 	const submitHandler = async (data) => {
 		const formattedData = formatCheckboxData(data);
-		if (!!queryObj.dev) {
+		if (!!router.query.dev) {
 			console.log(formattedData); 
 			return;
 		}
