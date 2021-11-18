@@ -10,7 +10,8 @@ const ChangingBackgroundText = ({
 	text, 
 	fontColorInitial, 
 	fontColorSecondary, 
-	onlyRunOneTransition
+	onlyRunOneTransition, 
+	maxWidth
 }) => {
 
 	const ref = useRef(); 
@@ -27,7 +28,7 @@ const ChangingBackgroundText = ({
 	}, [ isOnScreen ])
 	
 	return (
-		<Container ref={ ref } >
+		<Container ref={ ref } {...{maxWidth}}>
 			<>
 				<StyledHeading 
 					{...{ text, changeTextColor, fontColorInitial, fontColorSecondary }}
@@ -83,7 +84,7 @@ const Container = styled.div`
 	font-weight: ${ props => props.fontWeight ? '700' : '400' };
 	position: relative; 
 	width: 90%;
-	max-width: 500px; 
+	max-width: ${props => props.maxWidth ? props.maxWidth : '500px'}; 
 	display: flex; 
 	align-items: center; 
 	justify-content: center; 
