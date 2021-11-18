@@ -1,7 +1,7 @@
 import CenterFlexContainer from "@/components/generic/CenterFlexContainer";
 import styled from 'styled-components';
 import CategoryTiles from '@/components/content/program/CategoryTiles';
-import BlueLinkButton from "@/components/generic/BlueLinkButton";
+import LinkButton from "@/components/generic/LinkButton";
 import useGetRouterPath from "@/hooks/useGetRouterPath";
 
 const ProgramOverviewAndInfo = ({ program }) => {
@@ -9,11 +9,16 @@ const ProgramOverviewAndInfo = ({ program }) => {
 
 	return (
 		<>
-			<CenterFlexContainer paddingTop={ true } paddingBottom={ true } align={ 'start' } maxWidth='1550px'>
+			<CenterFlexContainer 
+				paddingTop={ true } 
+				paddingBottom={ true } 
+				align='start'
+				maxWidth='1550px'
+			>
 				<LeftContainer>
 					<LargeText> Overview </LargeText>
 					<BioText> { program.bio } </BioText>
-					<BlueLinkButton 
+					<LinkButton 
 						text={ 'Sign Up' } 
 						hrefFormatted={'/resources/[resourceSlug]/[programSlug]/sign-up'} 
 						hrefAs={`${path}/sign-up`} 
