@@ -4,6 +4,7 @@ import { appWithTranslation } from 'next-i18next';
 import { LanguageWrapper } from '@/context/LanguageContext';
 import { config, dom } from "@fortawesome/fontawesome-svg-core";
 import fullstory from '@/config/fullstory';
+import { Provider as AuthProvider } from 'next-auth/client';
 
 const GlobalStyle = createGlobalStyle`
   	html, *, body {
@@ -66,11 +67,13 @@ const App = ({ Component, pageProps }) => {
 				<script>{fullstory()}</script>
 			</Head>
 			<GlobalStyle />
-			<ThemeProvider theme={theme}>
-				<LanguageWrapper>
-					<Component {...pageProps} />
-				</LanguageWrapper>
-			</ThemeProvider>
+			<AuthProvider session={pageProps.session}>
+				<ThemeProvider theme={theme}>
+					<LanguageWrapper>
+						<Component {...pageProps} />
+					</LanguageWrapper>
+				</ThemeProvider>
+			</AuthProvider>
 		</>
 	)
 }

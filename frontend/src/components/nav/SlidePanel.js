@@ -5,6 +5,7 @@ import LinkUnderlineEffect from '../generic/LinkUnderlineEffect';
 import en from '@/language/locales/en/navbar.json';
 import es from '@/language/locales/es/navbar.json';
 import useLocale from '@/hooks/useLocale';
+import { signOut } from 'next-auth/client';
 
 const SlidePanel = ({ navOpen, setNavOpen }) => {
 
@@ -37,17 +38,20 @@ const SlidePanel = ({ navOpen, setNavOpen }) => {
 		<Container className='slide-panel' navOpen={ navOpen } ref={ wrapperRef } onClick={ (event) => handleClickOutside(event) }>
 			<LanguageButtons />
 			<SectionHeader> { t.resources } </SectionHeader>
-			{/* <LinkUnderlineEffect hrefFormatted="/Sign-in" text={ t.signIn } color={ 'cyan' }/> */}
-			<LinkUnderlineEffect hrefFormatted="/resources/program" text={ t.programs } color={ 'cyan' }/>
-			<LinkUnderlineEffect hrefFormatted="/resources/scholarships" text={ t.scholarships } color={ 'cyan' }/>
-			<LinkUnderlineEffect hrefFormatted="/resources/internships" text={ t.internships } color={ 'cyan' }/>
+			{/* <LinkUnderlineEffect hrefFormatted="/Sign-in" text={ t.signIn } color='cyan'/> */}
+			<LinkUnderlineEffect hrefFormatted="/resources/program" text={ t.programs } color='cyan'/>
+			<LinkUnderlineEffect hrefFormatted="/resources/scholarships" text={ t.scholarships } color='cyan'/>
+			<LinkUnderlineEffect hrefFormatted="/resources/internships" text={ t.internships } color='cyan'/>
 			<SectionHeader> { t.portal } </SectionHeader>
-			<LinkUnderlineEffect hrefFormatted='/' text={ t.home }  color={ 'cyan' }/>
-			<LinkUnderlineEffect hrefFormatted="/add-edit-orgs" text={ t.addOrg } color={ 'cyan' }/>
-			{/* <LinkUnderlineEffect hrefFormatted="/support" text={ 'Partner with Us' } color={ 'cyan' }/> */}
-			<LinkUnderlineEffect target="_blank" rel="noopener noreferrer" hrefFormatted="https://www.leadlatinoamerica.org/copy-of-our-team" text={ t.ourTeam } color={ 'cyan' }/>
-			{/* <LinkUnderlineEffect hrefFormatted='/mission-statement' text={'Our Mission'}  color={ 'cyan' }/>
-			<LinkUnderlineEffect hrefFormatted="/frequently-asked-questions" text={ 'FAQ' } color={ 'cyan' }/> */}
+			<LinkUnderlineEffect hrefFormatted='/' text={ t.home }  color='cyan'/>
+			<LinkUnderlineEffect hrefFormatted="/add-edit-orgs" text={ t.addOrg } color='cyan'/>
+			{/* <LinkUnderlineEffect hrefFormatted="/support" text={ 'Partner with Us' } color='cyan'/> */}
+			<LinkUnderlineEffect target="_blank" rel="noopener noreferrer" hrefFormatted="https://www.leadlatinoamerica.org/copy-of-our-team" text={ t.ourTeam } color='cyan'/>
+			{/* <LinkUnderlineEffect hrefFormatted='/mission-statement' text={'Our Mission'}  color='cyan'/>
+			<LinkUnderlineEffect hrefFormatted="/frequently-asked-questions" text={ 'FAQ' } color='cyan'/> */}
+			<LogoutButton onClick={signOut}>
+				<LinkUnderlineEffect hrefFormatted='/' color='cyan' text='Log Out' />
+			</LogoutButton>
 
 		</Container>
 	)
@@ -78,4 +82,8 @@ const SectionHeader = styled.p`
 	margin-bottom: 10px; 
 	font-weight: 300;
 	margin-top: 20px;
+`
+
+const LogoutButton = styled.div`
+
 `

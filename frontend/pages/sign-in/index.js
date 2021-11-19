@@ -5,10 +5,14 @@ import NavBar from "@/components/nav/NavBar";
 import ChangingBackgroundText from '@/components/content/ChangingBackgroundText';
 import Button from '@/components/generic/Button';
 import LinkButton from '@/components/generic/LinkButton';
+import { useSession, signIn } from 'next-auth/client'
 
 const Signup = () => {
 
   const theme = useContext(ThemeContext);
+  const [ session, loading ] = useSession(); 
+
+  console.log('SESSION: ', session)
 
   return (
     <>
@@ -31,16 +35,31 @@ const Signup = () => {
               maxWidth='400px'
               onlyRunOneTransition
             />
-            <LoginButton>
-              <GoogleLogo src='/images/google-logo.png'/>
-              Sign in with Google
-            </LoginButton>
-            <Span>Don't have an account?</Span>
-            <LinkButton 
+            {!loading ? (
+              <>
+                {!session ? (
+                  <>
+                    <LoginButton onClick={() => signIn('google', {
+                      callbackUrl: '/'
+                    })}>
+                      <GoogleLogo src='/images/google-logo.png'/>
+                      Sign in with Google
+                    </LoginButton>
+                    <Span>Don't have an account?</Span>
+                  </>
+                ): (
+                  <>YOur signed in!</>
+                )
+              }
+              </>
+            ) : (
+              <></>
+            )}
+            {/* <LinkButton 
               text='Sign Up Now' 
               hrefFormatted='/sign-up'
               hrefAs='/sign-up'
-            />
+            /> */}
           </Column>
         </Container>
       <Footer />
