@@ -10,8 +10,6 @@ const PhotoWithTextBox = ({
 		href,
 	} 
 }) => {
-
-	console.log('COVER IMAGE: ', typeof coverImage);
 	const router = useRouter();
 	const formattedLink = organization.replaceAll(' ', '-');
 	const clickHandler = () => {
