@@ -10,6 +10,7 @@ import { useSession, signIn } from 'next-auth/client'
 const Signup = () => {
 
   const theme = useContext(ThemeContext);
+  //session comes back with google info - https://github.com/nextauthjs/next-auth
   const [ session, loading ] = useSession(); 
 
   console.log('SESSION: ', session)
@@ -40,7 +41,7 @@ const Signup = () => {
                 {!session ? (
                   <>
                     <LoginButton onClick={() => signIn('google', {
-                      callbackUrl: '/'
+                      // callbackUrl: '/', 
                     })}>
                       <GoogleLogo src='/images/google-logo.png'/>
                       Sign in with Google
@@ -48,7 +49,7 @@ const Signup = () => {
                     <Span>Don't have an account?</Span>
                   </>
                 ): (
-                  <>YOur signed in!</>
+                  <>Your signed in!</>
                 )
               }
               </>
