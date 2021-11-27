@@ -5,6 +5,7 @@ import { LanguageWrapper } from '@/context/LanguageContext';
 import { config, dom } from "@fortawesome/fontawesome-svg-core";
 import fullstory from '@/config/fullstory';
 import { Provider as AuthProvider } from 'next-auth/client';
+import { getSession } from "next-auth/client"
 
 const GlobalStyle = createGlobalStyle`
   	html, *, body {
@@ -58,6 +59,10 @@ const theme = {
 config.autoAddCss = false;
 
 const App = ({ Component, pageProps }) => {
+	console.log('PAGEPROPS: ', pageProps);
+
+	const props = pageProps || {}
+
 	return (
 		<>
 			<Head>
@@ -67,7 +72,7 @@ const App = ({ Component, pageProps }) => {
 				<script>{fullstory()}</script>
 			</Head>
 			<GlobalStyle />
-			<AuthProvider session={pageProps.session}>
+			<AuthProvider session={props.session}>
 				<ThemeProvider theme={theme}>
 					<LanguageWrapper>
 						<Component {...pageProps} />
@@ -76,6 +81,11 @@ const App = ({ Component, pageProps }) => {
 			</AuthProvider>
 		</>
 	)
+}
+
+App.getInitialProps = async ({ctx}) => {
+	const session = await getSession(ctx)
+	return ({props: {session}})
 }
 
 export default appWithTranslation(App);

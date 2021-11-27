@@ -9,7 +9,8 @@ const CenterFlexContainer = ({
 	paddingTop,
 	paddingBottom,
 	align, 
-	justify
+	justify, 
+	...props
 }) => {
 
 	return (
@@ -17,8 +18,9 @@ const CenterFlexContainer = ({
 			{...{
 				backgroundColor, 
 				paddingTop, 
-				paddingBottom
+				paddingBottom, 
 			}}
+			{...props}
 		>
 			<Container 
 				{...{
