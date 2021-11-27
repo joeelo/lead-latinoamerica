@@ -3,7 +3,6 @@ import Head from 'next/head';
 import { appWithTranslation } from 'next-i18next';
 import { LanguageWrapper } from '@/context/LanguageContext';
 import { config, dom } from "@fortawesome/fontawesome-svg-core";
-import fullstory from '@/config/fullstory';
 import { Provider as AuthProvider } from 'next-auth/client';
 import { getSession } from "next-auth/client"
 
@@ -59,7 +58,6 @@ const theme = {
 config.autoAddCss = false;
 
 const App = ({ Component, pageProps }) => {
-	console.log('PAGEPROPS: ', pageProps);
 
 	const props = pageProps || {}
 
@@ -69,7 +67,6 @@ const App = ({ Component, pageProps }) => {
 				<link rel="preconnect" href="https://fonts.gstatic.com"></link>
 				<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap&family=Source+Sans+Pro:wght@300;500;700;900&display=swap" rel="stylesheet"></link> 
 				<style>{dom.css()}</style>
-				<script>{fullstory()}</script>
 			</Head>
 			<GlobalStyle />
 			<AuthProvider session={props.session}>

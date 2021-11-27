@@ -6,13 +6,15 @@ import Footer from '@/components/footer/Footer';
 import styled from 'styled-components';
 import Image from 'next/image'; 
 import Box from '@/components/generic/Box';
+import getFullName from '@/utils/getFullName';
+import SelectInput from '@/components/form/select/SelectInput';
 
 
 const ProfilePage = props => {
 
   const [ session, loading ] = useSession(); 
 
-  console.log('sesssssion::::', session, loading);
+  const userName = getFullName(session)
 
   return (
     <>
@@ -25,8 +27,14 @@ const ProfilePage = props => {
         </PhotoContainer>
         <Box width='al-fu' center style={{position: 'relative'}}>
           <NameCircle>
-            JL 
+            { userName.initials }
           </NameCircle>
+        </Box>
+        <Box mw='100vw'>
+          <Box width='al-fu' center mt={100}>
+            Interestd In
+            <SelectInput options={['Freshman', 'Sophomore', 'Junior', 'Senior']}/>
+          </Box>
         </Box>
       <Footer />
     </>
@@ -56,5 +64,6 @@ const NameCircle = styled.div`
   justify-content: center; 
   top: -75px; 
   background-color: #1F2041; 
-  color: #999;
+  color: white;
+  font-size: 36px;
 `
