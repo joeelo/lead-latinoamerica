@@ -8,13 +8,20 @@ import Image from 'next/image';
 import Box from '@/components/generic/Box';
 import getFullName from '@/utils/getFullName';
 import SelectInput from '@/components/form/select/SelectInput';
+import { useForm } from 'react-hook-form';
 
 
 const ProfilePage = props => {
 
   const [ session, loading ] = useSession(); 
 
-  const userName = getFullName(session)
+  const userName = getFullName(session); 
+  
+  const { register, handleSubmit, setValue } = useForm(); 
+  
+  const onSubmit = (data) => {
+    console.log('DATA: ', data); 
+  }
 
   return (
     <>
@@ -31,9 +38,20 @@ const ProfilePage = props => {
           </NameCircle>
         </Box>
         <Box mw='100vw'>
-          <Box width='al-fu' center mt={100}>
-            Interestd In
-            <SelectInput options={['Freshman', 'Sophomore', 'Junior', 'Senior']}/>
+          <Box width='al-fu' center mt={100} mb={100}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <TitleHeading>What year of school are you in</TitleHeading>
+              <SelectInput options={[
+                {value: 'freshman', label: 'Freshman'},
+                {value: 'sophomore', label: 'Sophomore'},
+                {value: 'junior', label: 'Junior'},
+                {value: 'senior', label: 'Senior'},
+                {value: 'parent', label: 'I\'m a parent'},
+              ]}
+              setValue={setValue}
+              register={register}
+              />
+            </form>
           </Box>
         </Box>
       <Footer />
@@ -66,4 +84,11 @@ const NameCircle = styled.div`
   background-color: #1F2041; 
   color: white;
   font-size: 36px;
+`
+
+const TitleHeading = styled.p`
+  font-size: 34px;
+  margin-bottom: 10px;
+  font-weight: 300;
+  margin-top: 20px;
 `

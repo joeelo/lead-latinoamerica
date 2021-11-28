@@ -65,6 +65,7 @@ const Container = styled.div`
   flex-wrap: ${(props) => (!!props.wrap ? "wrap" : "nowrap")};
   margin: ${(props) => (props.center ? "0 auto" : 0)};
   margin-top: ${(props) => (props.mt ? props.mt + "px" : null)};
+  margin-bottom: ${(props) => (props.mb ? props.mb + "px" : null)};
 
   @media screen and (max-width: 768px) {
     width: 100%;
