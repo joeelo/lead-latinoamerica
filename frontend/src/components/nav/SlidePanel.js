@@ -35,7 +35,12 @@ const SlidePanel = ({ navOpen, setNavOpen }) => {
 	}, [ navOpen ]);
 
 	return (
-		<Container className='slide-panel' navOpen={ navOpen } ref={ wrapperRef } onClick={ (event) => handleClickOutside(event) }>
+		<Container 
+			className='slide-panel' 
+			navOpen={navOpen} 
+			ref={wrapperRef} 
+			onClick={(event) => handleClickOutside(event)}
+		>
 			<LanguageButtons />
 
 			<SectionHeader> { t.resources } </SectionHeader>

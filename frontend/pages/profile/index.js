@@ -9,6 +9,8 @@ import Box from '@/components/generic/Box';
 import getFullName from '@/utils/getFullName';
 import SelectInput from '@/components/form/select/SelectInput';
 import { useForm } from 'react-hook-form';
+import CheckboxContainer from '@/components/form/CheckboxContainer';
+import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup';
 
 
 const ProfilePage = props => {
@@ -41,16 +43,28 @@ const ProfilePage = props => {
           <Box width='al-fu' center mt={100} mb={100}>
             <form onSubmit={handleSubmit(onSubmit)}>
               <TitleHeading>What year of school are you in</TitleHeading>
-              <SelectInput options={[
-                {value: 'freshman', label: 'Freshman'},
-                {value: 'sophomore', label: 'Sophomore'},
-                {value: 'junior', label: 'Junior'},
-                {value: 'senior', label: 'Senior'},
-                {value: 'parent', label: 'I\'m a parent'},
-              ]}
-              setValue={setValue}
-              register={register}
+              <SelectInput 
+                options={[
+                  {value: 'freshman', label: 'Freshman'},
+                  {value: 'sophomore', label: 'Sophomore'},
+                  {value: 'junior', label: 'Junior'},
+                  {value: 'senior', label: 'Senior'},
+                  {value: 'parent', label: 'I\'m a parent'},
+                ]}
+                setValue={setValue}
+                register={register}
+                name='grade'
               />
+              <TitleHeading>What programs are you most interested in?</TitleHeading>
+              <CheckboxGroup 
+                options={[
+                  {value: 'summer', label: 'Summer'}, 
+                  {value: 'scholarships', label: 'Scholarships'}, 
+                  {value: 'internships', label: 'Internships'}, 
+                  {value: 'programs', label: 'Programs'}
+                ]}
+                register={register}
+              /> 
             </form>
           </Box>
         </Box>

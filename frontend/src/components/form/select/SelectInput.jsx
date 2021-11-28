@@ -1,42 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components'; 
 import Box from '@/components/generic/Box';
+import useHandleClickOutside from '@/hooks/useHandleClickOutside';
 
-const SelectInput = ({options, register, setValue}) => {
+const SelectInput = ({options, register, setValue, name}) => {
 
+  const wrapperRef = useRef(null); 
   const [showOptions, setShowOptions] = useState(false); 
   const [selectedOption, setSelectedOption] = useState({}); 
 
   const handleClick = (opt) => {
     setSelectedOption(opt); 
-    setValue('name', opt.value); 
+    setValue(name, opt.value); 
   }
+
+  const cb = () => {
+    setShowOptions(false); 
+  }
+
+  useHandleClickOutside(
+    wrapperRef, 
+    cb
+  );
 
   return (
     <Box style={{position: 'relative'}}>
       <StyledInput 
-        {...register('name')}
+        {...register(name)}
         readOnly  
         value={selectedOption.label || ''}
         onClick={() => setShowOptions(true)}
+        ref={wrapperRef}
       />
-      <Box mw='350px' display='flex' fd='column'>
         {showOptions && (
-          <StyledOptionDropdown>
-            {options.map((opt) => {
-              return (
-                <StyledOption 
-                  key={opt.value}
-                  onClick={() => handleClick(opt)}
-                > 
-                  {opt.label} 
-                </StyledOption>
-              )
-            })}
-          </StyledOptionDropdown>
+          <Box mw='350px' display='flex' fd='column' >
+            <StyledOptionDropdown>
+              {options.map((opt) => {
+                return (
+                  <StyledOption 
+                    key={opt.value}
+                    onClick={() => handleClick(opt)}
+                  > 
+                    {opt.label} 
+                  </StyledOption>
+                )
+              })}
+            </StyledOptionDropdown>
+          </Box>
         )}
-      </Box>
     </Box>
   )
 }
