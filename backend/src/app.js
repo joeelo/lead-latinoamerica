@@ -1,10 +1,12 @@
 require('dotenv').config();
+
 const express = require('express');
+
 const app = express();
-const userRoutes = require('./routes/userRoutes');
-const programRoutes = require('./routes/programRoutes');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const userRoutes = require('./routes/userRoutes');
+const programRoutes = require('./routes/programRoutes');
 
 require('./mongoose/mongooseDB');
 
@@ -21,5 +23,5 @@ app.use(userRoutes);
 app.use(programRoutes);
 
 app.listen(port, () => {
-    console.log('listening on port ' + port);
-})
+  console.log(`listening on port ${port}`);
+});
