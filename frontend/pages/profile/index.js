@@ -13,7 +13,7 @@ import CheckboxContainer from '@/components/form/CheckboxContainer';
 import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup';
 
 
-const ProfilePage = props => {
+const ProfilePage = (props) => {
 
   const [ session, loading ] = useSession(); 
 
@@ -42,29 +42,50 @@ const ProfilePage = props => {
         <Box mw='100vw'>
           <Box width='al-fu' center mt={100} mb={100}>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <TitleHeading>What year of school are you in</TitleHeading>
-              <SelectInput 
-                options={[
-                  {value: 'freshman', label: 'Freshman'},
-                  {value: 'sophomore', label: 'Sophomore'},
-                  {value: 'junior', label: 'Junior'},
-                  {value: 'senior', label: 'Senior'},
-                  {value: 'parent', label: 'I\'m a parent'},
-                ]}
-                setValue={setValue}
-                register={register}
-                name='grade'
-              />
-              <TitleHeading>What programs are you most interested in?</TitleHeading>
-              <CheckboxGroup 
-                options={[
-                  {value: 'summer', label: 'Summer'}, 
-                  {value: 'scholarships', label: 'Scholarships'}, 
-                  {value: 'internships', label: 'Internships'}, 
-                  {value: 'programs', label: 'Programs'}
-                ]}
-                register={register}
-              /> 
+              <Box mb={40}>
+                <TitleHeading>What year of school are you in</TitleHeading>
+                <SelectInput 
+                  options={[
+                    {value: 'freshman', label: 'Freshman'},
+                    {value: 'sophomore', label: 'Sophomore'},
+                    {value: 'junior', label: 'Junior'},
+                    {value: 'senior', label: 'Senior'},
+                    {value: 'parent', label: 'I\'m a parent'},
+                  ]}
+                  setValue={setValue}
+                  register={register}
+                  name='grade'
+                />
+              </Box>
+
+              <Box mb={30}>
+                <TitleHeading>What programs are you most interested in?</TitleHeading>
+                <CheckboxGroup 
+                  options={[
+                    {value: 'summer', label: 'Summer'}, 
+                    {value: 'scholarships', label: 'Scholarships'}, 
+                    {value: 'internships', label: 'Internships'}, 
+                    {value: 'programs', label: 'Programs'},
+                  ]}
+                  register={register}
+                /> 
+              </Box>
+
+              <Box>
+                <TitleHeading>What ethnicity are you? (check all that apply)</TitleHeading>
+                <CheckboxGroup
+                  options={[
+                    {value: 'caucasian', label: 'White or Caucasion'},
+                    {value: 'latino', label: 'Hispanic or Latino'},
+                    {value: 'african', label: 'African or African-American'},
+                    {value: 'asian', label: 'Asian or Asian-American'},
+                    {value: 'nativeAmerican', label: 'Native American'},
+                    {value: 'multiRacial', label: 'Multi-Racial'},
+                    {value: 'noAnswer', label: 'Don\'t care to answer'},
+                  ]}
+                  register={register}
+                />
+              </Box>
             </form>
           </Box>
         </Box>

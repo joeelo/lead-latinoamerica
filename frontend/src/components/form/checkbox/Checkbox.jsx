@@ -11,7 +11,7 @@ const Checkbox = ({ option, register }) => {
 					type='checkbox'
 					{...register(option.value)}
 				/>
-				{ option.value }
+				{ option.label }
 			</Label>
 		</Container>
 	)
