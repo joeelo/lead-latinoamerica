@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSession } from 'next-auth/client';
 import NavBar from '@/components/nav/NavBar';
@@ -9,13 +9,14 @@ import Box from '@/components/generic/Box';
 import getFullName from '@/utils/getFullName';
 import SelectInput from '@/components/form/select/SelectInput';
 import { useForm } from 'react-hook-form';
-import CheckboxContainer from '@/components/form/CheckboxContainer';
 import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup';
+import { getProfile } from '@/fetch/profile/ProfileRequests';
 
 
 const ProfilePage = (props) => {
 
   const [ session, loading ] = useSession(); 
+  const [ profileInfo, setProfileInfo ] = useState(null); 
 
   const userName = getFullName(session); 
   
@@ -24,6 +25,20 @@ const ProfilePage = (props) => {
   const onSubmit = (data) => {
     console.log('DATA: ', data); 
   }
+
+  const getProfileInfo = async () => {
+    const profile = getProfile(session); 
+    console.log('PRFOILE: ', profile);
+  }
+
+  const email = session?.user.email;
+
+  useEffect(() => {
+    if (email) {
+      getProfileInfo(); 
+    }
+  }, [email])
+
 
   return (
     <>

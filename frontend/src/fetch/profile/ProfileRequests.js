@@ -17,18 +17,25 @@ const createProfile = async (session) => {
 }
 
 const getProfile = async (session) => {
+  console.log('session:::', session);
+  const { email } = session.user
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/profile/${email}`);
     const json = await response.json(); 
 
     if (json.success && !json.hasProfile) {
-      const json = await createProfile(); 
+      const json = await createProfile(session); 
       return json; 
     }
-    
+
     console.log(json); 
     return json; 
   } catch (error) {
     console.log('error', error); 
   }
+}
+
+export {
+  createProfile, 
+  getProfile,
 }

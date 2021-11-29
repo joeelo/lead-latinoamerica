@@ -1,7 +1,5 @@
 export default function getFullName(sessionInfo) {
   if (sessionInfo) {
-
-    console.log(sessionInfo)
     if (!sessionInfo.user) return; 
 
     const name = sessionInfo.user.name.split(' '); 
