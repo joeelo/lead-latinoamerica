@@ -13,14 +13,19 @@ const createProfile = async (session) => {
   } catch (error) {
     console.log('error: ', error)
   }
-
 }
 
 const getProfile = async (session) => {
-  console.log('session:::', session);
-  const { email } = session.user
+  // if there is no profile we will create one with creds given. 
+  const { email } = session.user; 
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/profile/${email}`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/profile/${email}`, {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json'
+      }, 
+      body: JSON.stringify(session)  
+    });
     const json = await response.json(); 
 
     if (json.success && !json.hasProfile) {

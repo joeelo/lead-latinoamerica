@@ -27,7 +27,7 @@ const ProfilePage = (props) => {
   }
 
   const getProfileInfo = async () => {
-    const profile = getProfile(session); 
+    const profile = await getProfile(session); 
     console.log('PRFOILE: ', profile);
   }
 
