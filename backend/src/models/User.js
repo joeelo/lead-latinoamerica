@@ -14,11 +14,6 @@ const userSchema = new mongoose.Schema({
     unique: true,
   },
 
-  password: {
-    type: String,
-    required: true,
-  },
-
   preferredName: {
     type: String,
   },
@@ -29,7 +24,6 @@ const userSchema = new mongoose.Schema({
 
   gradeLevel: {
     type: Number,
-    required: true,
   },
 
   Interests: {

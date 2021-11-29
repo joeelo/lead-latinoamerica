@@ -10,7 +10,6 @@ router.post('/users/sign-up', async (req, res) => {
       password: req.body.password,
     });
 
-    console.log(user);
     if (user) {
       res.send({
         message: 'user already exists please check and try again',
@@ -26,7 +25,6 @@ router.post('/users/sign-up', async (req, res) => {
     newUser.email = req.body.email;
     newUser.password = req.body.password;
     await newUser.save();
-    console.log(newUser);
     res.send(newUser);
   } catch (error) {
     res.status(400).send(error);
@@ -40,7 +38,6 @@ router.post('/users/login', async (req, res) => {
       password: req.body.password,
     });
 
-    console.log(user);
     if (user) {
       res.send(user);
     } else {
@@ -81,6 +78,31 @@ router.patch('/user/profile/edit', async (req, res) => {
     res.send(user);
   } catch (error) {
     res.status(400).send(error);
+  }
+});
+
+router.post('/profile/:email', async (req, res) => {
+  try {
+    const { email } = req.params;
+    const user = await User.findOne({
+      email,
+    });
+
+    if (!user) {
+      const newUser = new User();
+
+      newUser.email = email;
+      newUser.name = req.body.user.name;
+
+      await newUser.save();
+      res.send({ email, message: 'success', user: newUser });
+
+      return;
+    }
+
+    res.send({ email, message: 'success', user, reqBody: req.body });
+  } catch (error) {
+    console.log('ERROR', error);
   }
 });
 
