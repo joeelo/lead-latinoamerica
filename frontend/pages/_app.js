@@ -69,7 +69,7 @@ const App = ({ Component, pageProps }) => {
 				<style>{dom.css()}</style>
 			</Head>
 			<GlobalStyle />
-			<AuthProvider session={props.session}>
+			<AuthProvider session={props.session || {}}>
 				<ThemeProvider theme={theme}>
 					<LanguageWrapper>
 						<Component {...pageProps} />
