@@ -16,7 +16,7 @@
 		}
 	},
 	"rules": {
-		"new-cap": 0,
+		// "new-cap": 0,
 		"no-plusplus": ["warn", { "allowForLoopAfterthoughts": true }],
 		"semi": ["warn", "always"],
 		"quotes": ["warn", "single"], 
@@ -41,9 +41,9 @@
 			}
 		],
 		"function-call-argument-newline": ["error", "consistent"], 
-		"prettier/prettier": ["error", {}, {
-			"endOfLine": "auto"
-		}], 
+		"prettier/prettier": {
+			"endOfLine": 0
+		}, 
 		"sort-imports": "error"
 	}, 
 	"plugins": ["prettier"]

@@ -61,21 +61,37 @@ router.get('/user/show/:id', async (req, res) => {
   }
 });
 
-router.patch('/user/profile/edit', async (req, res) => {
-  const { id, name, email, username } = req.body;
+router.put('/user/profile/:email/edit', async (req, res) => {
+
+  const { data } = req.body;
+  const { email } = req.params;
   const modifications = {};
 
-  modifications.name = name;
+  const nationalities = Object.keys(data.ethnicity).filter(
+    (eth) => !!data.ethnicity[eth]
+  );
+
+  const programs = Object.keys(data.programs).filter(
+    (p) => !!data.programs[p]
+  );
+
   modifications.email = email;
-  modifications.username = username;
+  modifications.preferredName = data.preferredName; 
+  modifications.grade = data.grade; 
+  modifications.nationality = nationalities;
+  modifications.interests = programs; 
+  modifications.pronouns = data.pronouns
+
   try {
     const user = await User.findOneAndUpdate(
-      id,
+      email,
       { $set: modifications },
       { new: true }
     );
 
     res.send(user);
+
+    return;
   } catch (error) {
     res.status(400).send(error);
   }

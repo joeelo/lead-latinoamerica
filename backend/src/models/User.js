@@ -18,15 +18,19 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
 
+  pronouns: {
+    type: String, 
+  },
+
   nationality: {
-    type: String,
+    type: Array,
   },
 
   gradeLevel: {
     type: Number,
   },
 
-  Interests: {
+  interests: {
     type: Array,
     required: false,
   },
