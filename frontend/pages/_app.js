@@ -61,6 +61,8 @@ const App = ({ Component, pageProps }) => {
 
 	const props = pageProps || {}
 
+	console.log('INDEXXX')
+
 	return (
 		<>
 			<Head>
@@ -71,7 +73,7 @@ const App = ({ Component, pageProps }) => {
 			<GlobalStyle />
 			<AuthProvider session={props.session || {}}>
 
-				{console.log('PAGE PROPPSSS::::', pageProps, session)}
+				{console.log('PAGE PROPPSSS::::', pageProps)}
 				<ThemeProvider theme={theme}>
 					<LanguageWrapper>
 						<Component {...pageProps} />
@@ -87,4 +89,4 @@ App.getInitialProps = async ({ctx}) => {
 	return ({props: {session}})
 }
 
-export default appWithTranslation(App);
+export default App;
