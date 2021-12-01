@@ -1,6 +1,5 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'; 
 import Head from 'next/head';
-import { appWithTranslation } from 'next-i18next';
 import { LanguageWrapper } from '@/context/LanguageContext';
 import { config, dom } from "@fortawesome/fontawesome-svg-core";
 import { Provider as AuthProvider } from 'next-auth/client';
@@ -61,8 +60,6 @@ const App = ({ Component, pageProps }) => {
 
 	const props = pageProps || {}
 
-	console.log('INDEXXX')
-
 	return (
 		<>
 			<Head>
@@ -72,8 +69,6 @@ const App = ({ Component, pageProps }) => {
 			</Head>
 			<GlobalStyle />
 			<AuthProvider session={props.session || {}}>
-
-				{console.log('PAGE PROPPSSS::::', pageProps)}
 				<ThemeProvider theme={theme}>
 					<LanguageWrapper>
 						<Component {...pageProps} />
