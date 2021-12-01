@@ -21,7 +21,7 @@ const ProfilePage = (props) => {
   const [ profileInfo, setProfileInfo ] = useState(null); 
 
   const userName = getFullName(session); 
-  const email = session?.user.email;
+  const email = session?.user?.email;
   
   const { register, handleSubmit, setValue } = useForm(); 
   

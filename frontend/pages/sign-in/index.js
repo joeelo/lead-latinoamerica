@@ -47,7 +47,7 @@ const Signup = () => {
                 <Span>Don't have an account?</Span>
               </>
             ): (
-              <>Your signed in!</>
+              <span style={{marginTop: 20, fontSize: 24}}>Your signed in!</span>
             )}
     
           </Column>
