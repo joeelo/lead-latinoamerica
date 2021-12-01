@@ -70,6 +70,8 @@ const App = ({ Component, pageProps }) => {
 			</Head>
 			<GlobalStyle />
 			<AuthProvider session={props.session || {}}>
+
+				{console.log('PAGE PROPPSSS::::', pageProps, session)}
 				<ThemeProvider theme={theme}>
 					<LanguageWrapper>
 						<Component {...pageProps} />

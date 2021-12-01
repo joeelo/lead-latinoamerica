@@ -7,6 +7,8 @@ export default class MyDocument extends Document {
     const originalRenderPage = ctx.renderPage
 
     try {
+      console.log('DOCUMENT PROPPSSS::::', ctx)
+
       ctx.renderPage = () =>
         originalRenderPage({
           enhanceApp: (App) => (props) =>
