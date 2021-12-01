@@ -8,9 +8,11 @@ import Image from 'next/image';
 import Box from '@/components/generic/Box';
 import getFullName from '@/utils/getFullName';
 import SelectInput from '@/components/form/select/SelectInput';
+import TextInput from '@/components/form/text-input/TextInput';
 import { useForm } from 'react-hook-form';
 import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup';
-import { getProfile } from '@/fetch/profile/ProfileRequests';
+import { editProfile, getProfile } from '@/fetch/profile/ProfileRequests';
+import SubmitButton from '@/components/buttons/SubmitButton';
 
 
 const ProfilePage = (props) => {
@@ -19,11 +21,14 @@ const ProfilePage = (props) => {
   const [ profileInfo, setProfileInfo ] = useState(null); 
 
   const userName = getFullName(session); 
+  const email = session?.user.email;
   
   const { register, handleSubmit, setValue } = useForm(); 
   
-  const onSubmit = (data) => {
-    console.log('DATA: ', data); 
+  const onSubmit = async (data) => {
+
+    const response = await editProfile(data, email); 
+    console.log('data: ', response);
   }
 
   const getProfileInfo = async () => {
@@ -31,7 +36,7 @@ const ProfilePage = (props) => {
     console.log('PRFOILE: ', profile);
   }
 
-  const email = session?.user.email;
+  
 
   useEffect(() => {
     if (email) {
@@ -54,8 +59,8 @@ const ProfilePage = (props) => {
             { userName.initials }
           </NameCircle>
         </Box>
-        <Box mw='100vw'>
-          <Box width='al-fu' center mt={100} mb={100}>
+        <Box width='al-fu' center mt={100} mb={100}>
+          <Box mw='700px'>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Box mb={40}>
                 <TitleHeading>What year of school are you in</TitleHeading>
@@ -74,13 +79,36 @@ const ProfilePage = (props) => {
               </Box>
 
               <Box mb={30}>
+                <TitleHeading>What is your preferred name?</TitleHeading>
+                <TextInput 
+                  name='preferredName'
+                  register={register}
+                />
+              </Box>
+
+              <Box mb={30}>
+                <TitleHeading>What are your preferred pronouns?</TitleHeading>
+                <SelectInput 
+                  options={[
+                    {value: 'he', label: 'He/His'},
+                    {value: 'she', label: 'She/Her'},
+                    {value: 'they', label: 'They/Them'},
+                    {value: 'none', label: 'Doesn\'t matter'},
+                  ]}
+                  setValue={setValue}
+                  register={register}
+                  name='pronouns'
+                />
+              </Box>
+
+              <Box mb={30}>
                 <TitleHeading>What programs are you most interested in?</TitleHeading>
                 <CheckboxGroup 
                   options={[
-                    {value: 'summer', label: 'Summer'}, 
-                    {value: 'scholarships', label: 'Scholarships'}, 
-                    {value: 'internships', label: 'Internships'}, 
-                    {value: 'programs', label: 'Programs'},
+                    {value: 'programs.summer', label: 'Summer'}, 
+                    {value: 'programs.scholarships', label: 'Scholarships'}, 
+                    {value: 'programs.internships', label: 'Internships'}, 
+                    {value: 'programs.programs', label: 'Programs'},
                   ]}
                   register={register}
                 /> 
@@ -88,20 +116,23 @@ const ProfilePage = (props) => {
 
               <Box>
                 <TitleHeading>What ethnicity are you? (check all that apply)</TitleHeading>
+                <p style={{ marginTop: -10, marginBottom: 10}}>We ask because there are programs for specific groups and we'd like every possible opportunity to be available.</p>
                 <CheckboxGroup
                   options={[
-                    {value: 'caucasian', label: 'White or Caucasion'},
-                    {value: 'latino', label: 'Hispanic or Latino'},
-                    {value: 'african', label: 'African or African-American'},
-                    {value: 'asian', label: 'Asian or Asian-American'},
-                    {value: 'nativeAmerican', label: 'Native American'},
-                    {value: 'multiRacial', label: 'Multi-Racial'},
-                    {value: 'noAnswer', label: 'Don\'t care to answer'},
+                    {value: 'ethnicity.caucasian', label: 'White or Caucasion'},
+                    {value: 'ethnicity.latino', label: 'Hispanic or Latino'},
+                    {value: 'ethnicity.african', label: 'African or African-American'},
+                    {value: 'ethnicity.asian', label: 'Asian or Asian-American'},
+                    {value: 'ethnicity.nativeAmerican', label: 'Native American'},
+                    {value: 'ethnicity.multiRacial', label: 'Multi-Racial'},
+                    {value: 'ethnicity.noAnswer', label: 'Don\'t care to answer'},
                   ]}
                   register={register}
                 />
               </Box>
+              <SubmitButton color='#1F2041' label='Submit'/>
             </form>
+
           </Box>
         </Box>
       <Footer />

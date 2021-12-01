@@ -40,7 +40,25 @@ const getProfile = async (session) => {
   }
 }
 
+const editProfile = async (data, email) => {
+  
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/user/profile/${email}/edit`, {
+      method: 'PUT', 
+      headers: {
+        'Content-Type': 'application/json'
+      }, 
+      body: JSON.stringify({ data })
+    });
+    const json = await response.json(); 
+    return json; 
+  } catch (error) {
+    console.log('error in editProfile: ', error);
+  }
+}
+
 export {
   createProfile, 
   getProfile,
+  editProfile, 
 }
