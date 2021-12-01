@@ -54,10 +54,12 @@ const SlidePanel = ({ navOpen, setNavOpen }) => {
 			<LinkUnderlineEffect hrefFormatted="/add-edit-orgs" text={ t.addOrg } color='cyan'/>
 			{/* <LinkUnderlineEffect hrefFormatted="/support" text={ 'Partner with Us' } color='cyan'/> */}
 			<LinkUnderlineEffect target="_blank" rel="noopener noreferrer" hrefFormatted="https://www.leadlatinoamerica.org/copy-of-our-team" text={ t.ourTeam } color='cyan'/>
-			
-			<LogoutButton onClick={signOut}>
-				<LinkUnderlineEffect hrefFormatted='/' color='cyan' text='Log Out' />
-			</LogoutButton>
+
+			{session && (
+				<LogoutButton onClick={signOut}>
+					<LinkUnderlineEffect hrefFormatted='/' color='cyan' text='Log Out' />
+				</LogoutButton>
+			)}
 
 		</Container>
 	)
