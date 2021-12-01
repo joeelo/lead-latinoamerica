@@ -1,15 +1,14 @@
 import styled from 'styled-components';
-import Checkbox from './checkbox/Checkbox';
+import Checkbox from './Checkbox';
 
-const CheckboxContainer = ({ data, register }) => {
+const CheckboxGroup = ({ options, register }) => {
 	return (
 		<Container>
-			{ data.label }
-			{data.options.map(option => 
+			{options.map(opt => 
 				<Checkbox 
-					key={ option } 
-					option={ option } 
-					label={ data.label }
+					key={ opt.value } 
+					option={ opt } 
+					label={ opt.label }
 					register={ register }
 				/>
 			)}
@@ -17,12 +16,11 @@ const CheckboxContainer = ({ data, register }) => {
 	)
 }
 
-export default CheckboxContainer; 
+export default CheckboxGroup; 
 
 
 const Container = styled.div`
 	width: 100%; 
-	margin-top: 20px; 
 	display: flex; 
 	flex-direction: column; 
 	font-size: 26px;

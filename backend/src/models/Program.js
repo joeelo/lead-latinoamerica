@@ -1,67 +1,65 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const programSchema = new mongoose.Schema({
-    organization: {
-        type: String,
-        required: true, 
+  organization: {
+    type: String,
+    required: true,
+  },
+  bio: {
+    type: String,
+    max: 200,
+    required: true,
+  },
+  missionStatement: {
+    type: String,
+    default: '',
+    max: 500,
+  },
+  helpsWith: {
+    type: Array,
+  },
+  coverImage: {
+    type: String,
+  },
+  approved: {
+    type: Boolean,
+    default: false,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  tags: {
+    type: Array,
+    default: [],
+  },
+  href: {
+    type: String,
+    required: true,
+  },
+  partnerUrl: {
+    type: String,
+  },
+  programType: {
+    program: {
+      type: Boolean,
+      default: false,
     },
-    bio: {
-        type: String,
-        max: 200, 
-        required: true,
+    summer: {
+      type: Boolean,
+      default: false,
     },
-    missionStatement: {
-        type: String, 
-        default: '',
-        max: 500
+    internship: {
+      type: Boolean,
+      default: false,
     },
-    helpsWith: {
-        type: Array, 
-    }, 
-    coverImage: {
-        type: String, 
+    scholarship: {
+      type: Boolean,
+      default: false,
     },
-    approved: {
-        type: Boolean,
-        default: false,
-    }, 
-    email: {
-        type: String, 
-        required: true,
-    }, 
-    tags: {
-        type: Array, 
-        default: []
-    }, 
-    href: {
-        type: String, 
-        required: true,
-    }, 
-    partnerUrl: {
-        type: String,
-    }, 
-    programType: {
-        program: {
-            type: Boolean, 
-            default: false
-        }, 
-        summer: {
-            type: Boolean, 
-            default: false, 
-        },
-        internship: {
-            type: Boolean, 
-            default: false, 
-        },
-        scholarship: {
-            type: Boolean, 
-            default: false, 
-        },
-    }
+  },
+});
 
-})
+const Program = new mongoose.model('Program', programSchema, 'programs');
 
-const Program = new mongoose.model("Program", programSchema, "programs");
-
-module.exports = Program
-
+module.exports = Program;

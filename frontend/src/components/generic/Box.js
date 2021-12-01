@@ -10,6 +10,7 @@ const Box = ({
   pb, 
   mt, 
   mb, 
+  mw,
   wrap, 
   center, 
   p,
@@ -31,6 +32,7 @@ const Box = ({
         wrap, 
         mt, 
         mb, 
+        mw,
         center,
         p,
         flex,
@@ -47,12 +49,12 @@ const Box = ({
 export default Box;
 
 const Container = styled.div`
-  display: ${ props => props.display ? props.display : 'block'};
-  flex-direction: ${ props => props.fd ? props.fd : 'unset'};
-  max-width: 1200px;
+  display: ${(props) => props.display ? props.display : 'block'};
+  flex-direction: ${(props) => props.fd ? props.fd : 'unset'};
+  max-width: ${(props) => props.mw ? props.mw : '1200px' };
   width: ${(props) => {
     if (props.width === "half") return "50%";
-    if (props.width === "al-fu") return "90%"; //almost-full which I treat as 90% with margin 0 auto
+    if (props.width === "al-fu") return "90%"; //almost-full 
     return "100%";
   }};
   justify-content: ${(props) => (props.justify ? props.justify : "flex-start")};
@@ -63,6 +65,7 @@ const Container = styled.div`
   flex-wrap: ${(props) => (!!props.wrap ? "wrap" : "nowrap")};
   margin: ${(props) => (props.center ? "0 auto" : 0)};
   margin-top: ${(props) => (props.mt ? props.mt + "px" : null)};
+  margin-bottom: ${(props) => (props.mb ? props.mb + "px" : null)};
 
   @media screen and (max-width: 768px) {
     width: 100%;

@@ -11,9 +11,7 @@ import { useSession, signOut } from 'next-auth/client';
 const SlidePanel = ({ navOpen, setNavOpen }) => {
 
 	const wrapperRef = useRef(null);
-	const [ session, loading ] = useSession(); 
-
-	console.log('SESSION: ', session);
+	const [ session ] = useSession(); 
 
 	const handleClickOutside = (event) => {
 		if (!navOpen) return;
@@ -37,7 +35,12 @@ const SlidePanel = ({ navOpen, setNavOpen }) => {
 	}, [ navOpen ]);
 
 	return (
-		<Container className='slide-panel' navOpen={ navOpen } ref={ wrapperRef } onClick={ (event) => handleClickOutside(event) }>
+		<Container 
+			className='slide-panel' 
+			navOpen={navOpen} 
+			ref={wrapperRef} 
+			onClick={(event) => handleClickOutside(event)}
+		>
 			<LanguageButtons />
 
 			<SectionHeader> { t.resources } </SectionHeader>
