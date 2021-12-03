@@ -67,12 +67,14 @@ router.put('/user/profile/:email/edit', async (req, res) => {
   const { email } = req.params;
   const modifications = {};
 
+  console.log('DATAAAA: ', data)
+
   const nationalities = Object.keys(data.ethnicity).filter(
     (eth) => !!data.ethnicity[eth]
   );
 
   const programs = Object.keys(data.programs).filter(
-    (p) => !!data.programs[p]
+    (p) => data.programs[p]
   );
 
   modifications.email = email;
@@ -116,7 +118,7 @@ router.post('/profile/:email', async (req, res) => {
       return;
     }
 
-    res.send({ email, message: 'success', user, reqBody: req.body });
+    res.send({ email, message: 'success', user });
   } catch (error) {
     console.log('ERROR', error);
   }

@@ -26,14 +26,18 @@ const userSchema = new mongoose.Schema({
     type: Array,
   },
 
-  gradeLevel: {
-    type: Number,
+  grade: {
+    type: String,
   },
 
   interests: {
     type: Array,
-    required: false,
   },
+
+  isAdmin: {
+    type: Boolean, 
+    default: false,
+  }
 });
 
 const User = new mongoose.model('User', userSchema);
