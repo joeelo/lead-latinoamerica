@@ -12,7 +12,7 @@ import TextInput from '@/components/form/text-input/TextInput';
 import { useForm } from 'react-hook-form';
 import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup';
 import { editProfile, getProfile } from '@/fetch/profile/ProfileRequests';
-import SubmitButton from '@/components/buttons/SubmitButton';
+import Button from '@/components/buttons/Button';
 
 
 const ProfilePage = (props) => {
@@ -20,11 +20,11 @@ const ProfilePage = (props) => {
   const [ session, loading ] = useSession(); 
   const [ profileInfo, setProfileInfo ] = useState(null); 
   const [ userData, setUserData ] = useState({});
-
-  console.log('USERDATAAA: ', userData.grade)
+  const [ isEditing, setIsEditing ] = useState(false); 
 
   const userName = getFullName(session)
   const email = session?.user?.email;
+  const userInterestStr = userData.interests?.join(',', ' ');
   
   const { register, handleSubmit, setValue } = useForm(); 
   
@@ -49,6 +49,16 @@ const ProfilePage = (props) => {
     }
   }
 
+  const handleClick = () => {
+    setIsEditing(true)
+  }
+
+  const handleCancel = (event) => {
+    event.preventDefault(); 
+
+    setIsEditing(false); 
+  }
+
   useEffect(() => {
     if (email) {
       getProfileInfo(); 
@@ -70,6 +80,28 @@ const ProfilePage = (props) => {
           </NameCircle>
         </Box>
         <Box width='al-fu' center mt={100} mb={100}>
+          {!isEditing ? (
+            <> 
+              {userData.preferredName && (
+                <TitleHeading> Hey there {userData.preferredName}!</TitleHeading>
+              )}
+
+              {userData?.grade === 'parent' ? (
+                <TitleHeading> Thank you for joining us! </TitleHeading>
+              ) : (
+                <>
+                  <TitleHeading>Grade</TitleHeading>
+                  <FormDetail>{userData?.grade}</FormDetail>
+                </>
+              )}
+
+              <TitleHeading>What are you interested in?</TitleHeading>
+              <FormDetail>{userInterestStr}</FormDetail>
+
+              <Button color='lightblue' label='Edit' onClick={handleClick}/>
+
+            </>
+          ) : (
           <Box mw='700px'>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Box mb={40}>
@@ -144,10 +176,15 @@ const ProfilePage = (props) => {
                   register={register}
                 />
               </Box>
-              <SubmitButton color='#1F2041' label='Submit'/>
-            </form>
 
+              <Box display='flex'>
+                <Button color='red' label='cancel' onClick={handleCancel} style={{marginRight: 40}}/>
+                <Button color='#1F2041' label='Submit'/>
+              </Box>
+            </form>
           </Box>
+
+            )}
         </Box>
       <Footer />
     </>
@@ -182,8 +219,13 @@ const NameCircle = styled.div`
 `
 
 const TitleHeading = styled.p`
-  font-size: 34px;
+  font-size: 28px;
   margin-bottom: 10px;
-  font-weight: 300;
+  font-weight: 500;
   margin-top: 20px;
+`
+
+const FormDetail = styled.p`
+  font-size: 22px; 
+  margin-bottom: 30px; 
 `

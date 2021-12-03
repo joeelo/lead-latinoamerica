@@ -2,21 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const SubmitButton = ({ label, color, ...props }) => {
+const Button = ({ label, color, onClick, ...props }) => {
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick(); 
+    }
+
+    return null; 
+  }
 
   return (
-    <Container {...{color}} {...props}>
+    <Container onClick={onClick} {...{color}} {...props}>
       { label }
     </Container>
   )
 }
 
-SubmitButton.propTypes = {
+Button.defaultProps = {
+  color: '#1F2041'
+}
+
+Button.propTypes = {
   label: PropTypes.string, 
   color: PropTypes.string,
 }
 
-export default SubmitButton;
+export default Button;
 
 const Container = styled.button`
   width: 150px; 

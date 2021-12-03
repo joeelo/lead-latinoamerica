@@ -3,9 +3,16 @@ import styled from 'styled-components';
 import CategoryTiles from '@/components/content/program/CategoryTiles';
 import LinkButton from "@/components/generic/LinkButton";
 import useGetRouterPath from "@/hooks/useGetRouterPath";
+import Button from "@/components/buttons/Button";
 
 const ProgramOverviewAndInfo = ({ program }) => {
 	const path = useGetRouterPath();
+
+	console.log('PROGRAM : ', program);
+
+	const handleClick = () => {
+		console.log('workingggg')
+	}
 
 	return (
 		<>
@@ -23,6 +30,7 @@ const ProgramOverviewAndInfo = ({ program }) => {
 						hrefFormatted={'/resources/[resourceSlug]/[programSlug]/sign-up'} 
 						hrefAs={`${path}/sign-up`} 
 					/>
+					<Button label='Save to profile' color='#1F2041' onClick={handleClick}/>
 				</LeftContainer>
 				<RightContainer>
 					<UnderlinedSectionHeader> Categories </UnderlinedSectionHeader>
