@@ -34,6 +34,11 @@ const userSchema = new mongoose.Schema({
     type: Array,
   },
 
+  savedPrograms: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Program', 
+  }],
+
   isAdmin: {
     type: Boolean, 
     default: false,

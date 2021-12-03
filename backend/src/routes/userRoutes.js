@@ -67,8 +67,6 @@ router.put('/user/profile/:email/edit', async (req, res) => {
   const { email } = req.params;
   const modifications = {};
 
-  console.log('DATAAAA: ', data)
-
   const nationalities = Object.keys(data.ethnicity).filter(
     (eth) => !!data.ethnicity[eth]
   );
@@ -123,5 +121,41 @@ router.post('/profile/:email', async (req, res) => {
     console.log('ERROR', error);
   }
 });
+
+router.get('/user/programs/:email/:programId', async (req, res) => {
+  const { email, programId } = req.params;
+  try {
+    const user = await User.findOne({
+      email
+    })
+
+    if (!user) {
+      res.send({message: 'you must sign up for an account to save your programs', success: true})
+      return; 
+    }
+
+    console.log('USERRRRR: ', user)
+
+    let foundProgram = null; 
+
+    if (user.savedPrograms.length) {
+      foundProgram = await user.savedPrograms.find(programId);
+    }
+
+    if (foundProgram) {
+      res.send({message: 'This program is already saved!', success: true}); 
+      return; 
+    }
+    
+
+    await user.savedPrograms.push([ programId ]); 
+    await user.save(); 
+
+    res.send({message: 'Program Saved!', success: true});
+
+  } catch (error) {
+    console.log('ERROR IN UPDATING SAVED PROGRAMS: ', error);
+  }
+})
 
 module.exports = router;
