@@ -4,14 +4,17 @@ import CategoryTiles from '@/components/content/program/CategoryTiles';
 import LinkButton from "@/components/generic/LinkButton";
 import useGetRouterPath from "@/hooks/useGetRouterPath";
 import Button from "@/components/buttons/Button";
+import { UpdateUsersSavedPrograms } from "@/fetch/user/UserRequests";
 
-const ProgramOverviewAndInfo = ({ program }) => {
+const ProgramOverviewAndInfo = ({ program, email }) => {
 	const path = useGetRouterPath();
 
 	console.log('PROGRAM : ', program);
 
-	const handleClick = () => {
+	const handleClick = async () => {
 		console.log('workingggg')
+		const response = await UpdateUsersSavedPrograms(email, program._id);
+		console.log('RESPONSE: ', response);
 	}
 
 	return (
@@ -22,6 +25,7 @@ const ProgramOverviewAndInfo = ({ program }) => {
 				align='start'
 				maxWidth='1550px'
 			>
+
 				<LeftContainer>
 					<LargeText> Overview </LargeText>
 					<BioText> { program.bio } </BioText>
@@ -32,6 +36,7 @@ const ProgramOverviewAndInfo = ({ program }) => {
 					/>
 					<Button label='Save to profile' color='#1F2041' onClick={handleClick}/>
 				</LeftContainer>
+
 				<RightContainer>
 					<UnderlinedSectionHeader> Categories </UnderlinedSectionHeader>
 					<CategoryTiles adjectives={ program.helpsWith }/>

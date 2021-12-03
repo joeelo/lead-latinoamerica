@@ -6,10 +6,13 @@ import NavBar from '@/components/nav/NavBar';
 import Footer from '@/components/footer/Footer';
 import SkewedTitleAndPhoto from '@/components/content/program/SkewedTitleAndPhoto';
 import ProgramOverviewAndInfo from '@/components/content/program/ProgramOverviewAndInfo';
+import { useSession } from 'next-auth/client';
 
 const ProgramPage = () => {
   const router = useRouter(); 
   const [ program, setProgram ] = useState(null);
+
+  const [session, loading] = useSession()
 
   const getProgram = async () => {
     const data = await getProgramBySlug(`program/${router.query.programSlug}`);
@@ -27,7 +30,11 @@ const ProgramPage = () => {
     <>
       <NavBar />
       <SkewedTitleAndPhoto program={ program } router={ router }/>
-      <ProgramOverviewAndInfo program={ program } marginTop={ true }/>
+      <ProgramOverviewAndInfo 
+        program={ program } 
+        marginTop={ true } 
+        email={session?.user?.email}
+      />
       <Footer marginTop={ true }/>
     </>
   )
