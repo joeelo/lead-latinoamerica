@@ -19,6 +19,9 @@ const ProfilePage = (props) => {
 
   const [ session, loading ] = useSession(); 
   const [ profileInfo, setProfileInfo ] = useState(null); 
+  const [ userData, setUserData ] = useState({});
+
+  console.log('USERDATAAA: ', userData.grade)
 
   const userName = getFullName(session)
   const email = session?.user?.email;
@@ -26,24 +29,31 @@ const ProfilePage = (props) => {
   const { register, handleSubmit, setValue } = useForm(); 
   
   const onSubmit = async (data) => {
-
     const response = await editProfile(data, email); 
-    console.log('data: ', response);
+    console.log('RESPONSEEEE: ', response);
   }
 
   const getProfileInfo = async () => {
-    const profile = await getProfile(session); 
-    console.log('PRFOILE: ', profile);
-  }
+    const response = await getProfile(session); 
+    console.log('GOTTEN PROFILLLEE', response)
+    if (response?.user?.name) {
+      setUserData(response.user); 
 
-  
+      response.user.interests.forEach((program) => {
+        setValue(`programs.${program}`, true);
+      })
+
+      response.user.nationality.forEach((ethnicity) => {
+        setValue(`ethnicity.${ethnicity}`, true);
+      })
+    }
+  }
 
   useEffect(() => {
     if (email) {
       getProfileInfo(); 
     }
   }, [email])
-
 
   return (
     <>
@@ -75,14 +85,17 @@ const ProfilePage = (props) => {
                   setValue={setValue}
                   register={register}
                   name='grade'
+                  initialVal={userData.grade}
                 />
               </Box>
 
-              <Box mb={30}>
+              <Box mb={30} mw={'500px'}>
                 <TitleHeading>What is your preferred name?</TitleHeading>
                 <TextInput 
                   name='preferredName'
                   register={register}
+                  initialVal={userData.preferredName}
+                  setValue={setValue}
                 />
               </Box>
 
@@ -98,6 +111,7 @@ const ProfilePage = (props) => {
                   setValue={setValue}
                   register={register}
                   name='pronouns'
+                  initialVal={userData.pronouns}
                 />
               </Box>
 

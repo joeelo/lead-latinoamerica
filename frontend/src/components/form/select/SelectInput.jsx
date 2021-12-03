@@ -1,10 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Box from '@/components/generic/Box';
 import useHandleClickOutside from '@/hooks/useHandleClickOutside';
 
-const SelectInput = ({ options, register, setValue, name }) => {
+const SelectInput = ({ options, register, setValue, name, initialVal }) => {
   const wrapperRef = useRef(null);
   const [showOptions, setShowOptions] = useState(false);
   const [selectedOption, setSelectedOption] = useState({});
@@ -14,11 +14,24 @@ const SelectInput = ({ options, register, setValue, name }) => {
     setValue(name, opt.value);
   };
 
+  const setInitialValue = useCallback(() => {
+    const foundInitialOption = options.find((opt) => opt.value === initialVal);
+
+    if (foundInitialOption) {
+      setSelectedOption(foundInitialOption);
+      setValue(name, initialVal);
+    }
+  }, [initialVal]);
+
   const cb = () => {
     setShowOptions(false);
   };
 
   useHandleClickOutside(wrapperRef, cb);
+
+  useEffect(() => {
+    setInitialValue();
+  }, [initialVal]);
 
   return (
     <Box style={{ position: 'relative' }}>

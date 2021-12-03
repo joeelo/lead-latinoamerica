@@ -1,11 +1,23 @@
 import styled, { ThemeContext } from 'styled-components';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 
-const FormInput = ({ register, name, label, isRequired, placeHolder }) => {
+const FormInput = ({
+  register,
+  setValue,
+  name,
+  label,
+  isRequired,
+  placeHolder,
+  initialVal,
+}) => {
   // register and hasError are properties of parent
   const theme = useContext(ThemeContext);
 
   const [isInFocus, setIsInFocus] = useState(false);
+
+  useEffect(() => {
+    setValue(name, initialVal);
+  }, [initialVal]);
 
   return (
     <Container focused={isInFocus}>

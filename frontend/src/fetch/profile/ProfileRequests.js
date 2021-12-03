@@ -17,6 +17,7 @@ const createProfile = async (session) => {
 
 const getProfile = async (session) => {
   // if there is no profile we will create one with creds given. 
+  if (!session.user) return; 
   const { email } = session.user; 
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/profile/${email}`, {
@@ -26,12 +27,8 @@ const getProfile = async (session) => {
       }, 
       body: JSON.stringify(session)  
     });
-    const json = await response.json(); 
 
-    if (json.success && !json.hasProfile) {
-      const json = await createProfile(session); 
-      return json; 
-    }
+    const json = await response.json(); 
 
     console.log(json); 
     return json; 
@@ -41,7 +38,6 @@ const getProfile = async (session) => {
 }
 
 const editProfile = async (data, email) => {
-  
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/user/profile/${email}/edit`, {
       method: 'PUT', 
