@@ -75,18 +75,17 @@ router.put('/user/profile/:email/edit', async (req, res) => {
     (p) => data.programs[p]
   );
 
-  modifications.email = email;
+  
   modifications.preferredName = data.preferredName; 
   modifications.grade = data.grade; 
   modifications.nationality = nationalities;
   modifications.interests = programs; 
-  modifications.pronouns = data.pronouns
+  modifications.pronouns = data.pronouns;
 
   try {
     const user = await User.findOneAndUpdate(
       email,
       { $set: modifications },
-      { new: true }
     );
 
     res.send(user);
