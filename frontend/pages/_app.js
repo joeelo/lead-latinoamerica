@@ -4,6 +4,7 @@ import { LanguageWrapper } from '@/context/LanguageContext';
 import { config, dom } from "@fortawesome/fontawesome-svg-core";
 import { Provider as AuthProvider } from 'next-auth/client';
 import { getSession } from "next-auth/client"
+import 'react-toastify/dist/ReactToastify.css';
 
 const GlobalStyle = createGlobalStyle`
   	html, *, body {

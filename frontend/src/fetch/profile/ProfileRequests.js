@@ -38,6 +38,7 @@ const getProfile = async (session) => {
 }
 
 const editProfile = async (data, email) => {
+  console.log('CALLLED: ', email)
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/user/profile/${email}/edit`, {
       method: 'PUT', 

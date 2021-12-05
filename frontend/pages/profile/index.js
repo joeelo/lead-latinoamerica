@@ -13,24 +13,38 @@ import { useForm } from 'react-hook-form';
 import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup';
 import { editProfile, getProfile } from '@/fetch/profile/ProfileRequests';
 import Button from '@/components/buttons/Button';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 const ProfilePage = (props) => {
 
-  const [ session, loading ] = useSession(); 
-  const [ profileInfo, setProfileInfo ] = useState(null); 
+  const [ session ] = useSession(); 
   const [ userData, setUserData ] = useState({});
   const [ isEditing, setIsEditing ] = useState(false); 
 
   const userName = getFullName(session)
   const email = session?.user?.email;
-  const userInterestStr = userData.interests?.join(',', ' ');
+  const userInterestStr = userData.interests?.join(', ');
   
   const { register, handleSubmit, setValue } = useForm(); 
+
+  const successNotification = () => toast('Successfully Updated!', {
+    position: 'bottom-right',
+    hideProgressBar: true,
+    style: { background: '#43a23c', color: 'white' },
+  });
+
+  console.log('successNotification', successNotification);
   
   const onSubmit = async (data) => {
     const response = await editProfile(data, email); 
     console.log('RESPONSEEEE: ', response);
+
+    if (response.success) {
+      setIsEditing(false);
+      successNotification();
+      scrollTo(top)
+    }
   }
 
   const getProfileInfo = async () => {
@@ -75,9 +89,11 @@ const ProfilePage = (props) => {
           />
         </PhotoContainer>
         <Box width='al-fu' center style={{position: 'relative'}}>
-          <NameCircle>
-            { userName.initials }
-          </NameCircle>
+          {userName.initials && (
+            <NameCircle>
+              { userName.initials }
+            </NameCircle>
+          )}
         </Box>
         <Box width='al-fu' center mt={100} mb={100}>
           {!isEditing ? (
@@ -187,6 +203,7 @@ const ProfilePage = (props) => {
             )}
         </Box>
       <Footer />
+      <ToastContainer />
     </>
   )
 }

@@ -1,23 +1,23 @@
-import styled, { keyframes } from 'styled-components'; 
+import styled, { keyframes } from 'styled-components';
 
 const Checkbox = ({ option, register }) => {
-	
-	return (
-		<Container>
-			<Label>
-				<Input
-					name={ option.value }
-					value={ option.value }
-					type='checkbox'
-					{...register(option.value)}
-				/>
-				{ option.label }
-			</Label>
-		</Container>
-	)
-}
+  if (!option?.value) return <></>;
+  return (
+    <Container>
+      <Label>
+        <Input
+          name={option.value}
+          value={option.value}
+          type="checkbox"
+          {...register(option.value)}
+        />
+        {option.label}
+      </Label>
+    </Container>
+  );
+};
 
-export default Checkbox; 
+export default Checkbox;
 
 const jelly = keyframes`
 	from {
@@ -41,30 +41,30 @@ const jelly = keyframes`
 	to {
 		transform: scale(1, 1);
 	}
-`
+`;
 
 const Container = styled.div`
-	display: flex; 
-`
+  display: flex;
+`;
 
 const Label = styled.label`
-	font-size: 26px;
+  font-size: 26px;
 
-	:hover {
-		cursor: pointer;
-	}
-`
+  :hover {
+    cursor: pointer;
+  }
+`;
 
 const Input = styled.input`
-	margin-right: 20px;
+  margin-right: 20px;
 
-	.cbx:checked ~ .cbx {
-		border-color: transparent;
-		background: #6871f1;
-		animation: jelly 0.6s ease;
-	}
-	.cbx:checked ~ .cbx:after {
-		opacity: 1;
-		transform: rotate(45deg) scale(1);
-	}
-`
+  .cbx:checked ~ .cbx {
+    border-color: transparent;
+    background: #6871f1;
+    animation: jelly 0.6s ease;
+  }
+  .cbx:checked ~ .cbx:after {
+    opacity: 1;
+    transform: rotate(45deg) scale(1);
+  }
+`;
