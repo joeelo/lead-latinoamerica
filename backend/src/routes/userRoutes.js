@@ -2,6 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 const User = require('../models/User');
+const Program = require('../models/Program');
+
 
 router.post('/users/sign-up', async (req, res) => {
   try {
@@ -75,7 +77,6 @@ router.put('/user/profile/:email/edit', async (req, res) => {
     (p) => data.programs[p]
   );
 
-  
   modifications.preferredName = data.preferredName; 
   modifications.grade = data.grade; 
   modifications.nationality = nationalities;
@@ -88,7 +89,7 @@ router.put('/user/profile/:email/edit', async (req, res) => {
       { $set: modifications },
     );
 
-    res.send(user);
+    res.send({success: true, user});
 
     return;
   } catch (error) {
@@ -124,36 +125,58 @@ router.post('/profile/:email', async (req, res) => {
 router.get('/user/programs/:email/:programId', async (req, res) => {
   const { email, programId } = req.params;
   try {
-    const user = await User.findOne({
-      email
-    })
+    const user = await User.findOne({ email })
 
     if (!user) {
       res.send({message: 'you must sign up for an account to save your programs', success: true})
       return; 
     }
 
-    console.log('USERRRRR: ', user)
-
     let foundProgram = null; 
-
+    
     if (user.savedPrograms.length) {
-      foundProgram = await user.savedPrograms.find(programId);
+      foundProgram = user.savedPrograms.find((id => id == programId));
     }
 
     if (foundProgram) {
-      res.send({message: 'This program is already saved!', success: true}); 
+      res.send({ 
+      message: 'This program is already saved!', 
+      success: true, 
+      warningMessage: 'This program is already saved!' 
+      }); 
+
       return; 
     }
-    
 
-    await user.savedPrograms.push([ programId ]); 
+    user.savedPrograms.push(programId)
     await user.save(); 
 
-    res.send({message: 'Program Saved!', success: true});
+    res.send({ message: 'Program Saved!', success: true });
 
   } catch (error) {
     console.log('ERROR IN UPDATING SAVED PROGRAMS: ', error);
+  }
+})
+
+router.get('/user/:email/programs', async (req, res) => {
+  try {
+    const { email } = req.params;
+    const user = await User.findOne({ email });
+    const programs = user.savedPrograms; 
+
+    console.log('USER SAVED: ', user.savedPrograms)
+    if (programs.length) {
+      const records = await Program.find({ '_id': { $in: user.savedPrograms } })
+
+      res.send({ programs: records, success: true });
+      return; 
+    }
+
+    res.send({ programs: null, success: true });
+
+  } catch (error) {
+    console.log('ERROR IN USER GET PROGRAMS: ', error); 
+    res.send({ error, success: false })
   }
 })
 
