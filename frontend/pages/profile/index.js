@@ -14,7 +14,7 @@ import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup';
 import { editProfile, getProfile } from '@/fetch/profile/ProfileRequests';
 import Button from '@/components/buttons/Button';
 import { ToastContainer, toast } from 'react-toastify';
-
+import { getAllPrograms } from '@/fetch/program/ProgramRequests';
 
 const ProfilePage = (props) => {
 
@@ -33,8 +33,6 @@ const ProfilePage = (props) => {
     hideProgressBar: true,
     style: { background: '#43a23c', color: 'white' },
   });
-
-  console.log('successNotification', successNotification);
   
   const onSubmit = async (data) => {
     const response = await editProfile(data, email); 
@@ -43,7 +41,7 @@ const ProfilePage = (props) => {
     if (response.success) {
       setIsEditing(false);
       successNotification();
-      scrollTo(top)
+      scrollTo({ top: 100 })
     }
   }
 
@@ -60,7 +58,12 @@ const ProfilePage = (props) => {
       response.user.nationality.forEach((ethnicity) => {
         setValue(`ethnicity.${ethnicity}`, true);
       })
+
+      const userPrograms = await getAllPrograms(session.user.email, response.user.savedPrograms);
+      console.log('USER PROGRAMS: ', userPrograms); 
     }
+
+
   }
 
   const handleClick = () => {
@@ -71,6 +74,7 @@ const ProfilePage = (props) => {
     event.preventDefault(); 
 
     setIsEditing(false); 
+    scrollTo({ top: 100 })
   }
 
   useEffect(() => {
