@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useSession } from 'next-auth/client';
 import NavBar from '@/components/nav/NavBar';
 import Footer from '@/components/footer/Footer';
@@ -15,18 +15,31 @@ import { editProfile, getProfile } from '@/fetch/profile/ProfileRequests';
 import Button from '@/components/buttons/Button';
 import { ToastContainer, toast } from 'react-toastify';
 import { getAllPrograms } from '@/fetch/program/ProgramRequests';
+import UserSavedPrograms from '@/components/programs/UserSavedPrograms';
+import { useQuery } from 'react-query';
 
 const ProfilePage = (props) => {
 
   const [ session ] = useSession(); 
   const [ userData, setUserData ] = useState({});
   const [ isEditing, setIsEditing ] = useState(false); 
+  const [ userPrograms, setUserPrograms ] = useState([])
 
   const userName = getFullName(session)
   const email = session?.user?.email;
   const userInterestStr = userData.interests?.join(', ');
   
   const { register, handleSubmit, setValue } = useForm(); 
+
+  const { isLoading, isError, isSuccess, data } = useQuery(
+    ['userPrograms', session?.user?.email],
+    getAllPrograms, 
+    {
+      enabled: !!session?.user?.email
+    }
+  )
+
+  console.log('DATA', data);
 
   const successNotification = () => toast('Successfully Updated!', {
     position: 'bottom-right',
@@ -36,12 +49,12 @@ const ProfilePage = (props) => {
   
   const onSubmit = async (data) => {
     const response = await editProfile(data, email); 
-    console.log('RESPONSEEEE: ', response);
 
     if (response.success) {
       setIsEditing(false);
       successNotification();
-      scrollTo({ top: 100 })
+      scrollTo({ top: 100 });
+      setUserData(response.user);
     }
   }
 
@@ -59,11 +72,11 @@ const ProfilePage = (props) => {
         setValue(`ethnicity.${ethnicity}`, true);
       })
 
-      const userPrograms = await getAllPrograms(session.user.email, response.user.savedPrograms);
-      console.log('USER PROGRAMS: ', userPrograms); 
+      const programsQuery = await getAllPrograms(session.user.email, response.user.savedPrograms);
+      if (response.success) {
+        setUserPrograms(programsQuery);
+      }
     }
-
-
   }
 
   const handleClick = () => {
@@ -83,6 +96,10 @@ const ProfilePage = (props) => {
     }
   }, [email])
 
+  useEffect(() => {
+
+  }, [userPrograms?.length])
+
   return (
     <>
       <NavBar/>
@@ -92,6 +109,7 @@ const ProfilePage = (props) => {
             objectFit='cover'
           />
         </PhotoContainer>
+
         <Box width='al-fu' center style={{position: 'relative'}}>
           {userName.initials && (
             <NameCircle>
@@ -99,112 +117,119 @@ const ProfilePage = (props) => {
             </NameCircle>
           )}
         </Box>
-        <Box width='al-fu' center mt={100} mb={100}>
-          {!isEditing ? (
-            <> 
-              {userData.preferredName && (
-                <TitleHeading> Hey there {userData.preferredName}!</TitleHeading>
-              )}
 
-              {userData?.grade === 'parent' ? (
-                <TitleHeading> Thank you for joining us! </TitleHeading>
-              ) : (
-                <>
-                  <TitleHeading>Grade</TitleHeading>
-                  <FormDetail>{userData?.grade}</FormDetail>
-                </>
-              )}
+        <Box display='flex' width='al-fu' center justify='space-between'>
+          <Box width='al-fu' center mt={100} mb={100}>
+            {!isEditing ? (
+              <> 
+                {userData.preferredName && (
+                  <TitleHeading> Hey there {userData.preferredName}!</TitleHeading>
+                )}
 
-              <TitleHeading>What are you interested in?</TitleHeading>
-              <FormDetail>{userInterestStr}</FormDetail>
+                {userData?.grade === 'parent' ? (
+                  <TitleHeading> Thank you for joining us! </TitleHeading>
+                ) : (
+                  <>
+                    <TitleHeading>Grade</TitleHeading>
+                    <FormDetail>{userData?.grade}</FormDetail>
+                  </>
+                )}
 
-              <Button color='lightblue' label='Edit' onClick={handleClick}/>
+                <TitleHeading>What are you interested in?</TitleHeading>
+                <FormDetail>{userInterestStr}</FormDetail>
 
-            </>
-          ) : (
-          <Box mw='700px'>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <Box mb={40}>
-                <TitleHeading>What year of school are you in</TitleHeading>
-                <SelectInput 
-                  options={[
-                    {value: 'freshman', label: 'Freshman'},
-                    {value: 'sophomore', label: 'Sophomore'},
-                    {value: 'junior', label: 'Junior'},
-                    {value: 'senior', label: 'Senior'},
-                    {value: 'parent', label: 'I\'m a parent'},
-                  ]}
-                  setValue={setValue}
-                  register={register}
-                  name='grade'
-                  initialVal={userData.grade}
-                />
+                <Button color='lightblue' label='Edit' onClick={handleClick}/>
+
+              </>
+            ) : (
+              <Box mw='700px'>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <Box mb={40}>
+                    <TitleHeading>What year of school are you in</TitleHeading>
+                    <SelectInput 
+                      options={[
+                        {value: 'freshman', label: 'Freshman'},
+                        {value: 'sophomore', label: 'Sophomore'},
+                        {value: 'junior', label: 'Junior'},
+                        {value: 'senior', label: 'Senior'},
+                        {value: 'parent', label: 'I\'m a parent'},
+                      ]}
+                      setValue={setValue}
+                      register={register}
+                      name='grade'
+                      initialVal={userData.grade}
+                    />
+                  </Box>
+
+                  <Box mb={30} mw={'500px'}>
+                    <TitleHeading>What is your preferred name?</TitleHeading>
+                    <TextInput 
+                      name='preferredName'
+                      register={register}
+                      initialVal={userData.preferredName}
+                      setValue={setValue}
+                    />
+                  </Box>
+
+                  <Box mb={30}>
+                    <TitleHeading>What are your preferred pronouns?</TitleHeading>
+                    <SelectInput 
+                      options={[
+                        {value: 'he', label: 'He/His'},
+                        {value: 'she', label: 'She/Her'},
+                        {value: 'they', label: 'They/Them'},
+                        {value: 'none', label: 'Doesn\'t matter'},
+                      ]}
+                      setValue={setValue}
+                      register={register}
+                      name='pronouns'
+                      initialVal={userData.pronouns}
+                    />
+                  </Box>
+
+                  <Box mb={30}>
+                    <TitleHeading>What programs are you most interested in?</TitleHeading>
+                    <CheckboxGroup 
+                      options={[
+                        {value: 'programs.summer', label: 'Summer'}, 
+                        {value: 'programs.scholarships', label: 'Scholarships'}, 
+                        {value: 'programs.internships', label: 'Internships'}, 
+                        {value: 'programs.programs', label: 'Programs'},
+                      ]}
+                      register={register}
+                    /> 
+                  </Box>
+
+                  <Box>
+                    <TitleHeading>What ethnicity are you? (check all that apply)</TitleHeading>
+                    <p style={{ marginTop: -10, marginBottom: 10}}>We ask because there are programs for specific groups and we'd like every possible opportunity to be available.</p>
+                    <CheckboxGroup
+                      options={[
+                        {value: 'ethnicity.caucasian', label: 'White or Caucasion'},
+                        {value: 'ethnicity.latino', label: 'Hispanic or Latino'},
+                        {value: 'ethnicity.african', label: 'African or African-American'},
+                        {value: 'ethnicity.asian', label: 'Asian or Asian-American'},
+                        {value: 'ethnicity.nativeAmerican', label: 'Native American'},
+                        {value: 'ethnicity.multiRacial', label: 'Multi-Racial'},
+                        {value: 'ethnicity.noAnswer', label: 'Don\'t care to answer'},
+                      ]}
+                      register={register}
+                    />
+                  </Box>
+
+                  <Box display='flex'>
+                    <Button color='red' label='cancel' onClick={handleCancel} style={{marginRight: 40}}/>
+                    <Button color='#1F2041' label='Submit'/>
+                  </Box>
+                </form>
               </Box>
-
-              <Box mb={30} mw={'500px'}>
-                <TitleHeading>What is your preferred name?</TitleHeading>
-                <TextInput 
-                  name='preferredName'
-                  register={register}
-                  initialVal={userData.preferredName}
-                  setValue={setValue}
-                />
-              </Box>
-
-              <Box mb={30}>
-                <TitleHeading>What are your preferred pronouns?</TitleHeading>
-                <SelectInput 
-                  options={[
-                    {value: 'he', label: 'He/His'},
-                    {value: 'she', label: 'She/Her'},
-                    {value: 'they', label: 'They/Them'},
-                    {value: 'none', label: 'Doesn\'t matter'},
-                  ]}
-                  setValue={setValue}
-                  register={register}
-                  name='pronouns'
-                  initialVal={userData.pronouns}
-                />
-              </Box>
-
-              <Box mb={30}>
-                <TitleHeading>What programs are you most interested in?</TitleHeading>
-                <CheckboxGroup 
-                  options={[
-                    {value: 'programs.summer', label: 'Summer'}, 
-                    {value: 'programs.scholarships', label: 'Scholarships'}, 
-                    {value: 'programs.internships', label: 'Internships'}, 
-                    {value: 'programs.programs', label: 'Programs'},
-                  ]}
-                  register={register}
-                /> 
-              </Box>
-
-              <Box>
-                <TitleHeading>What ethnicity are you? (check all that apply)</TitleHeading>
-                <p style={{ marginTop: -10, marginBottom: 10}}>We ask because there are programs for specific groups and we'd like every possible opportunity to be available.</p>
-                <CheckboxGroup
-                  options={[
-                    {value: 'ethnicity.caucasian', label: 'White or Caucasion'},
-                    {value: 'ethnicity.latino', label: 'Hispanic or Latino'},
-                    {value: 'ethnicity.african', label: 'African or African-American'},
-                    {value: 'ethnicity.asian', label: 'Asian or Asian-American'},
-                    {value: 'ethnicity.nativeAmerican', label: 'Native American'},
-                    {value: 'ethnicity.multiRacial', label: 'Multi-Racial'},
-                    {value: 'ethnicity.noAnswer', label: 'Don\'t care to answer'},
-                  ]}
-                  register={register}
-                />
-              </Box>
-
-              <Box display='flex'>
-                <Button color='red' label='cancel' onClick={handleCancel} style={{marginRight: 40}}/>
-                <Button color='#1F2041' label='Submit'/>
-              </Box>
-            </form>
+            )}
           </Box>
 
-            )}
+          <Box>
+
+            <UserSavedPrograms programs={data?.programs}/>
+          </Box>
         </Box>
       <Footer />
       <ToastContainer />
