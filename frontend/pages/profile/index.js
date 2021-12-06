@@ -40,6 +40,7 @@ const ProfilePage = (props) => {
   )
 
   console.log('DATA', data);
+  console.log('USER: ', session?.user?.email)
 
   const successNotification = () => toast('Successfully Updated!', {
     position: 'bottom-right',
@@ -71,11 +72,6 @@ const ProfilePage = (props) => {
       response.user.nationality.forEach((ethnicity) => {
         setValue(`ethnicity.${ethnicity}`, true);
       })
-
-      const programsQuery = await getAllPrograms(session.user.email, response.user.savedPrograms);
-      if (response.success) {
-        setUserPrograms(programsQuery);
-      }
     }
   }
 
@@ -227,7 +223,6 @@ const ProfilePage = (props) => {
           </Box>
 
           <Box>
-
             <UserSavedPrograms programs={data?.programs}/>
           </Box>
         </Box>
