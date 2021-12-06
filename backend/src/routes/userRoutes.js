@@ -65,6 +65,8 @@ router.get('/user/show/:id', async (req, res) => {
 
 router.put('/user/profile/:email/edit', async (req, res) => {
 
+  console.log(req.body, req.params)
+
   const { data } = req.body;
   const { email } = req.params;
   const modifications = {};
@@ -84,12 +86,18 @@ router.put('/user/profile/:email/edit', async (req, res) => {
   modifications.pronouns = data.pronouns;
 
   try {
-    const user = await User.findOneAndUpdate(
-      email,
-      { $set: modifications },
-    );
 
-    res.send({success: true, user});
+    const user = await User.findOne({ email: email })
+
+    user.preferredName = data.preferredName; 
+    user.grade = data.grade; 
+    user.nationality = data.nationality;
+    user.interests = data.interests; 
+    user.pronouns = data.pronouns; 
+
+    await user.save();
+
+    res.send({ success: true, user });
 
     return;
   } catch (error) {
