@@ -10,7 +10,7 @@ const UserSavedPrograms = ({ programs }) => {
   if (!programs) return <></>;
   return (
     <Box display="flex" fd="column" mt={125}>
-      Your saved programs!
+      Your saved opportunities!
       {programs.map((program) => {
         return (
           <Link href={`/resource/${program.href}`}>
