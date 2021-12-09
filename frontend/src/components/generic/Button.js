@@ -13,7 +13,6 @@ const Button = styled.div`
   margin-top: 40px;
   transition: .2s ease-in-out;
   max-width: 90%; 
-  
 `
 
 export default Button;

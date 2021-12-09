@@ -9,10 +9,9 @@ import { useSession, signIn } from 'next-auth/client';
 const Signup = () => {
 
   const theme = useContext(ThemeContext);
+  
   //session comes back with google info - https://github.com/nextauthjs/next-auth
   const [ session ] = useSession(); 
-
-  console.log('SESSION: ', session)
 
   return (
     <>
