@@ -16,7 +16,9 @@ const FormInput = ({
   const [isInFocus, setIsInFocus] = useState(false);
 
   useEffect(() => {
-    setValue(name, initialVal);
+    if (initialVal) {
+      setValue(name, initialVal);
+    }
   }, [initialVal]);
 
   return (
