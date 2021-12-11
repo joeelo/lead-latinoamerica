@@ -10,11 +10,12 @@ import SelectInput from '@/components/form/select/SelectInput';
 import TextInput from '@/components/form/text-input/TextInput';
 import { useForm } from 'react-hook-form';
 import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup';
-import Button from '@/components/generic/Button';
+import Button from '@/components/buttons/Button';
 import Box from '@/components/generic/Box';
 import Form from '@/components/form/container/Form';
 import StyledSectionHeading from '@/components/form/section/StyledSectionHeading';
-import Dropzone from '@/components/drag-n-drop/Dropzone'
+import Dropzone from '@/components/drag-n-drop/Dropzone';
+import Textarea from '@/components/form/text-input/TextArea';
 
 const AddAndEditOrgs = () => {
 
@@ -28,6 +29,10 @@ const AddAndEditOrgs = () => {
 			router.push('/thanks-partner');
 		}
 	}, [ formSubmitted ])
+
+	const onSubmit = (data) => {
+		console.log(data);
+	}
 
 	return (
 		<>
@@ -44,13 +49,13 @@ const AddAndEditOrgs = () => {
 					onlyRunOneTransition={ true }
 				/>
 
-				<Form style={{maxWidth: '600px'}}>
+				<Form style={{maxWidth: '600px'}} onSubmit={handleSubmit(onSubmit)}>
 					<Box>
 						<StyledSectionHeading>Name of your organization</StyledSectionHeading>
 						<TextInput 
 							register={register}
 							name='organization'
-							placeHolder='name:  '
+							placeHolder='name:'
 						/>
 					</Box>
 
@@ -59,7 +64,7 @@ const AddAndEditOrgs = () => {
 						<TextInput 
 							register={register}
 							name='bio'
-							placeHolder='some keywords to describe how you can help'
+							placeHolder='Tell us about you! '
 						/>
 					</Box>
 
@@ -68,7 +73,7 @@ const AddAndEditOrgs = () => {
 						<TextInput 
 							register={register}
 							name='helpsWith'
-							placeHolder='some keywords to describe how you can help'
+							placeHolder='some keywords to describe how you can help ie: leadership skills'
 						/>
 					</Box>
 
@@ -77,7 +82,38 @@ const AddAndEditOrgs = () => {
 						<Dropzone />
 					</Box>
 
-					<Button>Submit</Button>
+					<StyledSectionHeading>What type of services are offered?</StyledSectionHeading>
+					<CheckboxGroup options={[
+							{value: 'programType.summer', label: 'Summer'},
+							{value: 'programType.internship', label: 'Internship'},
+							{value: 'programType.program', label: 'Programs'},
+							{value: 'programType.scholarship', label: 'Scholarship'},
+						]}
+						register={register}
+					/>
+
+					<Box>
+						<StyledSectionHeading>Mission Statement</StyledSectionHeading>
+						<Textarea 
+							register={register}
+							name='missionStatement'
+							placeHolder='Do you have a mission statement?'
+						/>
+					</Box>
+
+					<Box>
+						<StyledSectionHeading>Best email to reach you at?</StyledSectionHeading>
+						<TextInput 
+							register={register}
+							name='email'
+							placeHolder='Email:'
+						/>
+					</Box>
+
+					<Box display='flex'>
+						<Button label='Go Back' style={{ marginRight: 20 }}/>
+						<Button label='Submit'/>
+					</Box>
 				</Form>
 			</Box>
 			

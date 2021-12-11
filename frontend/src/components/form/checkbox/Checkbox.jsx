@@ -48,7 +48,7 @@ const Container = styled.div`
 `;
 
 const Label = styled.label`
-  font-size: 26px;
+  font-size: 24px;
 
   :hover {
     cursor: pointer;

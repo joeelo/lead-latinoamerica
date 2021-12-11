@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDropzone } from 'react-dropzone';
 import styled from 'styled-components';
+import Button from '@/components/buttons/Button';
 
 const Dropzone = () => {
   const [file, setFile] = useState(null);
@@ -18,10 +19,19 @@ const Dropzone = () => {
     maxFiles: 1,
   });
 
+  const onClick = (event) => {
+    event.preventDefault();
+
+    setFile(null);
+  };
+
   return (
-    <Container {...getRootProps()}>
+    <Container {...getRootProps()} isDragActive={isDragActive}>
       {file ? (
-        <>SAVED</>
+        <>
+          <p style={{ fontSize: 24 }}>SAVED</p>
+          <Button label="Clear File" onClick={onClick} />
+        </>
       ) : (
         <>
           <input {...getInputProps()} />
@@ -47,11 +57,12 @@ const Container = styled.div`
   background-color: #f5f5f5;
   border-radius: 4px;
   padding: 20px;
-  min-height: 150px;
+  min-height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  border: ${(props) => (props.isDragActive ? '2px solid lightblue' : 0)};
 
   :hover {
     cursor: pointer;
