@@ -22,7 +22,7 @@ const getProgramArray = async (endpoint, programType) => {
 	}
 }
 
-const postToDatabase = async (data, endpoint, query) => {
+const postToDatabase = async (data, endpoint, query = {}) => {
 	if (query.local) {
 		return { message: 'success' };
 	}

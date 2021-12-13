@@ -16,6 +16,7 @@ import Form from '@/components/form/container/Form';
 import StyledSectionHeading from '@/components/form/section/StyledSectionHeading';
 import Dropzone from '@/components/drag-n-drop/Dropzone';
 import Textarea from '@/components/form/text-input/TextArea';
+import { postToDatabase } from '@/fetch/requests';
 
 const AddAndEditOrgs = () => {
 
@@ -30,8 +31,10 @@ const AddAndEditOrgs = () => {
 		}
 	}, [ formSubmitted ])
 
-	const onSubmit = (data) => {
+	const onSubmit = async (data) => {
 		console.log(data);
+		const response = await postToDatabase(data, 'programs/add'); 
+		console.log('RESPONSE: ', response);
 	}
 
 	return (

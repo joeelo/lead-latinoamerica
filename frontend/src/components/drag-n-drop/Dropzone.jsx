@@ -19,7 +19,7 @@ const Dropzone = () => {
     maxFiles: 1,
   });
 
-  const onClick = (event) => {
+  const handleClearButtonClick = (event) => {
     event.preventDefault();
 
     setFile(null);
@@ -30,7 +30,7 @@ const Dropzone = () => {
       {file ? (
         <>
           <p style={{ fontSize: 24 }}>SAVED</p>
-          <Button label="Clear File" onClick={onClick} />
+          <Button label="Clear File" onClick={handleClearButtonClick} />
         </>
       ) : (
         <>
