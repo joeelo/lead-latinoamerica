@@ -19,17 +19,23 @@ router.post('/programs/add', async (req, res) => {
       missionStatement,
       signUpLink,
       partnerUrl,
-      programType,
+      programType = {},
       query = {},
     } = req.body;
-    let href = replaceSingleCharGlobal(organization, ' ', '-');
 
+    let href = replaceSingleCharGlobal(organization, ' ', '-');
     href = href.toLowerCase();
 
     const helpsWithArr = helpsWith.split(',');
     const emailResponse = await sendMail(data, href);
 
-    console.log('EMAIL RESPONSE', emailResponse);
+    const programTypeArr = []
+    const programKeys = Object.keys(programType)
+    programKeys.forEach((pk) => {
+      if (!!programType[pk]) {
+        programTypeArr.push(programType[pk]);
+      } 
+    })
 
     const newProgram = new Program({
       organization,
@@ -41,10 +47,9 @@ router.post('/programs/add', async (req, res) => {
       missionStatement,
       signUpLink,
       partnerUrl,
-      programType,
+      programType: programTypeArr,
     });
 
-    console.log('NEW PROGRAM: ', newProgram);
     await newProgram.save((err) => {
       if (err) {
         console.log('ERROR IN PROGRAM SAVE FUNCTION: ', err);

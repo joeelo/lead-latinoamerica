@@ -8,8 +8,6 @@ const sendMail = async (data, href) => {
     const formattedMessageAndOptions = emailFormatter(data, href);
     const response = await sgMail.send(formattedMessageAndOptions);
 
-    console.log('RESPONSE: ', response);
-
     return response;
   } catch (error) {
     console.log('error in sendMail: ', error);

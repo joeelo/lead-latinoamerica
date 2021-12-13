@@ -15,14 +15,8 @@ const emailFormatter = (data, href) => {
 		<strong> An org wants to partner with you</strong> <br/> ${str} <br/>
 		<p> check them out here - </p>
 		<a href="https://lead-latinoamerica.vercel.app/approve/${href}">Go to page</a> `,
-    // mail_settings: {
-    // 	sandbox_mode: { // sandbox mode keeps emails from sending but gives proper sendgrid responses.
-    // 		enable: true
-    // 	}
-    // }
   };
 
-  // console.log('msg: ', msg);
   return msg;
 };
 

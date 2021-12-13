@@ -64,9 +64,6 @@ router.get('/user/show/:id', async (req, res) => {
 });
 
 router.put('/user/profile/:email/edit', async (req, res) => {
-
-  console.log(req.body, req.params)
-
   const { data } = req.body;
   const { email } = req.params;
   const modifications = {};
@@ -87,7 +84,7 @@ router.put('/user/profile/:email/edit', async (req, res) => {
 
   try {
 
-    const user = await User.findOne({ email: email })
+    const user = await User.findOne({ email: email });
 
     user.preferredName = data.preferredName; 
     user.grade = data.grade; 
