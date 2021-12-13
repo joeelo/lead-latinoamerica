@@ -4,11 +4,13 @@ import { useDropzone } from 'react-dropzone';
 import styled from 'styled-components';
 import Button from '@/components/buttons/Button';
 
-const Dropzone = () => {
+const Dropzone = ({ onChange }) => {
   const [file, setFile] = useState(null);
 
   const onDrop = useCallback((acceptedFiles) => {
     setFile(acceptedFiles[0]);
+
+    onChange(acceptedFiles[0]);
   }, []);
 
   //TODO: add validator for 5mb max.
@@ -23,6 +25,7 @@ const Dropzone = () => {
     event.preventDefault();
 
     setFile(null);
+    onChange();
   };
 
   return (

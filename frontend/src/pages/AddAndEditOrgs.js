@@ -32,9 +32,22 @@ const AddAndEditOrgs = () => {
 	}, [ formSubmitted ])
 
 	const onSubmit = async (data) => {
-		console.log(data);
-		const response = await postToDatabase(data, 'programs/add'); 
+		const formData = new FormData(); 
+		formData['file'] = data.file; 
+
+		for (const key in data) {
+			formData[key] = data[key];
+		}
+
+		console.log('FORM DATAAAA: ', formData)
+
+		const response = await postToDatabase(formData, 'programs/add'); 
 		console.log('RESPONSE: ', response);
+	}
+
+	const handleChange = (file) => {
+		setValue('file', file); 
+		console.log('FILE: ', file)
 	}
 
 	return (
@@ -80,9 +93,12 @@ const AddAndEditOrgs = () => {
 						/>
 					</Box>
 
+					{/* DROPZONE FILE UPLOAD COMPONENT*/}
 					<Box>
 						<StyledSectionHeading>Your org logo</StyledSectionHeading>
-						<Dropzone />
+						<Dropzone 
+							onChange={handleChange}
+						/>
 					</Box>
 
 					<StyledSectionHeading>What type of services are offered?</StyledSectionHeading>
