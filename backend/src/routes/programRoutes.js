@@ -2,6 +2,9 @@ const express = require('express');
 const Program = require('../models/Program');
 const seed = require('../seed/programSeed');
 const { upload } = require('../aws/upload');
+// const multer  = require('multer');
+// const upload = multer({ dest: 'uploads/' });
+
 
 const router = express.Router();
 const sendMail = require('../email/sendGrid');
@@ -9,6 +12,7 @@ const sendMail = require('../email/sendGrid');
 const { replaceSingleCharGlobal } = require('../customFuncs/replaceSingleCharGlobal');
 
 // https://philna.sh/blog/2016/06/13/the-surprise-multipart-form-data/
+// https://github.com/expressjs/multer/issues/799
 router.post('/programs/add', upload.single('file'), async (req, res) => {
   try {
     const {
@@ -25,9 +29,8 @@ router.post('/programs/add', upload.single('file'), async (req, res) => {
       query = {},
     } = req.body;
 
-    console.log('uploaded', req.body)
-
-    res.send({success: true, message: 'yes', body: organization})
+    console.log('REQ, ', req.body)
+    res.send('hello!');
 
     return
     let href = replaceSingleCharGlobal(organization, ' ', '-');

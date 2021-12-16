@@ -21,7 +21,7 @@ const multerS3Config = multerS3({
   s3: s3Config, 
   bucket: process.env.S3_BUCKET_NAME,
   metadata: (req, file, cb) => {
-    cb(null, { fieldName: file.fieldName })
+    cb(null, { fieldName: 'meta' })
   },
   key: (req, file, cb) => {
     cb(null, new Date().toISOString() + '-' + file.originalname)
