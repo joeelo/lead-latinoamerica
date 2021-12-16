@@ -1,3 +1,5 @@
+import logFormData from "@/utils/logFormData";
+
 const getProgramBySlug = async (endpoint) => {
 	try {
 		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/${endpoint}`); 
@@ -23,7 +25,7 @@ const getProgramArray = async (endpoint, programType) => {
 }
 
 const postToDatabase = async (data, endpoint, query = {}) => {
-	console.log('DATA: ', data)
+	logFormData(data);
 	if (query.local) {
 		return { message: 'success' };
 	}
@@ -38,7 +40,7 @@ const postToDatabase = async (data, endpoint, query = {}) => {
 		console.log('RESPONSE JSON FROM POSTTODATABASE: ', json);
 		return json; 
 	} catch (error) {
-		console.log(error);
+		console.log('POSTING ERROR', error);
 		return { message: error };
 	}
 }

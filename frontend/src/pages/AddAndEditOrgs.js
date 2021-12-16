@@ -17,6 +17,7 @@ import StyledSectionHeading from '@/components/form/section/StyledSectionHeading
 import Dropzone from '@/components/drag-n-drop/Dropzone';
 import Textarea from '@/components/form/text-input/TextArea';
 import { postToDatabase } from '@/fetch/requests';
+import logFormData from '@/utils/logFormData';
 
 const AddAndEditOrgs = () => {
 
@@ -34,16 +35,11 @@ const AddAndEditOrgs = () => {
 	const onSubmit = async (data) => {
 		const formData = new FormData(); 
 		formData.append('file', data.file); 
+		formData.append('bio', data.bio); 
 
-		for (const key in data) {
-			formData.append(key, data[key]);
-		}
-
-		for (var [key, value] of formData.entries()) { 
-			console.log(key, value);
-		}
-
-		console.log('FOMRIMAIIFME: ', formData);
+		// for (const key in data) {
+		// 	formData.append(key, data[key]);
+		// }
 
 		const response = await postToDatabase(formData, 'programs/add'); 
 		console.log('RESPONSE: ', response);
@@ -51,7 +47,6 @@ const AddAndEditOrgs = () => {
 
 	const handleChange = (file) => {
 		setValue('file', file); 
-		console.log('FILE: ', file)
 	}
 
 	return (
@@ -69,7 +64,7 @@ const AddAndEditOrgs = () => {
 					onlyRunOneTransition={ true }
 				/>
 
-				<Form style={{maxWidth: '600px'}} onSubmit={handleSubmit(onSubmit)}>
+				<Form style={{maxWidth: '600px'}} onSubmit={handleSubmit(onSubmit)} enctype="multipart/form-data">
 					<Box>
 						<StyledSectionHeading>Name of your organization</StyledSectionHeading>
 						<TextInput 
