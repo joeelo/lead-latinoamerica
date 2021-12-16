@@ -1,21 +1,23 @@
 const express = require('express');
 const Program = require('../models/Program');
 const seed = require('../seed/programSeed');
+const { upload } = require('../aws/upload');
 
 const router = express.Router();
 const sendMail = require('../email/sendGrid');
 // eslint-disable-next-line prettier/prettier
 const { replaceSingleCharGlobal } = require('../customFuncs/replaceSingleCharGlobal');
 
-router.post('/programs/add', async (req, res) => {
+// https://philna.sh/blog/2016/06/13/the-surprise-multipart-form-data/
+router.post('/programs/add', upload.single('file'), async (req, res) => {
   try {
-    const data = req.body;
     const {
       organization,
       bio,
       helpsWith,
       coverImage,
       email,
+      file,
       missionStatement,
       signUpLink,
       partnerUrl,
@@ -23,14 +25,20 @@ router.post('/programs/add', async (req, res) => {
       query = {},
     } = req.body;
 
+    console.log('uploaded', req.body)
+
+    res.send({success: true, message: 'yes', body: organization})
+
+    return
     let href = replaceSingleCharGlobal(organization, ' ', '-');
     href = href.toLowerCase();
 
-    const helpsWithArr = helpsWith.split(',');
-    const emailResponse = await sendMail(data, href);
 
-    const programTypeArr = []
-    const programKeys = Object.keys(programType)
+    const helpsWithArr = helpsWith.split(',');
+    // const emailResponse = await sendMail(data, href);
+
+    const programTypeArr = [];
+    const programKeys = Object.keys(programType);
     programKeys.forEach((pk) => {
       if (!!programType[pk]) {
         programTypeArr.push(programType[pk]);
