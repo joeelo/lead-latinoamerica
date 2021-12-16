@@ -23,6 +23,7 @@ const getProgramArray = async (endpoint, programType) => {
 }
 
 const postToDatabase = async (data, endpoint, query = {}) => {
+	console.log('DATA: ', data)
 	if (query.local) {
 		return { message: 'success' };
 	}
@@ -30,10 +31,7 @@ const postToDatabase = async (data, endpoint, query = {}) => {
 	try {
 		const options = {
 			method: 'POST', 
-			headers: {
-				'Content-Type': 'multipart/form-data'
-			}, 
-			body: JSON.stringify(data)
+			body: data, 
 		}
 		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/${endpoint}`, options);
 		const json = await response.json(); 

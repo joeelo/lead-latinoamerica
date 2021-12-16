@@ -33,13 +33,17 @@ const AddAndEditOrgs = () => {
 
 	const onSubmit = async (data) => {
 		const formData = new FormData(); 
-		formData['file'] = data.file; 
+		formData.append('file', data.file); 
 
 		for (const key in data) {
-			formData[key] = data[key];
+			formData.append(key, data[key]);
 		}
 
-		console.log('FORM DATAAAA: ', formData)
+		for (var [key, value] of formData.entries()) { 
+			console.log(key, value);
+		}
+
+		console.log('FOMRIMAIIFME: ', formData);
 
 		const response = await postToDatabase(formData, 'programs/add'); 
 		console.log('RESPONSE: ', response);
