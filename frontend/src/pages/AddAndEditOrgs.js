@@ -36,10 +36,15 @@ const AddAndEditOrgs = () => {
 		const formData = new FormData(); 
 		formData.append('file', data.file); 
 		formData.append('bio', data.bio); 
+		formData.append('helpsWith', data.helpsWith); 
+		formData.append('missionStatement', data.missionStatement); 
+		formData.append('email', data.email);
+		formData.append('organization', data.organization);
 
-		// for (const key in data) {
-		// 	formData.append(key, data[key]);
-		// }
+		Object.keys(data.programType).forEach((key) => {
+			if (data.programType[key])
+			formData.append(`programType[${key}]`, data.programType[key])
+		})
 
 		const response = await postToDatabase(formData, 'programs/add'); 
 		console.log('RESPONSE: ', response);
