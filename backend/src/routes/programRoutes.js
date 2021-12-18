@@ -29,36 +29,31 @@ router.post('/programs/add', upload.single('file'), async (req, res) => {
       query = {},
     } = req.body;
 
-    console.log('REQ, ', req.body)
-    res.send('hello!');
+    let link
 
-    return
+    if (req.file) {
+      link = req.file.location; 
+    }
+
     let href = replaceSingleCharGlobal(organization, ' ', '-');
     href = href.toLowerCase();
 
-
+    const programJson = JSON.stringify(req.body.programType);
     const helpsWithArr = helpsWith.split(',');
     // const emailResponse = await sendMail(data, href);
-
-    const programTypeArr = [];
-    const programKeys = Object.keys(programType);
-    programKeys.forEach((pk) => {
-      if (!!programType[pk]) {
-        programTypeArr.push(programType[pk]);
-      } 
-    })
-
+    
     const newProgram = new Program({
       organization,
       bio,
       helpsWith: helpsWithArr,
       coverImage,
+      orgLogo: link,
       email,
       href,
       missionStatement,
       signUpLink,
       partnerUrl,
-      programType: programTypeArr,
+      programType: {...programJson},
     });
 
     await newProgram.save((err) => {
@@ -73,6 +68,7 @@ router.post('/programs/add', upload.single('file'), async (req, res) => {
 
       return { message: 'saved' };
     });
+    
     res.send({ message: 'success' });
   } catch (error) {
     console.log('ERROR ON PROGRAMS/ADD ROUTE', error);
