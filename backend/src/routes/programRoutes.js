@@ -38,14 +38,15 @@ router.post('/programs/add', upload.single('file'), async (req, res) => {
     let href = replaceSingleCharGlobal(organization, ' ', '-');
     href = href.toLowerCase();
 
-    const programJson = JSON.stringify(req.body.programType);
-    const helpsWithArr = helpsWith.split(',');
-    // const emailResponse = await sendMail(data, href);
+    const programTypeKeys = Object.keys(programType);
+    const programTypes = {}; 
+    
+    programTypeKeys.forEach((key) => programTypes[key] = true);
     
     const newProgram = new Program({
       organization,
       bio,
-      helpsWith: helpsWithArr,
+      helpsWith: [],
       coverImage,
       orgLogo: link,
       email,
@@ -53,7 +54,7 @@ router.post('/programs/add', upload.single('file'), async (req, res) => {
       missionStatement,
       signUpLink,
       partnerUrl,
-      programType: {...programJson},
+      programType: programTypes,
     });
 
     await newProgram.save((err) => {
