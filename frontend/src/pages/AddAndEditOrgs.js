@@ -18,6 +18,7 @@ import Dropzone from '@/components/drag-n-drop/Dropzone';
 import Textarea from '@/components/form/text-input/TextArea';
 import { postToDatabase } from '@/fetch/requests';
 import logFormData from '@/utils/logFormData';
+import WordSelectInput from '@/components/form/word-select/WordSelectInput';
 
 const AddAndEditOrgs = () => {
 
@@ -95,6 +96,7 @@ const AddAndEditOrgs = () => {
 							name='helpsWith'
 							placeHolder='some keywords to describe how you can help ie: leadership skills'
 						/>
+						<WordSelectInput/>
 					</Box>
 
 					{/* DROPZONE FILE UPLOAD COMPONENT*/}
