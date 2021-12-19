@@ -40,13 +40,15 @@ router.post('/programs/add', upload.single('file'), async (req, res) => {
 
     const programTypeKeys = Object.keys(programType);
     const programTypes = {}; 
+
+    const helpsWithArray = JSON.parse(helpsWith);
     
     programTypeKeys.forEach((key) => programTypes[key] = true);
     
     const newProgram = new Program({
       organization,
       bio,
-      helpsWith: [],
+      helpsWith: helpsWithArray,
       coverImage,
       orgLogo: link,
       email,
