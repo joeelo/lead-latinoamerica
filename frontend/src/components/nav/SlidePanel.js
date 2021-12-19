@@ -7,7 +7,6 @@ import es from '@/language/locales/es/navbar.json';
 import useLocale from '@/hooks/useLocale';
 import { useSession, signOut } from 'next-auth/client';
 
-
 const SlidePanel = ({ navOpen, setNavOpen }) => {
 
 	const wrapperRef = useRef(null);

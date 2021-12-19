@@ -10,7 +10,3 @@ mongoose.connect(server, {
   useUnifiedTopology: true,
   ssl: true,
 });
-
-// mongoose.connection
-//     .once('open', () => console.log('connected to MONGODB'))
-//     .on((err) => console.log('CONNECTION ERROR: ', error));

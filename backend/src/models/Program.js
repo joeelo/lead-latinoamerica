@@ -40,6 +40,9 @@ const programSchema = new mongoose.Schema({
   partnerUrl: {
     type: String,
   },
+  orgLogo: {
+    type: String, 
+  },
   programType: {
     program: {
       type: Boolean,

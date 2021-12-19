@@ -1,50 +1,64 @@
 const express = require('express');
 const Program = require('../models/Program');
 const seed = require('../seed/programSeed');
+const { upload } = require('../aws/upload');
+// const multer  = require('multer');
+// const upload = multer({ dest: 'uploads/' });
+
 
 const router = express.Router();
 const sendMail = require('../email/sendGrid');
 // eslint-disable-next-line prettier/prettier
 const { replaceSingleCharGlobal } = require('../customFuncs/replaceSingleCharGlobal');
 
-router.post('/programs/add', async (req, res) => {
+// https://philna.sh/blog/2016/06/13/the-surprise-multipart-form-data/
+// https://github.com/expressjs/multer/issues/799
+router.post('/programs/add', upload.single('file'), async (req, res) => {
   try {
-    const data = req.body;
     const {
       organization,
       bio,
       helpsWith,
       coverImage,
       email,
+      file,
       missionStatement,
       signUpLink,
       partnerUrl,
-      programType,
+      programType = {},
       query = {},
     } = req.body;
-    let href = replaceSingleCharGlobal(organization, ' ', '-');
 
+    let link
+
+    if (req.file) {
+      link = req.file.location; 
+    }
+
+    let href = replaceSingleCharGlobal(organization, ' ', '-');
     href = href.toLowerCase();
 
-    const helpsWithArr = helpsWith.split(',');
-    const emailResponse = await sendMail(data, href);
+    const programTypeKeys = Object.keys(programType);
+    const programTypes = {}; 
 
-    console.log('EMAIL RESPONSE', emailResponse);
-
+    const helpsWithArray = JSON.parse(helpsWith);
+    
+    programTypeKeys.forEach((key) => programTypes[key] = true);
+    
     const newProgram = new Program({
       organization,
       bio,
-      helpsWith: helpsWithArr,
+      helpsWith: helpsWithArray,
       coverImage,
+      orgLogo: link,
       email,
       href,
       missionStatement,
       signUpLink,
       partnerUrl,
-      programType,
+      programType: programTypes,
     });
 
-    console.log('NEW PROGRAM: ', newProgram);
     await newProgram.save((err) => {
       if (err) {
         console.log('ERROR IN PROGRAM SAVE FUNCTION: ', err);
@@ -57,6 +71,7 @@ router.post('/programs/add', async (req, res) => {
 
       return { message: 'saved' };
     });
+    
     res.send({ message: 'success' });
   } catch (error) {
     console.log('ERROR ON PROGRAMS/ADD ROUTE', error);

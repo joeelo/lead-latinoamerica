@@ -17,6 +17,7 @@
     "next-i18next": "^8.10.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
+    "react-dropzone": "^11.4.2",
     "react-hook-form": "^7.20.5",
     "react-is": "^16.8.0",
     "react-query": "^3.34.0",

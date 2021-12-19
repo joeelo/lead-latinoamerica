@@ -15,7 +15,7 @@ const LinkButton = ({
   return (
     <Link href={ hrefFormatted } as={`${ hrefAs }`}>
       <StyledButton {...{bgColor, width}}>
-              <Span> { text } </Span>
+        <Span> { text } </Span>
       </StyledButton>
     </Link>
   )
@@ -25,8 +25,9 @@ export default LinkButton;
 
 const StyledButton = styled(Button)` 
     color: white; 
+    height: 50px;
     background-color: ${props => props.bgColor};
-    width: ${props => props.width ? props.width : '300px'};
+    width: ${props => props.width ? props.width : '150px'};
 
     &:hover {
       background-color: #07004D; 

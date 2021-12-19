@@ -1,7 +1,7 @@
 import styled, { ThemeContext } from 'styled-components';
 import { useContext, useState, useEffect } from 'react';
 
-const FormInput = ({
+const Textarea = ({
   register,
   setValue,
   name,
@@ -36,7 +36,7 @@ const FormInput = ({
   );
 };
 
-export default FormInput;
+export default Textarea;
 
 const Container = styled.div`
   margin-top: 20px;
@@ -56,15 +56,14 @@ const Label = styled.label`
   text-transform: capitalize;
 `;
 
-const StyledInput = styled.input`
+const StyledInput = styled.textarea`
   width: 100%;
-  min-height: 40px;
-  height: 40px;
+  min-height: 100px;
   font-size: 20px;
   padding: 5px 5px 2px 5px;
   margin-bottom: 10px;
   border: 0px;
-  font-weight: lighter;
+  resize: none;
 
   &:focus {
     outline: none;
