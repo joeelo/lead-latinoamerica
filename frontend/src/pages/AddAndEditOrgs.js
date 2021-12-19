@@ -22,25 +22,22 @@ import WordSelectInput from '@/components/form/word-select/WordSelectInput';
 
 const AddAndEditOrgs = () => {
 
-	const [ formSubmitted, setFormSubmitted ] = useState(false); 
+	const [ isSubmitting, setIsSubmitting ] = useState(false); 
+	const [ wordList, setWordList ] = useState([]);
 	const router = useRouter();
 
   const { register, handleSubmit, setValue } = useForm(); 
 
-	useEffect(() => {
-		if (formSubmitted) {
-			router.push('/thanks-partner');
-		}
-	}, [ formSubmitted ])
-
 	const onSubmit = async (data) => {
+		setIsSubmitting(true);
+
 		const formData = new FormData(); 
 		formData.append('file', data.file); 
 		formData.append('bio', data.bio); 
-		formData.append('helpsWith', data.helpsWith); 
 		formData.append('missionStatement', data.missionStatement); 
 		formData.append('email', data.email);
 		formData.append('organization', data.organization);
+		formData.append('helpsWith', JSON.stringify(wordList)); 
 
 		Object.keys(data.programType).forEach((key) => {
 			if (data.programType[key])
@@ -48,7 +45,12 @@ const AddAndEditOrgs = () => {
 		})
 
 		const response = await postToDatabase(formData, 'programs/add'); 
-		console.log('RESPONSE: ', response);
+		if (response.message === 'success') {
+			router.push('/thanks-partner');
+		} else {
+			setIsSubmitting(false);
+			console.log('RESPONSE: ', response);
+		}
 	}
 
 	const handleChange = (file) => {
@@ -70,7 +72,11 @@ const AddAndEditOrgs = () => {
 					onlyRunOneTransition={ true }
 				/>
 
-				<Form style={{maxWidth: '600px'}} onSubmit={handleSubmit(onSubmit)} enctype="multipart/form-data">
+				<Form 
+					style={{maxWidth: '600px', margin: '40px auto 40px auto'}} 
+					onSubmit={handleSubmit(onSubmit)} 
+					enctype="multipart/form-data"
+				>
 					<Box>
 						<StyledSectionHeading>Name of your organization</StyledSectionHeading>
 						<TextInput 
@@ -91,12 +97,11 @@ const AddAndEditOrgs = () => {
 
 					<Box>
 						<StyledSectionHeading>How you can help</StyledSectionHeading>
-						<TextInput 
-							register={register}
-							name='helpsWith'
-							placeHolder='some keywords to describe how you can help ie: leadership skills'
+						<WordSelectInput
+							setWordList={setWordList}
+							wordList={wordList}
+							placeHolder='Use space or enter to create new label, use - for multi-worded labels'
 						/>
-						<WordSelectInput/>
 					</Box>
 
 					{/* DROPZONE FILE UPLOAD COMPONENT*/}
@@ -137,7 +142,7 @@ const AddAndEditOrgs = () => {
 
 					<Box display='flex'>
 						<Button label='Go Back' style={{ marginRight: 20 }}/>
-						<Button label='Submit'/>
+						<Button label='Submit' isSubmitting={isSubmitting}/>
 					</Box>
 				</Form>
 			</Box>
