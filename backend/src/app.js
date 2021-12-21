@@ -1,8 +1,6 @@
 require('dotenv').config();
 
 const express = require('express');
-const formidable = require('express-formidable');
-const multer = require('multer');
 const app = express();
 const cors = require('cors');
 const userRoutes = require('./routes/userRoutes');

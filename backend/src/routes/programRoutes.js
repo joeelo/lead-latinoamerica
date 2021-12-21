@@ -2,13 +2,8 @@ const express = require('express');
 const Program = require('../models/Program');
 const seed = require('../seed/programSeed');
 const { upload } = require('../aws/upload');
-// const multer  = require('multer');
-// const upload = multer({ dest: 'uploads/' });
-
-
 const router = express.Router();
 const sendMail = require('../email/sendGrid');
-// eslint-disable-next-line prettier/prettier
 const { replaceSingleCharGlobal } = require('../customFuncs/replaceSingleCharGlobal');
 
 // https://philna.sh/blog/2016/06/13/the-surprise-multipart-form-data/
@@ -21,15 +16,13 @@ router.post('/programs/add', upload.single('file'), async (req, res) => {
       helpsWith,
       coverImage,
       email,
-      file,
       missionStatement,
       signUpLink,
       partnerUrl,
       programType = {},
-      query = {},
     } = req.body;
 
-    let link
+    let link; 
 
     if (req.file) {
       link = req.file.location; 
@@ -72,6 +65,7 @@ router.post('/programs/add', upload.single('file'), async (req, res) => {
       return { message: 'saved' };
     });
     
+    await sendMail(newProgram, newProgram.href);
     res.send({ message: 'success' });
   } catch (error) {
     console.log('ERROR ON PROGRAMS/ADD ROUTE', error);
