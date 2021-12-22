@@ -7,21 +7,21 @@ const SkewedTitleAndPhoto = ({ program }) => {
 	const coverImage = program.coverImage || '';
 	return (
 		<Container>
-		<TextContainer>
-			<Heading> { program.organization } </Heading>
-			<MissionStatement> { program.missionStatement } </MissionStatement>
-		</TextContainer>
-		<ImageContainer>
-			{ program.coverImage && 
-			<StyledImage 
-				src={ `${ coverImage }` }
-				layout='fill'
-				objectFit='cover'
-				objectPosition='center' 
-				quality={100}
-			/>
-			}
-		</ImageContainer>
+			<TextContainer>
+				<Heading> { program.organization } </Heading>
+				<MissionStatement> { program.missionStatement } </MissionStatement>
+			</TextContainer>
+			<ImageContainer>
+				{ program.coverImage && 
+				<StyledImage 
+					src={ `${ coverImage }` }
+					layout='fill'
+					objectFit='cover'
+					objectPosition='center' 
+					quality={100}
+				/>
+				}
+			</ImageContainer>
 		</Container>
 	)
 }
@@ -33,6 +33,11 @@ const Container = styled.div`
 	min-height: 600px; 
 	display: flex; 
 	overflow: hidden;
+
+	@media screen and (max-width: 1000px) {
+		flex-direction: column-reverse;
+
+	}
 `
 
 const TextContainer = styled.div`
@@ -49,17 +54,27 @@ const TextContainer = styled.div`
 	padding-left: 100px; 
 	padding-top: 60px;
 
-	&:after {
-		width: 100%;
-		background-color: #07004D;
-		position: absolute;
-		content: "";
-		transform: rotate(-20deg);
-		transform-origin: bottom right;
-		right: -65%; 
-		top: -65%; 
-		height: 200%; 
-		z-index: 10;
+	@media screen and min(width: 1000px) {
+		&:after {
+			width: 100%;
+			background-color: #07004D;
+			position: absolute;
+			content: "";
+			transform: rotate(-20deg);
+			transform-origin: bottom right;
+			right: -65%; 
+			top: -65%; 
+			height: 200%; 
+			z-index: 10;
+		}
+	}
+
+	@media screen and (max-width: 1000px) {
+		flex-direction: column;
+		width: 100%; 
+		justify-content: center; 
+		align-items: center; 
+		padding: 80px 20px;
 	}
 
 	h2, p, span {
@@ -70,26 +85,32 @@ const TextContainer = styled.div`
 const ImageContainer = styled.div`
 	width: 60%; 
 	position: relative; 
-`
 
-const UnderlinedProgram = styled.p`
-	font-size: 20px; 
-	text-decoration: underline; 
+	@media screen and (max-width: 1000px) {
+		width: 100%; 
+	}
 `
 
 const Heading = styled.h2`
 	font-size: 68px; 
 	line-height: 60px; 
 	margin-bottom: 5px;
+
+	@media screen and (max-width: 768px) {
+		font-size: 48px; 
+		line-height: 50px; 
+		margin-top: -40px;
+	}
 `
 
 const MissionStatement = styled.p`
 	font-size: 26px; 
 	line-height: 34px; 
-`
+	max-width: 90%;
 
-const CategoriesContainer = styled.div`
-
+	@media screen and (max-width: 1000px) {
+		margin-top: 20px;
+	}
 `
 
 const StyledImage = styled.img`
@@ -101,4 +122,11 @@ const StyledImage = styled.img`
     position: absolute;
     left: 0; 
     top: 0;  
+
+		@media screen and (max-width: 1000px) {
+			object-fit: cover; 
+			position: relative;
+			height: 400px;
+			margin-bottom: -10px;
+		}
 `

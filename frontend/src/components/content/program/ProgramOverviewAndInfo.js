@@ -5,67 +5,59 @@ import LinkButton from "@/components/generic/LinkButton";
 import useGetRouterPath from "@/hooks/useGetRouterPath";
 import Button from "@/components/buttons/Button";
 import { UpdateUsersSavedPrograms } from "@/fetch/user/UserRequests";
+import Box from "@/components/generic/Box";
 
 const ProgramOverviewAndInfo = ({ program, email }) => {
 	const path = useGetRouterPath();
 
-	console.log('PROGRAM : ', program);
-
 	const handleClick = async () => {
-		console.log('workingggg')
 		const response = await UpdateUsersSavedPrograms(email, program._id);
-		console.log('RESPONSE: ', response);
 	}
 
 	return (
 		<>
-			<CenterFlexContainer 
-				paddingTop={ true } 
-				paddingBottom={ true } 
-				align='start'
-				maxWidth='1550px'
-			>
-
-				<LeftContainer>
+			<Container>
+				<Box width="60%">
 					<LargeText> Overview </LargeText>
-					<BioText> { program.bio } </BioText>
+					<StyledP> { program.bio } </StyledP>
 					<LinkButton 
 						text={ 'Sign Up' } 
 						hrefFormatted={'/resources/[resourceSlug]/[programSlug]/sign-up'} 
 						hrefAs={`${path}/sign-up`} 
 					/>
 					<Button label='Save to profile' color='#1F2041' onClick={handleClick}/>
-				</LeftContainer>
+				</Box>
 
-				<RightContainer>
+				<Box width="40%">
 					<UnderlinedSectionHeader> Categories </UnderlinedSectionHeader>
 					<CategoryTiles adjectives={ program.helpsWith }/>
-				</RightContainer>
-			</CenterFlexContainer>
+				</Box>
+			</Container>
 		</>
 	)
 }
 
 export default ProgramOverviewAndInfo;
 
+const Container = styled.div`
+	display: flex; 
+	max-width: 1550px; 
+	padding: 40px 0; 
+
+	@media screen and (max-width: 768px) {
+		flex-direction: column-reverse; 
+
+	}
+`
+
 const LargeText = styled.h2`
 	font-weight: bold;
 	font-size: 72px; 
-`
 
-const InnerContainer = styled.div`
-	padding: 10px 20px; 
-	display: flex; 
-	flex-direction: column; 
-	justify-content: flex-start;
-`
-
-const LeftContainer = styled(InnerContainer)`
-	width: 60%; 
-`
-
-const RightContainer = styled(InnerContainer)`
-	width: 40%; 
+	@media screen and (max-width: 768px) {
+		font-size: 48px; 
+		margin-top: 0; 
+	}
 `
 
 const MidSizeText = styled.p`
@@ -73,11 +65,7 @@ const MidSizeText = styled.p`
 	line-height: 32px
 `
 
-const BioText = styled(MidSizeText)`
-	font-size: 26px;
-`
-
-const StartDateText = styled(MidSizeText)`
+const StyledP = styled(MidSizeText)`
 	font-size: 26px;
 `
 
@@ -85,5 +73,9 @@ const UnderlinedSectionHeader = styled.h3`
 	font-size: 32px; 
 	text-decoration: underline; 
 	margin-top: 15px;
+
+	@media screen and (max-width: 768px) {
+		margin-top: 0; 
+	}
 `
 

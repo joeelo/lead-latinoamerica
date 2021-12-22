@@ -38,6 +38,7 @@ const AddAndEditOrgs = () => {
 		formData.append('email', data.email);
 		formData.append('organization', data.organization);
 		formData.append('helpsWith', JSON.stringify(wordList)); 
+		formData.append('partnerUrl', data.partnerUrl);
 
 		Object.keys(data.programType).forEach((key) => {
 			if (data.programType[key])
@@ -128,6 +129,15 @@ const AddAndEditOrgs = () => {
 							register={register}
 							name='missionStatement'
 							placeHolder='Do you have a mission statement?'
+						/>
+					</Box>
+
+					<Box>
+						<StyledSectionHeading>Do you have a website?</StyledSectionHeading>
+						<TextInput 
+							register={register}
+							name='partnerUrl'
+							placeHolder='website url: '
 						/>
 					</Box>
 

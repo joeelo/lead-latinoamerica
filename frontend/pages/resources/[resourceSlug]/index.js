@@ -56,7 +56,7 @@ const ResourcePage = () => {
 						}}
 					/>
 					<CenterFlexContainer padding='extraPad'>
-						{ programsArray.map(( program, index ) => (
+						{ programsArray.map(( program ) => (
 							<PhotoWithTextBox key={ program.href } coverImage={ program.coverImage } program={ program } />
 						))}
 					</CenterFlexContainer>

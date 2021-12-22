@@ -17,6 +17,8 @@ const Box = ({
   flex,
   classNames,
   mobileProps,
+  stackOnMobile,
+  mobileWidth,
   ...props 
 }) => {
   return (
@@ -37,6 +39,8 @@ const Box = ({
         p,
         flex,
         mobileProps,
+        stackOnMobile,
+        mobileWidth,
       }} 
       {...props}
       className={classNames}
@@ -68,9 +72,9 @@ const Container = styled.div`
   margin-bottom: ${(props) => (props.mb ? props.mb + "px" : null)};
 
   @media screen and (max-width: 768px) {
-    width: 100%;
+    width: ${(props) => props.mobileWidth ? mobileWidth : '100%'};
     margin: 0 auto;
-    flex-direction: column; 
+    flex-direction: ${(props) => props.stackOnMobile ? 'column' : 'inherit'}; 
     padding: 20px;
   }
 `;
