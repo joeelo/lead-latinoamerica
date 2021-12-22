@@ -11,6 +11,7 @@ const sendMail = async (data, href) => {
     return response;
   } catch (error) {
     console.log('error in sendMail: ', error);
+    return error; 
   }
 };
 

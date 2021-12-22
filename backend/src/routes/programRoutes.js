@@ -65,7 +65,7 @@ router.post('/programs/add', upload.single('file'), async (req, res) => {
       return { message: 'saved' };
     });
     
-    await sendMail(newProgram, newProgram.href);
+    await sendMail(req.body, href);
     res.send({ message: 'success' });
   } catch (error) {
     console.log('ERROR ON PROGRAMS/ADD ROUTE', error);
@@ -181,5 +181,18 @@ router.delete('/programs/erase-all', async (req, res) => {
     res.send({ message: error });
   }
 });
+
+router.post('/email/test', async (req, res) => {
+  try {
+    console.log('POSTTT', req.body);
+    
+    const emailResponse = await sendMail(req.body, req.body.href); 
+    res.send({message: 'success', email: emailResponse});
+  } catch (error) {
+    console.log('ERROR: ', error); 
+
+    res.send({error: true, message: error});
+  }
+})
 
 module.exports = router;
