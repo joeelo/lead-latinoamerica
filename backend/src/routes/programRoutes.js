@@ -16,6 +16,7 @@ router.post('/programs/add', upload.single('file'), async (req, res) => {
       helpsWith,
       coverImage,
       email,
+      file,
       missionStatement,
       signUpLink,
       partnerUrl,
