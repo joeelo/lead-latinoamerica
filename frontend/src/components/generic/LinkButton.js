@@ -25,9 +25,9 @@ export default LinkButton;
 
 const StyledButton = styled(Button)` 
     color: white; 
-    height: 50px;
+    height: 60px;
     background-color: ${props => props.bgColor};
-    width: ${props => props.width ? props.width : '150px'};
+    width: ${props => props.width ? props.width : '175px'};
 
     &:hover {
       background-color: #07004D; 
@@ -36,4 +36,5 @@ const StyledButton = styled(Button)`
 
 const Span = styled.span`
     color: white;   
+    font-size: 22px;
 `

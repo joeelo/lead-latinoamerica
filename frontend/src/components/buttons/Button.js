@@ -14,7 +14,9 @@ const Button = ({ label, color, onClick, isSubmitting = false, ...props }) => {
 
   return (
     <Container onClick={onClick} {...{color}} {...props}>
-      {isSubmitting ? <StyledLoader src="/loaders/spinning-loader.svg"/> : label}
+      <span>
+        {isSubmitting ? <StyledLoader src="/loaders/spinning-loader.svg"/> : label}
+      </span>
     </Container>
   )
 }
@@ -31,8 +33,8 @@ Button.propTypes = {
 export default Button;
 
 const Container = styled.button`
-  width: 150px; 
-  height: 50px; 
+  width: 175px; 
+  height: 60px; 
   display: flex; 
   justify-content: center; 
   align-items: center; 
@@ -44,6 +46,7 @@ const Container = styled.button`
   color: white;
   font-size: 18px;
   transition: .4s ease all; 
+  font-size: 22px;
 
   :hover {
     cursor: pointer;

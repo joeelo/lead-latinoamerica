@@ -41,12 +41,13 @@ export default ProgramOverviewAndInfo;
 
 const Container = styled.div`
 	display: flex; 
+	width: 95%; 
 	max-width: 1550px; 
-	padding: 40px 0; 
+	padding: 40px 20px; 
+	margin: 0 auto; 
 
 	@media screen and (max-width: 768px) {
 		flex-direction: column-reverse; 
-
 	}
 `
 
