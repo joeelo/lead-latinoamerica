@@ -28,7 +28,7 @@ const ProgramOverviewAndInfo = ({ program, email }) => {
 					<Button label='Save to profile' color='#1F2041' onClick={handleClick}/>
 				</Box>
 
-				<Box width="40%">
+				<Box width="35%">
 					<UnderlinedSectionHeader> Categories </UnderlinedSectionHeader>
 					<CategoryTiles adjectives={ program.helpsWith }/>
 				</Box>
@@ -42,9 +42,10 @@ export default ProgramOverviewAndInfo;
 const Container = styled.div`
 	display: flex; 
 	width: 95%; 
-	max-width: 1550px; 
+	max-width: 1200px; 
 	padding: 40px 20px; 
 	margin: 0 auto; 
+	justify-content: space-between;
 
 	@media screen and (max-width: 768px) {
 		flex-direction: column-reverse; 

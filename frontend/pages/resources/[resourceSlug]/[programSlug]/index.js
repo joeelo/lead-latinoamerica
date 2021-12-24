@@ -23,16 +23,16 @@ const ProgramPage = () => {
     getProgram(); 
   }, [router.query])
 
-  console.log('PROGRAM: ', program);
+  console.log('SESSSSION:::: ', session);
 
-  if ( !program ) return <>Loading</>
+  if (!program) return <>Loading</>
   return (
     <>
       <NavBar />
-      <SkewedTitleAndPhoto program={ program } router={ router }/>
+      <SkewedTitleAndPhoto program={program} router={router}/>
       <ProgramOverviewAndInfo 
-        program={ program } 
-        marginTop={ true } 
+        program={program} 
+        marginTop={true} 
         email={session?.user?.email}
       />
       <Footer marginTop={ true }/>

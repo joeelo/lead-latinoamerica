@@ -26,11 +26,11 @@ const Signup = () => {
 
           <Column>
             <ChangingBackgroundText 
-              initialColor={ theme.colors.cultured }
-              secondaryColor={ theme.colors.darkBlue }
-              text={ 'Sign In' }
-              fontColorInitial={ theme.colors.darkBlue }
-              fontColorSecondary={ theme.colors.cultured }
+              initialColor={theme.colors.cultured}
+              secondaryColor={theme.colors.darkBlue}
+              text='Sign In'
+              fontColorInitial={theme.colors.darkBlue}
+              fontColorSecondary={theme.colors.cultured}
               maxWidth='400px'
               onlyRunOneTransition
             />
