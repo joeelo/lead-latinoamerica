@@ -10,6 +10,7 @@ const Box = ({
   pb, 
   mt, 
   mb, 
+  mr,
   mw,
   wrap, 
   center, 
@@ -34,6 +35,7 @@ const Box = ({
         wrap, 
         mt, 
         mb, 
+        mr,
         mw,
         center,
         p,
@@ -59,6 +61,7 @@ const Container = styled.div`
   width: ${(props) => {
     if (props.width === "half") return "50%";
     if (props.width === "al-fu") return "90%"; //almost-full 
+    if (props.width) return props.width
     return "100%";
   }};
   justify-content: ${(props) => (props.justify ? props.justify : "flex-start")};
@@ -67,12 +70,13 @@ const Container = styled.div`
   padding-bottom: ${(props) => props.pb + "px"};
   padding: ${(props) => props.p ? props.p : null};
   flex-wrap: ${(props) => (!!props.wrap ? "wrap" : "nowrap")};
-  margin: ${(props) => (props.center ? "0 auto" : 0)};
-  margin-top: ${(props) => (props.mt ? props.mt + "px" : null)};
-  margin-bottom: ${(props) => (props.mb ? props.mb + "px" : null)};
+  margin: ${(props) => props.center ? "0 auto" : 0};
+  margin-top: ${(props) => props.mt ? props.mt + "px" : null};
+  margin-bottom: ${(props) => props.mb ? props.mb + "px" : null};
+  margin-right: ${(props) => props.mr ? props.mr + "px" : null};
 
   @media screen and (max-width: 768px) {
-    width: ${(props) => props.mobileWidth ? mobileWidth : '100%'};
+    width: ${(props) => props.mobileWidth ? props.mobileWidth : '100%'};
     margin: 0 auto;
     flex-direction: ${(props) => props.stackOnMobile ? 'column' : 'inherit'}; 
     padding: 20px;
