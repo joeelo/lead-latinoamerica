@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import NavBar from '@/components/nav/NavBar';
 import Footer from '@/components/footer/Footer';
 import ChangingBackgroundText from '@/components/content/ChangingBackgroundText';
-import SelectInput from '@/components/form/select/SelectInput';
 import TextInput from '@/components/form/text-input/TextInput';
 import { useForm } from 'react-hook-form';
 import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup';
@@ -17,7 +16,7 @@ import Textarea from '@/components/form/text-input/TextArea';
 import { postToDatabase } from '@/fetch/requests';
 import WordSelectInput from '@/components/form/word-select/WordSelectInput';
 import ExternalLink from '@/components/generic/ExternalLink';
-import getHostname from '@/utils/getHostname';
+import useHostname from '@/hooks/useHostname';
 
 const AddAndEditOrgs = () => {
 
@@ -72,7 +71,7 @@ const AddAndEditOrgs = () => {
 	}
 
 	const isDev = process.env.NEXT_PUBLIC_ENV === 'dev'
-	const hostname = getHostname();
+	const hostname = useHostname();
 
 	const externalLink = `http://${hostname}/preview`
 
@@ -176,9 +175,10 @@ const AddAndEditOrgs = () => {
 						</Box>
 					</Form>
 
-					<Box display="flex" fd="column" width="30%" mobileWidth="30%">
+					<Box display="flex" fd="column" width="30%" mobileWidth="30%" style={{position: 'sticky', height: 200, top: 80, marginTop: 40}}>
 						Want to see what your form will look like? use this preview button
 						<ExternalLink 
+							bgColor='#07004d'
 							href={externalLink} 
 							onClick={() => {
 								setPreview((prevState) => {

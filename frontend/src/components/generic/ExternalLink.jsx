@@ -3,10 +3,23 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Button from '@/components/generic/Button';
 
-const ExternalLink = ({ href, buttonProps, children, ...props }) => {
+const ExternalLink = ({
+  bgColor,
+  buttonProps,
+  children,
+  href,
+  hoverColor,
+  ...props
+}) => {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
-      <StyledButton>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ textDecoration: 'none' }}
+      {...props}
+    >
+      <StyledButton {...{ bgColor, hoverColor }}>
         <Span>{children}</Span>
       </StyledButton>
     </a>
@@ -28,7 +41,8 @@ const StyledButton = styled(Button)`
   width: ${(props) => (props.width ? props.width : '175px')};
 
   &:hover {
-    background-color: #07004d;
+    background-color: ${(props) =>
+      props.hoverColor ? props.hoverColor : '#07004d'};
   }
 `;
 

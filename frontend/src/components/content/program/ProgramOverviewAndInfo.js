@@ -7,7 +7,7 @@ import Button from "@/components/buttons/Button";
 import { UpdateUsersSavedPrograms } from "@/fetch/user/UserRequests";
 import Box from "@/components/generic/Box";
 
-const ProgramOverviewAndInfo = ({ program, email }) => {
+const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 	const path = useGetRouterPath();
 
 	const handleClick = async () => {
@@ -25,7 +25,9 @@ const ProgramOverviewAndInfo = ({ program, email }) => {
 						hrefFormatted={'/resources/[resourceSlug]/[programSlug]/sign-up'} 
 						hrefAs={`${path}/sign-up`} 
 					/>
-					<Button label='Save to profile' color='#1F2041' onClick={handleClick}/>
+					{!preview && (
+						<Button label='Save to profile' color='#1F2041' onClick={handleClick}/>
+					)}
 				</Box>
 
 				<Box width="35%">
