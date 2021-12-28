@@ -22,11 +22,13 @@ const AddAndEditOrgs = () => {
 
 	const [ isSubmitting, setIsSubmitting ] = useState(false); 
 	const [ wordList, setWordList ] = useState([]);
-	const [ preview, setPreview ] = useState(false);
 	const router = useRouter();
 
 	const setPreviewData = (data) => {
 		console.log('data', data);
+		localStorage.setItem('organization', data.organization);
+		localStorage.setItem('bio', data.bio);
+		localStorage.setItem('missionStatement', data.missionStatement);
 		Object.keys(data).forEach(key => {
 			localStorage.setItem(key, data[key]);
 		})
@@ -34,14 +36,14 @@ const AddAndEditOrgs = () => {
 
   const { register, handleSubmit, setValue } = useForm(); 
 
-	const onSubmit = async (data) => {
-		setIsSubmitting(true);
+	const onSubmit = async (data, preview) => {
 
 		if (preview) {
 			setPreviewData(data);
-			setPreview(false);
 			return;
 		}
+		
+		setIsSubmitting(true);
 
 		const formData = new FormData(); 
 		formData.append('file', data.file); 
@@ -73,7 +75,7 @@ const AddAndEditOrgs = () => {
 	const isDev = process.env.NEXT_PUBLIC_ENV === 'dev'
 	const hostname = useHostname();
 
-	const externalLink = `http://${hostname}/preview`
+	const externalLink = `${hostname}/preview`
 
 	return (
 		<>
@@ -175,16 +177,13 @@ const AddAndEditOrgs = () => {
 						</Box>
 					</Form>
 
-					<Box display="flex" fd="column" width="30%" mobileWidth="30%" style={{position: 'sticky', height: 200, top: 80, marginTop: 40}}>
+					<Box display="flex" fd="column" width="30%" mobileWidth="30%" style={{position: 'sticky', height: 200, top: 80, marginTop: 40, 	boxShadow: '3px 0px 35px -4px rgba(156,156,156,1)', padding: 15, marginBottom: 40}}>
 						Want to see what your form will look like? use this preview button
 						<ExternalLink 
 							bgColor='#07004d'
 							href={externalLink} 
 							onClick={() => {
-								setPreview((prevState) => {
-									setPreview(true)
-									handleSubmit(onSubmit)()
-								})
+								handleSubmit(onSubmit)(true);
 							}}>
 							Preview
 						</ExternalLink>
