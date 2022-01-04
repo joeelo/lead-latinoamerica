@@ -85,7 +85,7 @@ Form.defaultProps = {
 const Container = styled.form`
 	margin-left: 50px; 
 	margin-top: 50px; 
-	box-shadow: 10px 10px 25px -4px rgba(0,0,0,0.5);
+	box-shadow: 5px 5px 15px -4px rgba(0,0,0,0.5);
 	min-width: 300px; 
 	width: 90vw; 
 	min-height: 600px; 

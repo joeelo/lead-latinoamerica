@@ -1,5 +1,3 @@
-import logFormData from "@/utils/logFormData";
-
 const getProgramBySlug = async (endpoint) => {
 	try {
 		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/${endpoint}`); 
@@ -25,7 +23,6 @@ const getProgramArray = async (endpoint, programType) => {
 }
 
 const postToDatabase = async (data, endpoint, query = {}) => {
-	logFormData(data);
 	if (query.local) {
 		return { message: 'success' };
 	}

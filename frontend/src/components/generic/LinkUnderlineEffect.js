@@ -4,13 +4,19 @@ import Link from 'next/link';
 
 
 
-const LinkUnderlineEffect = ({ text, hrefFormatted, color }) => {
+const LinkUnderlineEffect = ({ text, hrefFormatted, color, openInNewTab }) => {
 
 	const theme = useContext(ThemeContext);
 
 	return (
 		<P color={ color } theme={ theme }>
-			<Link href={`${hrefFormatted}`} >{ text }</Link>
+			{openInNewTab ? (
+				<a href={`${hrefFormatted}`} target="_blank" rel="noopener noreferrer"> {text} </a>
+			) : (
+				<Link href={`${hrefFormatted}`}>
+					{ text }
+				</Link>
+			)}
 		</P>
 	)
 }
@@ -37,7 +43,6 @@ const P = styled.p`
 		transition:
 		background-size 0.3s,
 		background-position 0s 0.3s; /*change after the size immediately*/
-
 	}
 
 	a:hover {
@@ -50,4 +55,3 @@ const P = styled.p`
 		color: ${ props => props.color ? props.theme.colors[props.color] : '#222' };
 	}
 `
-

@@ -59,9 +59,8 @@ const ProfilePage = (props) => {
     }
   }
 
-  const getProfileInfo = async () => {
+  const setProfileInfo = async () => {
     const response = await getProfile(session); 
-    console.log('GOTTEN PROFILLLEE', response)
     if (response?.user?.name) {
       setUserData(response.user); 
 
@@ -88,7 +87,7 @@ const ProfilePage = (props) => {
 
   useEffect(() => {
     if (email) {
-      getProfileInfo(); 
+      setProfileInfo(); 
     }
   }, [email])
 
@@ -114,7 +113,7 @@ const ProfilePage = (props) => {
           )}
         </Box>
 
-        <Box display='flex' width='al-fu' center justify='space-between'>
+        <Box display='flex' width='al-fu' center justify='space-between' mw="1000px">
           <Box width='al-fu' center mt={100} mb={100}>
             {!isEditing ? (
               <> 
@@ -138,7 +137,7 @@ const ProfilePage = (props) => {
 
               </>
             ) : (
-              <Box mw='700px'>
+              <Box mw='600px' mr={40}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <Box mb={40}>
                     <TitleHeading>What year of school are you in</TitleHeading>
@@ -157,7 +156,7 @@ const ProfilePage = (props) => {
                     />
                   </Box>
 
-                  <Box mb={30} mw={'500px'}>
+                  <Box mb={30} mw={'400px'}>
                     <TitleHeading>What is your preferred name?</TitleHeading>
                     <TextInput 
                       name='preferredName'
@@ -222,7 +221,7 @@ const ProfilePage = (props) => {
             )}
           </Box>
 
-          <Box>
+          <Box mw="300px">
             <UserSavedPrograms programs={data?.programs}/>
           </Box>
         </Box>

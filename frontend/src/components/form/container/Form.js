@@ -19,7 +19,7 @@ export default Form
 const StyledForm = styled.form`
   padding: 20px; 
   border-radius: 4px; 
-	box-shadow: 10px 10px 25px -4px rgba(0,0,0,0.5);
+	box-shadow: 3px 3px 20px 0px rgba(0,0,0,0.5);
   margin: 40px; 
   width: 90%; 
   

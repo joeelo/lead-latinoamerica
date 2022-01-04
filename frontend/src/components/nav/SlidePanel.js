@@ -52,7 +52,12 @@ const SlidePanel = ({ navOpen, setNavOpen }) => {
 			<SectionHeader> { t.portal } </SectionHeader>
 			<LinkUnderlineEffect hrefFormatted='/' text={ t.home }  color='cyan'/>
 			<LinkUnderlineEffect hrefFormatted="/add-edit-orgs" text={ t.addOrg } color='cyan'/>
-			<LinkUnderlineEffect target="_blank" rel="noopener noreferrer" hrefFormatted="https://www.leadlatinoamerica.org/copy-of-our-team" text={ t.ourTeam } color='cyan'/>
+			<LinkUnderlineEffect 
+				openInNewTab
+				hrefFormatted="https://www.leadlatinoamerica.org/copy-of-our-team" 
+				text={ t.ourTeam } 
+				color='cyan'
+			/>
 
 			{session && (
 				<>

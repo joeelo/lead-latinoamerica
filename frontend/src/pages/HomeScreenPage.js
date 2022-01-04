@@ -25,7 +25,6 @@ const HomeScreenPage = () => {
 	const { locale } = router; 
 	const t = useLocale() === 'en' ? en : es;
 
-
 	const opportunityInfo = [
 		{ 
 			title: t.scholarships.headline, 

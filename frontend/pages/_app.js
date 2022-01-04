@@ -8,6 +8,7 @@ import { getSession } from "next-auth/client"
 import 'react-toastify/dist/ReactToastify.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools'
+import { UserWrapper } from '@/context/UserContext';
 
 const GlobalStyle = createGlobalStyle`
   	html, *, body {
@@ -65,6 +66,7 @@ const App = ({ Component, pageProps }) => {
 	const props = pageProps || {}
 
 	const [queryClient] = useState(() => new QueryClient())
+	// TODO: Import user context when it's necessary. 
 
 	return (
 		<>
@@ -74,9 +76,9 @@ const App = ({ Component, pageProps }) => {
 				<style>{dom.css()}</style>
 			</Head>
 			<GlobalStyle />
-			<QueryClientProvider client={ queryClient }>
+			<QueryClientProvider client={queryClient}>
 				<AuthProvider session={props.session || {}}>
-						<ThemeProvider theme={ theme }>
+						<ThemeProvider theme={theme}>
 							<LanguageWrapper>
 								<Component {...pageProps} />
 							</LanguageWrapper>

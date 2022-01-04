@@ -34,7 +34,6 @@ const Signup = () => {
               maxWidth='400px'
               onlyRunOneTransition
             />
-          
             {!session ? (
               <>
                 <LoginButton onClick={() => signIn('google', {
