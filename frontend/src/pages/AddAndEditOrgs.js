@@ -25,13 +25,12 @@ const AddAndEditOrgs = () => {
 	const router = useRouter();
 
 	const setPreviewData = (data) => {
-		console.log('data', data);
+		console.log('DATA: ', wordList);
 		localStorage.setItem('organization', data.organization);
 		localStorage.setItem('bio', data.bio);
 		localStorage.setItem('missionStatement', data.missionStatement);
-		Object.keys(data).forEach(key => {
-			localStorage.setItem(key, data[key]);
-		})
+		localStorage.setItem('helpsWith', JSON.stringify(wordList));
+		
 	}
 
   const { register, handleSubmit, setValue } = useForm(); 

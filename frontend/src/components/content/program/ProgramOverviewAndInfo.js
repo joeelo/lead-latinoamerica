@@ -20,13 +20,19 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 				<Box width="60%">
 					<LargeText> Overview </LargeText>
 					<StyledP> { program.bio } </StyledP>
-					<LinkButton 
-						text={ 'Sign Up' } 
-						hrefFormatted={'/resources/[resourceSlug]/[programSlug]/sign-up'} 
-						hrefAs={`${path}/sign-up`} 
-					/>
 					{!preview && (
-						<Button label='Save to profile' color='#1F2041' onClick={handleClick}/>
+						<>
+							<LinkButton 
+								text={ 'Sign Up' } 
+								hrefFormatted={'/resources/[resourceSlug]/[programSlug]/sign-up'} 
+								hrefAs={`${path}/sign-up`} 
+							/>
+							<Button label='Save to profile' color='#1F2041' onClick={handleClick}/>
+						</>
+					)}
+
+					{preview && (
+						<Button label='Sign up'></Button>
 					)}
 				</Box>
 
