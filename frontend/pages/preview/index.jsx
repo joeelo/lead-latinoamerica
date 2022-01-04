@@ -11,7 +11,6 @@ const PreviewPage = () => {
 
   const pullLocalStorage = useCallback(() => {
     if (hasWindowLoaded) {
-      console.log('LOCALLLLSTORAGE:::', localStorage);
       const organization = localStorage.getItem('organization');
       const missionStatement =
         localStorage.getItem('missionStatement') ||

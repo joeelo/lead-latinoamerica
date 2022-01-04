@@ -25,25 +25,23 @@ const AddAndEditOrgs = () => {
 	const router = useRouter();
 
 	const setPreviewData = (data) => {
-		console.log('DATA: ', wordList);
 		localStorage.setItem('organization', data.organization);
 		localStorage.setItem('bio', data.bio);
 		localStorage.setItem('missionStatement', data.missionStatement);
 		localStorage.setItem('helpsWith', JSON.stringify(wordList));
-		
 	}
 
   const { register, handleSubmit, setValue } = useForm(); 
 
 	const onSubmit = async (data, preview) => {
 
-		if (preview) {
+		if (preview === true) {
 			setPreviewData(data);
 			return;
 		}
 		
 		setIsSubmitting(true);
-
+		
 		const formData = new FormData(); 
 		formData.append('file', data.file); 
 		formData.append('bio', data.bio); 
@@ -52,18 +50,17 @@ const AddAndEditOrgs = () => {
 		formData.append('organization', data.organization);
 		formData.append('helpsWith', JSON.stringify(wordList)); 
 		formData.append('partnerUrl', data.partnerUrl);
-
+		
 		Object.keys(data.programType).forEach((key) => {
 			if (data.programType[key])
 			formData.append(`programType[${key}]`, data.programType[key])
 		})
-
+		
 		const response = await postToDatabase(formData, 'programs/add'); 
 		if (response.message === 'success') {
 			router.push('/thanks-partner');
 		} else {
 			setIsSubmitting(false);
-			console.log('RESPONSE: ', response);
 		}
 	}
 
@@ -176,8 +173,21 @@ const AddAndEditOrgs = () => {
 						</Box>
 					</Form>
 
-					<Box display="flex" fd="column" width="30%" mobileWidth="30%" style={{position: 'sticky', height: 200, top: 80, marginTop: 40, 	boxShadow: '3px 0px 35px -4px rgba(156,156,156,1)', padding: 15, marginBottom: 40}}>
-						Want to see what your form will look like? use this preview button
+					<Box 
+						display="flex" 
+						fd="column" 
+						width="30%" 
+						mobileWidth="30%" 
+						mb={40} 
+						mt={40} 
+						p='15px'
+						style={{
+							position: 'sticky', 
+							top: 80,	
+							boxShadow: '3px 0px 35px -4px rgba(156,156,156,1)', 
+						}}
+					>
+						Want to see what your form will look like?
 						<ExternalLink 
 							bgColor='#07004d'
 							href={externalLink} 
