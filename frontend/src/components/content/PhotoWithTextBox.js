@@ -17,16 +17,16 @@ const PhotoWithTextBox = ({
 	}
 
 	const truncatedString = bio.length < 100 ? bio : `${bio.slice(0, 150)}...`;
+	const imageSrc = coverImage || '/images/pexels-cottonbro-6209356.jpg'
 
 	return (
 		<Container onClick={ clickHandler }>
 			<PhotoWithTextOverlay>
-				<StyledImage src={ `${coverImage}` }/>
+				<StyledImage src={imageSrc}/>
 				<RightAlignedText> { organization } </RightAlignedText>
 			</PhotoWithTextOverlay> 
-
 			<Bio> - { truncatedString } </Bio>
-			<Link href={`/resources/[resourceSlug]/[programSlug]`} as={`${router.asPath}/${formattedLink.toLowerCase()}`}>
+			<Link href={`/resources/[resourceSlug]/[programSlug]`} as={`${router.asPath}/${href}`}>
 			<StyledAnchor> explore { organization } </StyledAnchor>
 			</Link>
 		</Container>
@@ -42,7 +42,7 @@ const Container = styled.div`
 	min-height: 550px;
 	max-width: 400px;
 	width: 30%;
-	box-shadow: 1px 2px 15px 0px rgba(184,177,184,1);
+	box-shadow: 1px 4px 7px 0px rgba(184,177,184,.7);
 	border-radius: 4px;
 	padding-bottom: 15px;
 	margin-bottom: 40px;
@@ -50,8 +50,8 @@ const Container = styled.div`
 	max-height: 550px;
 
 	:hover {
-		transform: translate(-3px, -3px); 
 		cursor: pointer;
+		box-shadow: 1px 2px 15px 0px rgba(184,177,184,1);
 	}
 `
 

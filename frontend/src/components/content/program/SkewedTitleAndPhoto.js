@@ -4,7 +4,7 @@ import LoadingScreenVariableWidth from '@/components/generic/LoadingScreenVariab
 
 const SkewedTitleAndPhoto = ({ program }) => {
 
-	const coverImage = program.coverImage || '';
+	const coverImage = program.coverImage || '/images/pexels-cottonbro-6209356.jpg';
 	return (
 		<Container>
 			<TextContainer>
@@ -12,7 +12,6 @@ const SkewedTitleAndPhoto = ({ program }) => {
 				<MissionStatement> { program.missionStatement } </MissionStatement>
 			</TextContainer>
 			<ImageContainer>
-				{ program.coverImage && 
 				<StyledImage 
 					src={ `${ coverImage }` }
 					layout='fill'
@@ -20,7 +19,6 @@ const SkewedTitleAndPhoto = ({ program }) => {
 					objectPosition='center' 
 					quality={100}
 				/>
-				}
 			</ImageContainer>
 		</Container>
 	)

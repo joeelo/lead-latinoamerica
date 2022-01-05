@@ -40,7 +40,6 @@ const ResourcePage = () => {
 		}
 	}
 	
-
 	return (
 		<>
 		<NavBar />
@@ -50,14 +49,18 @@ const ResourcePage = () => {
 						src={ fakeData[resourceSlug].coverImage }
 						titleInfo={{ 
 							show: true, 
-							text: `${ resourceSlug }`, 
+							text: `${resourceSlug}`, 
 							backgroundColor: '#0077B6', 
 							color: 'white' 
 						}}
 					/>
 					<CenterFlexContainer padding='extraPad'>
 						{ programsArray.map(( program ) => (
-							<PhotoWithTextBox key={ program.href } coverImage={ program.coverImage } program={ program } />
+							<PhotoWithTextBox 
+								key={program.href} 
+								coverImage={program.coverImage} 
+								program={program} 
+							/>
 						))}
 					</CenterFlexContainer>
 					
