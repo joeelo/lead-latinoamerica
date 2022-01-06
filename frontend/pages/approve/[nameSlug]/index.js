@@ -6,54 +6,44 @@ import Footer from "@/components/footer/Footer";
 import ProgramOverviewAndInfo from "@/components/content/program/ProgramOverviewAndInfo";
 import SkewedTitleAndPhoto from "@/components/content/program/SkewedTitleAndPhoto";
 import FixedButton from "@/components/buttons/FixedButton";
+import { useQuery } from "react-query";
+import { getProgram } from 'src/fetch/program/ProgramRequests'
 
 const ApproveProgramPage = () => {
 
-    const router = useRouter(); 
-    const [ program, setProgram ] = useState({}); 
+	const router = useRouter(); 
 
-    const getProgram = async () => {
-        console.log(router.query.nameSlug)
-        try {
-            const fetchedProgram = await getProgramBySlug(`program/${ router.query.nameSlug }`);
-            setProgram(fetchedProgram.program);
-            return fetchedProgram; 
-        } catch (error) {
-            console.log(error);
-        }
-    }
+	const { data } = useQuery(
+		['fetchProgram', router.query.nameSlug], 
+		getProgram, 
+		{
+			enabled: router.isReady
+		}
+	)
 
-    useEffect(() => {
-        if (!router.isReady) return;
-        getProgram(); 
-    }, [ router.isReady ])
-
-    // console.log('program: ', program);
-
-    if (!program) return <></>
-    return (
-        <>
-            <NavBar />
-            <FixedButton 
-                text={ 'Approve Org' } 
-                approve={ true } 
-                bgColor={ '#00B43C' } 
-                href={ program.href } 
-                bgColorHover={ '#0ACC14' }
-            />
-			<FixedButton 
-                text={ 'Deny Org'} 
-                deny={ true } 
-                bgColor={ '#FF4F3D' } 
-                href={ program.href }
-                bgColorHover={ '#E82C4A' } 
-            />
-            <SkewedTitleAndPhoto program={ program } router={ router }/>
-            <ProgramOverviewAndInfo program={ program } marginTop={ true }/>
-            <Footer marginTop={ true }/>
-        </>
-        
-    )
+	if (!data.program) return <></>
+		return (
+			<>
+				<NavBar />
+				<FixedButton 
+						text={ 'Approve Org' } 
+						approve={ true } 
+						bgColor={ '#00B43C' } 
+						href={ data.program.href } 
+						bgColorHover={ '#0ACC14' }
+				/>
+				<FixedButton 
+					text={ 'Deny Org'} 
+					deny={ true } 
+					bgColor={ '#FF4F3D' } 
+					href={ data.program.href }
+					bgColorHover={ '#E82C4A' } 
+				/>
+				<SkewedTitleAndPhoto program={ data.program } router={ router }/>
+				<ProgramOverviewAndInfo program={ data.program } marginTop={ true }/>
+				<Footer marginTop={ true }/>
+		</>
+	)
 }
 
 export default ApproveProgramPage;

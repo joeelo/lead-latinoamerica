@@ -12,4 +12,18 @@ const getAllPrograms = async ({ queryKey }) => {
   }
 }
 
-export { getAllPrograms }; 
+const getProgram = async ({ queryKey }) => {
+  console.log('QUERY KEY:::', )
+  const [_, endpoint] = queryKey;
+	try {
+		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/${endpoint}`); 
+		console.log('RESPONSE: ', response)
+		const json = await response.json(); 
+		return json;
+	} catch (error) {
+		console.log(error);
+		return { message: error };
+	}
+}
+
+export { getAllPrograms, getProgram }; 

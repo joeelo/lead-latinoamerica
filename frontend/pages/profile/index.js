@@ -31,16 +31,13 @@ const ProfilePage = (props) => {
   
   const { register, handleSubmit, setValue } = useForm(); 
 
-  const { isLoading, isError, isSuccess, data } = useQuery(
+  const { data } = useQuery(
     ['userPrograms', session?.user?.email],
     getAllPrograms, 
     {
       enabled: !!session?.user?.email
     }
   )
-
-  console.log('DATA', data);
-  console.log('USER: ', session?.user?.email)
 
   const successNotification = () => toast('Successfully Updated!', {
     position: 'bottom-right',

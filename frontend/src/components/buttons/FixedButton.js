@@ -1,12 +1,27 @@
 import styled from 'styled-components'; 
 import { findProgramAndUpdate } from '@/fetch/requests';
 
-const FixedButton = ({ approve, deny, text, bgColor, bgColorHover, href }) => {
+const FixedButton = ({ 
+	approve, 
+	deny, 
+	text, 
+	bgColor, 
+	bgColorHover, 
+	href, 
+	onSuccess
+}) => {
 
-	const handleClick = () => {
+	const handleClick = async () => {
 		if (approve || deny) {
 			const bool = approve ? true : false
-			findProgramAndUpdate({}, `program/edit/${href}/${bool}`);
+			try {
+				const result = await findProgramAndUpdate({}, `program/edit/${href}/${bool}`);
+				if (result.message === 'success') {
+					onSuccess(true);
+				}
+			} catch (error) {
+				console.log('ERROR IN FIXEDBUTTON TRYING TO UPDATE PROGRAM:', error);
+			}
 		}
 	}
 
