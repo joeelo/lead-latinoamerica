@@ -13,12 +13,13 @@ const getAllPrograms = async ({ queryKey }) => {
 }
 
 const getProgram = async ({ queryKey }) => {
-  console.log('QUERY KEY:::', )
   const [_, endpoint] = queryKey;
+  console.log('QUERY KEY:::', endpoint)
 	try {
-		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/${endpoint}`); 
+		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/program/${endpoint}`); 
 		console.log('RESPONSE: ', response)
 		const json = await response.json(); 
+    console.log('JIFJIFJIJE: ', json)
 		return json;
 	} catch (error) {
 		console.log(error);

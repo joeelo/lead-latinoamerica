@@ -13,7 +13,7 @@ const ApproveProgramPage = () => {
 
 	const router = useRouter(); 
 
-	const { data } = useQuery(
+	const { isLoading, data } = useQuery(
 		['fetchProgram', router.query.nameSlug], 
 		getProgram, 
 		{
@@ -21,27 +21,29 @@ const ApproveProgramPage = () => {
 		}
 	)
 
-	if (!data.program) return <></>
-		return (
-			<>
-				<NavBar />
-				<FixedButton 
-						text={ 'Approve Org' } 
-						approve={ true } 
-						bgColor={ '#00B43C' } 
-						href={ data.program.href } 
-						bgColorHover={ '#0ACC14' }
-				/>
-				<FixedButton 
-					text={ 'Deny Org'} 
-					deny={ true } 
-					bgColor={ '#FF4F3D' } 
-					href={ data.program.href }
-					bgColorHover={ '#E82C4A' } 
-				/>
-				<SkewedTitleAndPhoto program={ data.program } router={ router }/>
-				<ProgramOverviewAndInfo program={ data.program } marginTop={ true }/>
-				<Footer marginTop={ true }/>
+	console.log('DATA:::', data); 
+
+	if (!data?.program) return <></>
+	return (
+		<>
+			<NavBar />
+			<FixedButton 
+					text={ 'Approve Org' } 
+					approve={ true } 
+					bgColor={ '#00B43C' } 
+					href={ data.program.href } 
+					bgColorHover={ '#0ACC14' }
+			/>
+			<FixedButton 
+				text={ 'Deny Org'} 
+				deny={ true } 
+				bgColor={ '#FF4F3D' } 
+				href={ data.program.href }
+				bgColorHover={ '#E82C4A' } 
+			/>
+			<SkewedTitleAndPhoto program={ data.program } router={ router }/>
+			<ProgramOverviewAndInfo program={ data.program } marginTop={ true }/>
+			<Footer marginTop={ true }/>
 		</>
 	)
 }
