@@ -11,7 +11,6 @@ const LoadingScreenVariableWidth = () => {
 			let newIndex = currentIndex + 1;
 			if (newIndex === words.length)  newIndex = 0; 
 			setCurrentIndex(newIndex);
-			console.log(newIndex);
 		}, 300);
 		return () => clearInterval(interval);
 	}, [ currentIndex ])

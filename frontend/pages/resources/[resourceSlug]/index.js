@@ -29,10 +29,8 @@ const ResourcePage = () => {
 		try {
 			const data = await getProgramArray('programs/resources', singularSlug); 
 			if (!data) {
-				console.log('DATA: ', data); 
 				return; 
 			}
-			console.log('DATA: ', data);
 			const approvedPrograms = data.message.filter( program => program.approved === true );
 			setProgramsArray(approvedPrograms);
 		} catch (error) {

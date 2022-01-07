@@ -1,4 +1,3 @@
-import CenterFlexContainer from "@/components/generic/CenterFlexContainer";
 import styled from 'styled-components';
 import CategoryTiles from '@/components/content/program/CategoryTiles';
 import LinkButton from "@/components/generic/LinkButton";
@@ -6,12 +5,30 @@ import useGetRouterPath from "@/hooks/useGetRouterPath";
 import Button from "@/components/buttons/Button";
 import { UpdateUsersSavedPrograms } from "@/fetch/user/UserRequests";
 import Box from "@/components/generic/Box";
+import { ToastContainer, toast } from 'react-toastify';
 
 const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 	const path = useGetRouterPath();
 
+	const successNotification = () => toast('Successfully Updated!', {
+    position: 'bottom-right',
+    hideProgressBar: true,
+    style: { background: '#43a23c', color: 'white' },
+  });
+
+	const failureNotification = () => toast('Something went wrong, check the logs!', {
+		position: 'top-right',
+    hideProgressBar: true,
+		style: { background: '#cc0000', color: 'white', zIndex: 10000 },
+	})
+
 	const handleClick = async () => {
 		const response = await UpdateUsersSavedPrograms(email, program._id);
+		if (response.message === 'success') {
+			successNotification(); 
+		} else {
+			failureNotification();
+		}
 	}
 
 	return (
@@ -41,6 +58,7 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 					<CategoryTiles adjectives={ program.helpsWith }/>
 				</Box>
 			</Container>
+			<ToastContainer />
 		</>
 	)
 }

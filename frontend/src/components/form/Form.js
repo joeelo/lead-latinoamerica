@@ -17,7 +17,6 @@ const Form = ({ formData, objKey, endpoint, method, setFormSubmitted, query }) =
 	const submitHandler = async (data) => {
 		const formattedData = formatCheckboxData(data);
 		if (!!router.query.dev) {
-			console.log(formattedData); 
 			return;
 		}
 		try {

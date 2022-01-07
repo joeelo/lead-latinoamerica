@@ -23,8 +23,6 @@ const ProgramPage = () => {
     getProgram(); 
   }, [router.query])
 
-  console.log('SESSSSION:::: ', session);
-
   if (!program) return <>Loading</>
   return (
     <>

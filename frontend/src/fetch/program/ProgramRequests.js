@@ -4,8 +4,6 @@ const getAllPrograms = async ({ queryKey }) => {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/user/${email}/programs`); 
     const json = await response.json(); 
-    
-    console.log(json); 
     return json; 
   } catch (error) {
     console.log('ERROR IN GETALLPROGRAMS: ', error); 
@@ -14,12 +12,9 @@ const getAllPrograms = async ({ queryKey }) => {
 
 const getProgram = async ({ queryKey }) => {
   const [_, endpoint] = queryKey;
-  console.log('QUERY KEY:::', endpoint)
 	try {
 		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/program/${endpoint}`); 
-		console.log('RESPONSE: ', response)
 		const json = await response.json(); 
-    console.log('JIFJIFJIJE: ', json)
 		return json;
 	} catch (error) {
 		console.log(error);

@@ -23,8 +23,6 @@ const ProgramPage = () => {
     getProgram(); 
   }, [router.query])
 
-  console.log('PROGRAM: ', program);
-
   if ( !program ) return <>Loading</>
   return (
     <>

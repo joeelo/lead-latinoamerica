@@ -1,21 +1,14 @@
 import styled from 'styled-components';
-import { useLanguageContext } from '@/context/LanguageContext';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 
 const LanguageButtons = () => {
 
-	const language = useLanguageContext(); 
 	const router = useRouter(); 
 
 	const handleClick = (lang) => {
 		const { asPath } = router;
 		router.push(`/${lang}${asPath}`, `/${lang}${asPath}`, { locale: lang, shallow: true });
 	}
-
-	useEffect(() => {
-		console.log('ROUTER: ', router);
-	}, [])
 
 	return (
 		<Container>
