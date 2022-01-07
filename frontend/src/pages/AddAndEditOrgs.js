@@ -179,8 +179,9 @@ const AddAndEditOrgs = () => {
 						width="30%" 
 						mobileWidth="30%" 
 						mb={40} 
-						mt={40} 
-						p='15px'
+						mt={40}
+						ml={20} 
+						p='20px'
 						style={{
 							position: 'sticky', 
 							top: 80,	

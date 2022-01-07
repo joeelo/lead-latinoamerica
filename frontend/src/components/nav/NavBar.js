@@ -35,7 +35,7 @@ const Container = styled.div`
 	position: fixed;
 	min-height: 70px;
 	top: 0;
-	z-index: 100000;
+	z-index: 1000;
 	box-shadow: 3px 0px 35px -4px rgba(156,156,156,1); 
 `
 

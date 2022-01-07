@@ -130,7 +130,7 @@ const ProfilePage = (props) => {
                 <TitleHeading>What are you interested in?</TitleHeading>
                 <FormDetail>{userInterestStr}</FormDetail>
 
-                <Button color='lightblue' label='Edit' onClick={handleClick}/>
+                <Button label='Edit' onClick={handleClick}/>
 
               </>
             ) : (
@@ -210,8 +210,8 @@ const ProfilePage = (props) => {
                   </Box>
 
                   <Box display='flex'>
-                    <Button color='red' label='cancel' onClick={handleCancel} style={{marginRight: 40}}/>
-                    <Button color='#1F2041' label='Submit'/>
+                    <Button  label='cancel' onClick={handleCancel} style={{marginRight: 40}}/>
+                    <Button label='Submit'/>
                   </Box>
                 </form>
               </Box>

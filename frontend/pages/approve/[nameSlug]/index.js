@@ -8,42 +8,62 @@ import SkewedTitleAndPhoto from "@/components/content/program/SkewedTitleAndPhot
 import FixedButton from "@/components/buttons/FixedButton";
 import { useQuery } from "react-query";
 import { getProgram } from 'src/fetch/program/ProgramRequests'
+import { toast, ToastContainer } from "react-toastify";
 
 const ApproveProgramPage = () => {
 
 	const router = useRouter(); 
 
-	const { isLoading, data } = useQuery(
+	const { data } = useQuery(
 		['fetchProgram', router.query.nameSlug], 
 		getProgram, 
-		{
-			enabled: router.isReady
-		}
 	)
 
-	console.log('DATA:::', data); 
+	const successNotification = () => toast('Successfully Updated!', {
+    position: 'top-right',
+    hideProgressBar: true,
+    style: { background: '#43a23c', color: 'white', zIndex: 10000 },
+  });
+
+	const failureNotification = () => toast('Something went wrong', {
+		position: 'top-right',
+    hideProgressBar: true,
+		style: { background: '#cc0000', color: 'white', zIndex: 10000 },
+	})
+
+	const handleSuccess = (response) => {
+		if (!!response) {
+			successNotification();
+		} else {
+			failureNotification(); 
+		}
+	}
 
 	if (!data?.program) return <></>
 	return (
 		<>
 			<NavBar />
 			<FixedButton 
-					text={ 'Approve Org' } 
-					approve={ true } 
-					bgColor={ '#00B43C' } 
-					href={ data.program.href } 
-					bgColorHover={ '#0ACC14' }
+					text="Approve Org"
+					approve={true} 
+					bgColor="#00B43C"
+					href={data.program.href} 
+					bgColorHover="#0ACC14"
+					onSuccess={handleSuccess}
 			/>
 			<FixedButton 
-				text={ 'Deny Org'} 
-				deny={ true } 
-				bgColor={ '#FF4F3D' } 
-				href={ data.program.href }
-				bgColorHover={ '#E82C4A' } 
+				text="Deny Org"
+				deny={true} 
+				bgColor="#FF4F3D" 
+				href={data.program.href}
+				bgColorHover="#E82C4A"
+				onSuccess={handleSuccess}
 			/>
-			<SkewedTitleAndPhoto program={ data.program } router={ router }/>
-			<ProgramOverviewAndInfo program={ data.program } marginTop={ true }/>
-			<Footer marginTop={ true }/>
+			<SkewedTitleAndPhoto program={data.program} router={router}/>
+			<ProgramOverviewAndInfo program={data.program} marginTop={true}/>
+			<Footer marginTop={true}/>
+			<ToastContainer />
+
 		</>
 	)
 }

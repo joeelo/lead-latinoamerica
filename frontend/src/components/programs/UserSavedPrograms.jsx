@@ -14,7 +14,7 @@ const UserSavedPrograms = ({ programs }) => {
       {programs.map((program) => {
         return (
           <Link href={`/resource/${program.href}`}>
-            <Container>
+            <Container bgImage={program.coverImage}>
               <h3>{program.organization}</h3>
             </Container>
           </Link>
@@ -34,15 +34,24 @@ const Container = styled.div`
   border-radius: 4px;
   max-width: 300px;
   width: 100%;
-  box-shadow: 0px 0px 4px 0px rgba(184, 177, 184, 1);
+  box-shadow: 1px 1px 12px 5px rgba(184, 177, 184, 1);
   min-height: 200px;
   margin-top: 20px;
   padding: 10px;
   cursor: pointer;
   transition: 0.4s ease;
+  margin-bottom: 20px;
+  background-image: ${(props) => 'url(' + props.bgImage + ')'};
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
 
   :hover {
-    box-shadow: 0px 0px 9px 0px rgba(184, 177, 184, 1);
+    box-shadow: 2px 2px 15px 0px rgba(184, 177, 184, 1);
+  }
+
+  :last-child {
+    margin-bottom: 40px;
   }
 `;
 

@@ -13,10 +13,12 @@ const FullScreenBack = ({ src, children, titleInfo, height }) => {
 		<OuterWrapper>
 			<Container {...{ height }}>
 				<Image 
+					// placeholder="blur"
+					// blurDataURL
 					src={ src }
 					layout='fill'
-					objectFit='cover'
-					objectPosition='top'
+					objectFit="cover"
+					objectPosition="center"
 					style={{ zIndex: -1, position: 'absolute' }}
 					onLoad={loadHandler}
 				/>
@@ -63,7 +65,7 @@ const OuterWrapper = styled.div`
 const Container = styled.div`
 	position: relative; 
 	min-width: 100vw; 
-	min-height: ${ props => props.height ? props.height : '90vh'};
+	min-height: ${ props => props.height ? props.height : '70vh'};
 	background-color: azure; 
 	overflow-x: hidden;
 `
