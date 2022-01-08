@@ -37,7 +37,7 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 				<Box width="60%">
 					<LargeText> Overview </LargeText>
 					<StyledP> { program.bio } </StyledP>
-					{!preview && (
+					{!preview ? (
 						<>
 							<LinkButton 
 								text={ 'Sign Up' } 
@@ -46,17 +46,16 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 							/>
 							<Button label='Save to profile' color='#1F2041' onClick={handleClick}/>
 						</>
-					)}
-
-					{preview && (
-						<Button label='Sign up'></Button>
-					)}
+						) 
+						: <Button label='Sign up'></Button>
+					}
 				</Box>
 
 				<Box width="35%">
 					<UnderlinedSectionHeader> Categories </UnderlinedSectionHeader>
 					<CategoryTiles adjectives={ program.helpsWith }/>
 				</Box>
+				
 			</Container>
 			<ToastContainer />
 		</>

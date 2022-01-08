@@ -1,6 +1,4 @@
-import { useContext, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
+import { useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import NavBar from '@/components/nav/NavBar';
 import FullScreenBack from '@/components/background/FullScreenBack';
@@ -16,13 +14,10 @@ import en from '@/language/locales/en/common.json';
 import es from '@/language/locales/es/common.json';
 import useLocale from '@/hooks/useLocale';
 
-
 const HomeScreenPage = () => {
 
 	const theme = useContext(ThemeContext);
 	const quote = useGetRandomQuote(); 
-	const router = useRouter(); 
-	const { locale } = router; 
 	const t = useLocale() === 'en' ? en : es;
 
 	const opportunityInfo = [

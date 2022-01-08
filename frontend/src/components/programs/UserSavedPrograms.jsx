@@ -13,7 +13,7 @@ const UserSavedPrograms = ({ programs }) => {
       <TitleHeading>Your saved opportunities!</TitleHeading>
       {programs.map((program) => {
         return (
-          <Link href={`/resource/${program.href}`}>
+          <Link href={`/resource/${program.href}`} key={program.href}>
             <Container bgImage={program.coverImage}>
               <h3>{program.organization}</h3>
             </Container>
