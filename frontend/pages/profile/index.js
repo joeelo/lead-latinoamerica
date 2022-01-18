@@ -23,7 +23,6 @@ const ProfilePage = (props) => {
   const [ session ] = useSession(); 
   const [ userData, setUserData ] = useState({});
   const [ isEditing, setIsEditing ] = useState(false); 
-  const [ userPrograms, setUserPrograms ] = useState([])
 
   const userName = getFullName(session)
   const email = session?.user?.email;
@@ -87,10 +86,6 @@ const ProfilePage = (props) => {
       setProfileInfo(); 
     }
   }, [email])
-
-  useEffect(() => {
-
-  }, [userPrograms?.length])
 
   return (
     <>
