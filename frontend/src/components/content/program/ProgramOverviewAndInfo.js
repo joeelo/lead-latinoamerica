@@ -22,7 +22,7 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 		}
 	)
 
-	const successNotification = () => toast('Saved to your profile!', {
+	const successNotification = (message) => toast(message, {
     position: 'top-right',
     hideProgressBar: true,
     style: { background: '#43a23c', color: 'white' },
@@ -32,14 +32,23 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 		position: 'top-right',
     hideProgressBar: true,
 		style: { background: '#cc0000', color: 'white', zIndex: 10000 },
-	})
+	});
 
 	const handleClick = async () => {
 		const response = await UpdateUsersSavedPrograms(email, program._id);
 		if (response.message === 'success') {
-			successNotification(); 
+			successNotification('The program has been saved successfully'); 
 		} else {
 			failureNotification();
+		}
+	}
+
+	const handleRemoveClick = async () => {
+		const response = await RemoveUserSavedProgram(email, program._id); 
+		if (response.message === 'success') {
+			successNotification('The program has been removed successfully'); 
+		} else {
+			failureNotification(); 
 		}
 	}
 
