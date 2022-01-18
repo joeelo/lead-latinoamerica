@@ -6,11 +6,25 @@ import Button from "@/components/buttons/Button";
 import { UpdateUsersSavedPrograms } from "@/fetch/user/UserRequests";
 import Box from "@/components/generic/Box";
 import { ToastContainer, toast } from 'react-toastify';
+import { useQuery } from "react-query";
+import { getProfile } from '@/fetch/profile/ProfileRequests';
+import { useSession } from 'next-auth/client';
 
 const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 	const path = useGetRouterPath();
+	const [ session ] = useSession(); 
 
-	const successNotification = () => toast('Successfully Updated!', {
+	const { data } = useQuery(
+		['fetchUser', session], 
+		getProfile, 
+		{
+			enabled: !!session
+		}
+	)
+
+	console.log('DATA:::: ', data)
+
+	const successNotification = () => toast('Saved to your profile!', {
     position: 'bottom-right',
     hideProgressBar: true,
     style: { background: '#43a23c', color: 'white' },

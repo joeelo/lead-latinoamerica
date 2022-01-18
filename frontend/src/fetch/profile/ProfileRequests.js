@@ -17,8 +17,9 @@ const createProfile = async (session) => {
 
 const getProfile = async (session) => {
   // if there is no profile we will create one with creds given. 
-  if (!session.user) return; 
-  const { email } = session.user; 
+  if (!session.user && !session.queryKey) return; 
+  const { email } = !session.queryKey ? session.user : session.queryKey[1].user; 
+  
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/profile/${email}`, {
       method: 'POST', 
@@ -27,9 +28,7 @@ const getProfile = async (session) => {
       }, 
       body: JSON.stringify(session)  
     });
-
     const json = await response.json(); 
-
     return json; 
   } catch (error) {
     console.log('error', error); 
