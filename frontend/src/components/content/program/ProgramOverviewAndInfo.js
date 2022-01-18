@@ -14,7 +14,7 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 	const path = useGetRouterPath();
 	const [ session ] = useSession(); 
 
-	const { data } = useQuery(
+	const userDataQuery = useQuery(
 		['fetchUser', session], 
 		getProfile, 
 		{
@@ -22,10 +22,8 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 		}
 	)
 
-	console.log('DATA:::: ', data)
-
 	const successNotification = () => toast('Saved to your profile!', {
-    position: 'bottom-right',
+    position: 'top-right',
     hideProgressBar: true,
     style: { background: '#43a23c', color: 'white' },
   });
@@ -45,6 +43,11 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 		}
 	}
 
+	if (!userDataQuery.data) return <></>
+
+	const doesUserHaveProgramSaved = 
+		userDataQuery.data.user.savedPrograms.find(savedProgram => savedProgram === program._id)
+
 	return (
 		<>
 			<Container>
@@ -58,7 +61,11 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 								hrefFormatted={'/resources/[resourceSlug]/[programSlug]/sign-up'} 
 								hrefAs={`${path}/sign-up`} 
 							/>
-							<Button label='Save to profile' color='#1F2041' onClick={handleClick}/>
+							{ !doesUserHaveProgramSaved 
+								? <Button label='Save to profile' color='#1F2041' onClick={handleClick}/>
+								: <Button label='Unsave' color='#1F2041' onClick={handleClick} />
+							}
+							
 						</>
 						) 
 						: <Button label='Sign up'></Button>

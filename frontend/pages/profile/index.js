@@ -39,7 +39,7 @@ const ProfilePage = (props) => {
   )
 
   const successNotification = () => toast('Successfully Updated!', {
-    position: 'bottom-right',
+    position: 'top-right',
     hideProgressBar: true,
     style: { background: '#43a23c', color: 'white' },
   });
