@@ -169,7 +169,7 @@ router.get('/user/:email/programs', async (req, res) => {
     const user = await User.findOne({ email });
     const programs = user.savedPrograms; 
 
-    console.log('USER SAVED: ', user.savedPrograms)
+    console.log('USER SAVED: ', user.savedPrograms);
     if (programs.length) {
       const records = await Program.find({ '_id': { $in: user.savedPrograms } })
 
@@ -189,7 +189,7 @@ router.delete('/user/programs/:email/:programId', async (req, res) => {
   try {
     const { email, programId } = req.params; 
     const user = await User.findOne({ email }); 
-    const newSavedPrograms = user.savedPrograms.filter(program => program !== programId); 
+    const newSavedPrograms = user.savedPrograms.filter(program => program != programId); 
     user.savedPrograms = newSavedPrograms; 
     await user.save(); 
     res.send({ message: 'success', success: true });
