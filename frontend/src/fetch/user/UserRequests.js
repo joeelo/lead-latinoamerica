@@ -2,7 +2,7 @@ const UpdateUsersSavedPrograms = async (email, programId) => {
   const url = `${process.env.NEXT_PUBLIC_DB_LOCATION}/user/programs/${email}/${programId}`; 
 
   try {
-    const response = await fetch();
+    const response = await fetch(url);
     const json = await response.json(); 
     return json; 
   } catch (error) {
@@ -10,9 +10,9 @@ const UpdateUsersSavedPrograms = async (email, programId) => {
   }
 }
 
-const RemoveUserSavedProgram = async () => {
+const RemoveUserSavedProgram = async (email, programId) => {
 
-  const url = `process.env.NEXT_PUBLIC_DB_LOCATION}/user/programs/${email}/${programId}`
+  const url = `${process.env.NEXT_PUBLIC_DB_LOCATION}/user/programs/${email}/${programId}`
 
   const options = {
     method: 'DELETE', 
@@ -31,5 +31,6 @@ const RemoveUserSavedProgram = async () => {
 }
 
 export {
-  UpdateUsersSavedPrograms
+  UpdateUsersSavedPrograms, 
+  RemoveUserSavedProgram,
 }

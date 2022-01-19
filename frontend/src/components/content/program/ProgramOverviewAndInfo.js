@@ -3,16 +3,17 @@ import CategoryTiles from '@/components/content/program/CategoryTiles';
 import LinkButton from "@/components/generic/LinkButton";
 import useGetRouterPath from "@/hooks/useGetRouterPath";
 import Button from "@/components/buttons/Button";
-import { UpdateUsersSavedPrograms } from "@/fetch/user/UserRequests";
+import { UpdateUsersSavedPrograms, RemoveUserSavedProgram } from "@/fetch/user/UserRequests";
 import Box from "@/components/generic/Box";
 import { ToastContainer, toast } from 'react-toastify';
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { getProfile } from '@/fetch/profile/ProfileRequests';
 import { useSession } from 'next-auth/client';
 
 const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 	const path = useGetRouterPath();
 	const [ session ] = useSession(); 
+	const queryClient = useQueryClient(); 
 
 	const userDataQuery = useQuery(
 		['fetchUser', session], 
@@ -38,6 +39,7 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 		const response = await UpdateUsersSavedPrograms(email, program._id);
 		if (response.message === 'success') {
 			successNotification('The program has been saved successfully'); 
+			queryClient.invalidateQueries('fetchUser');
 		} else {
 			failureNotification();
 		}
@@ -47,10 +49,13 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 		const response = await RemoveUserSavedProgram(email, program._id); 
 		if (response.message === 'success') {
 			successNotification('The program has been removed successfully'); 
+			queryClient.invalidateQueries('fetchUser');
 		} else {
 			failureNotification(); 
 		}
 	}
+
+	console.log('userDataQuery:::', userDataQuery)
 
 	if (!userDataQuery.data) return <></>
 
@@ -72,7 +77,7 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 							/>
 							{ !doesUserHaveProgramSaved 
 								? <Button label='Save to profile' color='#1F2041' onClick={handleClick}/>
-								: <Button label='Unsave' color='#1F2041' onClick={handleClick} />
+								: <Button label='Unsave' color='#1F2041' onClick={handleRemoveClick} />
 							}
 							
 						</>

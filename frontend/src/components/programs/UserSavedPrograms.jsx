@@ -9,7 +9,7 @@ const UserSavedPrograms = ({ programs }) => {
 
   if (!programs) return <></>;
   return (
-    <Box display="flex" fd="column" mt={125}>
+    <Box display="flex" fd="column" mt={100}>
       <TitleHeading>Your saved opportunities!</TitleHeading>
       {programs.map((program) => {
         return (

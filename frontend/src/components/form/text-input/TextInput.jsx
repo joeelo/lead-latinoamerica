@@ -45,8 +45,8 @@ const Container = styled.div`
   transition: 0.4s ease-in-out all;
   box-shadow: ${(props) =>
     props.focused
-      ? '1px 2px 13px 0px rgba(184, 177, 184, 1)'
-      : '1px 1px 4px 0px rgba(184, 177, 184, 1)'};
+      ? '1px 2px 9px 0px rgba(184, 177, 184, 1)'
+      : '1px 1px 2px 0px rgba(184, 177, 184, 1)'};
 `;
 
 const Label = styled.label`

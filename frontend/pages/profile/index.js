@@ -24,7 +24,7 @@ const ProfilePage = (props) => {
   const [ userData, setUserData ] = useState({});
   const [ isEditing, setIsEditing ] = useState(false); 
 
-  const userName = getFullName(session)
+  const userName = getFullName(session);
   const email = session?.user?.email;
   const userInterestStr = userData.interests?.join(', ');
   
@@ -98,11 +98,9 @@ const ProfilePage = (props) => {
         </PhotoContainer>
 
         <Box width='al-fu' center style={{position: 'relative'}}>
-          {userName.initials && (
-            <NameCircle>
-              { userName.initials }
-            </NameCircle>
-          )}
+          <NameCircle>
+            { userName.initials.toUpperCase() }
+          </NameCircle>
         </Box>
 
         <Box display='flex' width='al-fu' center justify='space-between' mw="1000px">
