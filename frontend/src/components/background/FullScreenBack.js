@@ -3,7 +3,7 @@ import Image from 'next/image';
 import TitleWithBackground from '../generic/TitleWithBackground';
 import PropTypes from 'prop-types';
 
-const FullScreenBack = ({ src, children, titleInfo, height }) => {
+const FullScreenBack = ({ src, children, titleInfo, height, priority = false }) => {
 
 	const loadHandler = () => {
 		console.log('loaded');
@@ -13,14 +13,13 @@ const FullScreenBack = ({ src, children, titleInfo, height }) => {
 		<OuterWrapper>
 			<Container {...{ height }}>
 				<Image 
-					// placeholder="blur"
-					// blurDataURL
 					src={ src }
 					layout='fill'
 					objectFit="cover"
 					objectPosition="center"
 					style={{ zIndex: -1, position: 'absolute' }}
 					onLoad={loadHandler}
+					priority={priority}
 				/>
 				<div style={{ zIndex: 10, position: 'relative' }}>
 					{ children }

@@ -50,7 +50,7 @@ const HomeScreenPage = () => {
 	return (
 		<>
 			<NavBar />
-			<FullScreenBack src='/images/mission-high.jpeg'>
+			<FullScreenBack priority={true} src='/images/mission-high.jpeg'>
 				<PortalTitleContainer>
 				<PortalTitle>{t.headline1}</PortalTitle>
 				<PortalSubTitle>{t.headline2}</PortalSubTitle>

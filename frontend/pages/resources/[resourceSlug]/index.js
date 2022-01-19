@@ -44,6 +44,7 @@ const ResourcePage = () => {
 			{ programsArray[0] && (
 				<>
 					<FullScreenBack 
+						priority={true}
 						src={ fakeData[resourceSlug].coverImage }
 						titleInfo={{ 
 							show: true, 
