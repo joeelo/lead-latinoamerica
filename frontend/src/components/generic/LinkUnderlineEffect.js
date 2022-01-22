@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 
 
-const LinkUnderlineEffect = ({ text, hrefFormatted, color, openInNewTab }) => {
+const LinkUnderlineEffect = ({ text, hrefFormatted, color = 'cyan', openInNewTab }) => {
 
 	const theme = useContext(ThemeContext);
 
