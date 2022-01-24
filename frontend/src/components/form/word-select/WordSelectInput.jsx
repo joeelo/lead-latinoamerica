@@ -79,6 +79,7 @@ const Container = styled.div`
   padding-top: 10px;
   padding-left: 10px;
   transition: 0.4s ease-in-out all;
+  border-radius: 4px;
   box-shadow: ${(props) =>
     props.focused
       ? '1px 2px 13px 0px rgba(184, 177, 184, 1)'

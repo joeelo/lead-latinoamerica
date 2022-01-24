@@ -43,33 +43,31 @@ const SlidePanel = ({ navOpen, setNavOpen }) => {
 			<LanguageButtons />
 
 			<SectionHeader> { t.resources } </SectionHeader>
-			{/* <LinkUnderlineEffect hrefFormatted="/Sign-in" text={ t.signIn } color='cyan'/> */}
-			<LinkUnderlineEffect hrefFormatted="/resources/program" text={ t.programs } color='cyan'/>
-			<LinkUnderlineEffect hrefFormatted="/resources/scholarships" text={ t.scholarships } color='cyan'/>
-			<LinkUnderlineEffect hrefFormatted="/resources/internships" text={ t.internships } color='cyan'/>
-			<LinkUnderlineEffect hrefFormatted="/resources/summer" text={ t.summer } color='cyan'/>
+			<LinkUnderlineEffect hrefFormatted="/resources/program" text={ t.programs } />
+			<LinkUnderlineEffect hrefFormatted="/resources/scholarships" text={ t.scholarships } />
+			<LinkUnderlineEffect hrefFormatted="/resources/internships" text={ t.internships } />
+			<LinkUnderlineEffect hrefFormatted="/resources/summer" text={ t.summer } />
 
 			<SectionHeader> { t.portal } </SectionHeader>
-			<LinkUnderlineEffect hrefFormatted='/' text={ t.home }  color='cyan'/>
-			<LinkUnderlineEffect hrefFormatted="/add-edit-orgs" text={ t.addOrg } color='cyan'/>
+			<LinkUnderlineEffect hrefFormatted='/' text={ t.home }  />
+			<LinkUnderlineEffect hrefFormatted="/add-program" text={ t.addOrg } />
 			<LinkUnderlineEffect 
 				openInNewTab
 				hrefFormatted="https://www.leadlatinoamerica.org/copy-of-our-team" 
 				text={ t.ourTeam } 
-				color='cyan'
 			/>
 
 			{session && (
 				<>
-					<LinkUnderlineEffect hrefFormatted='/profile' text='My Profile'  color='cyan'/>
+					<LinkUnderlineEffect hrefFormatted='/profile' text='My Profile'  />
 					<LogoutButton onClick={signOut}>
-						<LinkUnderlineEffect hrefFormatted='/' color='cyan' text='Log Out' />
+						<LinkUnderlineEffect hrefFormatted='/'  text='Log Out' />
 					</LogoutButton>
 				</>
 			)}
 
 			{!session && (
-				<LinkUnderlineEffect hrefFormatted='/sign-in' text='Sign In'  color='cyan'/>
+				<LinkUnderlineEffect hrefFormatted='/sign-in' text='Sign In'  />
 			)}
 
 		</Container>

@@ -1,55 +1,47 @@
 const express = require('express');
 const Program = require('../models/Program');
 const seed = require('../seed/programSeed');
-const { upload } = require('../aws/upload');
 const router = express.Router();
 const sendMail = require('../email/sendGrid');
-const { replaceSingleCharGlobal } = require('../customFuncs/replaceSingleCharGlobal');
 
-// https://philna.sh/blog/2016/06/13/the-surprise-multipart-form-data/
-// https://github.com/expressjs/multer/issues/799
-router.post('/programs/add', upload.single('file'), async (req, res) => {
+router.post('/programs/add', async (req, res) => {
   try {
     const {
-      organization,
+      name,
       bio,
       helpsWith,
-      coverImage,
-      email,
-      missionStatement,
-      signUpLink,
       partnerUrl,
       programType = {},
     } = req.body;
 
-    let link; 
-
-    if (req.file) {
-      link = req.file.location; 
-    }
-
-    let href = replaceSingleCharGlobal(organization, ' ', '-');
+    let href = name.split(' ').join('-');
     href = href.toLowerCase();
+
 
     const programTypeKeys = Object.keys(programType);
     const programTypes = {}; 
-
-    const helpsWithArray = JSON.parse(helpsWith);
     
     programTypeKeys.forEach((key) => programTypes[key] = true);
+
+    const betweenZeroAndFour = () => {
+      return Math.floor(Math.random() * 5)
+    }
+
+    const images = [
+      'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80', 
+      'https://images.unsplash.com/photo-1532294220147-279399e4e00f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80', 
+      'https://images.unsplash.com/photo-1630025326456-1d384d371b24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1748&q=80', 
+      'https://images.unsplash.com/photo-1527484583355-9c200f59f0fd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80', 
+    ]
     
     const newProgram = new Program({
-      organization,
+      name,
       bio,
-      helpsWith: helpsWithArray,
-      coverImage,
-      orgLogo: link,
-      email,
+      helpsWith,
       href,
-      missionStatement,
-      signUpLink,
       partnerUrl,
       programType: programTypes,
+      coverImage: images[betweenZeroAndFour()]
     });
 
     await newProgram.save((err) => {
@@ -196,3 +188,71 @@ router.post('/email/test', async (req, res) => {
 })
 
 module.exports = router;
+
+// https://philna.sh/blog/2016/06/13/the-surprise-multipart-form-data/
+// https://github.com/expressjs/multer/issues/799
+// For when we implement orgs most of this can be reused
+// router.post('/programs/add', upload.single('file'), async (req, res) => {
+//   try {
+//     const {
+//       organization,
+//       bio,
+//       helpsWith,
+//       coverImage,
+//       email,
+//       missionStatement,
+//       signUpLink,
+//       partnerUrl,
+//       programType = {},
+//     } = req.body;
+
+//     let link; 
+
+//     if (req.file) {
+//       link = req.file.location; 
+//     }
+
+//     let href = replaceSingleCharGlobal(organization, ' ', '-');
+//     href = href.toLowerCase();
+
+//     const programTypeKeys = Object.keys(programType);
+//     const programTypes = {}; 
+
+//     const helpsWithArray = JSON.parse(helpsWith);
+    
+//     programTypeKeys.forEach((key) => programTypes[key] = true);
+    
+//     const newProgram = new Program({
+//       organization,
+//       bio,
+//       helpsWith: helpsWithArray,
+//       coverImage,
+//       orgLogo: link,
+//       email,
+//       href,
+//       missionStatement,
+//       signUpLink,
+//       partnerUrl,
+//       programType: programTypes,
+//     });
+
+//     await newProgram.save((err) => {
+//       if (err) {
+//         console.log('ERROR IN PROGRAM SAVE FUNCTION: ', err);
+//         res.send({ message: 'something went wrong', err });
+
+//         return null;
+//       }
+
+//       console.log('saved');
+
+//       return { message: 'saved' };
+//     });
+    
+//     await sendMail(req.body, href);
+//     res.send({ message: 'success' });
+//   } catch (error) {
+//     console.log('ERROR ON PROGRAMS/ADD ROUTE', error);
+//     res.send({ message: error, error: true });
+//   }
+// });

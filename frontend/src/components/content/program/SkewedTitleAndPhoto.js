@@ -1,14 +1,14 @@
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import LoadingScreenVariableWidth from '@/components/generic/LoadingScreenVariableWidth';
 
 const SkewedTitleAndPhoto = ({ program }) => {
 
 	const coverImage = program.coverImage || '/images/pexels-cottonbro-6209356.jpg';
+
+	console.log('JIFJIFJE: ', program)
 	return (
 		<Container>
 			<TextContainer>
-				<Heading> { program.organization } </Heading>
+				<Heading> { program.name } </Heading>
 				<MissionStatement> { program.missionStatement } </MissionStatement>
 			</TextContainer>
 			<ImageContainer>

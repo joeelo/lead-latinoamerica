@@ -1,16 +1,52 @@
-import styled, { keyframes } from 'styled-components';
+import { useState } from 'react';
+import styled from 'styled-components';
+import { animated, useSpring, config } from 'react-spring';
 
 const Checkbox = ({ option, register }) => {
+  const [isChecked, setIsChecked] = useState(false);
+  const [checkmarkLength, setCheckmarkLength] = useState(null);
+
+  const checkboxAnimationStyle = useSpring({
+    backgroundColor: isChecked ? '#4c8bf5' : 'white',
+    borderColor: isChecked ? 'white' : 'grey',
+  });
+
+  const checkmarkAnimationStyle = useSpring({
+    x: isChecked ? 0 : checkmarkLength,
+    config: config.gentle,
+  });
+
   if (!option?.value) return <></>;
   return (
     <Container>
-      <Label>
+      <Label className="cbx">
         <Input
           name={option.value}
           value={option.value}
           type="checkbox"
           {...register(option.value)}
+          onChange={() => setIsChecked(!isChecked)}
         />
+        <animated.svg
+          style={checkboxAnimationStyle}
+          aria-hidden="true"
+          className="checkbox"
+          viewBox="0 0 15 11"
+          fill="none"
+        >
+          <animated.path
+            d="M2 4.5L5 9L13 1"
+            strokeWidth="2"
+            stroke="white"
+            strokeDasharray={checkmarkLength}
+            strokeDashoffset={checkmarkAnimationStyle.x}
+            ref={(ref) => {
+              if (ref) {
+                setCheckmarkLength(ref.getTotalLength());
+              }
+            }}
+          />
+        </animated.svg>
         {option.label}
       </Label>
     </Container>
@@ -18,30 +54,6 @@ const Checkbox = ({ option, register }) => {
 };
 
 export default Checkbox;
-
-const jelly = keyframes`
-	from {
-		transform: scale(1, 1);
-	}
-	30% {
-		transform: scale(1.25, 0.75);
-	}
-	40% {
-		transform: scale(0.75, 1.25);
-	}
-	50% {
-		transform: scale(1.15, 0.85);
-	}
-	65% {
-		transform: scale(0.95, 1.05);
-	}
-	75% {
-		transform: scale(1.05, 0.95);
-	}
-	to {
-		transform: scale(1, 1);
-	}
-`;
 
 const Container = styled.div`
   display: flex;
@@ -53,18 +65,26 @@ const Label = styled.label`
   :hover {
     cursor: pointer;
   }
+
+  .checkbox {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    background: white;
+    border: 1px solid grey;
+    margin-right: 15px;
+    margin-bottom: -5px;
+    margin-top: 10px;
+    border-radius: 2px;
+  }
 `;
 
 const Input = styled.input`
-  margin-right: 20px;
-
-  .cbx:checked ~ .cbx {
-    border-color: transparent;
-    background: #6871f1;
-    animation: jelly 0.6s ease;
-  }
-  .cbx:checked ~ .cbx:after {
-    opacity: 1;
-    transform: rotate(45deg) scale(1);
-  }
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: no-wrap;
+  width: 1px;
 `;

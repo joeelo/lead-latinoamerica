@@ -40,27 +40,28 @@ const ApproveProgramPage = () => {
 	}
 
 	if (!data?.program) return <></>
+	const { program } = data; 
 	return (
 		<>
 			<NavBar />
 			<FixedButton 
-					text="Approve Org"
+					text="Approve Program"
 					approve={true} 
 					bgColor="#00B43C"
-					href={data.program.href} 
+					href={program.href} 
 					bgColorHover="#0ACC14"
 					onSuccess={handleSuccess}
 			/>
 			<FixedButton 
-				text="Deny Org"
+				text="Deny Program"
 				deny={true} 
 				bgColor="#FF4F3D" 
-				href={data.program.href}
+				href={program.href}
 				bgColorHover="#E82C4A"
 				onSuccess={handleSuccess}
 			/>
-			<SkewedTitleAndPhoto program={data.program} router={router}/>
-			<ProgramOverviewAndInfo program={data.program} marginTop={true}/>
+			<SkewedTitleAndPhoto program={program} router={router}/>
+			<ProgramOverviewAndInfo program={program} marginTop={true}/>
 			<Footer marginTop={true}/>
 			<ToastContainer />
 

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const programSchema = new mongoose.Schema({
-  name: {
+const orgSchema = new mongoose.Schema({
+  organization: {
     type: String,
     required: true,
   },
@@ -9,6 +9,11 @@ const programSchema = new mongoose.Schema({
     type: String,
     max: 200,
     required: true,
+  },
+  missionStatement: {
+    type: String,
+    default: '',
+    max: 500,
   },
   helpsWith: {
     type: Array,
@@ -20,10 +25,10 @@ const programSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  organization: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Organization', 
-  }],
+  email: {
+    type: String,
+    required: true,
+  },
   tags: {
     type: Array,
     default: [],
@@ -31,6 +36,12 @@ const programSchema = new mongoose.Schema({
   href: {
     type: String,
     required: true,
+  },
+  partnerUrl: {
+    type: String,
+  },
+  orgLogo: {
+    type: String, 
   },
   programType: {
     program: {
@@ -52,6 +63,6 @@ const programSchema = new mongoose.Schema({
   },
 });
 
-const Program = new mongoose.model('Program', programSchema, 'programs');
+const Organization = new mongoose.model('Organization', orgSchema, 'programs');
 
-module.exports = Program;
+module.exports = Organization;

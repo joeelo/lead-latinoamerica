@@ -25,10 +25,14 @@ const postToDatabase = async (data, endpoint, query = {}) => {
 		return { message: 'success' };
 	}
 	data.query = query; 
+	console.log('DATAAAA: ', data)
 	try {
 		const options = {
 			method: 'POST', 
-			body: data, 
+			headers: {
+				'Content-Type': 'application/json'
+			}, 
+			body: JSON.stringify(data), 
 		}
 		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/${endpoint}`, options);
 		const json = await response.json(); 
