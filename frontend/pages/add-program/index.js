@@ -12,7 +12,6 @@ import Form from '@/components/form/container/Form';
 import StyledSectionHeading from '@/components/form/section/StyledSectionHeading';
 import { postToDatabase } from '@/fetch/requests';
 import WordSelectInput from '@/components/form/word-select/WordSelectInput';
-import useHostname from '@/hooks/useHostname';
 import Tooltip from '@/components/tooltip/Tooltip';
 
 const AddAndEditOrgs = () => {
@@ -21,13 +20,7 @@ const AddAndEditOrgs = () => {
 	const [ wordList, setWordList ] = useState([]);
 	const router = useRouter();
 
-	const setPreviewData = (data) => {
-		localStorage.setItem('organization', data.organization);
-		localStorage.setItem('bio', data.bio);
-		localStorage.setItem('helpsWith', JSON.stringify(wordList));
-	}
-
-  const { register, handleSubmit, setValue } = useForm(); 
+  const { register, handleSubmit } = useForm(); 
 
 	const onSubmit = async (data) => {
 		
@@ -53,15 +46,6 @@ const AddAndEditOrgs = () => {
 			setIsSubmitting(false);
 		}
 	}
-
-	const handleChange = (file) => {
-		setValue('file', file); 
-	}
-
-	const isDev = process.env.NEXT_PUBLIC_ENV === 'dev'
-	const hostname = useHostname();
-
-	const externalLink = `${hostname}/preview`
 
 	return (
 		<>
@@ -90,7 +74,8 @@ const AddAndEditOrgs = () => {
 							<TextInput 
 								register={register}
 								name='organization'
-								placeHolder='name:'
+								placeHolder='Name here'
+								rules={{ required: true, minLength: 3, maxLength: 40}}
 							/>
 						</Box>
 
@@ -100,12 +85,13 @@ const AddAndEditOrgs = () => {
 								register={register}
 								name='bio'
 								placeHolder='Tell us about you! '
+								rules={{ required: true, minLength: 10, maxLength: 200 }}
 							/>
 						</Box>
 
 						<Box>
 								<Box mt={30}>
-									<StyledSectionHeading style={{display: 'inline', marginTop: 30}}>Who does this scholarship, internship, or program serve?</StyledSectionHeading>
+									<StyledSectionHeading style={{display: 'inline', marginTop: 30}}>Who does this opportunity serve?</StyledSectionHeading>
 									<Tooltip explanation='Example: “Latinx” “LGBTQ” “Black” “All”' style={{marginLeft: 10}}/>
 								</Box>
 							<WordSelectInput
@@ -115,22 +101,22 @@ const AddAndEditOrgs = () => {
 							/>
 						</Box>
 
-						<StyledSectionHeading>What type of program is it?</StyledSectionHeading>
+						<StyledSectionHeading>What type of opportunity is it?</StyledSectionHeading>
 						<CheckboxGroup options={[
 								{value: 'programType.summer', label: 'Summer'},
 								{value: 'programType.internship', label: 'Internship'},
-								{value: 'programType.program', label: 'Programs'},
+								{value: 'programType.program', label: 'Program'},
 								{value: 'programType.scholarship', label: 'Scholarship'},
 							]}
 							register={register}
 						/>
 
 						<Box>
-							<StyledSectionHeading>Is there a url to find the program?</StyledSectionHeading>
+							<StyledSectionHeading>Is there a url to find the opportunity?</StyledSectionHeading>
 							<TextInput 
 								register={register}
 								name='partnerUrl'
-								placeHolder='website url: '
+								placeHolder='Eg: https://exampleLink.com '
 							/>
 						</Box>
 

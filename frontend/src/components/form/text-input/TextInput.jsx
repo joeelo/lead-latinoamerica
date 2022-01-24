@@ -1,14 +1,14 @@
 import styled, { ThemeContext } from 'styled-components';
 import { useContext, useState, useEffect } from 'react';
 
-const FormInput = ({
+const TextInput = ({
   register,
   setValue,
   name,
   label,
-  isRequired,
   placeHolder,
   initialVal,
+  rules,
 }) => {
   // register and hasError are properties of parent
   const theme = useContext(ThemeContext);
@@ -26,7 +26,7 @@ const FormInput = ({
       {label && <Label theme={theme}> {label} </Label>}
 
       <StyledInput
-        {...register(name, { required: isRequired })}
+        {...register(name, rules)}
         placeholder={placeHolder}
         theme={theme}
         onFocus={() => setIsInFocus(true)}
@@ -36,7 +36,7 @@ const FormInput = ({
   );
 };
 
-export default FormInput;
+export default TextInput;
 
 const Container = styled.div`
   margin-top: 20px;
