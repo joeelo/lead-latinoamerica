@@ -24,22 +24,17 @@ const AddAndEditOrgs = () => {
 
 	const onSubmit = async (data) => {
 		
-		setIsSubmitting(true);
-		
-		const formData = new FormData(); 
-		formData.append('file', data.file); 
-		formData.append('bio', data.bio); 
-		formData.append('email', data.email);
-		formData.append('organization', data.organization);
-		formData.append('helpsWith', JSON.stringify(wordList)); 
-		formData.append('partnerUrl', data.partnerUrl);
+		setIsSubmitting(true);		
 		
 		Object.keys(data.programType).forEach((key) => {
-			if (data.programType[key])
-			formData.append(`programType[${key}]`, data.programType[key])
+			if (data.programType[key]) {
+				data[`programType[${key}]`] = true
+			}
 		})
+
+		data.helpsWith = wordList;
 		
-		const response = await postToDatabase(formData, 'programs/add'); 
+		const response = await postToDatabase(data, 'programs/add'); 
 		if (response.message === 'success') {
 			router.push('/thanks-partner');
 		} else {
@@ -73,8 +68,7 @@ const AddAndEditOrgs = () => {
 							<StyledSectionHeading>Name of the scholarship, internship, or program</StyledSectionHeading>
 							<TextInput 
 								register={register}
-								name='organization'
-								placeHolder='Name here'
+								name='program'
 								rules={{ required: true, minLength: 3, maxLength: 40}}
 							/>
 						</Box>
@@ -84,7 +78,6 @@ const AddAndEditOrgs = () => {
 							<TextInput 
 								register={register}
 								name='bio'
-								placeHolder='Tell us about you! '
 								rules={{ required: true, minLength: 10, maxLength: 200 }}
 							/>
 						</Box>

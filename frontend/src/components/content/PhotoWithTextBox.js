@@ -4,30 +4,29 @@ import { useRouter } from 'next/router';
 
 const PhotoWithTextBox = ({  
 	program: {
-		organization = '', 
+		name = '', 
 		coverImage, 
 		bio, 
 		href,
 	} 
 }) => {
 	const router = useRouter();
-	const formattedLink = organization.replaceAll(' ', '-');
 	const clickHandler = () => {
-		router.push(`${router.asPath}/${formattedLink.toLowerCase()}`);
+		router.push(`${router.asPath}/${href.toLowerCase()}`);
 	}
 
 	const truncatedString = bio.length < 100 ? bio : `${bio.slice(0, 150)}...`;
 	const imageSrc = coverImage || '/images/pexels-cottonbro-6209356.jpg'
 
 	return (
-		<Container onClick={ clickHandler }>
+		<Container onClick={clickHandler}>
 			<PhotoWithTextOverlay>
 				<StyledImage src={imageSrc}/>
-				<RightAlignedText> { organization } </RightAlignedText>
+				<RightAlignedText> { name } </RightAlignedText>
 			</PhotoWithTextOverlay> 
 			<Bio> - { truncatedString } </Bio>
 			<Link href={`/resources/[resourceSlug]/[programSlug]`} as={`${router.asPath}/${href}`}>
-			<StyledAnchor> explore { organization } </StyledAnchor>
+			<StyledAnchor> explore { name } </StyledAnchor>
 			</Link>
 		</Container>
 	)
@@ -48,6 +47,7 @@ const Container = styled.div`
 	margin-bottom: 40px;
 	transition: .2s ease-in-out all;
 	max-height: 550px;
+	margin: 20px;
 
 	:hover {
 		cursor: pointer;

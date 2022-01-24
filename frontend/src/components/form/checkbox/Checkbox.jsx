@@ -16,8 +16,6 @@ const Checkbox = ({ option, register }) => {
     config: config.gentle,
   });
 
-  console.log('CHECKMARK LENGTH: ', checkmarkLength);
-
   if (!option?.value) return <></>;
   return (
     <Container>
@@ -37,7 +35,7 @@ const Checkbox = ({ option, register }) => {
           fill="none"
         >
           <animated.path
-            d="M1 4.5L5 9L14 1"
+            d="M2 4.5L5 9L13 1"
             strokeWidth="2"
             stroke="white"
             strokeDasharray={checkmarkLength}

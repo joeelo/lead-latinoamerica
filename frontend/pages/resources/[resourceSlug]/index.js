@@ -3,10 +3,11 @@ import { getProgramArray } from '@/fetch/requests';
 import FullScreenBack from '@/components/background/FullScreenBack';
 import PhotoWithTextBox from '@/components/content/PhotoWithTextBox';
 import Footer from '@/components/footer/Footer';
-import CenterFlexContainer from '@/components/generic/CenterFlexContainer';
 import NavBar from '@/components/nav/NavBar';
 import fakeData from '@/data/fakeData';
 import { useRouter } from 'next/router';
+import Box from '@/components/generic/Box';
+import CenterFlexContainer from '@/components/generic/CenterFlexContainer';
 
 const ResourcePage = () => {
 	// ex: /resource/program
@@ -37,6 +38,8 @@ const ResourcePage = () => {
 			console.log('ERROR IN GETPROGRAMS: ', error);
 		}
 	}
+
+	console.log('PROGRAMS ARRAYY:::', programsArray);
 	
 	return (
 		<>
@@ -52,7 +55,14 @@ const ResourcePage = () => {
 							color: 'white' 
 						}}
 					/>
-					<CenterFlexContainer padding='extraPad'>
+					<Box 
+						mt={40} 
+						p='100px' 
+						display="flex" 
+						justify="space-around" 
+						center
+						wrap
+					>
 						{ programsArray.map(( program ) => (
 							<PhotoWithTextBox 
 								key={program.href} 
@@ -60,7 +70,7 @@ const ResourcePage = () => {
 								program={program} 
 							/>
 						))}
-					</CenterFlexContainer>
+					</Box>
 					
 				</>
 			)}
