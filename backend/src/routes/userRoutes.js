@@ -133,7 +133,7 @@ router.get('/user/programs/:email/:programId', async (req, res) => {
     const user = await User.findOne({ email })
 
     if (!user) {
-      res.send({message: 'you must sign up for an account to save your programs', success: true})
+      res.send({ message: 'you must sign up for an account to save your programs', success: true })
       return; 
     }
 
