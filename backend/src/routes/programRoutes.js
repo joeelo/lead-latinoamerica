@@ -3,7 +3,6 @@ const Program = require('../models/Program');
 const seed = require('../seed/programSeed');
 const router = express.Router();
 const sendMail = require('../email/sendGrid');
-const { replaceSingleCharGlobal } = require('../customFuncs/replaceSingleCharGlobal');
 
 router.post('/programs/add', async (req, res) => {
   try {
@@ -15,15 +14,25 @@ router.post('/programs/add', async (req, res) => {
       programType = {},
     } = req.body;
 
-    console.log('REQ.body::::', req.body);
-
-    let href = replaceSingleCharGlobal(name, ' ', '-');
+    let href = name.split(' ').join('-');
     href = href.toLowerCase();
+
 
     const programTypeKeys = Object.keys(programType);
     const programTypes = {}; 
     
     programTypeKeys.forEach((key) => programTypes[key] = true);
+
+    const betweenZeroAndFour = () => {
+      return Math.floor(Math.random() * 5)
+    }
+
+    const images = [
+      'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80', 
+      'https://images.unsplash.com/photo-1532294220147-279399e4e00f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80', 
+      'https://images.unsplash.com/photo-1630025326456-1d384d371b24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1748&q=80', 
+      'https://images.unsplash.com/photo-1527484583355-9c200f59f0fd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80', 
+    ]
     
     const newProgram = new Program({
       name,
@@ -32,15 +41,8 @@ router.post('/programs/add', async (req, res) => {
       href,
       partnerUrl,
       programType: programTypes,
-      organization,
+      coverImage: images[betweenZeroAndFour()]
     });
-
-    const images = [
-      'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80', 
-      'https://images.unsplash.com/photo-1532294220147-279399e4e00f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80', 
-      'https://images.unsplash.com/photo-1630025326456-1d384d371b24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1748&q=80', 
-      'https://images.unsplash.com/photo-1527484583355-9c200f59f0fd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80', 
-    ]
 
     await newProgram.save((err) => {
       if (err) {
