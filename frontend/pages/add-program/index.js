@@ -20,7 +20,7 @@ const AddAndEditOrgs = () => {
 	const [ wordList, setWordList ] = useState([]);
 	const router = useRouter();
 
-  const { register, handleSubmit } = useForm(); 
+  const { register, handleSubmit, formState: { errors } } = useForm(); 
 
 	const onSubmit = async (data) => {
 		
@@ -28,9 +28,9 @@ const AddAndEditOrgs = () => {
 		
 		Object.keys(data.programType).forEach((key) => {
 			if (data.programType[key]) {
-				data[`programType[${key}]`] = true
+				data[`programType[${key}]`] = true;
 			}
-		})
+		});
 
 		data.helpsWith = wordList;
 		
@@ -68,17 +68,17 @@ const AddAndEditOrgs = () => {
 							<StyledSectionHeading>Name of the scholarship, internship, or program</StyledSectionHeading>
 							<TextInput 
 								register={register}
-								name='program'
+								name='name'
 								rules={{ required: true, minLength: 3, maxLength: 40}}
 							/>
 						</Box>
 
 						<Box>
-							<StyledSectionHeading>A brief description about the opportunity</StyledSectionHeading>
+							<StyledSectionHeading>A description about the opportunity</StyledSectionHeading>
 							<TextInput 
 								register={register}
 								name='bio'
-								rules={{ required: true, minLength: 10, maxLength: 200 }}
+								rules={{ maxLength: 200 }}
 							/>
 						</Box>
 

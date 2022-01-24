@@ -38,8 +38,6 @@ const ResourcePage = () => {
 			console.log('ERROR IN GETPROGRAMS: ', error);
 		}
 	}
-
-	console.log('PROGRAMS ARRAYY:::', programsArray);
 	
 	return (
 		<>

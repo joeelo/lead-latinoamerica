@@ -43,7 +43,7 @@ const Button = styled.div`
 	width: 150px;
 	text-align: center;
 	background-color: ${ props => props.bgColor };
-	z-index: 100;
+	z-index: 10000;
 	color: white; 
 	border-radius: 4px; 
 	font-size: 18px;

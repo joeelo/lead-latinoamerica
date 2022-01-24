@@ -15,7 +15,7 @@ const UserSavedPrograms = ({ programs }) => {
         return (
           <Link href={`/resource/${program.href}`} key={program.href}>
             <Container bgImage={program.coverImage}>
-              <h3>{program.organization}</h3>
+              <h3>{program.name}</h3>
             </Container>
           </Link>
         );
