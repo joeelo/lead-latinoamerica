@@ -15,6 +15,7 @@ const FullScreenBack = ({ src, children, titleInfo, height }) => {
 				<Image 
 					// placeholder="blur"
 					// blurDataURL
+					priority={true}
 					src={ src }
 					layout='fill'
 					objectFit="cover"
