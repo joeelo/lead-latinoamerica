@@ -42,6 +42,8 @@ const AddAndEditOrgs = () => {
 		}
 	}
 
+	console.log("ERROR: ", errors)
+
 	return (
 		<>
 			<NavBar />
@@ -62,14 +64,13 @@ const AddAndEditOrgs = () => {
 					<Form 
 						style={{maxWidth: '600px', margin: '40px auto 40px auto'}} 
 						onSubmit={handleSubmit(onSubmit)} 
-						enctype="multipart/form-data"
 					>
 						<Box>
 							<StyledSectionHeading>Name of the scholarship, internship, or program</StyledSectionHeading>
 							<TextInput 
 								register={register}
 								name='name'
-								rules={{ required: true, minLength: 3, maxLength: 40}}
+								rules={{ required: true, minLength: 3}}
 							/>
 						</Box>
 
@@ -82,10 +83,12 @@ const AddAndEditOrgs = () => {
 						</Box>
 
 						<Box>
-								<Box mt={30}>
-									<StyledSectionHeading style={{display: 'inline', marginTop: 30}}>Who does this opportunity serve?</StyledSectionHeading>
-									<Tooltip explanation='Example: “Latinx” “LGBTQ” “Black” “All”' style={{marginLeft: 10}}/>
-								</Box>
+							<Box mt={30}>
+								<StyledSectionHeading style={{display: 'inline', marginTop: 30}}>
+									Who does this opportunity serve?
+								</StyledSectionHeading>
+								<Tooltip explanation='Example: “Latinx” “LGBTQ” “Black” “All”' style={{marginLeft: 10}}/>
+							</Box>
 							<WordSelectInput
 								setWordList={setWordList}
 								wordList={wordList}
