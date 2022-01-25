@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import CategoryTiles from '@/components/content/program/CategoryTiles';
 import LinkButton from "@/components/generic/LinkButton";
 import useGetRouterPath from "@/hooks/useGetRouterPath";
 import Button from "@/components/buttons/Button";
 import { UpdateUsersSavedPrograms } from "@/fetch/user/UserRequests";
 import Box from "@/components/generic/Box";
 import { ToastContainer, toast } from 'react-toastify';
+import Tiles from './TIles';
 
 const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 	const path = useGetRouterPath();
@@ -53,7 +53,7 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 
 				<Box width="35%">
 					<UnderlinedSectionHeader> Categories </UnderlinedSectionHeader>
-					<CategoryTiles adjectives={ program.helpsWith }/>
+					<Tiles adjectives={ program.helpsWith }/>
 				</Box>
 				
 			</Container>

@@ -4,7 +4,7 @@ import { getProgramBySlug } from "@/fetch/requests";
 import NavBar from "@/components/nav/NavBar";
 import Footer from "@/components/footer/Footer";
 import ProgramOverviewAndInfo from "@/components/content/program/ProgramOverviewAndInfo";
-import SkewedTitleAndPhoto from "@/components/content/program/SkewedTitleAndPhoto";
+import ProgramTitleAndPhoto from "@/components/content/program/ProgramTitleAndPhoto";
 import FixedButton from "@/components/buttons/FixedButton";
 import { useQuery } from "react-query";
 import { getProgram } from 'src/fetch/program/ProgramRequests'
@@ -60,7 +60,7 @@ const ApproveProgramPage = () => {
 				bgColorHover="#E82C4A"
 				onSuccess={handleSuccess}
 			/>
-			<SkewedTitleAndPhoto program={program} router={router}/>
+			<ProgramTitleAndPhoto program={program} router={router}/>
 			<ProgramOverviewAndInfo program={program} marginTop={true}/>
 			<Footer marginTop={true}/>
 			<ToastContainer />

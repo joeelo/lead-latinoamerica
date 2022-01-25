@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const CategoryTiles = ({ adjectives }) => {
+const Tiles = ({ adjectives }) => {
 
   if (!adjectives) return <></>
   return (
@@ -10,7 +10,7 @@ const CategoryTiles = ({ adjectives }) => {
   )
 }
 
-export default CategoryTiles;
+export default Tiles;
 
 const Container = styled.div`
   width: 100%; 
