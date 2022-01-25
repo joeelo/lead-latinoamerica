@@ -13,6 +13,7 @@ import StyledSectionHeading from '@/components/form/section/StyledSectionHeading
 import { postToDatabase } from '@/fetch/requests';
 import WordSelectInput from '@/components/form/word-select/WordSelectInput';
 import Tooltip from '@/components/tooltip/Tooltip';
+import InputErrorMessage from '@/components/form/errors/InputErrorMessage'; 
 
 const AddAndEditOrgs = () => {
 
@@ -42,7 +43,7 @@ const AddAndEditOrgs = () => {
 		}
 	}
 
-	console.log("ERROR: ", errors)
+	console.log('ERRORSS: ', errors)
 
 	return (
 		<>
@@ -70,8 +71,13 @@ const AddAndEditOrgs = () => {
 							<TextInput 
 								register={register}
 								name='name'
-								rules={{ required: true, minLength: 3}}
+								rules={{
+									required: 'This field is required', 
+									minLength: {value: 3, message: 'Must be at least 3 characters long'}, 
+									maxLength: {value: 70, message: 'Cannot be longer than 70 characters.'},
+								}}
 							/>
+							{errors && errors.name && <InputErrorMessage error={errors.name.message}/>}
 						</Box>
 
 						<Box>
@@ -79,7 +85,9 @@ const AddAndEditOrgs = () => {
 							<TextInput 
 								register={register}
 								name='bio'
+								rules={{maxLength: {value: 750, message: 'Cannot be longer than 750 characters.'}}}
 							/>
+							{errors && errors.bio && <InputErrorMessage error={errors.bio.message}/>}
 						</Box>
 
 						<Box>

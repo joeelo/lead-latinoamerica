@@ -4,7 +4,7 @@ import { getProgramBySlug } from '@/fetch/requests';
 import fakeData from '@/data/fakeData';
 import NavBar from '@/components/nav/NavBar';
 import Footer from '@/components/footer/Footer';
-import SkewedTitleAndPhoto from '@/components/content/program/SkewedTitleAndPhoto';
+import ProgramTitleAndPhoto from '@/components/content/program/ProgramTitleAndPhoto';
 import ProgramOverviewAndInfo from '@/components/content/program/ProgramOverviewAndInfo';
 import { useSession } from 'next-auth/client';
 
@@ -27,7 +27,7 @@ const ProgramPage = () => {
   return (
     <>
       <NavBar />
-      <SkewedTitleAndPhoto program={ program } router={ router }/>
+      <ProgramTitleAndPhoto program={ program } router={ router }/>
       <ProgramOverviewAndInfo 
         program={ program } 
         marginTop={ true } 

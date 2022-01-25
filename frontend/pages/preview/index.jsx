@@ -3,7 +3,7 @@ import Footer from '@/components/footer/Footer';
 import NavBar from '@/components/nav/NavBar';
 import ProgramOverviewAndInfo from '@/components/content/program/ProgramOverviewAndInfo';
 import windowHasLoaded from '@/utils/windowHasLoaded';
-import SkewedTitleAndPhoto from '@/components/content/program/SkewedTitleAndPhoto';
+import ProgramTitleAndPhoto from '@/components/content/program/ProgramTitleAndPhoto';
 
 const PreviewPage = () => {
   const [program, setProgram] = useState({});
@@ -37,7 +37,7 @@ const PreviewPage = () => {
   return (
     <>
       <NavBar />
-      <SkewedTitleAndPhoto program={program} />
+      <ProgramTitleAndPhoto program={program} />
       <ProgramOverviewAndInfo program={program} preview />
       <Footer />
     </>

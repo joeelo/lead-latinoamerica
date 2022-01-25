@@ -5,7 +5,7 @@ import { getProgramBySlug } from "@/fetch/requests";
 import NavBar from "@/components/nav/NavBar";
 import Footer from "@/components/footer/Footer";
 import ProgramOverviewAndInfo from "@/components/content/program/ProgramOverviewAndInfo";
-import SkewedTitleAndPhoto from "@/components/content/program/SkewedTitleAndPhoto";
+import ProgramTitleAndPhoto from "@/components/content/program/ProgramTitleAndPhoto";
 import FaButton from "@/components/buttons/FaButton";
 import Modal from "@/components/modal/Modal";
 
@@ -34,7 +34,7 @@ const DeleteOrgPage = () => {
     return (
         <>
             <NavBar />
-            <SkewedTitleAndPhoto program={ program } router={ router }/>
+            <ProgramTitleAndPhoto program={ program } router={ router }/>
             <ProgramOverviewAndInfo program={ program } marginTop={ true }/>
             <ButtonContainer onClick={() => setIsModalOpen(true)}>
                 <FaButton size="2x" color="white"/>

@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
-const SkewedTitleAndPhoto = ({ program }) => {
+const ProgramTitleAndPhoto = ({ program }) => {
 
 	const coverImage = program.coverImage || '/images/pexels-cottonbro-6209356.jpg';
-
-	console.log('JIFJIFJE: ', program)
 	return (
 		<Container>
 			<TextContainer>
@@ -24,7 +22,7 @@ const SkewedTitleAndPhoto = ({ program }) => {
 	)
 }
 
-export default SkewedTitleAndPhoto;
+export default ProgramTitleAndPhoto;
 
 const Container = styled.div`
 	width: 100%; 
@@ -49,8 +47,7 @@ const TextContainer = styled.div`
 	display: flex; 
 	flex-direction: column;
 	justify-content: center;
-	padding-left: 100px; 
-	padding-top: 60px;
+	align-items: center;
 
 	@media screen and min(width: 1000px) {
 		&:after {
@@ -90,9 +87,10 @@ const ImageContainer = styled.div`
 `
 
 const Heading = styled.h2`
-	font-size: 68px; 
+	font-size: 58px; 
 	line-height: 60px; 
 	margin-bottom: 5px;
+	width: 80%;
 
 	@media screen and (max-width: 768px) {
 		font-size: 48px; 
