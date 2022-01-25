@@ -78,7 +78,6 @@ const AddAndEditOrgs = () => {
 							<TextInput 
 								register={register}
 								name='bio'
-								rules={{ maxLength: 200 }}
 							/>
 						</Box>
 
