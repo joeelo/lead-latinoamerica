@@ -43,8 +43,6 @@ const AddAndEditOrgs = () => {
 		}
 	}
 
-	console.log('ERRORSS: ', errors)
-
 	return (
 		<>
 			<NavBar />

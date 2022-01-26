@@ -5,10 +5,6 @@ import PropTypes from 'prop-types';
 
 const FullScreenBack = ({ src, children, titleInfo, height }) => {
 
-	// const loadHandler = () => {
-	// 	console.log('loaded');
-	// }
-
 	return (
 		<OuterWrapper>
 			<Container {...{ height }}>

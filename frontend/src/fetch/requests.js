@@ -25,7 +25,6 @@ const postToDatabase = async (data, endpoint, query = {}) => {
 		return { message: 'success' };
 	}
 	data.query = query; 
-	console.log('DATAAAA: ', data)
 	try {
 		const options = {
 			method: 'POST', 
