@@ -6,6 +6,7 @@ import { UpdateUsersSavedPrograms } from "@/fetch/user/UserRequests";
 import Box from "@/components/generic/Box";
 import { ToastContainer, toast } from 'react-toastify';
 import Tiles from './Tiles';
+import ExternalLink from '@/components/generic/ExternalLink';
 
 const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 	const path = useGetRouterPath();
@@ -39,12 +40,13 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 					<StyledP> { program.bio } </StyledP>
 					{!preview ? (
 						<>
-							<LinkButton 
-								text="Sign Up"
-								external
-								hrefFormatted={program.externalSignUp} 
-								
-							/>
+							<ExternalLink 
+								href={program.partnerUrl} 
+								bgColor="#0077B6"	
+							>
+								Sign up
+							</ExternalLink>
+
 							<Button label='Save to profile' color='#1F2041' onClick={handleClick}/>
 						</>
 						) 
