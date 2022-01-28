@@ -10,7 +10,18 @@ const LinkButton = ({
     marginTop,
     bgColor = '#0077B6',
     width,
+    external
 }) => {
+
+  if (external) {
+    return (
+      <a href={hrefFormatted} target="_blank" rel="noreferrer noopener">
+        <StyledButton {...{bgColor, width}}>
+          <Span> { text } </Span>
+        </StyledButton>
+      </a>
+    )
+  }
 
   return (
     <Link href={ hrefFormatted } as={`${ hrefAs }`}>

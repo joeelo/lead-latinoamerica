@@ -22,7 +22,7 @@ const Footer = ({ showQuote }) => {
                     <LinkUnderlineEffect hrefFormatted="/resources/programs" text={ t.programs } color={'white'}/>
                     <LinkUnderlineEffect hrefFormatted="/resources/internships" text={ t.internships } color={'white'}/>
                     <LinkUnderlineEffect hrefFormatted="/our-team" text={ t.ourTeam } color={'white'}/>
-                    <LinkUnderlineEffect hrefFormatted="/add-edit-orgs" text={ t.addYourOrg } color={'white'}/>
+                    <LinkUnderlineEffect hrefFormatted="/add-program" text={ t.addYourOrg } color={'white'}/>
                 </Column>
             </Container>
         </>

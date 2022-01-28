@@ -40,9 +40,10 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 					{!preview ? (
 						<>
 							<LinkButton 
-								text={ 'Sign Up' } 
-								hrefFormatted={'/resources/[resourceSlug]/[programSlug]/sign-up'} 
-								hrefAs={`${path}/sign-up`} 
+								text="Sign Up"
+								external
+								hrefFormatted={program.externalSignUp} 
+								
 							/>
 							<Button label='Save to profile' color='#1F2041' onClick={handleClick}/>
 						</>
