@@ -5,7 +5,7 @@ import Button from "@/components/buttons/Button";
 import { UpdateUsersSavedPrograms } from "@/fetch/user/UserRequests";
 import Box from "@/components/generic/Box";
 import { ToastContainer, toast } from 'react-toastify';
-import Tiles from './TIles';
+import Tiles from './Tiles';
 
 const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 	const path = useGetRouterPath();
