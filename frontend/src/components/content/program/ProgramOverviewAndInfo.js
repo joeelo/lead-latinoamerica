@@ -34,7 +34,7 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 	return (
 		<>
 			<Container>
-				<Box width="60%">
+				<Box width="55%">
 					<LargeText> Overview </LargeText>
 					<StyledP> { program.bio } </StyledP>
 					{!preview ? (
@@ -52,7 +52,7 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 					}
 				</Box>
 
-				<Box width="35%">
+				<Box width="40%">
 					<UnderlinedSectionHeader> Categories </UnderlinedSectionHeader>
 					<Tiles adjectives={ program.helpsWith }/>
 				</Box>
