@@ -32,6 +32,9 @@ const programSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  partnerUrl: {
+    type: String,
+  },
   programType: {
     program: {
       type: Boolean,
