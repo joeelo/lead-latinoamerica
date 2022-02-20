@@ -17,11 +17,10 @@ router.post('/programs/add', async (req, res) => {
     let href = name.split(' ').join('-');
     href = href.toLowerCase();
 
-
     const programTypeKeys = Object.keys(programType);
     const programTypes = {}; 
     
-    programTypeKeys.forEach((key) => programTypes[key] = true);
+    programTypeKeys.forEach((key) => programTypes[key] = !!programType[key]);
 
     const betweenZeroAndFour = () => {
       return Math.floor(Math.random() * 5)
