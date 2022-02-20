@@ -47,7 +47,7 @@ const AddAndEditOrgs = () => {
 		<>
 			<NavBar />
 
-			<Box display='flex' fd='column' width='al-fu' center pt={60}>
+			<Box stackOnMobile display='flex' fd='column' width='al-fu' center pt={60}>
 				<ChangingBackgroundText 
 					fontSize='48px'
 					initialColor='#1F2041'

@@ -5,6 +5,7 @@ import NavBar from "@/components/nav/NavBar";
 import ChangingBackgroundText from '@/components/content/ChangingBackgroundText';
 import Button from '@/components/generic/Button';
 import { useSession, signIn } from 'next-auth/client';
+import Box from '@/components/generic/Box';
 
 const Signup = () => {
 
@@ -16,7 +17,7 @@ const Signup = () => {
   return (
     <>
       <NavBar />
-        <Container>
+        <Box stackOnMobile display="flex" >
           <PhotoWithText>
             <Title>
               Sign in to <br/>
@@ -49,17 +50,13 @@ const Signup = () => {
             )}
     
           </Column>
-        </Container>
+        </Box>
       <Footer />
     </>
   )
 }
 
 export default Signup; 
-
-const Container = styled.div`
-  display: flex; 
-`
 
 const PhotoWithText = styled.div`
   width: 60%; 
@@ -72,7 +69,7 @@ const PhotoWithText = styled.div`
   justify-content: center; 
 
   @media screen and (max-width: 768px) {
-
+    width: 100%;
   }
 `
 
@@ -90,7 +87,11 @@ const Column = styled.div`
   padding-top: 150px; 
   width: 40%; 
   display: flex; 
-
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    padding-top: 60px;
+    margin-bottom: 60px;
+  }
 `
 
 const LoginButton = styled(Button)`
