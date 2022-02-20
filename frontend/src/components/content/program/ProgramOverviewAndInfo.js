@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import LinkButton from "@/components/generic/LinkButton";
-import useGetRouterPath from "@/hooks/useGetRouterPath";
 import Button from "@/components/buttons/Button";
 import { UpdateUsersSavedPrograms } from "@/fetch/user/UserRequests";
 import Box from "@/components/generic/Box";
@@ -9,7 +7,6 @@ import Tiles from './Tiles';
 import ExternalLink from '@/components/generic/ExternalLink';
 
 const ProgramOverviewAndInfo = ({ program, email, preview }) => {
-	const path = useGetRouterPath();
 
 	const successNotification = () => toast('Successfully Updated!', {
     position: 'bottom-right',

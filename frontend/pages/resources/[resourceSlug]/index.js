@@ -7,7 +7,6 @@ import NavBar from '@/components/nav/NavBar';
 import fakeData from '@/data/fakeData';
 import { useRouter } from 'next/router';
 import Box from '@/components/generic/Box';
-import CenterFlexContainer from '@/components/generic/CenterFlexContainer';
 
 const ResourcePage = () => {
 	// ex: /resource/program
@@ -41,18 +40,18 @@ const ResourcePage = () => {
 	
 	return (
 		<>
-		<NavBar />
+			<NavBar />
+			<FullScreenBack 
+				src={ fakeData[resourceSlug].coverImage }
+				titleInfo={{ 
+					show: true, 
+					text: `${resourceSlug}`, 
+					backgroundColor: '#0077B6', 
+					color: 'white' 
+				}}
+			/>
 			{ programsArray[0] && (
 				<>
-					<FullScreenBack 
-						src={ fakeData[resourceSlug].coverImage }
-						titleInfo={{ 
-							show: true, 
-							text: `${resourceSlug}`, 
-							backgroundColor: '#0077B6', 
-							color: 'white' 
-						}}
-					/>
 					<Box 
 						mt={40} 
 						p='100px' 
