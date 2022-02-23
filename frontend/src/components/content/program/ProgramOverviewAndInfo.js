@@ -8,7 +8,7 @@ import ExternalLink from '@/components/generic/ExternalLink';
 
 const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 
-	const successNotification = () => toast('Successfully Updated!', {
+	const successNotification = () => toast('Successfully saved to profile!', {
     position: 'bottom-right',
     hideProgressBar: true,
     style: { background: '#43a23c', color: 'white' },
@@ -22,7 +22,7 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 
 	const handleClick = async () => {
 		const response = await UpdateUsersSavedPrograms(email, program._id);
-		if (response.message === 'success') {
+		if (response.success) {
 			successNotification(); 
 		} else {
 			failureNotification();
