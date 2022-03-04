@@ -27,7 +27,7 @@ const ProfilePage = (props) => {
 
   const userName = getFullName(session)
   const email = session?.user?.email;
-  const userInterestStr = userData.interests?.join(', ');
+  const userInterestStr = userData.interests?.join(', ') || 'N/A';
   
   const { register, handleSubmit, setValue } = useForm(); 
 
@@ -123,7 +123,7 @@ const ProfilePage = (props) => {
                 ) : (
                   <>
                     <TitleHeading>Grade</TitleHeading>
-                    <FormDetail>{userData?.grade}</FormDetail>
+                    <FormDetail>{userData?.grade || 'N/A'}</FormDetail>
                   </>
                 )}
 
