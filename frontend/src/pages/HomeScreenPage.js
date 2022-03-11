@@ -52,7 +52,7 @@ const HomeScreenPage = () => {
 			<NavBar />
 			<FullScreenBack src='/images/mission-high.jpeg'>
 				<PortalTitleContainer>
-				<PortalTitle>{t.headline1}</PortalTitle>
+				<Logo src="/images/lead-logo.png"/>
 				<PortalSubTitle>{t.headline2}</PortalSubTitle>
 				</PortalTitleContainer>
 
@@ -127,8 +127,8 @@ const PortalTitleContainer = styled.div`
 	max-width: 90vw;
 `
 
-const PortalTitle = styled.h2`
-	font-size: 68px;
+const Logo = styled.img`
+	max-width: 150px; 
 
 	@media screen and (max-width: 768px) {
 	font-size: 34px;
@@ -136,13 +136,14 @@ const PortalTitle = styled.h2`
 `
 
 const PortalSubTitle = styled.h3`
-	font-size: 26px; 
+	font-size: 18px; 
 	position: relative; 
-	top: -15px;
-	left: 5px;
+	top: -10px;
+	left: 10px;
+	color: white;
 
 	@media screen and (max-width: 768px) {
-		font-size: 22px; 
+		font-size: 14px; 
 		top: 0px;
 		left: 0;
 		line-height: 20px; 
