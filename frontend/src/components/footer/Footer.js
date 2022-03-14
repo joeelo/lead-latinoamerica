@@ -1,6 +1,5 @@
 import styled, { ThemeContext } from 'styled-components';
 import { useContext } from 'react';
-import Link from 'next/link';
 import DynamicQuote from '../content/quote/DynamicQuote';
 import PropTypes from 'prop-types';
 import LinkUnderlineEffect from '@/components/generic/LinkUnderlineEffect';
@@ -10,23 +9,30 @@ import useLocale from '@/hooks/useLocale';
 
 const Footer = ({ showQuote }) => {
 
-    const theme = useContext(ThemeContext);
-    const t = useLocale() === 'en' ? en : es
+	const theme = useContext(ThemeContext);
+	const t = useLocale() === 'en' ? en : es
 
-    return (
-        <>
-            { showQuote && <DynamicQuote /> }
-            <Container data-testid='footer' theme={ theme }>
-                <Column>
-                    <p> { t.explore } </p>
-                    <LinkUnderlineEffect hrefFormatted="/resources/programs" text={ t.programs } color={'white'}/>
-                    <LinkUnderlineEffect hrefFormatted="/resources/internships" text={ t.internships } color={'white'}/>
-                    <LinkUnderlineEffect hrefFormatted="/our-team" text={ t.ourTeam } color={'white'}/>
-                    <LinkUnderlineEffect hrefFormatted="/add-program" text={ t.addYourOrg } color={'white'}/>
-                </Column>
-            </Container>
-        </>
-    )
+	return (
+    <>
+			{ showQuote && <DynamicQuote /> }
+			<Container data-testid='footer' theme={ theme }>
+				<Column>
+					<p> { t.explore } </p>
+					<LinkUnderlineEffect color="white" hrefFormatted="/resources/program" text={t.programs} />
+					<LinkUnderlineEffect color="white" hrefFormatted="/resources/scholarships" text={t.scholarships} />
+					<LinkUnderlineEffect color="white" hrefFormatted="/resources/internships" text={t.internships} />
+					<LinkUnderlineEffect color="white" hrefFormatted="/resources/summer" text={t.summer} />
+					<LinkUnderlineEffect 
+						openInNewTab
+						hrefFormatted="https://www.leadlatinoamerica.org/copy-of-our-team" 
+						color="white"
+						text={ t.ourTeam } 
+					/>
+					<LinkUnderlineEffect hrefFormatted="/add-program" text={ t.addYourOrg } color={'white'}/>
+					</Column>
+			</Container>
+		</>
+	)
 }
 
 export default Footer;

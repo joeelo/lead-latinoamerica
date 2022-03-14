@@ -118,7 +118,9 @@ const ProfilePage = (props) => {
                   <TitleHeading> Hey there {userData.preferredName}!</TitleHeading>
                 )}
 
-                {userData?.grade === 'parent' ? (
+                <Span> We're bringing notifications to the profile page soon. So you can opt-in to get weekly emails on programs that have been uploaded, and specify what types of programs you're interested in by clicking the edit button below.</Span>
+
+                {/* {userData?.grade === 'parent' ? (
                   <TitleHeading> Thank you for joining us! </TitleHeading>
                 ) : (
                   <>
@@ -128,7 +130,7 @@ const ProfilePage = (props) => {
                 )}
 
                 <TitleHeading>What are you interested in?</TitleHeading>
-                <FormDetail>{userInterestStr}</FormDetail>
+                <FormDetail>{userInterestStr}</FormDetail> */}
 
                 <Button label='Edit' onClick={handleClick}/>
 
@@ -265,4 +267,11 @@ const TitleHeading = styled.p`
 const FormDetail = styled.p`
   font-size: 22px; 
   margin-bottom: 30px; 
+`
+
+const Span = styled.span`
+  display: flex;
+  max-width: 400px; 
+  font-size: 18px; 
+  margin-top: 20px;
 `

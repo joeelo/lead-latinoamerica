@@ -82,7 +82,7 @@ const AddAndEditOrgs = () => {
 					fontSize='48px'
 					initialColor='#1F2041'
 					secondaryColor='#1F2041'
-					text='Lead With Us!'
+					text='Share a program!'
 					fontColorInitial='#1F2041'
 					fontColorSecondary='white'
 					onlyRunOneTransition={ true }

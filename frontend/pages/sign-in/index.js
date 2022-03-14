@@ -38,7 +38,7 @@ const Signup = () => {
             {!session ? (
               <>
                 <LoginButton onClick={() => signIn('google', {
-                  callbackUrl: '/', 
+                  callbackUrl: `${window.location.origin}/`, 
                 })}>
                   <GoogleLogo src='/images/google-logo.png'/>
                   Sign in with Google

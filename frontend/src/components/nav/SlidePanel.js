@@ -43,20 +43,12 @@ const SlidePanel = ({ navOpen, setNavOpen }) => {
 			<LanguageButtons />
 
 			<SectionHeader> { t.resources } </SectionHeader>
-			<LinkUnderlineEffect hrefFormatted="/resources/program" text={ t.programs } />
-			<LinkUnderlineEffect hrefFormatted="/resources/scholarships" text={ t.scholarships } />
-			<LinkUnderlineEffect hrefFormatted="/resources/internships" text={ t.internships } />
-			<LinkUnderlineEffect hrefFormatted="/resources/summer" text={ t.summer } />
+			<LinkUnderlineEffect hrefFormatted="/resources/program" text={t.programs} />
+			<LinkUnderlineEffect hrefFormatted="/resources/scholarships" text={t.scholarships} />
+			<LinkUnderlineEffect hrefFormatted="/resources/internships" text={t.internships} />
+			<LinkUnderlineEffect hrefFormatted="/resources/summer" text={t.summer} />
 
 			<SectionHeader> { t.portal } </SectionHeader>
-			<LinkUnderlineEffect hrefFormatted='/' text={ t.home }  />
-			<LinkUnderlineEffect hrefFormatted="/add-program" text={ t.addOrg } />
-			<LinkUnderlineEffect 
-				openInNewTab
-				hrefFormatted="https://www.leadlatinoamerica.org/copy-of-our-team" 
-				text={ t.ourTeam } 
-			/>
-
 			{session && (
 				<>
 					<LinkUnderlineEffect hrefFormatted='/profile' text='My Profile'  />
@@ -69,6 +61,13 @@ const SlidePanel = ({ navOpen, setNavOpen }) => {
 			{!session && (
 				<LinkUnderlineEffect hrefFormatted='/sign-in' text='Sign In'  />
 			)}
+			<LinkUnderlineEffect hrefFormatted="/add-program" text={t.addOrg} />
+			<LinkUnderlineEffect hrefFormatted='/' text={ t.home }  />
+			<LinkUnderlineEffect 
+				openInNewTab
+				hrefFormatted="https://www.leadlatinoamerica.org/copy-of-our-team" 
+				text={ t.ourTeam } 
+			/>
 
 		</Container>
 	)
