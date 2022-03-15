@@ -120,18 +120,6 @@ const ProfilePage = (props) => {
 
                 <Span> We're bringing notifications to the profile page soon. So you can opt-in to get weekly emails on programs that have been uploaded, and specify what types of programs you're interested in by clicking the edit button below.</Span>
 
-                {/* {userData?.grade === 'parent' ? (
-                  <TitleHeading> Thank you for joining us! </TitleHeading>
-                ) : (
-                  <>
-                    <TitleHeading>Grade</TitleHeading>
-                    <FormDetail>{userData?.grade || 'N/A'}</FormDetail>
-                  </>
-                )}
-
-                <TitleHeading>What are you interested in?</TitleHeading>
-                <FormDetail>{userInterestStr}</FormDetail> */}
-
                 <Button label='Edit' onClick={handleClick}/>
 
               </>

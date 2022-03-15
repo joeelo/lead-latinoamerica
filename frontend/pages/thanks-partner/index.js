@@ -15,11 +15,11 @@ const ThanksPartnerPage = () => {
 					<ChangingBackgroundText 
 						text='Hooray! Thanks for Joining Us!'
 						fontSize='24px'
-						initialColor={ theme.colors.white }
-						secondaryColor={ theme.colors.darkBlue }
-						fontColorInitial={ theme.colors.darkBlue }
-						fontColorSecondary={ theme.colors.cultured }
-						onlyRunOneTransition={ true }
+						initialColor={theme.colors.white}
+						secondaryColor={theme.colors.darkBlue}
+						fontColorInitial={theme.colors.darkBlue}
+						fontColorSecondary={theme.colors.cultured}
+						onlyRunOneTransition={true}
 					/>
 
 					<Box display="flex" wrap="true" justify="center">

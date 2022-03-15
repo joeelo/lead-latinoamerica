@@ -1,14 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Hamburger from '@/components/nav/Hamburger';
 import SlidePanel from './SlidePanel';
+import { ThemeContext } from 'styled-components';
 
 const NavBar = () => {
-
 	const [ navOpen, setNavOpen ] = useState(false);
-
+	const theme = useContext(ThemeContext)
   const router = useRouter();
+
+	const homeClickHandler = () => {
+		router.push(`/`);
+	}
+
+	const { darkBlue, primary } = theme.colors
 
 	useEffect(() => {
 		if (navOpen) {
@@ -21,6 +27,13 @@ const NavBar = () => {
 			<PlaceHolderContainer></PlaceHolderContainer>
 			<Container>
 				<Hamburger { ...{ navOpen, setNavOpen } }/>
+				<HomeButton 
+					backgroundColor={darkBlue} 
+					hoveredBackgroundColor={primary}
+					onClick={homeClickHandler}
+				>
+					HOME
+				</HomeButton>
 				<SlidePanel { ...{ navOpen, setNavOpen } }/>
 			</Container>
 		</>
@@ -44,4 +57,34 @@ const PlaceHolderContainer = styled.div` // To take up the fixed height at the t
 	width: 100vw; 
 	background-color: white; 
 	z-index: 1000;
+`
+
+const HomeButton = styled.div`
+	position: fixed; 
+	right: 20px; 
+	height: 50px; 
+	top: 10px;
+	background-color: ${(props) => props.backgroundColor};
+	color: white; 
+	display: flex; 
+	align-items: center; 
+	justify-content: center; 
+	cursor: pointer; 
+	width: 150px; 
+	border-radius: 4px; 
+	transition: .2s ease-in-out all;
+	font-weight: bold;
+
+	:hover {
+		background-color: #3a3970;
+	}
+
+	@media screen and (max-width: 768px) {
+    width: 100px; 
+		height: 40px; 
+		top: 15px; 
+		font-weight: normal;
+		font-size: 14px;
+  }
+
 `

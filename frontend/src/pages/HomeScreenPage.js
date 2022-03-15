@@ -15,7 +15,6 @@ import es from '@/language/locales/es/common.json';
 import useLocale from '@/hooks/useLocale';
 
 const HomeScreenPage = () => {
-
 	const theme = useContext(ThemeContext);
 	const quote = useGetRandomQuote(); 
 	const t = useLocale() === 'en' ? en : es;
@@ -128,7 +127,7 @@ const PortalTitleContainer = styled.div`
 `
 
 const Logo = styled.img`
-	max-width: 150px; 
+	max-width: 250px; 
 
 	@media screen and (max-width: 768px) {
 	font-size: 34px;
