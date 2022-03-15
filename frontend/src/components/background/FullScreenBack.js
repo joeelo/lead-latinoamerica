@@ -5,19 +5,18 @@ import PropTypes from 'prop-types';
 
 const FullScreenBack = ({ src, children, titleInfo, height }) => {
 
+
+
 	return (
 		<OuterWrapper>
 			<Container {...{ height }}>
 				<Image 
-					// placeholder="blur"
-					// blurDataURL
+					className=".next-image"
 					priority={true}
 					src={ src }
 					layout='fill'
 					objectFit="cover"
 					objectPosition="center"
-					style={{ zIndex: -1, position: 'absolute' }}
-					// onLoad={loadHandler}
 				/>
 				<div style={{ zIndex: 10, position: 'relative' }}>
 					{ children }

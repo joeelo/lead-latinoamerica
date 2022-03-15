@@ -17,23 +17,28 @@ const GlobalStyle = createGlobalStyle`
 		box-sizing: border-box;
 	}
 
-    body {
-        box-sizing: border-box;
-        position: relative; 
-        min-height: 100vh; 
-        font-family: "Helvetica Neue", sans-serif;
-        max-width: 100vw;
-        font-weight: 300;
-    }
+	body {
+		box-sizing: border-box;
+		position: relative; 
+		min-height: 100vh; 
+		font-family: "Helvetica Neue", sans-serif;
+		max-width: 100vw;
+		font-weight: 300;
+	}
 
-    h1, h2 {
+	h1, h2 {
 		font-family: "Montserrat", sans-serif !important;
 		font-weight: 600;
-    }
+	}
 
-    p, div, span, textarea {
+	p, div, span, textarea {
 		font-family: "source sans pro", sans-serif;
-    }
+	}
+
+	.next-image {
+		zIndex: -1 !important; 
+		position: 'absolute' !important;
+	}
 `
 
 const theme = {

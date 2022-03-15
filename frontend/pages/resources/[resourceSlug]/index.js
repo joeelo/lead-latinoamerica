@@ -28,7 +28,6 @@ const ResourcePage = () => {
 			: resourceSlug;
 		try {
 			const data = await getProgramArray('programs/resources', singularSlug); 
-			console.log('data: ', data)
 			if (!data || !data.message.length) {
 				return; 
 			}
@@ -59,7 +58,7 @@ const ResourcePage = () => {
 						display="flex" 
 						justify="space-around" 
 						center
-						wrap
+						wrap="true"
 					>
 						{ programsArray.map(( program ) => (
 							<PhotoWithTextBox 
