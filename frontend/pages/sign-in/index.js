@@ -87,7 +87,7 @@ const Column = styled.div`
   width: 40%; 
   display: flex; 
   @media screen and (max-width: 768px) {
-    width: 100%;
+    width: 90%;
     padding-top: 60px;
     margin-bottom: 60px;
   }
