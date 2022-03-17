@@ -51,14 +51,14 @@ const HomeScreenPage = () => {
 			<NavBar />
 			<FullScreenBack src='/images/mission-high.jpeg'>
 				<PortalTitleContainer>
-				<Logo src="/images/lead-logo.png"/>
+				<Logo src="/images/svg/logo-FFFFFF.svg"/>
 				<PortalSubTitle>{t.headline2}</PortalSubTitle>
 				</PortalTitleContainer>
 
-				<MainTitleContainer>
-				<MainTitleFirstLine>{t.headline3}</MainTitleFirstLine>
-				<MainTitleSecondLine>{t.headline4}</MainTitleSecondLine>
-				</MainTitleContainer>
+				<RelativeTextContainer>
+					<LargeText>{t.headline3}</LargeText>
+					<LargeText>{t.headline4}</LargeText>
+				</RelativeTextContainer>
 			</FullScreenBack>
 
 			<CenterFlexContainer backgroundColor={ theme.colors.cultured } minHeight={ 'auto' } padding={ 60 }>
@@ -72,14 +72,16 @@ const HomeScreenPage = () => {
 			</CenterFlexContainer>
 			<CenterFlexContainer backgroundColor={ theme.colors.cultured }>
 				{
-					opportunityInfo.map(info => <FlexContentBox 
-						key={ info.title } 
-						size={ 'halves' } 
-						content={ info } 
-						color={ theme.colors.darkText }
-						backgroundColor={ theme.white }
-						minHeight={ 400 }
-					/>)
+					opportunityInfo.map(info => (
+						<FlexContentBox 
+							key={ info.title } 
+							size={ 'halves' } 
+							content={ info } 
+							color={ theme.colors.darkText }
+							backgroundColor={ theme.white }
+							minHeight={ 400 }
+						/>
+					))
 				}
 			</CenterFlexContainer>
 
@@ -109,6 +111,7 @@ const HomeScreenPage = () => {
 						textArray={[quote?.text, `- ${quote?.author}`]} 
 						maxWidth='800'
 						fontSize={48}
+						mobileFontSize={36}
 					/>
 				</CenterFlexContainer>
 			</VideoBackground>
@@ -149,32 +152,20 @@ const PortalSubTitle = styled.p`
 	}
 `
 
-const MainTitleContainer = styled.div`
+const RelativeTextContainer = styled.div`
 	position: relative; 
 	top: 100px;
 	left: 20px;
 	max-width: 90vw;
 `
 
-const MainTitle = styled.h1`
+const LargeText = styled.h1`
 	color: white; 
 	font-size: 48px;
 	position: relative; 
 
 	@media screen and (max-width: 768px) {
-		font-size: 34px; 
+		font-size: 18px; 
 	}
 `
 
-const MainTitleFirstLine = styled(MainTitle)`	
-	left: 0; 
-	margin-bottom: 10px; 
-`
-
-const MainTitleSecondLine = styled(MainTitle)`
-	top: -20px;
-
-	@media screen and (max-width: 768px) {
-		top: 0;
-	}
-`

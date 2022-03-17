@@ -103,7 +103,6 @@ const InnerContainer = styled.div`
 	animation-duration: 3s;
 	animation-fill-mode: forwards;
 	background-color: ${ props => props.secondaryColor }; 
-	// animation-fill-mode: forwards;
 `
 	
 const StyledHeading = styled.h2`
@@ -112,6 +111,6 @@ const StyledHeading = styled.h2`
 	text-align: center;
 
 	@media screen and (max-width: 768px) {
-		font-size: 34px;
+		font-size: 26px;
 	}
 `

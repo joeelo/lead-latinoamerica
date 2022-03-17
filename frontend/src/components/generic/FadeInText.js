@@ -6,8 +6,9 @@ import useOnScreen from '@/hooks/useOnScreen';
 const FadeInText = ({ 
 	textArray, 
 	onlyRunOneTransition, 
-	fontSize, 
-	maxWidth 
+	fontSize,
+	mobileFontSize, 
+	maxWidth,
 }) => {
 
 	const [ animate, setAnimation ] = useState(false);
@@ -31,7 +32,7 @@ const FadeInText = ({
 	return (
 		<Container ref={ref} maxWidth={maxWidth}>
 			{ animate &&
-				textArray && textArray.map((text) => <P key={text} {...{ fontSize }}> { text } </P>)
+				textArray && textArray.map((text) => <P key={text} {...{ fontSize, mobileFontSize }}> { text } </P>)
 			}	
 		</Container>
 	)
@@ -73,5 +74,9 @@ const P = styled.p`
 	color: white; 
 	position: relative; 
 	color: white;
-	font-size: ${ props => props.fontSize ? `${props.fontSize}px` : '24px' };
+	font-size: ${props => props.fontSize ? `${props.fontSize}px` : '24px'};
+
+	@media screen and (max-width: 768px) {
+	font-size: ${(props) => props.mobileFontSize ? `${props.mobileFontSize}px` : '18px'}
+	}
 `

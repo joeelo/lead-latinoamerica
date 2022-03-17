@@ -43,6 +43,10 @@ const P = styled.p`
 		transition:
 		background-size 0.3s,
 		background-position 0s 0.3s; /*change after the size immediately*/
+
+		@media screen and (max-width: 768px) {
+			font-size: 18px;
+		}
 	}
 
 	a:hover {

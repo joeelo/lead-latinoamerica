@@ -48,7 +48,7 @@ const Container = styled.div`
 
 
 const Section = styled.div`
-	width:  48%; 
+	width: 48%; 
 	display: flex; 
 	flex-direction: column;
 	margin-top: 40px; 
@@ -58,7 +58,11 @@ const Section = styled.div`
 	}
 
 	@media screen and (max-width: 768px) {
-		width: 90%; 
+		width: 100%; 
+
+		p { 
+			font-size: 18px;
+		}
 	}
 `
 

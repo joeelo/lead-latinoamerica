@@ -43,10 +43,9 @@ const Signup = () => {
                   <GoogleLogo src='/images/google-logo.png'/>
                   Sign in with Google
                 </LoginButton>
-                <Span>Don't have an account?</Span>
               </>
             ): (
-              <span style={{marginTop: 20, fontSize: 24}}>Your signed in!</span>
+              <span style={{marginTop: 20, fontSize: 24}}>You're signed in!</span>
             )}
     
           </Column>

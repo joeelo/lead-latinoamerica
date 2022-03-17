@@ -57,8 +57,6 @@ const Container = styled.div`
 		margin: 0 auto 40px auto; 
 		padding: 10px; 
 	}
-
-	
 `
 
 const ContentPhoto = styled.img`
@@ -74,7 +72,8 @@ const ContentTitle = styled.h2`
 	margin-bottom: 20px; 
 
 	@media screen and (max-width: 768px) {
-	margin-bottom: 10px; 
+		margin-bottom: 10px; 
+		font-size: 36px;
 	}
 `
 
@@ -83,7 +82,7 @@ const ContentText = styled.p`
 	text-align: center;
 
 	@media screen and (max-width: 768px) {
-	font-size: 22px; 
+		font-size: 20px; 
 	}
 `
   
@@ -95,7 +94,7 @@ const ContentFooter = styled.div`
 	text-decoration: underline; 
 
 	@media screen and (max-width: 768px) {
-	font-size: 22px;
-	margin-top: auto;
+		margin-top: auto;
+		padding-bottom: 20px; 
 	}
 `
