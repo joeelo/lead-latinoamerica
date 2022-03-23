@@ -14,6 +14,7 @@ import { postToDatabase } from '@/fetch/requests';
 import WordSelectInput from '@/components/form/word-select/WordSelectInput';
 import Tooltip from '@/components/tooltip/Tooltip';
 import InputErrorMessage from '@/components/form/errors/InputErrorMessage'; 
+import DateInput from '@/components/form/date-input/DateInput';
 
 const AddAndEditOrgs = () => {
 
@@ -21,7 +22,7 @@ const AddAndEditOrgs = () => {
 	const [ wordList, setWordList ] = useState([]);
 	const router = useRouter();
 
-  const { register, handleSubmit, formState: { errors } } = useForm(); 
+  const { setValue, register, handleSubmit, watch, formState: { errors } } = useForm(); 
 
 	const onSubmit = async (data) => {
 		
@@ -118,6 +119,17 @@ const AddAndEditOrgs = () => {
 								register={register}
 								name='partnerUrl'
 								placeHolder='Eg: https://exampleLink.com '
+							/>
+						</Box>
+
+						<Box>
+							<StyledSectionHeading>Does this opportunity have a deadline?</StyledSectionHeading>
+							<DateInput 
+								register={register}
+								setValue={setValue}
+								name="expirationDate"
+								placeHolder="mm/dd/yyyy"
+								watch={watch}
 							/>
 						</Box>
 
