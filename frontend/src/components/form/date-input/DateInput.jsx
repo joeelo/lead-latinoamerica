@@ -68,6 +68,15 @@ const DateInput = ({ register, name, placeHolder, setValue, watch }) => {
       setValue(name, insertedSlashStr);
     }
 
+    if (trueLength === 5 && date[5] !== '/') {
+      console.log(date.substring(5));
+      const insertedSecondSlashStr = `${date.substring(0, 5)}/${date.substring(
+        5
+      )}`;
+      console.log('insertedSecondSlashStr: ', insertedSecondSlashStr);
+      setValue(name, insertedSecondSlashStr);
+    }
+
     if (trueLength > 8) {
       setValue(name, date.slice(0, 10));
     }
