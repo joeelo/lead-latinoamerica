@@ -63,6 +63,11 @@ const DateInput = ({ register, name, placeHolder, setValue, watch }) => {
     const trueLength = date.replaceAll('/', '').length;
     checkForDateValidity(trueLength);
 
+    if (trueLength === 3 && !date.includes('/')) {
+      const insertedSlashStr = `${date.substring(0, 2)}/${date.substring(2)}`;
+      setValue(name, insertedSlashStr);
+    }
+
     if (trueLength > 8) {
       setValue(name, date.slice(0, 10));
     }
