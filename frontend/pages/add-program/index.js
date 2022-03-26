@@ -25,7 +25,6 @@ const AddAndEditOrgs = () => {
   const { setValue, register, handleSubmit, watch, formState: { errors } } = useForm(); 
 
 	const onSubmit = async (data) => {
-		
 		setIsSubmitting(true);		
 		
 		Object.keys(data.programType).forEach((key) => {
