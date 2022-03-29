@@ -14,6 +14,8 @@ router.post('/programs/add', async (req, res) => {
       programType = {},
     } = req.body;
 
+    console.log('REQ: ', req.body)
+
     let href = name.split(' ').join('-');
     href = href.toLowerCase();
 
@@ -83,7 +85,6 @@ router.get('/program/:href', async (req, res) => {
 
     res.send({ message: 'success', program });
   } catch (error) {
-    // eslint-disable-next-line
     console.log('ERROR IN PROGRAM/:HREF ', error);
   }
 });
@@ -91,10 +92,15 @@ router.get('/program/:href', async (req, res) => {
 router.get('/programs/resources', async (req, res) => {
   try {
     const { programType } = req.query;
+    console.log('resources: ', programType);
     const key = `programType.${programType}`;
     const programs = await Program.find({
       [key]: true,
       approved: true,
+      $or: [
+        {expirationDate: null}, 
+        {expirationDate: { $gt: new Date().toISOString() }}
+      ]
     });
 
     res.send({ message: programs });
@@ -187,71 +193,3 @@ router.post('/email/test', async (req, res) => {
 })
 
 module.exports = router;
-
-// https://philna.sh/blog/2016/06/13/the-surprise-multipart-form-data/
-// https://github.com/expressjs/multer/issues/799
-// For when we implement orgs most of this can be reused
-// router.post('/programs/add', upload.single('file'), async (req, res) => {
-//   try {
-//     const {
-//       organization,
-//       bio,
-//       helpsWith,
-//       coverImage,
-//       email,
-//       missionStatement,
-//       signUpLink,
-//       partnerUrl,
-//       programType = {},
-//     } = req.body;
-
-//     let link; 
-
-//     if (req.file) {
-//       link = req.file.location; 
-//     }
-
-//     let href = replaceSingleCharGlobal(organization, ' ', '-');
-//     href = href.toLowerCase();
-
-//     const programTypeKeys = Object.keys(programType);
-//     const programTypes = {}; 
-
-//     const helpsWithArray = JSON.parse(helpsWith);
-    
-//     programTypeKeys.forEach((key) => programTypes[key] = true);
-    
-//     const newProgram = new Program({
-//       organization,
-//       bio,
-//       helpsWith: helpsWithArray,
-//       coverImage,
-//       orgLogo: link,
-//       email,
-//       href,
-//       missionStatement,
-//       signUpLink,
-//       partnerUrl,
-//       programType: programTypes,
-//     });
-
-//     await newProgram.save((err) => {
-//       if (err) {
-//         console.log('ERROR IN PROGRAM SAVE FUNCTION: ', err);
-//         res.send({ message: 'something went wrong', err });
-
-//         return null;
-//       }
-
-//       console.log('saved');
-
-//       return { message: 'saved' };
-//     });
-    
-//     await sendMail(req.body, href);
-//     res.send({ message: 'success' });
-//   } catch (error) {
-//     console.log('ERROR ON PROGRAMS/ADD ROUTE', error);
-//     res.send({ message: error, error: true });
-//   }
-// });
