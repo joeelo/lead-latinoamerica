@@ -1,17 +1,24 @@
 import { useCallback, useEffect, useState } from 'react';
 import TextInput from '@/components/form/text-input/TextInput';
 import InputErrorMessage from '@/components/form/errors/InputErrorMessage';
-import { addDays } from '@/utils/addDays';
 
 const INVALID_MESSAGES = {
   VALID_DATE: '',
-  INVALID_DAY: 'Please make sure you have a valid day of the month',
+  INVALID_DAY:
+    'Please make sure you input a valid day of the month, ie: 02/08/',
   INVALID_MONTH: 'Please make sure you input a valid month, ie: February = 02',
   // INVALID_YEAR: 'Please make sure the year is in the future',
   NUMBERS_ONLY: 'Only numbers are allowed in field.',
 };
 
-const DateInput = ({ register, name, placeHolder, setValue, watch }) => {
+const DateInput = ({
+  register,
+  name,
+  placeHolder,
+  setValue,
+  watch,
+  errors,
+}) => {
   let date = watch(name);
   const [isBackspace, setIsBackspace] = useState(false);
   const [isValid, setIsValid] = useState({
@@ -128,11 +135,18 @@ const DateInput = ({ register, name, placeHolder, setValue, watch }) => {
         name={name}
         placeHolder={placeHolder}
         onKeyDown={(event) => {
-          if (!event.keyCode) {
+          if (event.keyCode) {
+            setIsBackspace(event.keyCode === 8);
+
+            if (event.keyCode === 191) {
+              const correctedDate = date && date.slice(0, date.length - 1);
+              setValue(name, correctedDate);
+            }
+
             return;
           }
 
-          setIsBackspace(event.keyCode === 8);
+          return null;
         }}
         onPaste={(event) => {
           event.preventDefault();
@@ -140,8 +154,19 @@ const DateInput = ({ register, name, placeHolder, setValue, watch }) => {
         }}
       />
       <InputErrorMessage error={isValid.errorMessage} />
+      {errors && errors[name] && (
+        <InputErrorMessage error={errors[name].message} />
+      )}
     </>
   );
 };
 
 export default DateInput;
+
+/**
+ * TODO:
+ *
+ * Make sure date is in the future
+ *
+ * format date for viewing onBlur and add edit button
+ */

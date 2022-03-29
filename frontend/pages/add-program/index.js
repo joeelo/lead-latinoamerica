@@ -15,17 +15,30 @@ import WordSelectInput from '@/components/form/word-select/WordSelectInput';
 import Tooltip from '@/components/tooltip/Tooltip';
 import InputErrorMessage from '@/components/form/errors/InputErrorMessage'; 
 import DateInput from '@/components/form/date-input/DateInput';
+import { DateTime } from 'luxon';
 
 const AddAndEditOrgs = () => {
-
 	const [ isSubmitting, setIsSubmitting ] = useState(false); 
 	const [ wordList, setWordList ] = useState([]);
 	const router = useRouter();
 
-  const { setValue, register, handleSubmit, watch, formState: { errors } } = useForm(); 
+  const { 
+		setValue, 
+		setError, 
+		register, 
+		handleSubmit, 
+		watch, 
+		formState: { errors } 
+	} = useForm(); 
 
 	const onSubmit = async (data) => {
 		setIsSubmitting(true);		
+		let date = null; 
+
+		if (Object.keys(errors).length) {
+			setIsSubmitting(false);
+		}
+
 		
 		Object.keys(data.programType).forEach((key) => {
 			if (data.programType[key]) {
@@ -34,7 +47,21 @@ const AddAndEditOrgs = () => {
 		});
 
 		data.helpsWith = wordList;
-		
+
+		if (data.expirationDate) {
+			const dateObj = new DateTime.fromFormat(data.expirationDate, 'mm/dd/yyyy');
+
+			if (dateObj.invalid) {
+				setError('expirationDate', {
+					type: 'manual', 
+					message: 'Please input a valid date'
+				})
+			}
+
+			date = dateObj.toISO();
+			data.expirationDate = date;
+		}
+
 		const response = await postToDatabase(data, 'programs/add'); 
 		if (response.message === 'success') {
 			router.push('/thanks-partner');
@@ -83,7 +110,10 @@ const AddAndEditOrgs = () => {
 							<TextInput 
 								register={register}
 								name='bio'
-								rules={{maxLength: {value: 750, message: 'Cannot be longer than 750 characters.'}}}
+								rules={{
+									maxLength: {value: 750, message: 'Cannot be longer than 750 characters.'},
+									minLength: {value: 0, message: 'Field cannot be blank.'}
+								}}
 							/>
 							{errors && errors.bio && <InputErrorMessage error={errors.bio.message}/>}
 						</Box>
@@ -129,6 +159,7 @@ const AddAndEditOrgs = () => {
 								name="expirationDate"
 								placeHolder="mm/dd/yyyy"
 								watch={watch}
+								errors={errors}
 							/>
 						</Box>
 
