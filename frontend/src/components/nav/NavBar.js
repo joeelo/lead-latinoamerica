@@ -14,6 +14,10 @@ const NavBar = () => {
 		router.push(`/`);
 	}
 
+	const addProgramHandler = () => {
+		router.push(`/add-program`);
+	}
+
 	const { darkBlue, primary } = theme.colors
 
 	useEffect(() => {
@@ -27,6 +31,13 @@ const NavBar = () => {
 			<PlaceHolderContainer></PlaceHolderContainer>
 			<Container>
 				<Hamburger { ...{ navOpen, setNavOpen } }/>
+				<AddProgramButton 
+					backgroundColor={darkBlue} 
+					hoveredBackgroundColor={primary}
+					onClick={addProgramHandler}
+				>
+					ADD PROGRAM
+				</AddProgramButton>
 				<HomeButton 
 					backgroundColor={darkBlue} 
 					hoveredBackgroundColor={primary}
@@ -70,10 +81,11 @@ const HomeButton = styled.div`
 	align-items: center; 
 	justify-content: center; 
 	cursor: pointer; 
-	width: 150px; 
+	width: 120px; 
 	border-radius: 4px; 
 	transition: .2s ease-in-out all;
 	font-weight: bold;
+	font-size: 14px;
 
 	:hover {
 		background-color: #3a3970;
@@ -85,6 +97,10 @@ const HomeButton = styled.div`
 		top: 15px; 
 		font-weight: normal;
 		font-size: 14px;
+		display: none;
   }
+`
 
+const AddProgramButton = styled(HomeButton)`
+	right: 160px; 
 `
