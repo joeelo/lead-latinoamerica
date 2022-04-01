@@ -49,7 +49,8 @@ const theme = {
 		red: '#DA5552',
 		cultured: '#F8FAFA', 
 		white: '#FFFFFF', 
-		darkText: '#222222'
+		darkText: '#222222',
+		lightGrey: '#DFDFDF',
 	},
 	fonts: {
 		mont: 'Montserrat', 

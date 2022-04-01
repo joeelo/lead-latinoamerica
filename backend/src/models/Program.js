@@ -35,6 +35,9 @@ const programSchema = new mongoose.Schema({
   partnerUrl: {
     type: String,
   },
+  expirationDate: {
+    type: String,
+  }, 
   programType: {
     program: {
       type: Boolean,

@@ -55,7 +55,7 @@ const Container = styled.div`
 	@media screen and (max-width: 768px) {
 		flex: 0 0 95%; 
 		margin: 0 auto 40px auto; 
-		padding: 10px; 
+		padding: 30px 10px; 
 	}
 `
 
@@ -64,6 +64,12 @@ const ContentPhoto = styled.img`
 	max-width: 100px; 
 	min-height: 100px; 
 	max-height: 120px; 
+
+	@media screen and (max-width: 768px) {
+		max-width: 70px; 
+		min-height: 70px; 
+		max-height: 90px; 
+	}
 `
 
 const ContentTitle = styled.h2`

@@ -63,14 +63,14 @@ const HomeScreenPage = () => {
 
 			<CenterFlexContainer backgroundColor={ theme.colors.cultured } minHeight={ 'auto' } padding={ 60 }>
 				<ChangingBackgroundText 
-					initialColor={ theme.colors.cultured }
-					secondaryColor={ theme.colors.darkBlue }
-					text={ t.missionDistrict }
-					fontColorInitial={ theme.colors.darkBlue }
-					fontColorSecondary={ theme.colors.cultured }
+					initialColor={theme.colors.cultured}
+					secondaryColor={theme.colors.darkBlue}
+					text={t.missionDistrict}
+					fontColorInitial={theme.colors.darkBlue}
+					fontColorSecondary={theme.colors.cultured}
 				/>
 			</CenterFlexContainer>
-			<CenterFlexContainer backgroundColor={ theme.colors.cultured }>
+			<CenterFlexContainer backgroundColor={theme.colors.cultured}>
 				{
 					opportunityInfo.map(info => (
 						<FlexContentBox 
@@ -79,7 +79,7 @@ const HomeScreenPage = () => {
 							content={ info } 
 							color={ theme.colors.darkText }
 							backgroundColor={ theme.white }
-							minHeight={ 400 }
+							minHeight={ 420 }
 						/>
 					))
 				}
@@ -88,7 +88,7 @@ const HomeScreenPage = () => {
 
 			<CenterFlexContainer backgroundColor={ theme.colors.darkBlue } padding={'padTop'}>
 				<ChangingBackgroundText 
-					secondaryColor={ 'white' }
+					secondaryColor='white'
 					text={ t.purpose }
 				/>
 				<ContentWithSideImage 
