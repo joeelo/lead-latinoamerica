@@ -12,6 +12,7 @@ router.post('/programs/add', async (req, res) => {
       helpsWith,
       partnerUrl,
       programType = {},
+      expirationDate,
     } = req.body;
 
     console.log('REQ: ', req.body)
@@ -41,6 +42,7 @@ router.post('/programs/add', async (req, res) => {
       helpsWith,
       href,
       partnerUrl,
+      expirationDate,
       programType: programTypes,
       coverImage: images[betweenZeroAndFour()]
     });
