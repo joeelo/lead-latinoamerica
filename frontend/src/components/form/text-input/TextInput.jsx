@@ -3,12 +3,13 @@ import { useContext, useState, useEffect } from 'react';
 
 const TextInput = ({
   register,
+  rules,
   setValue,
   name,
   label,
   placeHolder,
   initialVal,
-  rules,
+  ...props
 }) => {
   // register and hasError are properties of parent
   const theme = useContext(ThemeContext);
@@ -31,6 +32,7 @@ const TextInput = ({
         theme={theme}
         onFocus={() => setIsInFocus(true)}
         onBlur={() => setIsInFocus(false)}
+        {...props}
       />
     </Container>
   );
