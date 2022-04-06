@@ -61,7 +61,7 @@ const HomeScreenPage = () => {
 				</RelativeTextContainer>
 			</FullScreenBack>
 
-			<CenterFlexContainer backgroundColor={ theme.colors.lightGrey } minHeight={ 'auto' } padding={ 60 }>
+			<CenterFlexContainer backgroundColor={theme.colors.lightGrey} minHeight='auto' padding={60}>
 				<ChangingBackgroundText 
 					initialColor={theme.colors.cultured}
 					secondaryColor={theme.colors.darkBlue}
@@ -74,22 +74,22 @@ const HomeScreenPage = () => {
 				{
 					opportunityInfo.map(info => (
 						<FlexContentBox 
-							key={ info.title } 
-							size={ 'halves' } 
-							content={ info } 
-							color={ theme.colors.darkText }
-							backgroundColor={ theme.white }
-							minHeight={ 420 }
+							key={info.title} 
+							size='halves' 
+							content={info} 
+							color={theme.colors.darkText}
+							backgroundColor={theme.white}
+							minHeight={420}
 						/>
 					))
 				}
 			</CenterFlexContainer>
 
 
-			<CenterFlexContainer backgroundColor={ theme.colors.darkBlue } padding={'padTop'}>
+			<CenterFlexContainer backgroundColor={theme.colors.darkBlue} padding='padTop'>
 				<ChangingBackgroundText 
 					secondaryColor='white'
-					text={ t.purpose }
+					text={t.purpose}
 				/>
 				<ContentWithSideImage 
 					backgroundColor={ theme.colors.darkBlue }
@@ -115,7 +115,7 @@ const HomeScreenPage = () => {
 					/>
 				</CenterFlexContainer>
 			</VideoBackground>
-			<Footer showQuote={ false }/>
+			<Footer showQuote={false} />
 		</>
 	)
 }
