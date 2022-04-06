@@ -49,16 +49,21 @@ const AddAndEditOrgs = () => {
 		data.helpsWith = wordList;
 
 		if (data.expirationDate) {
-			const dateObj = new DateTime.fromFormat(data.expirationDate, 'mm/dd/yyyy');
+			console.log(data.expirationDate)
+			const dateObj = new DateTime.fromFormat(data.expirationDate, "MM/dd/yyyy");
 
 			if (dateObj.invalid) {
 				setError('expirationDate', {
 					type: 'manual', 
 					message: 'Please input a valid date'
-				})
+				}); 
+
+				setIsSubmitting(false);
+				return;
 			}
 
 			date = dateObj.toISO();
+			console.log('date: ', date, dateObj)
 			data.expirationDate = date;
 		}
 

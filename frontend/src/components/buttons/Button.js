@@ -5,6 +5,10 @@ import styled from 'styled-components';
 const Button = ({ label, color, onClick, isSubmitting = false, ...props }) => {
 
   const handleClick = () => {
+    if (isSubmitting) {
+      return;
+    }
+
     if (onClick) {
       onClick(); 
     }
@@ -13,7 +17,7 @@ const Button = ({ label, color, onClick, isSubmitting = false, ...props }) => {
   }
 
   return (
-    <Container onClick={onClick} {...{color}} {...props}>
+    <Container onClick={handleClick} {...{color}} {...props}>
       <span>
         {isSubmitting ? <StyledLoader src="/loaders/spinning-loader.svg"/> : label}
       </span>
