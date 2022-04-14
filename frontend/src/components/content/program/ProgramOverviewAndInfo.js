@@ -64,7 +64,7 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 
 					{program.expirationDate && (
 						<>
-							<UnderlinedSectionHeader> deadline </UnderlinedSectionHeader>
+							<UnderlinedSectionHeader> Deadline </UnderlinedSectionHeader>
 							<StyledP>{expDate}</StyledP>
 						</>
 					)}
