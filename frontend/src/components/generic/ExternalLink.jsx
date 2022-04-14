@@ -16,7 +16,10 @@ const ExternalLink = ({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      style={{ textDecoration: 'none' }}
+      style={{
+        textDecoration: 'none',
+        display: 'inline-block',
+      }}
       {...props}
     >
       <StyledButton {...{ bgColor, hoverColor }}>
@@ -38,7 +41,7 @@ const StyledButton = styled(Button)`
   color: white;
   height: 60px;
   background-color: ${(props) => props.bgColor};
-  width: ${(props) => (props.width ? props.width : '175px')};
+  width: ${(props) => (props.width ? props.width : '195px')};
 
   &:hover {
     background-color: ${(props) =>

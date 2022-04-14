@@ -42,12 +42,14 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 					<StyledP> { program.bio } </StyledP>
 					{!preview ? (
 						<>
-							<ExternalLink 
-								href={program.partnerUrl} 
-								bgColor="#0077B6"	
-							>
-								Sign up
-							</ExternalLink>
+							{program.partnerUrl && (
+								<ExternalLink 
+									href={program.partnerUrl} 
+									bgColor="#0077B6"	
+								>
+									Sign up
+								</ExternalLink>
+							)}
 
 							<Button label='Save to profile' color='#1F2041' onClick={handleClick}/>
 						</>
@@ -62,7 +64,7 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 
 					{program.expirationDate && (
 						<>
-							<UnderlinedSectionHeader> Expiration Date </UnderlinedSectionHeader>
+							<UnderlinedSectionHeader> deadline </UnderlinedSectionHeader>
 							<StyledP>{expDate}</StyledP>
 						</>
 					)}
