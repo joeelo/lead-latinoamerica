@@ -29,6 +29,11 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 		}
 	}
 
+	new Date().toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})
+
+	const expDate = new Date(program.expirationDate)
+		.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})
+
 	return (
 		<>
 			<Container>
@@ -54,6 +59,14 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 				<Box width="40%">
 					<UnderlinedSectionHeader> Categories </UnderlinedSectionHeader>
 					<Tiles adjectives={ program.helpsWith }/>
+
+					{program.expirationDate && (
+						<>
+							<UnderlinedSectionHeader> Expiration Date </UnderlinedSectionHeader>
+							<StyledP>{expDate}</StyledP>
+						</>
+					)}
+
 				</Box>
 				
 			</Container>
@@ -93,7 +106,7 @@ const MidSizeText = styled.p`
 `
 
 const StyledP = styled(MidSizeText)`
-	font-size: 26px;
+	font-size: 24px;
 `
 
 const UnderlinedSectionHeader = styled.h3`
