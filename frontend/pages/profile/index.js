@@ -110,8 +110,8 @@ const ProfilePage = (props) => {
           )}
         </Box>
 
-        <Box display='flex' width='al-fu' center justify='space-between' mw="1000px">
-          <Box width='al-fu' center mt={100} mb={100}>
+        <Box display='flex' width='al-fu' fd="column" center justify='space-between' mw="1000px">
+          <Box center mt={100} mb={40}>
             {!isEditing ? (
               <> 
                 {userData.preferredName && (
@@ -208,9 +208,10 @@ const ProfilePage = (props) => {
             )}
           </Box>
 
-          <Box mw="300px">
-            <UserSavedPrograms programs={data?.programs}/>
+          <Box>
+            <UserSavedPrograms programs={data?.programs} showExpiringPrograms/>
           </Box>
+
         </Box>
       <Footer />
       <ToastContainer />
@@ -225,7 +226,7 @@ ProfilePage.propTypes = {
 export default ProfilePage; 
 
 const PhotoContainer = styled.div`
-  min-height: 400px; 
+  min-height: 300px; 
   min-width: 100vw; 
   position: relative; 
 `

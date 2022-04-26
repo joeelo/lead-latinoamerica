@@ -1,34 +1,71 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import Box from '../generic/Box';
-import Link from 'next/link';
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import Box from '../generic/Box'
+import Link from 'next/link'
 
-const UserSavedPrograms = ({ programs }) => {
-  const handleclick = () => {};
+const UserSavedPrograms = ({ programs, showExpiringPrograms = false }) => {
+  if (!programs) {
+    return null
+  }
 
-  if (!programs) return <></>;
+  const programsWithExpirationDates = programs.filter(
+    (program) => program.expirationDate
+  )
+
   return (
-    <Box display="flex" fd="column" mt={125} stackOnMobile>
-      <TitleHeading>Your saved opportunities!</TitleHeading>
-      {programs.map((program) => {
-        return (
-          <Link href={`/resource/${program.href}`} key={program.href}>
-            <Container bgImage={program.coverImage}>
-              <h3>{program.name}</h3>
-            </Container>
-          </Link>
-        );
-      })}
+    <Box display="flex" fd="column" stackOnMobile>
+      {showExpiringPrograms && programsWithExpirationDates.length && (
+        <>
+          <TitleHeading>Expiring Opportunities</TitleHeading>
+          <Box display="flex" wrap="wrap">
+            {programsWithExpirationDates.map((program) => {
+              return (
+                <Link href={`/resource/${program.href}`} key={program.href}>
+                  <Container
+                    bgImage={
+                      program.coverImage ||
+                      '/images/pexels-cottonbro-6209356.jpg'
+                    }
+                  >
+                    <h3>{program.name}</h3>
+                  </Container>
+                </Link>
+              )
+            })}
+          </Box>
+        </>
+      )}
+
+      <TitleHeading>Your Saved Opportunities!</TitleHeading>
+      <Box display="flex" wrap="wrap">
+        {programs.map((program) => {
+          if (program.expirationDate) {
+            return null
+          }
+
+          return (
+            <Link href={`/resource/${program.href}`} key={program.href}>
+              <Container
+                bgImage={
+                  program.coverImage || '/images/pexels-cottonbro-6209356.jpg'
+                }
+              >
+                <h3>{program.name}</h3>
+              </Container>
+            </Link>
+          )
+        })}
+      </Box>
     </Box>
-  );
-};
+  )
+}
 
 UserSavedPrograms.propTypes = {
   programs: PropTypes.array,
-};
+}
 
-export default UserSavedPrograms;
+export default UserSavedPrograms
 
 const Container = styled.div`
   border-radius: 4px;
@@ -45,6 +82,7 @@ const Container = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   color: white;
+  margin-right: 20px;
 
   :hover {
     box-shadow: 2px 2px 15px 0px rgba(184, 177, 184, 1);
@@ -53,11 +91,11 @@ const Container = styled.div`
   :last-child {
     margin-bottom: 40px;
   }
-`;
+`
 
 const TitleHeading = styled.p`
   font-size: 28px;
   margin-bottom: 10px;
   font-weight: 500;
   margin-top: 20px;
-`;
+`
