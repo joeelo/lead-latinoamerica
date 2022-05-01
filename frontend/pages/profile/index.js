@@ -110,7 +110,7 @@ const ProfilePage = (props) => {
           )}
         </Box>
 
-        <Box display='flex' width='al-fu' fd="column" center justify='space-between' mw="1000px">
+        <Box display='flex' width='al-fu' fd="column" center justify='space-between' mw="1000px" stackOnMobile>
           <Box center mt={100} mb={40}>
             {!isEditing ? (
               <> 

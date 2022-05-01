@@ -2,9 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Box from '../generic/Box'
-import Link from 'next/link'
+import ProgramCardSimple from '@/components/content/program/ProgramCardSimple'
+import { useSession } from 'next-auth/client'
 
 const UserSavedPrograms = ({ programs, showExpiringPrograms = false }) => {
+  const [session] = useSession()
+  const { user } = session
+
   if (!programs) {
     return null
   }
@@ -13,47 +17,40 @@ const UserSavedPrograms = ({ programs, showExpiringPrograms = false }) => {
     (program) => program.expirationDate
   )
 
+  const hasExpiringPrograms = programsWithExpirationDates.length > 0
+
   return (
     <Box display="flex" fd="column" stackOnMobile>
-      {showExpiringPrograms && programsWithExpirationDates.length && (
+      {showExpiringPrograms && hasExpiringPrograms && (
         <>
           <TitleHeading>Expiring Opportunities</TitleHeading>
           <Box display="flex" wrap="wrap">
             {programsWithExpirationDates.map((program) => {
               return (
-                <Link href={`/resource/${program.href}`} key={program.href}>
-                  <Container
-                    bgImage={
-                      program.coverImage ||
-                      '/images/pexels-cottonbro-6209356.jpg'
-                    }
-                  >
-                    <h3>{program.name}</h3>
-                  </Container>
-                </Link>
+                <ProgramCardSimple
+                  program={program}
+                  user={user}
+                  key={program._id}
+                />
               )
             })}
           </Box>
         </>
       )}
 
-      <TitleHeading>Your Saved Opportunities!</TitleHeading>
+      <TitleHeading>Your Saved Opportunities</TitleHeading>
       <Box display="flex" wrap="wrap">
         {programs.map((program) => {
-          if (program.expirationDate) {
+          if (program.expirationDate && showExpiringPrograms) {
             return null
           }
 
           return (
-            <Link href={`/resource/${program.href}`} key={program.href}>
-              <Container
-                bgImage={
-                  program.coverImage || '/images/pexels-cottonbro-6209356.jpg'
-                }
-              >
-                <h3>{program.name}</h3>
-              </Container>
-            </Link>
+            <ProgramCardSimple
+              program={program}
+              user={user}
+              key={program._id}
+            />
           )
         })}
       </Box>
@@ -66,32 +63,6 @@ UserSavedPrograms.propTypes = {
 }
 
 export default UserSavedPrograms
-
-const Container = styled.div`
-  border-radius: 4px;
-  max-width: 300px;
-  width: 100%;
-  box-shadow: 1px 1px 12px 5px rgba(184, 177, 184, 1);
-  min-height: 200px;
-  margin-top: 20px;
-  padding: 10px;
-  cursor: pointer;
-  transition: 0.4s ease;
-  margin-bottom: 20px;
-  background-image: ${(props) => 'url(' + props.bgImage + ')'};
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: white;
-  margin-right: 20px;
-
-  :hover {
-    box-shadow: 2px 2px 15px 0px rgba(184, 177, 184, 1);
-  }
-
-  :last-child {
-    margin-bottom: 40px;
-  }
-`
 
 const TitleHeading = styled.p`
   font-size: 28px;
