@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
 import { useRouter } from 'next/router';
-import { getProgramBySlug } from "@/fetch/requests";
 import NavBar from "@/components/nav/NavBar";
 import Footer from "@/components/footer/Footer";
 import ProgramOverviewAndInfo from "@/components/content/program/ProgramOverviewAndInfo";
@@ -8,7 +6,8 @@ import ProgramTitleAndPhoto from "@/components/content/program/ProgramTitleAndPh
 import FixedButton from "@/components/buttons/FixedButton";
 import { useQuery } from "react-query";
 import { getProgram } from 'src/fetch/program/ProgramRequests'
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import getToast from '@/utils/getToast';
 
 const ApproveProgramPage = () => {
 
@@ -19,23 +18,11 @@ const ApproveProgramPage = () => {
 		getProgram, 
 	)
 
-	const successNotification = () => toast('Successfully Updated!', {
-    position: 'top-right',
-    hideProgressBar: true,
-    style: { background: '#43a23c', color: 'white', zIndex: 10000 },
-  });
-
-	const failureNotification = () => toast('Something went wrong', {
-		position: 'top-right',
-    hideProgressBar: true,
-		style: { background: '#cc0000', color: 'white', zIndex: 10000 },
-	})
-
 	const handleSuccess = (response) => {
 		if (!!response) {
-			successNotification();
+			getToast({ message: 'Successfully updated!'})
 		} else {
-			failureNotification(); 
+			getToast({ message: 'Something went wrong, please try again later', variant: 'error' }) 
 		}
 	}
 

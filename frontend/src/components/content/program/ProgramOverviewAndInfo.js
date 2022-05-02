@@ -5,27 +5,15 @@ import Box from "@/components/generic/Box";
 import { ToastContainer, toast } from 'react-toastify';
 import Tiles from './Tiles';
 import ExternalLink from '@/components/generic/ExternalLink';
+import getToast from '@/utils/getToast';
 
 const ProgramOverviewAndInfo = ({ program, email, preview }) => {
-
-	const successNotification = () => toast('Successfully saved to profile!', {
-    position: 'bottom-right',
-    hideProgressBar: true,
-    style: { background: '#43a23c', color: 'white' },
-  });
-
-	const failureNotification = () => toast('Something went wrong, check the logs!', {
-		position: 'top-right',
-    hideProgressBar: true,
-		style: { background: '#cc0000', color: 'white', zIndex: 10000 },
-	})
-
 	const handleClick = async () => {
 		const response = await UpdateUsersSavedPrograms(email, program._id);
 		if (response.success) {
-			successNotification(); 
+			getToast({ message:'Successfully saved to profile!' })
 		} else {
-			failureNotification();
+			getToast({ message: 'Something went wrong, check the logs!', variant: 'error' })
 		}
 	}
 

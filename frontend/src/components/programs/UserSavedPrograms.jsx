@@ -4,10 +4,13 @@ import styled from 'styled-components'
 import Box from '../generic/Box'
 import ProgramCardSimple from '@/components/content/program/ProgramCardSimple'
 import { useSession } from 'next-auth/client'
+import { useQueryClient } from 'react-query'
+import getToast from '@/utils/getToast'
 
 const UserSavedPrograms = ({ programs, showExpiringPrograms = false }) => {
   const [session] = useSession()
   const { user } = session
+  const queryClient = useQueryClient()
 
   if (!programs) {
     return null
@@ -18,6 +21,12 @@ const UserSavedPrograms = ({ programs, showExpiringPrograms = false }) => {
   )
 
   const hasExpiringPrograms = programsWithExpirationDates.length > 0
+
+  const handleRemoveSuccess = () => {
+    queryClient.invalidateQueries('userPrograms')
+
+    getToast({ message: 'succesfully removed!' })
+  }
 
   return (
     <Box display="flex" fd="column" stackOnMobile>
@@ -50,6 +59,7 @@ const UserSavedPrograms = ({ programs, showExpiringPrograms = false }) => {
               program={program}
               user={user}
               key={program._id}
+              onSuccess={handleRemoveSuccess}
             />
           )
         })}

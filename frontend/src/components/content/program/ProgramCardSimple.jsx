@@ -5,12 +5,20 @@ import ReactTooltip from 'react-tooltip'
 import { RemoveUserSavedProgram } from '@/fetch/user/UserRequests'
 import Box from '@/components/generic/Box'
 
-const ProgramCardSimple = ({ program, showDeleteButton = true, user }) => {
+const ProgramCardSimple = ({
+  program,
+  showDeleteButton = true,
+  user,
+  onSuccess,
+}) => {
   const [isHovered, setIsHovered] = useState(false)
 
   const handleRemoveClick = async () => {
     const response = await RemoveUserSavedProgram(user.email, program._id)
-    console.log('RESPONSE: ', response)
+
+    if (response.success) {
+      onSuccess()
+    }
   }
 
   return (

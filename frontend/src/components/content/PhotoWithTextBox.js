@@ -1,7 +1,8 @@
-import styled from 'styled-components';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import getDiff from '@/utils/getDiff';
+import styled from 'styled-components'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import getDiff from '@/utils/getDiff'
+import Box from '@/components/generic/Box'
 
 const PhotoWithTextBox = ({  
 	program: {
@@ -12,9 +13,9 @@ const PhotoWithTextBox = ({
 		expirationDate
 	} 
 }) => {
-	const router = useRouter();
+	const router = useRouter()
 	const clickHandler = () => {
-		router.push(`${router.asPath}/${href.toLowerCase()}`);
+		router.push(`${router.asPath}/${href.toLowerCase()}`)
 	}
 
 	const now = new Date().toISOString()
@@ -22,30 +23,30 @@ const PhotoWithTextBox = ({
 
 	const isInNextTwoWeeks = diff && diff.days > -1 && diff.days < 14  
 
-	console.log('diff', diff)
-
-	const truncatedString = bio.length < 150 ? bio : `${bio.slice(0, 150)}...`;
+	const truncatedString = bio.length < 150 ? bio : `${bio.slice(0, 150)}...`
 	const imageSrc = coverImage || '/images/pexels-cottonbro-6209356.jpg'
 
 	return (
-		<Container onClick={clickHandler}>
-			<PhotoWithTextOverlay>
-				<StyledImage src={imageSrc}/>
-				<RightAlignedText> { name } </RightAlignedText>
-				
-				{isInNextTwoWeeks && (
-					<StyledBellImage src="/images/bell-icon-white.png"/>
-				)}
-			</PhotoWithTextOverlay> 
-			<Bio> - { truncatedString } </Bio>
-			<Link href={`/resources/[resourceSlug]/[programSlug]`} as={`${router.asPath}/${href}`}>
-			<StyledAnchor> explore { name } </StyledAnchor>
-			</Link>
-		</Container>
+		<Box display="flex" align="center" justify="center">
+			<Container onClick={clickHandler}>
+				<PhotoWithTextOverlay>
+					<StyledImage src={imageSrc}/>
+					<RightAlignedText> { name } </RightAlignedText>
+					
+					{isInNextTwoWeeks && (
+						<StyledBellImage src="/images/bell-icon-white.png"/>
+					)}
+				</PhotoWithTextOverlay> 
+				<Bio> - { truncatedString } </Bio>
+				<Link href={`/resources/[resourceSlug]/[programSlug]`} as={`${router.asPath}/${href}`}>
+				<StyledAnchor> explore { name } </StyledAnchor>
+				</Link>
+			</Container>
+		</Box>
 	)
 }
 
-export default PhotoWithTextBox;
+export default PhotoWithTextBox
 
 const Container = styled.div`
 	display: flex;
