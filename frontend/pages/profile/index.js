@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
 import { useSession } from 'next-auth/client';
 import NavBar from '@/components/nav/NavBar';
 import Footer from '@/components/footer/Footer';
@@ -13,21 +12,20 @@ import { useForm } from 'react-hook-form';
 import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup';
 import { editProfile, getProfile } from '@/fetch/profile/ProfileRequests';
 import Button from '@/components/buttons/Button';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { getAllPrograms } from '@/fetch/program/ProgramRequests';
 import UserSavedPrograms from '@/components/programs/UserSavedPrograms';
 import { useQuery } from 'react-query';
+import getToast from '@/utils/getToast';
 
 const ProfilePage = (props) => {
 
   const [ session ] = useSession(); 
   const [ userData, setUserData ] = useState({});
   const [ isEditing, setIsEditing ] = useState(false); 
-  const [ userPrograms, setUserPrograms ] = useState([])
 
   const userName = getFullName(session)
   const email = session?.user?.email;
-  const userInterestStr = userData.interests?.join(', ') || 'N/A';
   
   const { register, handleSubmit, setValue } = useForm(); 
 
@@ -38,19 +36,13 @@ const ProfilePage = (props) => {
       enabled: !!session?.user?.email
     }
   )
-
-  const successNotification = () => toast('Successfully Updated!', {
-    position: 'bottom-right',
-    hideProgressBar: true,
-    style: { background: '#43a23c', color: 'white' },
-  });
   
   const onSubmit = async (data) => {
     const response = await editProfile(data, email); 
 
     if (response.success) {
       setIsEditing(false);
-      successNotification();
+      getToast({ message: 'Successfully Updated!'})
       scrollTo({ top: 100 });
       setUserData(response.user);
     }
@@ -88,10 +80,6 @@ const ProfilePage = (props) => {
     }
   }, [email])
 
-  useEffect(() => {
-
-  }, [userPrograms?.length])
-
   return (
     <>
       <NavBar/>
@@ -110,8 +98,8 @@ const ProfilePage = (props) => {
           )}
         </Box>
 
-        <Box display='flex' width='al-fu' center justify='space-between' mw="1000px">
-          <Box width='al-fu' center mt={100} mb={100}>
+        <Box display='flex' width='al-fu' fd="column" center justify='space-between' mw="1000px" stackOnMobile>
+          <Box center mt={100} mb={40}>
             {!isEditing ? (
               <> 
                 {userData.preferredName && (
@@ -208,9 +196,10 @@ const ProfilePage = (props) => {
             )}
           </Box>
 
-          <Box mw="300px">
-            <UserSavedPrograms programs={data?.programs}/>
+          <Box>
+            <UserSavedPrograms programs={data?.programs} showExpiringPrograms/>
           </Box>
+
         </Box>
       <Footer />
       <ToastContainer />
@@ -225,7 +214,7 @@ ProfilePage.propTypes = {
 export default ProfilePage; 
 
 const PhotoContainer = styled.div`
-  min-height: 400px; 
+  min-height: 300px; 
   min-width: 100vw; 
   position: relative; 
 `

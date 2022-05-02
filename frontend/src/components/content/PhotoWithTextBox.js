@@ -1,6 +1,8 @@
-import styled from 'styled-components';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import styled from 'styled-components'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import getDiff from '@/utils/getDiff'
+import Box from '@/components/generic/Box'
 
 const PhotoWithTextBox = ({  
 	program: {
@@ -8,31 +10,43 @@ const PhotoWithTextBox = ({
 		coverImage, 
 		bio, 
 		href,
+		expirationDate
 	} 
 }) => {
-	const router = useRouter();
+	const router = useRouter()
 	const clickHandler = () => {
-		router.push(`${router.asPath}/${href.toLowerCase()}`);
+		router.push(`${router.asPath}/${href.toLowerCase()}`)
 	}
 
-	const truncatedString = bio.length < 100 ? bio : `${bio.slice(0, 150)}...`;
+	const now = new Date().toISOString()
+	const diff = expirationDate && getDiff(expirationDate, now)
+
+	const isInNextTwoWeeks = diff && diff.days > -1 && diff.days < 14  
+
+	const truncatedString = bio.length < 150 ? bio : `${bio.slice(0, 150)}...`
 	const imageSrc = coverImage || '/images/pexels-cottonbro-6209356.jpg'
 
 	return (
-		<Container onClick={clickHandler}>
-			<PhotoWithTextOverlay>
-				<StyledImage src={imageSrc}/>
-				<RightAlignedText> { name } </RightAlignedText>
-			</PhotoWithTextOverlay> 
-			<Bio> - { truncatedString } </Bio>
-			<Link href={`/resources/[resourceSlug]/[programSlug]`} as={`${router.asPath}/${href}`}>
-			<StyledAnchor> explore { name } </StyledAnchor>
-			</Link>
-		</Container>
+		<Box display="flex" align="center" justify="center">
+			<Container onClick={clickHandler}>
+				<PhotoWithTextOverlay>
+					<StyledImage src={imageSrc}/>
+					<RightAlignedText> { name } </RightAlignedText>
+					
+					{isInNextTwoWeeks && (
+						<StyledBellImage src="/images/bell-icon-white.png"/>
+					)}
+				</PhotoWithTextOverlay> 
+				<Bio> - { truncatedString } </Bio>
+				<Link href={`/resources/[resourceSlug]/[programSlug]`} as={`${router.asPath}/${href}`}>
+				<StyledAnchor> explore { name } </StyledAnchor>
+				</Link>
+			</Container>
+		</Box>
 	)
 }
 
-export default PhotoWithTextBox;
+export default PhotoWithTextBox
 
 const Container = styled.div`
 	display: flex;
@@ -41,7 +55,7 @@ const Container = styled.div`
 	min-height: 550px;
 	max-width: 400px;
 	width: 30%;
-	box-shadow: 1px 4px 7px 0px rgba(184,177,184,.7);
+	box-shadow: 4px 5px 17px 5px rgba(184,177,184,.7);
 	border-radius: 4px;
 	padding-bottom: 15px;
 	margin-bottom: 40px;
@@ -98,11 +112,18 @@ const StyledAnchor = styled.a`
 
 const StyledImage = styled.img`
 	object-fit: cover; 
-	border-radius: 4px;
+	border-radius: 4px 4px 0 0;
 	max-width: 100%; 
 	min-height: 100%;
 	width: 100%;
 	position: absolute;
 	left: 0; 
 	top: 0; 
+`
+
+const StyledBellImage = styled.img`
+	bottom: 10px; 
+	right: 10px; 
+	width: 40px;
+	position: absolute;  
 `

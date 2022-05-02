@@ -1,63 +1,82 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import Box from '../generic/Box';
-import Link from 'next/link';
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import Box from '../generic/Box'
+import ProgramCardSimple from '@/components/content/program/ProgramCardSimple'
+import { useSession } from 'next-auth/client'
+import { useQueryClient } from 'react-query'
+import getToast from '@/utils/getToast'
 
-const UserSavedPrograms = ({ programs }) => {
-  const handleclick = () => {};
+const UserSavedPrograms = ({ programs, showExpiringPrograms = false }) => {
+  const [session] = useSession()
+  const { user } = session
+  const queryClient = useQueryClient()
 
-  if (!programs) return <></>;
+  if (!programs) {
+    return null
+  }
+
+  const programsWithExpirationDates = programs.filter(
+    (program) => program.expirationDate
+  )
+
+  const hasExpiringPrograms = programsWithExpirationDates.length > 0
+
+  const handleRemoveSuccess = () => {
+    queryClient.invalidateQueries('userPrograms')
+
+    getToast({ message: 'succesfully removed!' })
+  }
+
   return (
-    <Box display="flex" fd="column" mt={125} stackOnMobile>
-      <TitleHeading>Your saved opportunities!</TitleHeading>
-      {programs.map((program) => {
-        return (
-          <Link href={`/resource/${program.href}`} key={program.href}>
-            <Container bgImage={program.coverImage}>
-              <h3>{program.name}</h3>
-            </Container>
-          </Link>
-        );
-      })}
+    <Box display="flex" fd="column" stackOnMobile>
+      {showExpiringPrograms && hasExpiringPrograms && (
+        <>
+          <TitleHeading>Expiring Opportunities</TitleHeading>
+          <Box display="flex" wrap="wrap">
+            {programsWithExpirationDates.map((program) => {
+              return (
+                <ProgramCardSimple
+                  program={program}
+                  user={user}
+                  key={program._id}
+                />
+              )
+            })}
+          </Box>
+        </>
+      )}
+
+      <TitleHeading>Your Saved Opportunities</TitleHeading>
+      <Box display="flex" wrap="wrap">
+        {programs.map((program) => {
+          if (program.expirationDate && showExpiringPrograms) {
+            return null
+          }
+
+          return (
+            <ProgramCardSimple
+              program={program}
+              user={user}
+              key={program._id}
+              onSuccess={handleRemoveSuccess}
+            />
+          )
+        })}
+      </Box>
     </Box>
-  );
-};
+  )
+}
 
 UserSavedPrograms.propTypes = {
   programs: PropTypes.array,
-};
+}
 
-export default UserSavedPrograms;
-
-const Container = styled.div`
-  border-radius: 4px;
-  max-width: 300px;
-  width: 100%;
-  box-shadow: 1px 1px 12px 5px rgba(184, 177, 184, 1);
-  min-height: 200px;
-  margin-top: 20px;
-  padding: 10px;
-  cursor: pointer;
-  transition: 0.4s ease;
-  margin-bottom: 20px;
-  background-image: ${(props) => 'url(' + props.bgImage + ')'};
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: white;
-
-  :hover {
-    box-shadow: 2px 2px 15px 0px rgba(184, 177, 184, 1);
-  }
-
-  :last-child {
-    margin-bottom: 40px;
-  }
-`;
+export default UserSavedPrograms
 
 const TitleHeading = styled.p`
   font-size: 28px;
   margin-bottom: 10px;
   font-weight: 500;
   margin-top: 20px;
-`;
+`
