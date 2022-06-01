@@ -9,6 +9,7 @@ import ProgramOverviewAndInfo from '@/components/content/program/ProgramOverview
 import { useSession } from 'next-auth/client';
 import { useQuery } from 'react-query';
 import ProgramRequests from '@/fetch/program/ProgramRequests';
+import LoadingSpinner from '@/components/generic/LoadingSpinner';
 
 const ProgramPage = () => {
   const router = useRouter(); 
@@ -26,16 +27,23 @@ const ProgramPage = () => {
 
   const program = programQuery.data || {}
 
-  if (!program || isLoadingSession || isLoading) return <>Loading</>
+  const isCurrentlyLoading = !program || isLoadingSession || isLoading
+
   return (
     <>
       <NavBar />
-      <ProgramTitleAndPhoto program={program} router={router}/>
-      <ProgramOverviewAndInfo 
-        program={program} 
-        marginTop={true} 
-        email={session?.user?.email}
-      />
+      {isCurrentlyLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <ProgramTitleAndPhoto program={program} router={router}/>
+          <ProgramOverviewAndInfo 
+            program={program} 
+            marginTop={true} 
+            email={session?.user?.email}
+          />
+        </>
+      )}
       <Footer marginTop={ true }/>
     </>
   )
