@@ -7,32 +7,43 @@ import Footer from '@/components/footer/Footer';
 import ProgramTitleAndPhoto from '@/components/content/program/ProgramTitleAndPhoto';
 import ProgramOverviewAndInfo from '@/components/content/program/ProgramOverviewAndInfo';
 import { useSession } from 'next-auth/client';
+import { useQuery } from 'react-query';
+import ProgramRequests from '@/fetch/program/ProgramRequests';
+import LoadingSpinner from '@/components/generic/LoadingSpinner';
 
 const ProgramPage = () => {
   const router = useRouter(); 
-  const [ program, setProgram ] = useState(null);
+  const { programSlug: name } = router.query  || {}
 
   const [session, loading] = useSession()
+  const isLoadingSession = loading
 
-  const getProgram = async () => {
-    const data = await getProgramBySlug(`program/${router.query.programSlug}`);
-    setProgram(data.program);
-  }
+  const programQuery = useQuery({
+		queryKey: ['resourcePrograms', { name }], 
+		queryFn: ProgramRequests.getProgram
+	})
 
-  useEffect(() => {
-    getProgram(); 
-  }, [router.query])
+  const { isLoading } = programQuery
 
-  if (!program) return <>Loading</>
+  const program = programQuery.data || {}
+
+  const isCurrentlyLoading = !program || isLoadingSession || isLoading
+
   return (
     <>
       <NavBar />
-      <ProgramTitleAndPhoto program={program} router={router}/>
-      <ProgramOverviewAndInfo 
-        program={program} 
-        marginTop={true} 
-        email={session?.user?.email}
-      />
+      {isCurrentlyLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <ProgramTitleAndPhoto program={program} router={router}/>
+          <ProgramOverviewAndInfo 
+            program={program} 
+            marginTop={true} 
+            email={session?.user?.email}
+          />
+        </>
+      )}
       <Footer marginTop={ true }/>
     </>
   )
