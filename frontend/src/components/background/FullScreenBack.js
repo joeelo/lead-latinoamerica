@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 const FullScreenBack = ({ src, children, titleInfo, height }) => {
 
-
+	const { text, backgroundColor, color, show } = titleInfo
 
 	return (
 		<OuterWrapper>
@@ -23,14 +23,14 @@ const FullScreenBack = ({ src, children, titleInfo, height }) => {
 				</div>
 			</Container>
 
-			{ titleInfo.show &&
+			{show &&
 				<TitleContainer className={'titleContainer'}>
 					<TitleWithBackground 
-						text={ titleInfo.text } 
-						backgroundColor={ titleInfo.backgroundColor } 
-						color={ titleInfo.color } 
-						absolute={ true }
-						marginBottom={ true }
+						text={text} 
+						backgroundColor={backgroundColor} 
+						color={color} 
+						absolute
+						marginBottom
 					/>
 				</TitleContainer>
 			}

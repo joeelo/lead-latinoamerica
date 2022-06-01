@@ -10,6 +10,30 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools'
 // import { UserWrapper } from '@/context/UserContext';
 
+const theme = {
+	colors: {
+		primary: '#0077B6',
+		darkBlue: '#1F2041', 
+		cyan: '#0077B6', 
+		red: '#DA5552',
+		cultured: '#F8FAFA', 
+		white: '#FFFFFF', 
+		darkText: '#222222',
+		lightGrey: '#DFDFDF',
+	},
+	fonts: {
+		mont: 'Montserrat', 
+		sans: 'source sans pro',
+	}, 
+	fontSizes: {
+		extraLarge: '48px', 
+		large: '34px', 
+		regular: '24px', 
+		small: '12px',
+		body: '24px'
+	}
+}
+
 const GlobalStyle = createGlobalStyle`
   	html, *, body {
 		margin: 0;
@@ -39,31 +63,42 @@ const GlobalStyle = createGlobalStyle`
 		zIndex: -1 !important; 
 		position: 'absolute' !important;
 	}
-`
-
-const theme = {
-	colors: {
-		primary: '#0077B6',
-		darkBlue: '#1F2041', 
-		cyan: '#0077B6', 
-		red: '#DA5552',
-		cultured: '#F8FAFA', 
-		white: '#FFFFFF', 
-		darkText: '#222222',
-		lightGrey: '#DFDFDF',
-	},
-	fonts: {
-		mont: 'Montserrat', 
-		sans: 'source sans pro',
-	}, 
-	fontSizes: {
-		extraLarge: '48px', 
-		large: '34px', 
-		regular: '24px', 
-		small: '12px',
-		body: '24px'
+	.lds-ring {
+		display: inline-block;
+		position: relative;
+		width: 80px;
+		height: 80px;
 	}
-}
+	.lds-ring div {
+		box-sizing: border-box;
+		display: block;
+		position: absolute;
+		width: 64px;
+		height: 64px;
+		margin: 8px;
+		border: 8px solid ${theme.colors.cyan};
+		border-radius: 50%;
+		animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+		border-color: ${theme.colors.cyan} transparent transparent transparent;
+	}
+	.lds-ring div:nth-child(1) {
+		animation-delay: -0.45s;
+	}
+	.lds-ring div:nth-child(2) {
+		animation-delay: -0.3s;
+	}
+	.lds-ring div:nth-child(3) {
+		animation-delay: -0.15s;
+	}
+	@keyframes lds-ring {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+`
 
 config.autoAddCss = false;
 

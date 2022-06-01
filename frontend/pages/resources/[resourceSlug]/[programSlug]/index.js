@@ -7,23 +7,26 @@ import Footer from '@/components/footer/Footer';
 import ProgramTitleAndPhoto from '@/components/content/program/ProgramTitleAndPhoto';
 import ProgramOverviewAndInfo from '@/components/content/program/ProgramOverviewAndInfo';
 import { useSession } from 'next-auth/client';
+import { useQuery } from 'react-query';
+import ProgramRequests from '@/fetch/program/ProgramRequests';
 
 const ProgramPage = () => {
   const router = useRouter(); 
-  const [ program, setProgram ] = useState(null);
+  const { programSlug: name } = router.query  || {}
 
   const [session, loading] = useSession()
+  const isLoadingSession = loading
 
-  const getProgram = async () => {
-    const data = await getProgramBySlug(`program/${router.query.programSlug}`);
-    setProgram(data.program);
-  }
+  const programQuery = useQuery({
+		queryKey: ['resourcePrograms', { name }], 
+		queryFn: ProgramRequests.getProgram
+	})
 
-  useEffect(() => {
-    getProgram(); 
-  }, [router.query])
+  const { isLoading } = programQuery
 
-  if (!program) return <>Loading</>
+  const program = programQuery.data || {}
+
+  if (!program || isLoadingSession || isLoading) return <>Loading</>
   return (
     <>
       <NavBar />

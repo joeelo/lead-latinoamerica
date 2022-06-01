@@ -9,6 +9,7 @@ import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import { useQuery } from "react-query"
 import ProgramRequests from '@/fetch/program/ProgramRequests'
+import LoadingSpinner from '@/components/generic/LoadingSpinner'
 
 
 const ResourcePage = () => {
@@ -27,6 +28,8 @@ const ResourcePage = () => {
 		queryFn: ProgramRequests.getPrograms
 	})
 
+	const { isLoading } = programsQuery
+
 	const programs = programsQuery.data || []
 
 	const hasPrograms = programs.length > 0
@@ -35,7 +38,8 @@ const ResourcePage = () => {
 		<>
 			<NavBar />
 			<FullScreenBack 
-				src={ fakeData[resourceSlug].coverImage }
+				src={fakeData[resourceSlug].coverImage}
+				height="40vh"
 				titleInfo={{ 
 					show: true, 
 					text: `${resourceSlug}`, 
@@ -43,17 +47,22 @@ const ResourcePage = () => {
 					color: 'white' 
 				}}
 			/>
-			{ hasPrograms && (
-				<Grid>
-						{ programs.map(( program ) => (
-							<PhotoWithTextBox 
-								key={program.href} 
-								coverImage={program.coverImage} 
-								program={program} 
-							/>
-						))}					
-				</Grid>
-			)}
+				{isLoading ? (
+					<LoadingSpinner />
+				) : (
+					<Grid>
+						{hasPrograms && 
+							programs.map(( program ) => (
+								<PhotoWithTextBox 
+									key={program.href} 
+									coverImage={program.coverImage} 
+									program={program} 
+								/>
+							))
+						}
+					</Grid>
+				)}
+
 		<Footer/>
 
 		</>

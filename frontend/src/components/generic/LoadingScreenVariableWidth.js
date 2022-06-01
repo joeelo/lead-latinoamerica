@@ -17,7 +17,7 @@ const LoadingScreenVariableWidth = () => {
 	
 	return (
 		<Container>
-			{ words.map((letter, index) => {
+			{words.map((letter, index) => {
 				return <LetterDiv key={ letter } currentLetter={ currentIndex === index }>{ letter }</LetterDiv>
 			})}
 		</Container>
