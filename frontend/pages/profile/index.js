@@ -13,7 +13,7 @@ import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup';
 import { editProfile, getProfile } from '@/fetch/profile/ProfileRequests';
 import Button from '@/components/buttons/Button';
 import { ToastContainer } from 'react-toastify';
-import { getAllPrograms } from '@/fetch/program/ProgramRequests';
+import ProgramRequests from '@/fetch/program/ProgramRequests';
 import UserSavedPrograms from '@/components/programs/UserSavedPrograms';
 import { useQuery } from 'react-query';
 import getToast from '@/utils/getToast';
@@ -31,7 +31,7 @@ const ProfilePage = (props) => {
 
   const { data } = useQuery(
     ['userPrograms', session?.user?.email],
-    getAllPrograms, 
+    ProgramRequests.getAllPrograms, 
     {
       enabled: !!session?.user?.email
     }

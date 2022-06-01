@@ -23,11 +23,11 @@ const ProgramPage = () => {
     getProgram(); 
   }, [router.query])
 
-  if ( !program ) return <>Loading</>
+  if (!program) return <>Loading</>
   return (
     <>
       <NavBar />
-      <ProgramTitleAndPhoto program={ program } router={ router }/>
+      <ProgramTitleAndPhoto program={program} router={router}/>
       <ProgramOverviewAndInfo 
         program={ program } 
         marginTop={ true } 

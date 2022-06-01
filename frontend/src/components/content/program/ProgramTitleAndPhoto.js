@@ -6,12 +6,12 @@ const ProgramTitleAndPhoto = ({ program }) => {
 	return (
 		<Container>
 			<TextContainer>
-				<Heading> { program.name } </Heading>
+				<Heading> {program.name} </Heading>
 				<MissionStatement> { program.missionStatement } </MissionStatement>
 			</TextContainer>
 			<ImageContainer>
 				<StyledImage 
-					src={ `${ coverImage }` }
+					src={`${coverImage}`}
 					layout='fill'
 					objectFit='cover'
 					objectPosition='center' 

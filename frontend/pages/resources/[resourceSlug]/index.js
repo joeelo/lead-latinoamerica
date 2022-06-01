@@ -6,38 +6,30 @@ import Footer from '@/components/footer/Footer'
 import NavBar from '@/components/nav/NavBar'
 import fakeData from '@/data/fakeData'
 import { useRouter } from 'next/router'
-import Box from '@/components/generic/Box'
 import styled from 'styled-components'
+import { useQuery } from "react-query"
+import ProgramRequests from '@/fetch/program/ProgramRequests'
+
 
 const ResourcePage = () => {
 	// ex: /resource/program
 
-	const [ programsArray, setProgramsArray ] = useState([])
-
 	const router = useRouter() 
 	const { resourceSlug } = router.query
 
-	useEffect(() => {
-		if (!router?.query?.resourceSlug) return 
-		getPrograms() 
-	}, [router.query]) 
 
-	const getPrograms = async () => {
-		const { resourceSlug } = router.query
-		const singularSlug = resourceSlug[resourceSlug.length - 1] === 's' 
-			? resourceSlug.slice(0, resourceSlug.length - 1) 
-			: resourceSlug
-		try {
-			const data = await getProgramArray('programs/resources', singularSlug) 
-			if (!data || !data.message.length) {
-				return 
-			}
-			const approvedPrograms = data.message.filter( program => program.approved === true )
-			setProgramsArray(approvedPrograms)
-		} catch (error) {
-			console.log('ERROR IN GETPROGRAMS: ', error)
-		}
-	}
+	const singularSlug = resourceSlug[resourceSlug.length - 1] === 's' 
+		? resourceSlug.slice(0, resourceSlug.length - 1) 
+		: resourceSlug
+
+	const programsQuery = useQuery({
+		queryKey: ['resourcePrograms', { programType: singularSlug }], 
+		queryFn: ProgramRequests.getPrograms
+	})
+
+	const programs = programsQuery.data || []
+
+	const hasPrograms = programs.length > 0
 	
 	return (
 		<>
@@ -51,9 +43,9 @@ const ResourcePage = () => {
 					color: 'white' 
 				}}
 			/>
-			{ programsArray[0] && (
+			{ hasPrograms && (
 				<Grid>
-						{ programsArray.map(( program ) => (
+						{ programs.map(( program ) => (
 							<PhotoWithTextBox 
 								key={program.href} 
 								coverImage={program.coverImage} 

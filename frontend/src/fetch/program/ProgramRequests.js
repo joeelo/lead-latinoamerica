@@ -1,25 +1,45 @@
-const getAllPrograms = async ({ queryKey }) => {
-  if (!queryKey) return; 
+export default { 
+  getAllPrograms, 
+  getProgram, 
+  getPrograms, 
+}
+
+async function getAllPrograms(queryContext){
+  const { queryKey } = queryContext
+  if (!queryKey) return 
   const email = queryKey[1]
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/user/${email}/programs`); 
-    const json = await response.json(); 
-    return json; 
+    const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/user/${email}/programs`) 
+    const json = await response.json() 
+    return json 
   } catch (error) {
-    console.log('ERROR IN GETALLPROGRAMS: ', error); 
+    console.log('ERROR IN GETALLPROGRAMS: ', error) 
   }
 }
 
-const getProgram = async ({ queryKey }) => {
-  const [_, endpoint] = queryKey;
+async function getProgram(queryContext) {
+  const { queryKey } = queryContext
+  const [_, endpoint] = queryKey
 	try {
-		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/program/${endpoint}`); 
-		const json = await response.json(); 
-		return json;
+		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/program/${endpoint}`) 
+		const json = await response.json() 
+		return json
 	} catch (error) {
-		console.log(error);
-		return { message: error };
+		console.log(error)
+		return { message: error }
 	}
 }
 
-export { getAllPrograms, getProgram }; 
+async function getPrograms(queryContext) {
+  const { queryKey } = queryContext
+  const [_, data] = queryKey
+  const { programType } = data
+	try {
+		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/programs/resources?programType=${programType}`) 
+		const json = await response.json() 
+		return json.message
+	} catch (error) {
+		console.log(error)
+		return { message: error }
+	}
+}

@@ -13,7 +13,7 @@ const FullScreenBack = ({ src, children, titleInfo, height }) => {
 				<Image 
 					className=".next-image"
 					priority={true}
-					src={ src }
+					src={src}
 					layout='fill'
 					objectFit="cover"
 					objectPosition="center"

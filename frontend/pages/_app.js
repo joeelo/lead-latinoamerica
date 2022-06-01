@@ -8,7 +8,7 @@ import { getSession } from "next-auth/client"
 import 'react-toastify/dist/ReactToastify.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools'
-import { UserWrapper } from '@/context/UserContext';
+// import { UserWrapper } from '@/context/UserContext';
 
 const GlobalStyle = createGlobalStyle`
   	html, *, body {

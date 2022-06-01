@@ -12,22 +12,22 @@ import Modal from "@/components/modal/Modal";
 const DeleteOrgPage = () => {
 
     const router = useRouter(); 
-    const [ program, setProgram ] = useState({}); 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [ program, setProgram ] = useState({}) 
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     const getProgram = async () => {
         try {
-            const fetchedProgram = await getProgramBySlug(`program/${ router.query.nameSlug }`);
-            setProgram(fetchedProgram.program);
-            return fetchedProgram; 
+            const fetchedProgram = await getProgramBySlug(`program/${ router.query.nameSlug }`)
+            setProgram(fetchedProgram.program)
+            return fetchedProgram 
         } catch (error) {
-            console.log(error);
+            console.log(error)
         }
     }
 
     useEffect(() => {
-        if (!router.isReady) return;
-        getProgram(); 
+        if (!router.isReady) return
+        getProgram() 
     }, [ router.isReady ])
 
     if (!program) return <></>
