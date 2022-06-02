@@ -31,15 +31,15 @@ const PhotoWithTextBox = ({
 			<Container onClick={clickHandler}>
 				<PhotoWithTextOverlay>
 					<StyledImage src={imageSrc}/>
-					<RightAlignedText> { name } </RightAlignedText>
+					<RightAlignedText>{name}</RightAlignedText>
 					
 					{isInNextTwoWeeks && (
 						<StyledBellImage src="/images/bell-icon-white.png"/>
 					)}
 				</PhotoWithTextOverlay> 
-				<Bio> - { truncatedString } </Bio>
+				<Bio> - {truncatedString} </Bio>
 				<Link href={`/resources/[resourceSlug]/[programSlug]`} as={`${router.asPath}/${href}`}>
-				<StyledAnchor> explore { name } </StyledAnchor>
+				<StyledAnchor> explore {name} </StyledAnchor>
 				</Link>
 			</Container>
 		</Box>
@@ -66,6 +66,11 @@ const Container = styled.div`
 	:hover {
 		cursor: pointer;
 		box-shadow: 1px 2px 15px 0px rgba(184,177,184,1);
+	}
+
+	@media screen and (max-width: 768px) {
+		min-height: 550px; 
+		min-width: 100%;
 	}
 `
 
@@ -98,6 +103,10 @@ const Bio = styled.p`
 	line-height: 26px;
 	padding: 20px; 
 	padding-top: 5px;
+
+	@media screen and (max-width: 768px) {
+		font-size: 16px;
+	}
 `
 
 const StyledAnchor = styled.a`
@@ -108,6 +117,10 @@ const StyledAnchor = styled.a`
 	color: inherit; 
 	text-decoration: none;
 	margin-left: 20px;
+
+	@media screen and (max-width: 768px) {
+		font-size: 16px;
+	}
 `
 
 const StyledImage = styled.img`

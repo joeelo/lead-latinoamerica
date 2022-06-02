@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react'
-import { getProgramArray } from '@/fetch/requests'
 import FullScreenBack from '@/components/background/FullScreenBack'
 import PhotoWithTextBox from '@/components/content/PhotoWithTextBox'
 import Footer from '@/components/footer/Footer'
@@ -10,6 +8,7 @@ import styled from 'styled-components'
 import { useQuery } from "react-query"
 import ProgramRequests from '@/fetch/program/ProgramRequests'
 import LoadingSpinner from '@/components/generic/LoadingSpinner'
+import Box from '@/components/generic/Box';
 
 
 const ResourcePage = () => {
