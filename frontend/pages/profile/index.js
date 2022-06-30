@@ -248,7 +248,7 @@ const FormDetail = styled.p`
 
 const Span = styled.span`
   display: flex;
-  max-width: 400px; 
+  max-width: 900px; 
   font-size: 18px; 
   margin-top: 20px;
 `
