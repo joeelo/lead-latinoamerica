@@ -10,58 +10,59 @@ import FaButton from "@/components/buttons/FaButton";
 import Modal from "@/components/modal/Modal";
 
 const DeleteOrgPage = () => {
+	const router = useRouter(); 
+	const [ program, setProgram ] = useState({}) 
+	const [isModalOpen, setIsModalOpen] = useState(false)
 
-    const router = useRouter(); 
-    const [ program, setProgram ] = useState({}) 
-    const [isModalOpen, setIsModalOpen] = useState(false)
+	const getProgram = async () => {
+		try {
+			const fetchedProgram = await getProgramBySlug(`program/${ router.query.nameSlug }`)
+			setProgram(fetchedProgram.program)
+			return fetchedProgram 
+		} catch (error) {
+			console.log(error)
+		}
+	}
 
-    const getProgram = async () => {
-        try {
-            const fetchedProgram = await getProgramBySlug(`program/${ router.query.nameSlug }`)
-            setProgram(fetchedProgram.program)
-            return fetchedProgram 
-        } catch (error) {
-            console.log(error)
-        }
-    }
+	useEffect(() => {
+			if (!router.isReady) return
+			getProgram() 
+	}, [ router.isReady ])
 
-    useEffect(() => {
-        if (!router.isReady) return
-        getProgram() 
-    }, [ router.isReady ])
+	if (!program) {
+		return null
+	}
 
-    if (!program) return <></>
-    return (
-        <>
-            <NavBar />
-            <ProgramTitleAndPhoto program={ program } router={ router }/>
-            <ProgramOverviewAndInfo program={ program } marginTop={ true }/>
-            <ButtonContainer onClick={() => setIsModalOpen(true)}>
-                <FaButton size="2x" color="white"/>
-            </ButtonContainer>
-            <Modal isOpen={isModalOpen} setOpen={setIsModalOpen}> truth fam </Modal>
-            <Footer marginTop={ true }/>
-        </>
-        
-    )
+	return (
+		<>
+			<NavBar />
+			<ProgramTitleAndPhoto program={ program } router={ router }/>
+			<ProgramOverviewAndInfo program={ program } marginTop={ true }/>
+			<ButtonContainer onClick={() => setIsModalOpen(true)}>
+					<FaButton size="2x" color="white"/>
+			</ButtonContainer>
+			<Modal isOpen={isModalOpen} setOpen={setIsModalOpen}> truth fam </Modal>
+			<Footer marginTop={ true }/>
+		</>
+	)
 }
 
 export default DeleteOrgPage
 
 const ButtonContainer = styled.div`
-    width: 75px; 
-    height: 75px; 
-    border-radius: 50%; 
-    background-color: #CE1620;
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    position: fixed; 
-    top: 120px; 
-    right: 50px; 
+	width: 75px; 
+	height: 75px; 
+	border-radius: 50%; 
+	background-color: #CE1620;
+	display: flex; 
+	justify-content: center; 
+	align-items: center; 
+	position: fixed; 
+	top: 120px; 
+	right: 50px; 
 
-    :hover {
-        cursor: pointer;
-    }
+	:hover {
+			cursor: pointer;
+	}
 `
 
