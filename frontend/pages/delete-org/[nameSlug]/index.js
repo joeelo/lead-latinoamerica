@@ -10,7 +10,7 @@ import FaButton from "@/components/buttons/FaButton";
 import Modal from "@/components/modal/Modal";
 
 const DeleteOrgPage = () => {
-	const router = useRouter(); 
+	const router = useRouter()
 	const [ program, setProgram ] = useState({}) 
 	const [isModalOpen, setIsModalOpen] = useState(false)
 
