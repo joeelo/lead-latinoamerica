@@ -12,18 +12,26 @@ function DesktopNav() {
 
   return (
     <Container>
-      <Box display="flex" justify="flex-end">
-        <Box width="125px" onMouseEnter={handleMouseEnter}>
+      <Box display="flex" justify="flex-end" width="100vw" mw="100vw">
+        <Box
+          width="125px"
+          onMouseEnter={handleMouseEnter}
+          data-name="Get Involved"
+        >
           Get Involved
         </Box>
-        <Box width="125px" onMouseEnter={handleMouseEnter}>
+        <Box
+          width="125px"
+          onMouseEnter={handleMouseEnter}
+          data-name="Resources"
+        >
           Resources
         </Box>
         <Box width="100px">Home</Box>
         <Box width="100px">Login</Box>
       </Box>
 
-      {anchorEl && <NavModal anchorEl={anchorEl} />}
+      {<NavModal anchorEl={anchorEl} setAnchorEl={setAnchorEl} />}
     </Container>
   )
 }
@@ -36,4 +44,5 @@ const Container = styled.div`
   padding: 30px;
   position: relative;
   font-size: 18px;
+  cursor: pointer;
 `

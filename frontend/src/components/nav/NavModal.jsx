@@ -4,16 +4,22 @@ import styled from 'styled-components'
 import debounce from 'lodash/debounce'
 
 NavModal.propTypes = {
-  anchorEl: PropTypes.object.isRequired,
+  anchorEl: PropTypes.object,
 }
 
 function NavModal({ anchorEl }) {
+  if (!anchorEl) {
+    return null
+  }
+
+  const dataName = anchorEl.dataset.name
+  const isGetInvolvedButton = dataName === 'Get Involved'
+  const isResourceButton = dataName === 'Resources'
+
   const { offsetLeft } = anchorEl
+
   const [innerWidth, setInnerWidth] = useState(window.innerWidth)
-
   const [left, setLeft] = useState(offsetLeft)
-
-  console.log('innerWidth: ', innerWidth)
 
   useEffect(() => {
     const updateSize = debounce(() => setInnerWidth(window.innerWidth), 50)
@@ -24,9 +30,15 @@ function NavModal({ anchorEl }) {
 
   useEffect(() => {
     setLeft(offsetLeft)
-  }, [innerWidth])
+  }, [innerWidth, anchorEl])
 
-  return <Container left={left}>working and working</Container>
+  return (
+    <Container left={left}>
+      {isGetInvolvedButton && <>This is the get involved button</>}
+
+      {isResourceButton && <> This is the resource button</>}
+    </Container>
+  )
 }
 
 export default NavModal
@@ -34,4 +46,6 @@ export default NavModal
 const Container = styled.div`
   position: absolute;
   left: ${(props) => props.left}px;
+  transition: 0.4s ease-in-out all;
+  opacity: ${(props) => (props.left ? 1 : 0)};
 `
