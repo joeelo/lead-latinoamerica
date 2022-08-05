@@ -2,14 +2,28 @@ import { useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import Link from 'next/link';
 
+const getFontSize = (size) => {
+	switch (size) {
+		case 'sm':
+			return '16px'
 
+		case 'md': 
+			return '20px'
 
-const LinkUnderlineEffect = ({ text, hrefFormatted, color = 'cyan', openInNewTab }) => {
+		case 'lg': 
+			return '24px'
+
+		default:
+			return '22px'
+	}
+}
+
+const LinkUnderlineEffect = ({ text, hrefFormatted, color = 'cyan', openInNewTab, size }) => {
 
 	const theme = useContext(ThemeContext);
 
 	return (
-		<P color={ color } theme={ theme }>
+		<P {...{color, theme, size}}>
 			{openInNewTab ? (
 				<a href={`${hrefFormatted}`} target="_blank" rel="noopener noreferrer"> {text} </a>
 			) : (
@@ -28,10 +42,10 @@ const P = styled.p`
 	padding: 0; 
 	font-size: inherit;
 	height: 35px;
+	font-size: ${ props => getFontSize(props.size)};
 
 	a {
 		text-decoration: none;
-		font-size: 22px;
 		margin-bottom: 3px;
 		color: ${ props => props.color ? props.theme.colors[props.color] : '#222' };
 		display: inline-block;

@@ -2,6 +2,14 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import debounce from 'lodash/debounce'
+import LinkUnderlineEffect from '../generic/LinkUnderlineEffect'
+import Box from '@/components/generic/Box'
+import { useSession } from 'next-auth/client'
+import useLocale from '@/hooks/useLocale'
+import en from '@/language/locales/en/navbar.json'
+import es from '@/language/locales/es/navbar.json'
+import Link from 'next/link'
+import ExternalLink from '@/components/generic/ExternalLink'
 
 NavModal.propTypes = {
   anchorEl: PropTypes.object,
@@ -12,6 +20,8 @@ function NavModal({ anchorEl }) {
     return null
   }
 
+  const [session] = useSession()
+  const t = useLocale() === 'en' ? en : es
   const dataName = anchorEl.dataset.name
   const isGetInvolvedButton = dataName === 'Get Involved'
   const isResourceButton = dataName === 'Resources'
@@ -34,7 +44,20 @@ function NavModal({ anchorEl }) {
 
   return (
     <Container left={left}>
-      {isGetInvolvedButton && <>This is the get involved button</>}
+      {isGetInvolvedButton && (
+        <Box fd="column" display="flex">
+          {!session && <Link href="/sign-in">Sign in</Link>}
+
+          <Link href="/add-program">{t.addOrg}</Link>
+          <Link href="/home">{t.home}</Link>
+          <a
+            target="_blank"
+            href="https://www.leadlatinoamerica.org/copy-of-our-team"
+          >
+            Our Team
+          </a>
+        </Box>
+      )}
 
       {isResourceButton && <> This is the resource button</>}
     </Container>
@@ -48,4 +71,20 @@ const Container = styled.div`
   left: ${(props) => props.left}px;
   transition: 0.4s ease-in-out all;
   opacity: ${(props) => (props.left ? 1 : 0)};
+  background-color: white;
+  z-index: 1000;
+  top: 80px;
+  box-shadow: 5px 5px 6px -2px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  cursor: auto;
+
+  a {
+    color: black;
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+
+  a:visited {
+    color: black;
+  }
 `

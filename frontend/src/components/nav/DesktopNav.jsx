@@ -12,7 +12,7 @@ function DesktopNav() {
 
   return (
     <Container>
-      <Box display="flex" justify="flex-end" width="100vw" mw="100vw">
+      <Box display="flex" justify="flex-end" width="100vw" mw="%">
         <Box
           width="125px"
           onMouseEnter={handleMouseEnter}
@@ -39,9 +39,9 @@ function DesktopNav() {
 export default DesktopNav
 
 const Container = styled.div`
-  width: 100vw;
+  width: 100%;
   background-color: white;
-  padding: 30px;
+  padding: 30px 0;
   position: relative;
   font-size: 18px;
   cursor: pointer;
