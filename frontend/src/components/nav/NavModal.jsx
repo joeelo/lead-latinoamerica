@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import debounce from 'lodash/debounce'
-import LinkUnderlineEffect from '../generic/LinkUnderlineEffect'
 import Box from '@/components/generic/Box'
-import { useSession } from 'next-auth/client'
+import { useSession, signOut } from 'next-auth/client'
 import useLocale from '@/hooks/useLocale'
 import en from '@/language/locales/en/navbar.json'
 import es from '@/language/locales/es/navbar.json'
 import Link from 'next/link'
-import ExternalLink from '@/components/generic/ExternalLink'
 
 NavModal.propTypes = {
   anchorEl: PropTypes.object,
@@ -46,7 +44,13 @@ function NavModal({ anchorEl }) {
     <Container left={left}>
       {isGetInvolvedButton && (
         <Box fd="column" display="flex">
-          {!session && <Link href="/sign-in">Sign in</Link>}
+          {!session ? (
+            <Link href="/sign-in">Sign in</Link>
+          ) : (
+            <Link href="/" onClick={signOut}>
+              Sign out
+            </Link>
+          )}
 
           <Link href="/add-program">{t.addOrg}</Link>
           <Link href="/home">{t.home}</Link>
@@ -59,7 +63,14 @@ function NavModal({ anchorEl }) {
         </Box>
       )}
 
-      {isResourceButton && <> This is the resource button</>}
+      {isResourceButton && (
+        <Box display="flex" fd="column">
+          <Link href="/resources/program">{t.programs}</Link>
+          <Link href="/resources/scholarships">{t.scholarships}</Link>
+          <Link href="/resources/internships">{t.internships}</Link>
+          <Link href="/resources/summer">{t.summer}</Link>
+        </Box>
+      )}
     </Container>
   )
 }
@@ -73,10 +84,11 @@ const Container = styled.div`
   opacity: ${(props) => (props.left ? 1 : 0)};
   background-color: white;
   z-index: 1000;
-  top: 80px;
+  top: 70px;
   box-shadow: 5px 5px 6px -2px rgba(0, 0, 0, 0.5);
   padding: 20px;
   cursor: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 
   a {
     color: black;
