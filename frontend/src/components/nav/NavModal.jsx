@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import debounce from 'lodash/debounce'
@@ -8,6 +8,7 @@ import useLocale from '@/hooks/useLocale'
 import en from '@/language/locales/en/navbar.json'
 import es from '@/language/locales/es/navbar.json'
 import Link from 'next/link'
+import useMousePosition from '@/hooks/useMousePosition'
 
 NavModal.propTypes = {
   anchorEl: PropTypes.object,
@@ -17,6 +18,10 @@ function NavModal({ anchorEl }) {
   if (!anchorEl) {
     return null
   }
+
+  const containerRef = useRef(null)
+
+  console.log(useMousePosition())
 
   const [session] = useSession()
   const t = useLocale() === 'en' ? en : es
@@ -41,7 +46,7 @@ function NavModal({ anchorEl }) {
   }, [innerWidth, anchorEl])
 
   return (
-    <Container left={left}>
+    <Container left={left} ref={containerRef}>
       {isGetInvolvedButton && (
         <Box fd="column" display="flex">
           {!session ? (
