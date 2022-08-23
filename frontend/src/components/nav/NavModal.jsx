@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import debounce from 'lodash/debounce'
@@ -20,8 +20,7 @@ function NavModal({ anchorEl }) {
   }
 
   const containerRef = useRef(null)
-
-  console.log(useMousePosition())
+  const mousePosition = useMousePosition()
 
   const [session] = useSession()
   const t = useLocale() === 'en' ? en : es
@@ -44,6 +43,22 @@ function NavModal({ anchorEl }) {
   useEffect(() => {
     setLeft(offsetLeft)
   }, [innerWidth, anchorEl])
+
+  const containerPosition = useMemo(() => {
+    if (!containerRef.current) {
+      return {}
+    }
+
+    const containerPositionAttributes =
+      containerRef.current.getBoundingClientRect()
+
+    return {
+      top: containerPositionAttributes.top,
+      left: containerPositionAttributes.left,
+      bottom: containerPositionAttributes.bottom,
+      right: containerPositionAttributes.right,
+    }
+  }, [containerRef.current, innerWidth])
 
   return (
     <Container left={left} ref={containerRef}>
