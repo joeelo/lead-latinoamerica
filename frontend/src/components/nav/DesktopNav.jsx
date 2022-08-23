@@ -1,13 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
 import Box from '@/components/generic/Box'
 import NavModal from './NavModal'
 
 function DesktopNav() {
   const [anchorEl, setAnchorEl] = useState(null)
+  const timer = useRef(null)
 
   const handleMouseEnter = (event) => {
     setAnchorEl(event.currentTarget)
+  }
+
+  const handleExternalMouseEnter = () => {
+    setAnchorEl(null)
   }
 
   return (
@@ -27,8 +32,12 @@ function DesktopNav() {
         >
           Resources
         </Box>
-        <Box width="100px">Home</Box>
-        <Box width="100px">Login</Box>
+        <Box width="100px" onMouseEnter={handleExternalMouseEnter}>
+          Home
+        </Box>
+        <Box width="100px" onMouseEnter={handleExternalMouseEnter}>
+          Login
+        </Box>
       </Box>
 
       {<NavModal anchorEl={anchorEl} setAnchorEl={setAnchorEl} />}
