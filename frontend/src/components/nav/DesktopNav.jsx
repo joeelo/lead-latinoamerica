@@ -17,11 +17,12 @@ function DesktopNav() {
 
   return (
     <Container>
-      <Box display="flex" justify="flex-end" width="100vw" mw="%">
+      <Box display="flex" justify="flex-end" width="100vw" mw="">
         <Box
           width="125px"
           onMouseEnter={handleMouseEnter}
           data-name="Get Involved"
+          style={{ cursor: 'pointer' }}
         >
           Get Involved
         </Box>
@@ -29,13 +30,22 @@ function DesktopNav() {
           width="125px"
           onMouseEnter={handleMouseEnter}
           data-name="Resources"
+          style={{ cursor: 'pointer' }}
         >
           Resources
         </Box>
-        <Box width="100px" onMouseEnter={handleExternalMouseEnter}>
+        <Box
+          width="100px"
+          onMouseEnter={handleExternalMouseEnter}
+          style={{ cursor: 'pointer' }}
+        >
           Home
         </Box>
-        <Box width="100px" onMouseEnter={handleExternalMouseEnter}>
+        <Box
+          width="100px"
+          onMouseEnter={handleExternalMouseEnter}
+          style={{ cursor: 'pointer' }}
+        >
           Login
         </Box>
       </Box>
@@ -53,5 +63,4 @@ const Container = styled.div`
   padding: 30px 0;
   position: relative;
   font-size: 18px;
-  cursor: pointer;
 `
