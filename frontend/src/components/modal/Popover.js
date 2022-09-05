@@ -14,6 +14,8 @@ function Popover({ anchorEl, setAnchorEl, children }) {
     return null
   }
 
+  console.log('ANCHOR EL ', anchorEl)
+
   const containerRef = useRef(null)
   const mousePosition = useMousePosition()
 
@@ -56,7 +58,7 @@ function Popover({ anchorEl, setAnchorEl, children }) {
     if (mouseX < left || mouseX > right || mouseY > bottom) {
       setAnchorEl(null)
     }
-  }, [mousePosition, dataName])
+  }, [mousePosition])
 
   return (
     <Container left={left} ref={containerRef}>
@@ -79,14 +81,4 @@ const Container = styled.div`
   padding: 20px;
   cursor: auto;
   border: 1px solid rgba(0, 0, 0, 0.1);
-
-  a {
-    color: black;
-    text-decoration: none;
-    margin-bottom: 10px;
-  }
-
-  a:visited {
-    color: black;
-  }
 `
