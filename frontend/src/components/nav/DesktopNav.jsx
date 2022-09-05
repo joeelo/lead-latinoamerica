@@ -21,8 +21,6 @@ function DesktopNav() {
     setAnchorEl(null)
   }
 
-  console.log(anchorEl && anchorEl.dataset.name)
-
   return (
     <Container>
       <Box display="flex" justify="flex-end" width="100vw" mw="100%">

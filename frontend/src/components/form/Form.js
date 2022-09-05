@@ -28,7 +28,7 @@ const Form = ({ formData, objKey, endpoint, method, setFormSubmitted, query }) =
 				}
 			}
 		} catch (error) {
-				console.log('error: ', error);
+				console.log(error);
 			}
 	}
 

@@ -14,8 +14,6 @@ function Popover({ anchorEl, setAnchorEl, children }) {
     return null
   }
 
-  console.log('ANCHOR EL ', anchorEl)
-
   const containerRef = useRef(null)
   const mousePosition = useMousePosition()
 
