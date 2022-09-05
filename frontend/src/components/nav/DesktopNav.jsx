@@ -25,7 +25,7 @@ function DesktopNav() {
 
   return (
     <Container>
-      <Box display="flex" justify="flex-end" width="100vw" mw="">
+      <Box display="flex" justify="flex-end" width="100vw" mw="100%">
         <Box
           width="125px"
           onMouseEnter={handleMouseEnter}
