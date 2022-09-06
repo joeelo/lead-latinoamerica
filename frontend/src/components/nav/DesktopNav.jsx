@@ -27,7 +27,7 @@ function DesktopNav() {
     <Container>
       <Box display="flex" justify="flex-end" width="100vw" mw="100%">
         <Box
-          width="125px"
+          width="120px"
           onMouseEnter={handleMouseEnter}
           data-name="get-involved"
           style={{ cursor: 'pointer' }}
@@ -35,19 +35,17 @@ function DesktopNav() {
           Get Involved
         </Box>
         <Box
-          width="125px"
+          width="100px"
           onMouseEnter={handleMouseEnter}
           data-name="resources"
           style={{ cursor: 'pointer' }}
         >
           Resources
         </Box>
-        <Box
-          width="100px"
-          onMouseEnter={handleExternalMouseEnter}
-          style={{ cursor: 'pointer' }}
-        >
-          Home
+        <Box style={{ cursor: 'pointer' }} width="80px">
+          <Link onMouseEnter={handleExternalMouseEnter} href="/">
+            Home
+          </Link>
         </Box>
         <Box
           width="100px"
@@ -70,7 +68,7 @@ function DesktopNav() {
         <Popover anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
           <Box fd="column" display="flex">
             <Link href="/add-program">{t.addOrg}</Link>
-            <Link href="/home">{t.home}</Link>
+            <Link href="/profile">{t.addOrg}</Link>
             <a
               target="_blank"
               href="https://www.leadlatinoamerica.org/copy-of-our-team"
@@ -107,6 +105,5 @@ const Container = styled.div`
   a {
     color: black;
     text-decoration: none;
-    margin: 5px 0;
   }
 `
