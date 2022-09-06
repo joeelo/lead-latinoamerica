@@ -54,7 +54,7 @@ const findProgramAndUpdate = async (data = {}, endpoint) => {
 		const json = await response.json();
 		return json; 
 	} catch (error) {
-		console.log('ERROR IN FINDPROGRAMANDUPDATE: ', error);
+		console.log(error);
 	}
 }
 

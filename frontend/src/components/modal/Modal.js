@@ -1,21 +1,21 @@
-import styled from 'styled-components';
-import { useEffect, useRef } from 'react';
+import styled from 'styled-components'
+import { useEffect, useRef } from 'react'
 
 const Modal = ({ isOpen, setOpen, children }) => {
 
-    const wrapperRef = useRef(); 
+    const wrapperRef = useRef() 
 
     const handleClickOutside = (event) => {
-		if (!isOpen) return;
+		if (!isOpen) return
 		if (wrapperRef && !wrapperRef.current.contains(event.target)) {
-			setOpen(false);
+			setOpen(false)
 		}
 	}
 
     useEffect(() => {
-        document.addEventListener('click', handleClickOutside);
+        document.addEventListener('click', handleClickOutside)
 
-        return () => document.removeEventListener('click', handleClickOutside);
+        return () => document.removeEventListener('click', handleClickOutside)
     })
 
     if (!isOpen) return <></>

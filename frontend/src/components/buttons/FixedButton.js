@@ -20,7 +20,7 @@ const FixedButton = ({
 					onSuccess(true);
 				}
 			} catch (error) {
-				console.log('ERROR IN FIXEDBUTTON TRYING TO UPDATE PROGRAM:', error);
+				console.log(error);
 			}
 		}
 	}

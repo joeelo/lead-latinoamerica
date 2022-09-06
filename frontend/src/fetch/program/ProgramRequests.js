@@ -13,7 +13,7 @@ async function getAllPrograms(queryContext){
     const json = await response.json() 
     return json 
   } catch (error) {
-    console.log('ERROR IN GETALLPROGRAMS: ', error) 
+    console.log(error) 
   }
 }
 

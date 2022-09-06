@@ -11,7 +11,7 @@ const createProfile = async (session) => {
   
     return json; 
   } catch (error) {
-    console.log('error: ', error)
+    console.log(error)
   }
 }
 
@@ -32,7 +32,7 @@ const getProfile = async (session) => {
 
     return json; 
   } catch (error) {
-    console.log('error', error); 
+    console.log(error); 
   }
 }
 
@@ -48,7 +48,7 @@ const editProfile = async (data, email) => {
     const json = await response.json(); 
     return json; 
   } catch (error) {
-    console.log('error in editProfile: ', error);
+    console.log(error);
   }
 }
 
