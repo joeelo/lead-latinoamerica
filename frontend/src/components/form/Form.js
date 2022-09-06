@@ -5,7 +5,6 @@ import FormTextarea from '@/components/form/FormTextarea';
 import { useForm } from 'react-hook-form';
 import { postToDatabase } from '@/fetch/requests';
 import CheckboxContainer from '@/components/form/CheckboxContainer';
-import nestData from '@/data/nestData';
 import { useRouter } from 'next/router';
 
 

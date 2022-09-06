@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Box from '@/components/generic/Box'
 import Popover from '../modal/Popover'
@@ -20,6 +20,8 @@ function DesktopNav() {
   const handleExternalMouseEnter = () => {
     setAnchorEl(null)
   }
+
+  console.log('SESSION : ', session)
 
   return (
     <Container>
@@ -52,21 +54,21 @@ function DesktopNav() {
           onMouseEnter={handleExternalMouseEnter}
           style={{ cursor: 'pointer' }}
         >
-          Login
+          {!session ? (
+            <Link className="link" href="/sign-in">
+              Login
+            </Link>
+          ) : (
+            <div className="link" href="/" onClick={signOut}>
+              Sign out
+            </div>
+          )}
         </Box>
       </Box>
 
       {anchorEl && anchorEl.dataset.name === 'get-involved' && (
         <Popover anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
           <Box fd="column" display="flex">
-            {!session ? (
-              <Link href="/sign-in">Sign in</Link>
-            ) : (
-              <Link href="/" onClick={signOut}>
-                Sign out
-              </Link>
-            )}
-
             <Link href="/add-program">{t.addOrg}</Link>
             <Link href="/home">{t.home}</Link>
             <a
