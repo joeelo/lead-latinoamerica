@@ -21,8 +21,6 @@ function DesktopNav() {
     setAnchorEl(null)
   }
 
-  console.log('SESSION : ', session)
-
   return (
     <Container>
       <Box display="flex" justify="flex-end" width="100vw" mw="100%">
@@ -35,17 +33,19 @@ function DesktopNav() {
           Get Involved
         </Box>
         <Box
-          width="100px"
+          width="110px"
           onMouseEnter={handleMouseEnter}
           data-name="resources"
           style={{ cursor: 'pointer' }}
         >
           Resources
         </Box>
-        <Box style={{ cursor: 'pointer' }} width="80px">
-          <Link onMouseEnter={handleExternalMouseEnter} href="/">
-            Home
-          </Link>
+        <Box
+          style={{ cursor: 'pointer' }}
+          width="80px"
+          onMouseEnter={handleExternalMouseEnter}
+        >
+          <Link href="/">Home</Link>
         </Box>
         <Box
           width="100px"
@@ -66,9 +66,9 @@ function DesktopNav() {
 
       {anchorEl && anchorEl.dataset.name === 'get-involved' && (
         <Popover anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
-          <Box fd="column" display="flex">
+          <Box className="link-container" fd="column" display="flex">
             <Link href="/add-program">{t.addOrg}</Link>
-            <Link href="/profile">{t.addOrg}</Link>
+            <Link href="/profile">My Profile</Link>
             <a
               target="_blank"
               href="https://www.leadlatinoamerica.org/copy-of-our-team"
@@ -81,7 +81,7 @@ function DesktopNav() {
 
       {anchorEl && anchorEl.dataset.name === 'resources' && (
         <Popover anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
-          <Box display="flex" fd="column">
+          <Box className="link-container" display="flex" fd="column">
             <Link href="/resources/program">{t.programs}</Link>
             <Link href="/resources/scholarships">{t.scholarships}</Link>
             <Link href="/resources/internships">{t.internships}</Link>
@@ -105,5 +105,9 @@ const Container = styled.div`
   a {
     color: black;
     text-decoration: none;
+  }
+
+  a {
+    margin: 3px 0;
   }
 `
