@@ -15,7 +15,6 @@ import WordSelectInput from '@/components/form/word-select/WordSelectInput';
 import Tooltip from '@/components/tooltip/Tooltip';
 import InputErrorMessage from '@/components/form/errors/InputErrorMessage'; 
 import DateInput from '@/components/form/date-input/DateInput';
-import { DateTime } from 'luxon';
 
 const AddAndEditOrgs = () => {
 	const [ isSubmitting, setIsSubmitting ] = useState(false); 
@@ -51,10 +50,14 @@ const AddAndEditOrgs = () => {
 		data.helpsWith = wordList;
 
 		if (data.expirationDate) {
-			console.log(data.expirationDate)
-			const dateObj = new DateTime.fromFormat(data.expirationDate, 'MM/dd/yyyy');
+			function dateIsValid(date) {
+				return date instanceof Date && !isNaN(date);
+			}
+		
+			const expirationDate = new Date(data.expirationDate)
+			const isDateValid = dateIsValid(expirationDate)
 
-			if (dateObj.invalid) {
+			if (!isDateValid) {
 				setError('expirationDate', {
 					type: 'manual', 
 					message: 'Please input a valid date'
@@ -64,8 +67,8 @@ const AddAndEditOrgs = () => {
 				return;
 			}
 
-			date = dateObj.toISO();
-			data.expirationDate = date;
+			
+			data.expirationDate = expirationDate.toISOString();
 		}
 
 		const response = await postToDatabase(data, 'programs/add'); 
