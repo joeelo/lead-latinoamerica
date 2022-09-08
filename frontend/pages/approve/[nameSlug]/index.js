@@ -5,7 +5,7 @@ import ProgramOverviewAndInfo from "@/components/content/program/ProgramOverview
 import ProgramTitleAndPhoto from "@/components/content/program/ProgramTitleAndPhoto";
 import FixedButton from "@/components/buttons/FixedButton";
 import { useQuery } from "react-query";
-import { getProgram } from 'src/fetch/program/ProgramRequests'
+import ProgramRequests from 'src/fetch/program/ProgramRequests'
 import { ToastContainer } from "react-toastify";
 import getToast from '@/utils/getToast';
 
@@ -13,10 +13,11 @@ const ApproveProgramPage = () => {
 
 	const router = useRouter(); 
 
-	const { data } = useQuery(
-		['fetchProgram', router.query.nameSlug], 
-		getProgram, 
-	)
+	const { data } = useQuery({
+		queryKey: ['fetchProgram', {name: router.query.nameSlug}], 
+		queryFn: ProgramRequests.getProgram, 
+		enabled: !!router.query.nameSlug
+	})
 
 	const handleSuccess = (response) => {
 		if (!!response) {
@@ -26,8 +27,10 @@ const ApproveProgramPage = () => {
 		}
 	}
 
-	if (!data?.program) return <></>
-	const { program } = data; 
+	
+
+	if (!data) return <>Loading...</>
+	const program = data
 	return (
 		<>
 			<NavBar />
