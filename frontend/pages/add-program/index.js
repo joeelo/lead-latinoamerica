@@ -51,6 +51,8 @@ const AddAndEditOrgs = () => {
 		if (data.expirationDate) {
 			const dateObj = new DateTime.fromFormat(data.expirationDate, 'MM/dd/yyyy');
 
+			console.log(dateObj)
+
 			if (dateObj.invalid) {
 				setError('expirationDate', {
 					type: 'manual', 
