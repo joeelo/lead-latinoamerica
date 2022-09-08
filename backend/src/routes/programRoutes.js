@@ -15,8 +15,6 @@ router.post('/programs/add', async (req, res) => {
       expirationDate,
     } = req.body;
 
-    console.log('REQ: ', req.body)
-
     let href = name.split(' ').join('-');
     href = href.toLowerCase();
 
@@ -100,6 +98,7 @@ router.get('/programs/resources', async (req, res) => {
       [key]: true,
       approved: true,
       $or: [
+        {expirationDate: { $eq: '' }},
         {expirationDate: null}, 
         {expirationDate: { $gt: new Date().toISOString() }}
       ]
