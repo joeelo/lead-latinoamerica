@@ -21,8 +21,6 @@ function Popover({ anchorEl, setAnchorEl, children }) {
   const containerRef = useRef(null)
   const mousePosition = useMousePosition()
 
-  console.log('mousePosition', mousePosition)
-
   const { offsetLeft } = anchorEl
 
   const [innerWidth, setInnerWidth] = useState(window.innerWidth)
