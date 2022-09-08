@@ -32,6 +32,8 @@ const AddAndEditOrgs = () => {
 	} = useForm(); 
 
 	const onSubmit = async (data) => {
+		console.log('isSUBMITTING TRUE')
+		console.log('isSUBMITTING DATA ', data)
 		setIsSubmitting(true);		
 		let date = null; 
 
