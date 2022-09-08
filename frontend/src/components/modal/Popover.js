@@ -14,8 +14,14 @@ function Popover({ anchorEl, setAnchorEl, children }) {
     return null
   }
 
+  const updateInnerWidth = useMemo(() => {
+    debounce(() => setInnerWidth(window.innerWidth), 50)
+  }, [])
+
   const containerRef = useRef(null)
   const mousePosition = useMousePosition()
+
+  console.log('mousePosition', mousePosition)
 
   const { offsetLeft } = anchorEl
 
@@ -23,10 +29,10 @@ function Popover({ anchorEl, setAnchorEl, children }) {
   const [left, setLeft] = useState(offsetLeft)
 
   useEffect(() => {
-    const updateSize = debounce(() => setInnerWidth(window.innerWidth), 50)
-
-    window.addEventListener('resize', updateSize)
-    return () => window.removeEventListener('resize', updateSize)
+    window.addEventListener('resize', updateInnerWidth)
+    return () => {
+      window.removeEventListener('resize', updateInnerWidth)
+    }
   }, [])
 
   useEffect(() => {
@@ -50,6 +56,10 @@ function Popover({ anchorEl, setAnchorEl, children }) {
   }, [containerRef.current, innerWidth])
 
   useEffect(() => {
+    if (!anchorEl) {
+      return null
+    }
+
     const { left, bottom, right } = containerPosition
     const { mouseX, mouseY } = mousePosition
 
