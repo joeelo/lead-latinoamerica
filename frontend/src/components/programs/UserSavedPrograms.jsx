@@ -9,7 +9,7 @@ import getToast from '@/utils/getToast'
 
 const UserSavedPrograms = ({ programs, showExpiringPrograms = false }) => {
   const [session] = useSession()
-  const { user } = session
+  const { user } = session || {}
   const queryClient = useQueryClient()
 
   if (!programs) {

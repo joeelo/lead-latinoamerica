@@ -15,11 +15,21 @@ import WordSelectInput from '@/components/form/word-select/WordSelectInput';
 import Tooltip from '@/components/tooltip/Tooltip';
 import InputErrorMessage from '@/components/form/errors/InputErrorMessage'; 
 import DateInput from '@/components/form/date-input/DateInput';
+import { useQuery } from 'react-query';
+import ProgramRequests from '@/fetch/program/ProgramRequests';
 
-const AddAndEditOrgs = () => {
+
+const EditOrg = () => {
 	const [ isSubmitting, setIsSubmitting ] = useState(false); 
 	const [ wordList, setWordList ] = useState([]);
 	const router = useRouter();
+
+  const { data } = useQuery(
+    ['program', { name: router.query.nameSlug }],
+    ProgramRequests.getProgram
+  )
+
+  console.log('data: ', data)
 
   const { 
 		setValue, 
@@ -181,4 +191,4 @@ const AddAndEditOrgs = () => {
 	)
 }
 
-export default AddAndEditOrgs;
+export default EditOrg;
