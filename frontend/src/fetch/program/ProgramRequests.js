@@ -18,9 +18,6 @@ async function getAllPrograms(queryContext){
 }
 
 async function getProgram(queryContext) {
-
-  console.log('QUERY CONTEXT: ', queryContext)
-
   const { queryKey } = queryContext
   const [_, data] = queryKey
   const { name } = data

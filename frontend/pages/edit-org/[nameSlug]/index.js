@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import NavBar from '@/components/nav/NavBar';
 import Footer from '@/components/footer/Footer';
@@ -17,6 +17,7 @@ import InputErrorMessage from '@/components/form/errors/InputErrorMessage';
 import DateInput from '@/components/form/date-input/DateInput';
 import { useQuery } from 'react-query';
 import ProgramRequests from '@/fetch/program/ProgramRequests';
+import { useCallback } from 'react';
 
 
 const EditOrg = () => {
@@ -24,12 +25,10 @@ const EditOrg = () => {
 	const [ wordList, setWordList ] = useState([]);
 	const router = useRouter();
 
-  const { data } = useQuery(
-    ['program', { name: router.query.nameSlug }],
-    ProgramRequests.getProgram
-  )
-
-  console.log('data: ', data)
+  const { data: programData } = useQuery({
+    queryKey: ['program', { name: router.query.nameSlug }], 
+    queryFn:  ProgramRequests.getProgram, 
+  })
 
   const { 
 		setValue, 
@@ -39,6 +38,18 @@ const EditOrg = () => {
 		watch, 
 		formState: { errors } 
 	} = useForm(); 
+
+  const setWordListOnLoad = useCallback(() => {
+    setWordList(programData.helpsWith)
+  }, [])
+
+  useEffect(() => {
+    setValue('name', programData.name)
+    setValue('bio', programData.bio)
+    setValue('partnerUrl', programData.partnerUrl)
+    setValue('expirationDate', programData.expirationDate)
+    setWordListOnLoad()
+  }, [programData])
 
 	const onSubmit = async (data) => {
 		setIsSubmitting(true);		
@@ -91,15 +102,7 @@ const EditOrg = () => {
 			<NavBar />
 
 			<Box stackOnMobile display='flex' fd='column' width='al-fu' center pt={60}>
-				<ChangingBackgroundText 
-					fontSize='48px'
-					initialColor='#1F2041'
-					secondaryColor='#1F2041'
-					text='Share a program!'
-					fontColorInitial='#1F2041'
-					fontColorSecondary='white'
-					onlyRunOneTransition={true}
-				/>
+				<h1>Editing {router.query.nameSlug}</h1>
 
 				<Box display="flex">
 
