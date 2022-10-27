@@ -2,15 +2,13 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import NavBar from '@/components/nav/NavBar';
 import Footer from '@/components/footer/Footer';
-import ChangingBackgroundText from '@/components/content/ChangingBackgroundText';
 import TextInput from '@/components/form/text-input/TextInput';
 import { useForm } from 'react-hook-form';
-import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup';
 import Button from '@/components/buttons/Button';
 import Box from '@/components/generic/Box';
 import Form from '@/components/form/container/Form';
 import StyledSectionHeading from '@/components/form/section/StyledSectionHeading';
-import { postToDatabase } from '@/fetch/requests';
+import { findProgramAndUpdate } from '@/fetch/requests';
 import WordSelectInput from '@/components/form/word-select/WordSelectInput';
 import Tooltip from '@/components/tooltip/Tooltip';
 import InputErrorMessage from '@/components/form/errors/InputErrorMessage'; 
@@ -40,10 +38,18 @@ const EditOrg = () => {
 	} = useForm(); 
 
   const setWordListOnLoad = useCallback(() => {
+    if (!programData) {
+      return
+    }
+
     setWordList(programData.helpsWith)
   }, [])
 
   useEffect(() => {
+    if (!programData) {
+      return
+    }
+
     setValue('name', programData.name)
     setValue('bio', programData.bio)
     setValue('partnerUrl', programData.partnerUrl)
@@ -57,13 +63,6 @@ const EditOrg = () => {
 		if (Object.keys(errors).length) {
 			setIsSubmitting(false);
 		}
-
-		
-		Object.keys(data.programType).forEach((key) => {
-			if (data.programType[key]) {
-				data[`programType[${key}]`] = true;
-			}
-		});
 
 		data.helpsWith = wordList;
 
@@ -89,9 +88,10 @@ const EditOrg = () => {
 			data.expirationDate = expirationDate.toISOString();
 		}
 
-		const response = await postToDatabase(data, 'programs/add'); 
+		const response = await findProgramAndUpdate(data, `/program/edit/${programData.href}`); 
 		if (response.message === 'success') {
-			router.push('/thanks-partner');
+      console.log(response.data)
+			// router.push('/thanks-partner');
 		} else {
 			setIsSubmitting(false);
 		}
@@ -102,7 +102,10 @@ const EditOrg = () => {
 			<NavBar />
 
 			<Box stackOnMobile display='flex' fd='column' width='al-fu' center pt={60}>
-				<h1>Editing {router.query.nameSlug}</h1>
+        <Box display='flex' fd='column' width='al-fu' center justify='center' align='center'>
+          <h1>Editing</h1>
+          <p>{router.query.nameSlug}</p>
+        </Box>
 
 				<Box display="flex">
 
@@ -150,16 +153,6 @@ const EditOrg = () => {
 								placeHolder='Keywords - Use space or enter to create new label, use - for multi-worded labels'
 							/>
 						</Box>
-
-						<StyledSectionHeading>What type of opportunity is it?</StyledSectionHeading>
-						<CheckboxGroup options={[
-								{value: 'programType.summer', label: 'Summer'},
-								{value: 'programType.internship', label: 'Internship'},
-								{value: 'programType.program', label: 'Program'},
-								{value: 'programType.scholarship', label: 'Scholarship'},
-							]}
-							register={register}
-						/>
 
 						<Box>
 							<StyledSectionHeading>Is there a url to find the opportunity?</StyledSectionHeading>

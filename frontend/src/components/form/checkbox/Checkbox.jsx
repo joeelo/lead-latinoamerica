@@ -1,22 +1,22 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import { animated, useSpring, config } from 'react-spring';
+import { useState } from 'react'
+import styled from 'styled-components'
+import { animated, useSpring, config } from 'react-spring'
 
 const Checkbox = ({ option, register }) => {
-  const [isChecked, setIsChecked] = useState(false);
-  const [checkmarkLength, setCheckmarkLength] = useState(null);
+  const [isChecked, setIsChecked] = useState(false)
+  const [checkmarkLength, setCheckmarkLength] = useState(null)
 
   const checkboxAnimationStyle = useSpring({
     backgroundColor: isChecked ? '#4c8bf5' : 'white',
     borderColor: isChecked ? 'white' : 'grey',
-  });
+  })
 
   const checkmarkAnimationStyle = useSpring({
     x: isChecked ? 0 : checkmarkLength,
     config: config.gentle,
-  });
+  })
 
-  if (!option?.value) return <></>;
+  if (!option?.value) return <></>
   return (
     <Container>
       <Label className="cbx">
@@ -42,7 +42,7 @@ const Checkbox = ({ option, register }) => {
             strokeDashoffset={checkmarkAnimationStyle.x}
             ref={(ref) => {
               if (ref) {
-                setCheckmarkLength(ref.getTotalLength());
+                setCheckmarkLength(ref.getTotalLength())
               }
             }}
           />
@@ -50,14 +50,14 @@ const Checkbox = ({ option, register }) => {
         {option.label}
       </Label>
     </Container>
-  );
-};
+  )
+}
 
-export default Checkbox;
+export default Checkbox
 
 const Container = styled.div`
   display: flex;
-`;
+`
 
 const Label = styled.label`
   font-size: 24px;
@@ -77,7 +77,7 @@ const Label = styled.label`
     margin-top: 10px;
     border-radius: 2px;
   }
-`;
+`
 
 const Input = styled.input`
   clip: rect(0, 0, 0, 0);
@@ -87,4 +87,4 @@ const Input = styled.input`
   position: absolute;
   white-space: no-wrap;
   width: 1px;
-`;
+`
