@@ -40,7 +40,7 @@ async function postToDatabase(data, endpoint, query = {}) {
 			}, 
 			body: JSON.stringify(data), 
 		}
-		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/${endpoint}`, options);
+		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}${endpoint}`, options);
 		const json = await response.json(); 
 		return json; 
 	} catch (error) {

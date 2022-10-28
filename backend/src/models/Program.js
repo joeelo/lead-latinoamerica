@@ -37,6 +37,7 @@ const programSchema = new mongoose.Schema({
   },
   expirationDate: {
     type: String,
+    required: true,
   }, 
   programType: {
     program: {

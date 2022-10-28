@@ -99,7 +99,7 @@ const ProfilePage = (props) => {
         </Box>
 
         <Box display='flex' width='al-fu' fd="column" center justify='space-between' mw="1000px" stackOnMobile>
-          <Box center mt={100} mb={40}>
+          <Box center mt='100px' mb='40px'>
             {!isEditing ? (
               <> 
                 {userData.preferredName && (
@@ -112,9 +112,9 @@ const ProfilePage = (props) => {
 
               </>
             ) : (
-              <Box mw='600px' mr={40}>
+              <Box mw='600px' mr='40px'>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  <Box mb={40}>
+                  <Box mb='40px'>
                     <TitleHeading>What year of school are you in</TitleHeading>
                     <SelectInput 
                       options={[
@@ -131,7 +131,7 @@ const ProfilePage = (props) => {
                     />
                   </Box>
 
-                  <Box mb={30} mw={'400px'}>
+                  <Box mb='30px' mw='400px'>
                     <TitleHeading>What is your preferred name?</TitleHeading>
                     <TextInput 
                       name='preferredName'
@@ -141,7 +141,7 @@ const ProfilePage = (props) => {
                     />
                   </Box>
 
-                  <Box mb={30}>
+                  <Box mb='30px'>
                     <TitleHeading>What are your preferred pronouns?</TitleHeading>
                     <SelectInput 
                       options={[
@@ -157,7 +157,7 @@ const ProfilePage = (props) => {
                     />
                   </Box>
 
-                  <Box mb={30}>
+                  <Box mb='30px'>
                     <TitleHeading>What programs are you most interested in?</TitleHeading>
                     <CheckboxGroup 
                       options={[

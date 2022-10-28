@@ -15,8 +15,7 @@ router.post('/programs/add', async (req, res) => {
       expirationDate,
     } = req.body;
 
-    let href = name.split(' ').join('-');
-    href = href.toLowerCase();
+    const href = name.split(' ').join('-').toLowerCase()
 
     const programTypeKeys = Object.keys(programType);
     const programTypes = {}; 
@@ -45,24 +44,18 @@ router.post('/programs/add', async (req, res) => {
       coverImage: images[betweenZeroAndFour()]
     });
 
-    await newProgram.save((err) => {
-      if (err) {
-        console.log('ERROR IN PROGRAM SAVE FUNCTION: ', err);
-        res.send({ message: 'something went wrong', err });
+    const savedProgram = await newProgram.save();
 
-        return null;
-      }
-
-      console.log('saved');
-
-      return { message: 'saved' };
-    });
-    
-    await sendMail(req.body, href);
-    res.send({ message: 'success' });
+    if (savedProgram) {
+      await sendMail(req.body, href)
+      res.send({ success: true, message: 'success' })
+    } 
   } catch (error) {
-    console.log('ERROR ON PROGRAMS/ADD ROUTE', error);
-    res.send({ message: error, error: true });
+    res.send({ 
+      errorMessage: error._message, 
+      error: true, 
+      success: false 
+    });
   }
 });
 
@@ -92,16 +85,11 @@ router.get('/program/:href', async (req, res) => {
 router.get('/programs/resources', async (req, res) => {
   try {
     const { programType } = req.query;
-    console.log('resources: ', programType);
     const key = `programType.${programType}`;
     const programs = await Program.find({
       [key]: true,
       approved: true,
-      $or: [
-        {expirationDate: { $eq: '' }},
-        {expirationDate: null}, 
-        {expirationDate: { $gt: new Date().toISOString() }}
-      ]
+      expirationDate: { $gt: new Date().toISOString() }
     });
 
     res.send({ message: programs });
@@ -137,7 +125,7 @@ router.post('/programs/seed', async (req, res) => {
   }
 });
 
-router.patch('/program/edit/:href/:approve', async (req, res) => {
+router.put('/program/edit/:href/:approve', async (req, res) => {
   const filter = { href: req.params.href };
   const update = { approved: req.params.approve };
   const options = {
@@ -169,7 +157,39 @@ router.patch('/program/edit/:href/:approve', async (req, res) => {
   }
 });
 
-router.delete('/programs/erase-all', async (req, res) => {
+router.put('/program/edit/:href', async(req, res) => {
+  try {
+    const { href } = req.params
+    const newHref = req.body.name.split(' ').join('-').toLowerCase()
+    const filter = { href }
+    const update = {...req.body, href: newHref}
+    const options = {
+      returnOriginal: false,
+      strict: false,
+    };
+
+    const updatedProgram = await Program.findOneAndUpdate(
+      filter,
+      update,
+      options,
+      (error) => {
+        if (error) {
+          console.log('ERROR IN UPDATED PROGRAM: ', error);
+          res.send({ message: error, error: true });
+        }
+      }
+    );
+
+    res.send({ message: 'success', data: updatedProgram })
+
+  } catch (error) {
+    console.log('error editing program', error)
+
+    res.send({error: true, message: error})
+  }
+})
+
+router.delete('/programs/erase-all', async (_, res) => {
   try {
     const response = await Program.deleteMany({});
 
@@ -182,7 +202,7 @@ router.delete('/programs/erase-all', async (req, res) => {
 
 router.post('/email/test', async (req, res) => {
   try {
-    console.log('POSTTT', req.body);
+    console.log('POST EMAIL', req.body);
     
     const emailResponse = await sendMail(req.body, req.body.href); 
     res.send({message: 'success', email: emailResponse});

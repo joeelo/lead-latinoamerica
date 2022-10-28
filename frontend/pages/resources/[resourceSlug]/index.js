@@ -38,7 +38,7 @@ const ResourcePage = () => {
 			<NavBar />
 			<FullScreenBack 
 				src={fakeData[resourceSlug].coverImage}
-				height="40vh"
+				height="50vh"
 				titleInfo={{ 
 					show: true, 
 					text: `${resourceSlug}`, 
@@ -49,17 +49,29 @@ const ResourcePage = () => {
 				{isLoading ? (
 					<LoadingSpinner />
 				) : (
-					<Grid>
-						{hasPrograms && 
-							programs.map(( program ) => (
-								<PhotoWithTextBox 
-									key={program.href} 
-									coverImage={program.coverImage} 
-									program={program} 
-								/>
-							))
-						}
-					</Grid>
+					<>
+							{hasPrograms ? (
+								<Grid>
+									{programs.map(( program ) => (
+										<PhotoWithTextBox 
+											key={program.href} 
+											coverImage={program.coverImage} 
+											program={program} 
+										/>
+									))}
+								</Grid>
+							) : (
+								<Box ml="20px" mb="40px" style={{ height: 100}}>
+									<p>
+										There are no opporunities in this cateogry at this time. Please check back at a later date.
+									</p>
+								</Box>
+							)
+								
+							}
+
+
+					</>
 				)}
 
 		<Footer/>
@@ -75,7 +87,7 @@ const Grid = styled.div`
 	grid-template-columns: repeat(3, 1fr);
 	width: 1400px; 
 	max-width: 90%; 
-	margin: 80px auto 0 auto; 
+	margin: 40px auto 0 auto; 
 	align-items: center; 
 
 	@media screen and (max-width: 1300px) {

@@ -66,14 +66,15 @@ const Container = styled.div`
   }};
   justify-content: ${(props) => (props.justify ? props.justify : "flex-start")};
   align-items: ${(props) => (props.align ? props.align : "flex-start")};
-  padding-top: ${(props) => props.pt + "px"};
-  padding-bottom: ${(props) => props.pb + "px"};
+  padding-top: ${(props) => props.pt};
+  padding-bottom: ${(props) => props.pb};
   padding: ${(props) => props.p ? props.p : null};
   flex-wrap: ${(props) => (props.wrap ? "wrap" : "nowrap")};
   margin: ${(props) => props.center ? "0 auto" : 0};
-  margin-top: ${(props) => props.mt ? props.mt + "px" : null};
-  margin-bottom: ${(props) => props.mb ? props.mb + "px" : null};
-  margin-right: ${(props) => props.mr ? props.mr + "px" : null};
+  margin-top: ${(props) => props.mt ? props.mt : null};
+  margin-bottom: ${(props) => props.mb ? props.mb : null};
+  margin-right: ${(props) => props.mr ? props.mr : null};
+  margin-left: ${(props) => props.ml ? props.ml : null};
 
   @media screen and (max-width: 768px) {
     width: ${(props) => props.mobileWidth ? props.mobileWidth : '100%'};

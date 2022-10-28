@@ -101,7 +101,7 @@ const EditOrg = () => {
 		<>
 			<NavBar />
 
-			<Box stackOnMobile display='flex' fd='column' width='al-fu' center pt={60}>
+			<Box stackOnMobile display='flex' fd='column' width='al-fu' center pt='60px'>
         <Box display='flex' fd='column' width='al-fu' center justify='center' align='center'>
           <h1>Editing</h1>
           <p>{router.query.nameSlug}</p>
@@ -141,7 +141,7 @@ const EditOrg = () => {
 						</Box>
 
 						<Box>
-							<Box mt={30}>
+							<Box mt='30px'>
 								<StyledSectionHeading style={{display: 'inline', marginTop: 30}}>
 									Who does this opportunity serve?
 								</StyledSectionHeading>

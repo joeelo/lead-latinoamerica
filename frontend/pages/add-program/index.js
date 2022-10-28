@@ -1,3 +1,4 @@
+import styled from 'styled-components'
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import NavBar from '@/components/nav/NavBar';
@@ -8,7 +9,6 @@ import { useForm } from 'react-hook-form';
 import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup';
 import Button from '@/components/buttons/Button';
 import Box from '@/components/generic/Box';
-import Form from '@/components/form/container/Form';
 import StyledSectionHeading from '@/components/form/section/StyledSectionHeading';
 import { postToDatabase } from '@/fetch/requests';
 import WordSelectInput from '@/components/form/word-select/WordSelectInput';
@@ -19,6 +19,7 @@ import DateInput from '@/components/form/date-input/DateInput';
 const AddAndEditOrgs = () => {
 	const [ isSubmitting, setIsSubmitting ] = useState(false); 
 	const [ wordList, setWordList ] = useState([]);
+	const [ apiError, setApiError] = useState(null)
 	const router = useRouter();
 
   const { 
@@ -68,8 +69,13 @@ const AddAndEditOrgs = () => {
 			data.expirationDate = expirationDate.toISOString();
 		}
 
-		const response = await postToDatabase(data, 'programs/add'); 
-		if (response.message === 'success') {
+		const response = await postToDatabase(data, '/programs/add')
+
+		if (response.errorMessage) {
+			setApiError(response.errorMessage)
+		}
+
+		if (response.success) {
 			router.push('/thanks-partner');
 		} else {
 			setIsSubmitting(false);
@@ -125,7 +131,7 @@ const AddAndEditOrgs = () => {
 						</Box>
 
 						<Box>
-							<Box mt={30}>
+							<Box mt='30px'>
 								<StyledSectionHeading style={{display: 'inline', marginTop: 30}}>
 									Who does this opportunity serve?
 								</StyledSectionHeading>
@@ -166,19 +172,41 @@ const AddAndEditOrgs = () => {
 								placeHolder="mm/dd/yyyy"
 								watch={watch}
 								errors={errors}
+								isRequired
 							/>
 						</Box>
 
-						<Box display='flex'>
+						<Box display='flex' justify='flex-end'>
 							<Button label='Go Back' style={{ marginRight: 20 }}/>
-							<Button label='Submit' isSubmitting={isSubmitting}/>
+							<Button type="submit" label='Submit' isSubmitting={isSubmitting}/>
 						</Box>
 					</Form>
+
+					{apiError && (
+						<p style={{ color: 'red' }}>{apiError}</p>
+					)}
+
 				</Box>
-			</Box>			
+			</Box>
 			<Footer />
 		</>
 	)
 }
 
 export default AddAndEditOrgs;
+
+const Form = styled.form`
+	margin-left: 50px; 
+	margin-top: 50px; 
+	box-shadow: 5px 5px 15px -4px rgba(0,0,0,0.5);
+	min-width: 300px; 
+	width: 90vw; 
+	min-height: 600px; 
+	max-width: 800px; 
+	border-radius: 10px;
+	padding: 20px;
+	display: flex; 
+	flex-direction: column;
+	margin: 40px auto; 
+	background-color: white;
+`
