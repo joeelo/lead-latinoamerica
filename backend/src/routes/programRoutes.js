@@ -172,15 +172,9 @@ router.put('/program/edit/:href', async(req, res) => {
       filter,
       update,
       options,
-      (error) => {
-        if (error) {
-          console.log('ERROR IN UPDATED PROGRAM: ', error);
-          res.send({ message: error, error: true });
-        }
-      }
     );
 
-    res.send({ message: 'success', data: updatedProgram })
+    res.send({ success: true, message: 'success', data: {...updatedProgram, href: newHref } })
 
   } catch (error) {
     console.log('error editing program', error)
