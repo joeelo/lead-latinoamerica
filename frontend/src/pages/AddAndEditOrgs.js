@@ -56,7 +56,7 @@ const AddAndEditOrgs = () => {
 			formData.append(`programType[${key}]`, data.programType[key])
 		})
 		
-		const response = await postToDatabase(formData, 'programs/add'); 
+		const response = await postToDatabase(formData, '/programs/add'); 
 		if (response.message === 'success') {
 			router.push('/thanks-partner');
 		} else {

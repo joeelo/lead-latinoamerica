@@ -6,7 +6,6 @@ import TextInput from '@/components/form/text-input/TextInput';
 import { useForm } from 'react-hook-form';
 import Button from '@/components/buttons/Button';
 import Box from '@/components/generic/Box';
-import Form from '@/components/form/container/Form';
 import StyledSectionHeading from '@/components/form/section/StyledSectionHeading';
 import { findProgramAndUpdate } from '@/fetch/requests';
 import WordSelectInput from '@/components/form/word-select/WordSelectInput';
@@ -16,6 +15,10 @@ import DateInput from '@/components/form/date-input/DateInput';
 import { useQuery } from 'react-query';
 import ProgramRequests from '@/fetch/program/ProgramRequests';
 import { useCallback } from 'react';
+import styled from 'styled-components'
+import LoadingSpinner from '@/components/generic/LoadingSpinner';
+import getToast from '@/utils/getToast';
+
 
 
 const EditOrg = () => {
@@ -23,7 +26,7 @@ const EditOrg = () => {
 	const [ wordList, setWordList ] = useState([]);
 	const router = useRouter();
 
-  const { data: programData } = useQuery({
+  const { data: programData, isLoading } = useQuery({
     queryKey: ['program', { name: router.query.nameSlug }], 
     queryFn:  ProgramRequests.getProgram, 
   })
@@ -89,12 +92,32 @@ const EditOrg = () => {
 		}
 
 		const response = await findProgramAndUpdate(data, `/program/edit/${programData.href}`); 
-		if (response.message === 'success') {
-      console.log(response.data)
-			// router.push('/thanks-partner');
+		if (response.success) {
+			getToast({ message: 'Successfully Updated!'})
+			router.push(`/edit-org/${response.data.href}`)
+			setIsSubmitting(false)
 		} else {
-			setIsSubmitting(false);
+			setIsSubmitting(false)
 		}
+	}
+
+	if (!programData) {
+		return (
+			<>
+				<NavBar />
+				{isLoading ? (
+					<LoadingSpinner />
+				) : (
+					<Box style={{ height: 200 }} ml="20px" display='flex' fd='column' justify='center'>
+						<h2>There are no programs with that name.</h2>
+						<p style={{ marginTop: 20 }}>Please try another program name or check the spelling.</p>
+					</Box>
+				)}
+				<Footer />
+			</>
+
+
+		)
 	}
 
 	return (
@@ -175,7 +198,7 @@ const EditOrg = () => {
 							/>
 						</Box>
 
-						<Box display='flex'>
+						<Box display='flex' justify='flex-end'>
 							<Button label='Go Back' style={{ marginRight: 20 }}/>
 							<Button label='Submit' isSubmitting={isSubmitting}/>
 						</Box>
@@ -188,3 +211,19 @@ const EditOrg = () => {
 }
 
 export default EditOrg;
+
+const Form = styled.form`
+	margin-left: 50px; 
+	margin-top: 50px; 
+	box-shadow: 5px 5px 15px -4px rgba(0,0,0,0.5);
+	min-width: 300px; 
+	width: 90vw; 
+	min-height: 600px; 
+	max-width: 800px; 
+	border-radius: 10px;
+	padding: 20px;
+	display: flex; 
+	flex-direction: column;
+	margin: 40px auto; 
+	background-color: white;
+`
