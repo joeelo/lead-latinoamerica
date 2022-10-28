@@ -1,26 +1,32 @@
-import styled from 'styled-components'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import NavBar from '@/components/nav/NavBar';
 import Footer from '@/components/footer/Footer';
-import ChangingBackgroundText from '@/components/content/ChangingBackgroundText';
 import TextInput from '@/components/form/text-input/TextInput';
 import { useForm } from 'react-hook-form';
-import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup';
 import Button from '@/components/buttons/Button';
 import Box from '@/components/generic/Box';
+import Form from '@/components/form/container/Form';
 import StyledSectionHeading from '@/components/form/section/StyledSectionHeading';
-import { postToDatabase } from '@/fetch/requests';
+import { findProgramAndUpdate } from '@/fetch/requests';
 import WordSelectInput from '@/components/form/word-select/WordSelectInput';
 import Tooltip from '@/components/tooltip/Tooltip';
 import InputErrorMessage from '@/components/form/errors/InputErrorMessage'; 
 import DateInput from '@/components/form/date-input/DateInput';
+import { useQuery } from 'react-query';
+import ProgramRequests from '@/fetch/program/ProgramRequests';
+import { useCallback } from 'react';
 
-const AddAndEditOrgs = () => {
+
+const EditOrg = () => {
 	const [ isSubmitting, setIsSubmitting ] = useState(false); 
 	const [ wordList, setWordList ] = useState([]);
-	const [ apiError, setApiError] = useState(null)
 	const router = useRouter();
+
+  const { data: programData } = useQuery({
+    queryKey: ['program', { name: router.query.nameSlug }], 
+    queryFn:  ProgramRequests.getProgram, 
+  })
 
   const { 
 		setValue, 
@@ -31,19 +37,32 @@ const AddAndEditOrgs = () => {
 		formState: { errors } 
 	} = useForm(); 
 
+  const setWordListOnLoad = useCallback(() => {
+    if (!programData) {
+      return
+    }
+
+    setWordList(programData.helpsWith)
+  }, [])
+
+  useEffect(() => {
+    if (!programData) {
+      return
+    }
+
+    setValue('name', programData.name)
+    setValue('bio', programData.bio)
+    setValue('partnerUrl', programData.partnerUrl)
+    setValue('expirationDate', programData.expirationDate)
+    setWordListOnLoad()
+  }, [programData])
+
 	const onSubmit = async (data) => {
 		setIsSubmitting(true);		
 
 		if (Object.keys(errors).length) {
 			setIsSubmitting(false);
 		}
-
-		
-		Object.keys(data.programType).forEach((key) => {
-			if (data.programType[key]) {
-				data[`programType[${key}]`] = true;
-			}
-		});
 
 		data.helpsWith = wordList;
 
@@ -69,14 +88,10 @@ const AddAndEditOrgs = () => {
 			data.expirationDate = expirationDate.toISOString();
 		}
 
-		const response = await postToDatabase(data, '/programs/add')
-
-		if (response.errorMessage) {
-			setApiError(response.errorMessage)
-		}
-
-		if (response.success) {
-			router.push('/thanks-partner');
+		const response = await findProgramAndUpdate(data, `/program/edit/${programData.href}`); 
+		if (response.message === 'success') {
+      console.log(response.data)
+			// router.push('/thanks-partner');
 		} else {
 			setIsSubmitting(false);
 		}
@@ -86,16 +101,11 @@ const AddAndEditOrgs = () => {
 		<>
 			<NavBar />
 
-			<Box stackOnMobile display='flex' fd='column' width='al-fu' center pt={60}>
-				<ChangingBackgroundText 
-					fontSize='48px'
-					initialColor='#1F2041'
-					secondaryColor='#1F2041'
-					text='Share a program!'
-					fontColorInitial='#1F2041'
-					fontColorSecondary='white'
-					onlyRunOneTransition={true}
-				/>
+			<Box stackOnMobile display='flex' fd='column' width='al-fu' center pt='60px'>
+        <Box display='flex' fd='column' width='al-fu' center justify='center' align='center'>
+          <h1>Editing</h1>
+          <p>{router.query.nameSlug}</p>
+        </Box>
 
 				<Box display="flex">
 
@@ -144,16 +154,6 @@ const AddAndEditOrgs = () => {
 							/>
 						</Box>
 
-						<StyledSectionHeading>What type of opportunity is it?</StyledSectionHeading>
-						<CheckboxGroup options={[
-								{value: 'programType.summer', label: 'Summer'},
-								{value: 'programType.internship', label: 'Internship'},
-								{value: 'programType.program', label: 'Program'},
-								{value: 'programType.scholarship', label: 'Scholarship'},
-							]}
-							register={register}
-						/>
-
 						<Box>
 							<StyledSectionHeading>Is there a url to find the opportunity?</StyledSectionHeading>
 							<TextInput 
@@ -172,41 +172,19 @@ const AddAndEditOrgs = () => {
 								placeHolder="mm/dd/yyyy"
 								watch={watch}
 								errors={errors}
-								isRequired
 							/>
 						</Box>
 
-						<Box display='flex' justify='flex-end'>
+						<Box display='flex'>
 							<Button label='Go Back' style={{ marginRight: 20 }}/>
-							<Button type="submit" label='Submit' isSubmitting={isSubmitting}/>
+							<Button label='Submit' isSubmitting={isSubmitting}/>
 						</Box>
 					</Form>
-
-					{apiError && (
-						<p style={{ color: 'red' }}>{apiError}</p>
-					)}
-
 				</Box>
-			</Box>
+			</Box>			
 			<Footer />
 		</>
 	)
 }
 
-export default AddAndEditOrgs;
-
-const Form = styled.form`
-	margin-left: 50px; 
-	margin-top: 50px; 
-	box-shadow: 5px 5px 15px -4px rgba(0,0,0,0.5);
-	min-width: 300px; 
-	width: 90vw; 
-	min-height: 600px; 
-	max-width: 800px; 
-	border-radius: 10px;
-	padding: 20px;
-	display: flex; 
-	flex-direction: column;
-	margin: 40px auto; 
-	background-color: white;
-`
+export default EditOrg;

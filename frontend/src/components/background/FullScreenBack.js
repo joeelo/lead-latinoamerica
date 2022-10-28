@@ -24,7 +24,7 @@ const FullScreenBack = ({ src, children, titleInfo, height }) => {
 			</Container>
 
 			{show &&
-				<TitleContainer className={'titleContainer'}>
+				<TitleContainer className='titleContainer'>
 					<TitleWithBackground 
 						text={text} 
 						backgroundColor={backgroundColor} 
@@ -55,7 +55,7 @@ FullScreenBack.defaultProps = {
 
 const OuterWrapper = styled.div`
 	position: relative;
-	// margin-bottom: 140px;
+	margin-bottom: 100px;
 `
 
 const Container = styled.div`

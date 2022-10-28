@@ -11,7 +11,7 @@ const ThanksPartnerPage = () => {
 	return (
 		<>
 			<NavBar/>
-				<Box align="center" justify="center" mt={100} center>
+				<Box align="center" justify="center" mt='100px' center>
 					<ChangingBackgroundText 
 						text='Hooray! Thanks for Joining Us!'
 						fontSize='24px'

@@ -1,62 +1,62 @@
-import Box from '@/components/generic/Box';
-import { useState, useEffect, useCallback } from 'react';
-import styled from 'styled-components';
+import Box from '@/components/generic/Box'
+import { useState, useEffect, useCallback } from 'react'
+import styled from 'styled-components'
 
 const WordSelectInput = ({ wordList, setWordList, placeHolder }) => {
-  const [isInFocus, setIsInFocus] = useState(false);
-  const [currentWord, setCurrentWord] = useState('');
+  const [isInFocus, setIsInFocus] = useState(false)
+  const [currentWord, setCurrentWord] = useState('')
 
   const handleKeyDown = useCallback(
     (event, blur) => {
       if (!isInFocus) {
-        document.removeEventListener('keydown', this);
+        document.removeEventListener('keydown', this)
       }
       if (event.code === 'Enter' || event.code === 'Space' || blur) {
-        if (currentWord === '') return;
-        event.preventDefault();
+        if (currentWord === '') return
+        event.preventDefault()
 
-        const newWordList = [...wordList, currentWord];
-        setWordList(newWordList);
-        setCurrentWord('');
+        const newWordList = [...wordList, currentWord]
+        setWordList(newWordList)
+        setCurrentWord('')
       }
     },
     [currentWord, wordList, setWordList]
-  );
+  )
 
   const handleCancelButtonClick = (selectedWord) => {
-    const filteredWords = wordList.filter((word) => word !== selectedWord);
-    setWordList(filteredWords);
-  };
+    const filteredWords = wordList.filter((word) => word !== selectedWord)
+    setWordList(filteredWords)
+  }
 
   useEffect(() => {
-    (event) => handleKeyDown(event);
+    ;(event) => handleKeyDown(event)
 
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown)
 
     if (!isInFocus) {
-      removeEventListener('keydown', handleKeyDown);
+      removeEventListener('keydown', handleKeyDown)
     }
 
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [handleKeyDown, isInFocus]);
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [handleKeyDown, isInFocus])
 
   return (
     <>
       <Container focused={isInFocus}>
         <StyledInput
           onChange={(event) => {
-            setCurrentWord(event.target.value);
+            setCurrentWord(event.target.value)
           }}
           onFocus={() => setIsInFocus(true)}
           onBlur={(event) => {
-            setIsInFocus(false);
-            handleKeyDown(event, true);
+            setIsInFocus(false)
+            handleKeyDown(event, true)
           }}
           value={currentWord}
           placeholder={placeHolder}
         />
       </Container>
-      <Box mt={5} display="flex" wrap="true">
+      <Box mt="5px" display="flex" wrap="true">
         {wordList.map((word, index) => {
           return (
             <StyledLabel key={index}>
@@ -65,14 +65,14 @@ const WordSelectInput = ({ wordList, setWordList, placeHolder }) => {
                 x
               </StyledCancelButton>
             </StyledLabel>
-          );
+          )
         })}
       </Box>
     </>
-  );
-};
+  )
+}
 
-export default WordSelectInput;
+export default WordSelectInput
 
 const Container = styled.div`
   margin-top: 20px;
@@ -84,7 +84,7 @@ const Container = styled.div`
     props.focused
       ? '1px 2px 13px 0px rgba(184, 177, 184, 1)'
       : '1px 1px 4px 0px rgba(184, 177, 184, 1)'};
-`;
+`
 
 const StyledInput = styled.input`
   width: 100%;
@@ -103,7 +103,7 @@ const StyledInput = styled.input`
   ::placeholder {
     font-size: 14px;
   }
-`;
+`
 
 const StyledLabel = styled.span`
   padding: 10px;
@@ -115,7 +115,7 @@ const StyledLabel = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
+`
 
 const StyledCancelButton = styled.div`
   display: flex;
@@ -134,4 +134,4 @@ const StyledCancelButton = styled.div`
   :hover {
     cursor: pointer;
   }
-`;
+`

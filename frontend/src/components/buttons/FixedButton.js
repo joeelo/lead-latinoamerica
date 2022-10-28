@@ -15,7 +15,7 @@ const FixedButton = ({
 		if (approve || deny) {
 			const bool = approve ? true : false
 			try {
-				const result = await findProgramAndUpdate({}, `program/edit/${href}/${bool}`);
+				const result = await findProgramAndUpdate({}, `/program/edit/${href}/${bool}`);
 				if (result.message === 'success') {
 					onSuccess(true);
 				}

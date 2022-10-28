@@ -1,4 +1,11 @@
-const getProgramBySlug = async (endpoint) => {
+export {
+	getProgramBySlug, 
+	getProgramArray, 
+	postToDatabase, 
+	findProgramAndUpdate,
+}
+
+async function getProgramBySlug(endpoint) {
 	try {
 		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/${endpoint}`); 
 		const json = await response.json(); 
@@ -9,7 +16,7 @@ const getProgramBySlug = async (endpoint) => {
 	}
 }
 
-const getProgramArray = async (endpoint, programType) => {
+async function getProgramArray(endpoint, programType) {
 	try {
 		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/${endpoint}?programType=${programType}`); 
 		const json = await response.json(); 
@@ -20,7 +27,7 @@ const getProgramArray = async (endpoint, programType) => {
 	}
 }
 
-const postToDatabase = async (data, endpoint, query = {}) => {
+async function postToDatabase(data, endpoint, query = {}) {
 	if (query.local) {
 		return { message: 'success' };
 	}
@@ -33,7 +40,7 @@ const postToDatabase = async (data, endpoint, query = {}) => {
 			}, 
 			body: JSON.stringify(data), 
 		}
-		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/${endpoint}`, options);
+		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}${endpoint}`, options);
 		const json = await response.json(); 
 		return json; 
 	} catch (error) {
@@ -41,26 +48,19 @@ const postToDatabase = async (data, endpoint, query = {}) => {
 	}
 }
 
-const findProgramAndUpdate = async (data = {}, endpoint) => {
+async function findProgramAndUpdate(data = {}, endpoint) {
 	try {
 		const options = {
-			method: 'PATCH', 
+			method: 'PUT', 
 			headers: {
 				'Content-Type': 'application/json'
 			}, 
 			body: JSON.stringify(data)
 		}
-		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/${endpoint}`, options);
+		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}${endpoint}`, options);
 		const json = await response.json();
 		return json; 
 	} catch (error) {
 		console.log(error);
 	}
-}
-
-export {
-	getProgramBySlug, 
-	getProgramArray, 
-	postToDatabase, 
-	findProgramAndUpdate,
 }

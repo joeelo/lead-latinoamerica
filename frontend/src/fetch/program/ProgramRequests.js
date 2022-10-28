@@ -25,6 +25,7 @@ async function getProgram(queryContext) {
 		const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/program/${name}`) 
 		const json = await response.json() 
 		return json.program
+
 	} catch (error) {
 		console.log(error)
 		return { message: error }
