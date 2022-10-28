@@ -34,13 +34,19 @@ const DateInput = ({
     }
 
     const lastChar = date.charAt(date.length - 1)
-    if (lastChar !== '/' && isNaN(lastChar)) {
+    const isLastCharInvalid = lastChar !== '/' && isNaN(lastChar)
+    if (isLastCharInvalid) {
       setIsValid({
         showError: true,
         errorMessage: INVALID_MESSAGES.NUMBERS_ONLY,
       })
       const nonAlphabetizedDate = date.slice(0, date.length - 1)
       setValue(name, nonAlphabetizedDate)
+    } else if (!isLastCharInvalid && isValid.showError) {
+      setIsValid({
+        showError: false,
+        errorMessage: '',
+      })
     }
 
     const month = date.slice(0, 2)

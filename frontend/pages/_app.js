@@ -8,6 +8,7 @@ import { getSession } from "next-auth/client"
 import 'react-toastify/dist/ReactToastify.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools'
+import { ToastContainer } from "react-toastify";
 // import { UserWrapper } from '@/context/UserContext';
 
 const theme = {
@@ -125,6 +126,7 @@ const App = ({ Component, pageProps }) => {
 							</LanguageWrapper>
 						</ThemeProvider>
 				</AuthProvider>
+				<ToastContainer />
 				<ReactQueryDevtools initialIsOpen={false} />
 			</QueryClientProvider>
 		</>

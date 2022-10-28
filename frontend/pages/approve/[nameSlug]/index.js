@@ -53,8 +53,6 @@ const ApproveProgramPage = () => {
 			<ProgramTitleAndPhoto program={program} router={router}/>
 			<ProgramOverviewAndInfo program={program} marginTop={true}/>
 			<Footer marginTop={true}/>
-			<ToastContainer />
-
 		</>
 	)
 }

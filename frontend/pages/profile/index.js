@@ -18,7 +18,7 @@ import UserSavedPrograms from '@/components/programs/UserSavedPrograms';
 import { useQuery } from 'react-query';
 import getToast from '@/utils/getToast';
 
-const ProfilePage = (props) => {
+const ProfilePage = () => {
 
   const [ session ] = useSession(); 
   const [ userData, setUserData ] = useState({});
@@ -202,7 +202,6 @@ const ProfilePage = (props) => {
 
         </Box>
       <Footer />
-      <ToastContainer />
     </>
   )
 }

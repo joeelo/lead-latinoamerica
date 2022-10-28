@@ -16,7 +16,7 @@ import Tooltip from '@/components/tooltip/Tooltip';
 import InputErrorMessage from '@/components/form/errors/InputErrorMessage'; 
 import DateInput from '@/components/form/date-input/DateInput';
 
-const AddAndEditOrgs = () => {
+const AddProgram = () => {
 	const [ isSubmitting, setIsSubmitting ] = useState(false); 
 	const [ wordList, setWordList ] = useState([]);
 	const [ apiError, setApiError] = useState(null)
@@ -193,7 +193,7 @@ const AddAndEditOrgs = () => {
 	)
 }
 
-export default AddAndEditOrgs;
+export default AddProgram;
 
 const Form = styled.form`
 	margin-left: 50px; 

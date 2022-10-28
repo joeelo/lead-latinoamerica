@@ -60,7 +60,6 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 				</Box>
 				
 			</Container>
-			<ToastContainer />
 		</>
 	)
 }
