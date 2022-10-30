@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Button from "@/components/buttons/Button";
 import { UpdateUsersSavedPrograms } from "@/fetch/user/UserRequests";
 import Box from "@/components/generic/Box";
-import { ToastContainer, toast } from 'react-toastify';
 import Tiles from './Tiles';
 import ExternalLink from '@/components/generic/ExternalLink';
 import getToast from '@/utils/getToast';
