@@ -80,6 +80,6 @@ const Container = styled.div`
     width: ${(props) => props.mobileWidth ? props.mobileWidth : '100%'};
     margin: 0 auto;
     flex-direction: ${(props) => props.stackOnMobile ? 'column' : 'inherit'}; 
-    padding: 20px;
+    padding: 10px;
   }
 `;

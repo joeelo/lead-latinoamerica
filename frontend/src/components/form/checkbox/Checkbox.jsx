@@ -60,7 +60,7 @@ const Container = styled.div`
 `
 
 const Label = styled.label`
-  font-size: 24px;
+  font-size: 16px;
 
   :hover {
     cursor: pointer;
@@ -68,8 +68,8 @@ const Label = styled.label`
 
   .checkbox {
     display: inline-block;
-    height: 24px;
-    width: 24px;
+    height: 20px;
+    width: 20px;
     background: white;
     border: 1px solid grey;
     margin-right: 15px;

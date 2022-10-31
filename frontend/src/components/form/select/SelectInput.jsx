@@ -1,37 +1,37 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import Box from '@/components/generic/Box';
-import useHandleClickOutside from '@/hooks/useHandleClickOutside';
+import React, { useState, useRef, useCallback, useEffect } from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import Box from '@/components/generic/Box'
+import useHandleClickOutside from '@/hooks/useHandleClickOutside'
 
 const SelectInput = ({ options, register, setValue, name, initialVal }) => {
-  const wrapperRef = useRef(null);
-  const [showOptions, setShowOptions] = useState(false);
-  const [selectedOption, setSelectedOption] = useState({});
+  const wrapperRef = useRef(null)
+  const [showOptions, setShowOptions] = useState(false)
+  const [selectedOption, setSelectedOption] = useState({})
 
   const handleClick = (opt) => {
-    setSelectedOption(opt);
-    setValue(name, opt.value);
-  };
+    setSelectedOption(opt)
+    setValue(name, opt.value)
+  }
 
   const setInitialValue = useCallback(() => {
-    const foundInitialOption = options.find((opt) => opt.value === initialVal);
+    const foundInitialOption = options.find((opt) => opt.value === initialVal)
 
     if (foundInitialOption) {
-      setSelectedOption(foundInitialOption);
-      setValue(name, initialVal);
+      setSelectedOption(foundInitialOption)
+      setValue(name, initialVal)
     }
-  }, [initialVal]);
+  }, [initialVal])
 
   const cb = () => {
-    setShowOptions(false);
-  };
+    setShowOptions(false)
+  }
 
-  useHandleClickOutside(wrapperRef, cb);
+  useHandleClickOutside(wrapperRef, cb)
 
   useEffect(() => {
-    setInitialValue();
-  }, [initialVal]);
+    setInitialValue()
+  }, [initialVal])
 
   return (
     <Box style={{ position: 'relative' }}>
@@ -51,21 +51,21 @@ const SelectInput = ({ options, register, setValue, name, initialVal }) => {
                 <StyledOption key={opt.value} onClick={() => handleClick(opt)}>
                   {opt.label}
                 </StyledOption>
-              );
+              )
             })}
           </StyledOptionDropdown>
         </Box>
       )}
     </Box>
-  );
-};
+  )
+}
 
 SelectInput.propTypes = {
   options: PropTypes.array.isRequired,
   extend: PropTypes.bool,
-};
+}
 
-export default SelectInput;
+export default SelectInput
 
 const StyledInput = styled.input`
   max-width: 350px;
@@ -82,21 +82,23 @@ const StyledInput = styled.input`
   -moz-appearance: none;
   overflow: hidden;
   display: flex;
+  font-weight: lighter;
   align-items: center;
   padding-left: 10px;
-  font-size: 18px;
+  font-size: 16px;
   transition: 0.4s ease all;
   z-index: ${(props) => (props.focused ? 100 : 1)};
 
   :hover {
     cursor: pointer;
   }
-`;
+`
 
 const StyledOptionDropdown = styled.div`
   width: 100%;
   position: absolute;
   top: 60px;
+  font-weight: lighter;
   max-width: 352px;
   left: -1px;
   z-index: 10;
@@ -106,7 +108,7 @@ const StyledOptionDropdown = styled.div`
   & > :first-child {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
   }
-`;
+`
 
 const StyledOption = styled.div`
   transition: 0.4s ease all;
@@ -114,9 +116,10 @@ const StyledOption = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-top: 0;
   background-color: white;
+  font-weight: lighter;
 
   :hover {
     cursor: pointer;
     background-color: lightblue;
   }
-`;
+`

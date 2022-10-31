@@ -18,6 +18,7 @@ import { useCallback } from 'react';
 import styled from 'styled-components'
 import LoadingSpinner from '@/components/generic/LoadingSpinner';
 import getToast from '@/utils/getToast';
+import Textarea from '@/components/form/text-input/TextArea';
 
 
 
@@ -115,8 +116,6 @@ const EditOrg = () => {
 				)}
 				<Footer />
 			</>
-
-
 		)
 	}
 
@@ -124,8 +123,8 @@ const EditOrg = () => {
 		<>
 			<NavBar />
 
-			<Box stackOnMobile display='flex' fd='column' width='al-fu' center pt='60px'>
-        <Box display='flex' fd='column' width='al-fu' center justify='center' align='center'>
+			<Box stackOnMobile display='flex' fd='column' center pt='60px' p='10px'>
+        <Box display='flex' fd='column' center justify='center' align='center'>
           <h1>Editing</h1>
           <p>{router.query.nameSlug}</p>
         </Box>
@@ -133,7 +132,6 @@ const EditOrg = () => {
 				<Box display="flex">
 
 					<Form 
-						style={{maxWidth: '600px', margin: '40px auto 40px auto'}} 
 						onSubmit={handleSubmit(onSubmit)} 
 					>
 						<Box>
@@ -152,7 +150,7 @@ const EditOrg = () => {
 
 						<Box>
 							<StyledSectionHeading>A description about the opportunity</StyledSectionHeading>
-							<TextInput 
+							<Textarea 
 								register={register}
 								name='bio'
 								rules={{
@@ -219,11 +217,19 @@ const Form = styled.form`
 	min-width: 300px; 
 	width: 90vw; 
 	min-height: 600px; 
-	max-width: 800px; 
+	max-width: 600px; 
 	border-radius: 10px;
 	padding: 20px;
 	display: flex; 
 	flex-direction: column;
 	margin: 40px auto; 
 	background-color: white;
+	maxWidth: 600px;
+	margin: 40px auto 40px auto;
+
+	@media screen and (max-width: 768px) {
+		width: 100%;
+		margin: 0 auto;
+		padding: 0px;
+	}
 `
