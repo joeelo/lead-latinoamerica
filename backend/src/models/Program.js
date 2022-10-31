@@ -57,6 +57,9 @@ const programSchema = new mongoose.Schema({
       default: false,
     },
   },
+  
+}, {
+  timestamps: true 
 });
 
 const Program = new mongoose.model('Program', programSchema, 'programs');

@@ -86,11 +86,12 @@ router.get('/programs/resources', async (req, res) => {
   try {
     const { programType } = req.query;
     const key = `programType.${programType}`;
-    const programs = await Program.find({
+    const programs = await Program
+    .find({
       [key]: true,
       approved: true,
       expirationDate: { $gt: new Date().toISOString() }
-    });
+    })
 
     res.send({ message: programs });
   } catch (error) {
