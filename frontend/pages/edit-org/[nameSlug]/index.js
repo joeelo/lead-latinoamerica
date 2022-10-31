@@ -18,6 +18,7 @@ import { useCallback } from 'react';
 import styled from 'styled-components'
 import LoadingSpinner from '@/components/generic/LoadingSpinner';
 import getToast from '@/utils/getToast';
+import Textarea from '@/components/form/text-input/TextArea';
 
 
 
@@ -149,7 +150,7 @@ const EditOrg = () => {
 
 						<Box>
 							<StyledSectionHeading>A description about the opportunity</StyledSectionHeading>
-							<TextInput 
+							<Textarea 
 								register={register}
 								name='bio'
 								rules={{
@@ -216,7 +217,7 @@ const Form = styled.form`
 	min-width: 300px; 
 	width: 90vw; 
 	min-height: 600px; 
-	max-width: 800px; 
+	max-width: 600px; 
 	border-radius: 10px;
 	padding: 20px;
 	display: flex; 

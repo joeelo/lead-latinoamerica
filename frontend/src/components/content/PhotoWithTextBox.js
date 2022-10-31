@@ -21,7 +21,7 @@ const PhotoWithTextBox = ({
 	const now = new Date().toISOString()
 	const diff = expirationDate && getDiff(expirationDate, now)
 
-	const isInNextTwoWeeks = diff && diff.days > -1 && diff.days < 14  
+	const isInNextTwoWeeks = Math.abs(diff.days) < 14  
 
 	const truncatedString = bio.length < 150 ? bio : `${bio.slice(0, 150)}...`
 	const imageSrc = coverImage || '/images/pexels-cottonbro-6209356.jpg'

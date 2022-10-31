@@ -1,5 +1,5 @@
-import styled, { ThemeContext } from 'styled-components';
-import { useContext, useState, useEffect } from 'react';
+import styled, { ThemeContext } from 'styled-components'
+import { useContext, useState, useEffect } from 'react'
 
 const TextInput = ({
   register,
@@ -12,15 +12,15 @@ const TextInput = ({
   ...props
 }) => {
   // register and hasError are properties of parent
-  const theme = useContext(ThemeContext);
+  const theme = useContext(ThemeContext)
 
-  const [isInFocus, setIsInFocus] = useState(false);
+  const [isInFocus, setIsInFocus] = useState(false)
 
   useEffect(() => {
     if (initialVal) {
-      setValue(name, initialVal);
+      setValue(name, initialVal)
     }
-  }, [initialVal]);
+  }, [initialVal])
 
   return (
     <Container focused={isInFocus}>
@@ -35,10 +35,10 @@ const TextInput = ({
         {...props}
       />
     </Container>
-  );
-};
+  )
+}
 
-export default TextInput;
+export default TextInput
 
 const Container = styled.div`
   margin-top: 20px;
@@ -50,14 +50,14 @@ const Container = styled.div`
     props.focused
       ? '1px 2px 13px 0px rgba(184, 177, 184, 1)'
       : '1px 1px 4px 0px rgba(184, 177, 184, 1)'};
-`;
+`
 
 const Label = styled.label`
   font-size: ${(props) => props.theme.fontSizes.large};
   color: ${(props) => props.theme.colors.darkBlue};
   padding-left: 5px;
   text-transform: capitalize;
-`;
+`
 
 const StyledInput = styled.input`
   width: 100%;
@@ -76,4 +76,4 @@ const StyledInput = styled.input`
   ::placeholder {
     font-size: 14px;
   }
-`;
+`
