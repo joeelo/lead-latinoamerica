@@ -2,8 +2,8 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import { animated, useSpring, config } from 'react-spring'
 
-const Checkbox = ({ option, register }) => {
-  const [isChecked, setIsChecked] = useState(false)
+const Checkbox = ({ option, register, checkOnLoad = false }) => {
+  const [isChecked, setIsChecked] = useState(checkOnLoad)
   const [checkmarkLength, setCheckmarkLength] = useState(null)
 
   const checkboxAnimationStyle = useSpring({

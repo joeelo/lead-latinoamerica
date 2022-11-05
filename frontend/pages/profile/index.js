@@ -19,7 +19,6 @@ import { useQuery } from 'react-query';
 import getToast from '@/utils/getToast';
 
 const ProfilePage = () => {
-
   const [ session ] = useSession(); 
   const [ userData, setUserData ] = useState({});
   const [ isEditing, setIsEditing ] = useState(false); 
@@ -29,13 +28,11 @@ const ProfilePage = () => {
   
   const { register, handleSubmit, setValue } = useForm(); 
 
-  const { data } = useQuery(
-    ['userPrograms', session?.user?.email],
-    ProgramRequests.getAllPrograms, 
-    {
-      enabled: !!session?.user?.email
-    }
-  )
+  const { data } = useQuery({
+    queryKey: ['userPrograms', session?.user?.email], 
+    queryFn: ProgramRequests.getAllPrograms, 
+    enabled: !!session?.user?.email
+  })
   
   const onSubmit = async (data) => {
     const response = await editProfile(data, email); 
@@ -54,17 +51,25 @@ const ProfilePage = () => {
       setUserData(response.user); 
 
       response.user.interests.forEach((program) => {
-        setValue(`programs.${program}`, true);
+        setValue(`programs.${program}`, `programs.${program}`);
       })
 
       response.user.nationality.forEach((ethnicity) => {
-        setValue(`ethnicity.${ethnicity}`, true);
+        setValue(`ethnicity.${ethnicity}`, `ethnicity.${ethnicity}`);
       })
     }
   }
 
   const handleClick = () => {
     setIsEditing(true)
+
+    userData.interests.forEach((program) => {
+      setValue(`programs.${program}`, true);
+    })
+
+    userData.nationality.forEach((ethnicity) => {
+      setValue(`ethnicity.${ethnicity}`, true);
+    })
   }
 
   const handleCancel = (event) => {
@@ -106,7 +111,9 @@ const ProfilePage = () => {
                   <TitleHeading> Hey there {userData.preferredName}!</TitleHeading>
                 )}
 
-                <Span> We're bringing notifications to the profile page soon. So you can opt-in to get weekly emails on programs that have been uploaded, and specify what types of programs you're interested in by clicking the edit button below.</Span>
+                <Span> 
+                  We're bringing notifications to the profile page soon. So you can opt-in to get weekly emails on programs that have been uploaded, and specify what types of programs you're interested in by clicking the edit button below.
+                </Span>
 
                 <Button label='Edit' onClick={handleClick}/>
 
@@ -167,13 +174,18 @@ const ProfilePage = () => {
                         {value: 'programs.programs', label: 'Programs'},
                       ]}
                       register={register}
+                      checkedOnLoad={userData.interests}
+                      name="program"
                     /> 
                   </Box>
 
                   <Box>
                     <TitleHeading>What ethnicity are you? (check all that apply)</TitleHeading>
-                    <p style={{ marginTop: -10, marginBottom: 10}}>We ask because there are programs for specific groups and we'd like every possible opportunity to be available.</p>
+                    <p style={{ marginTop: -10, marginBottom: 10}}>
+                      We ask because there are programs for specific groups and we'd like every possible opportunity to be available.
+                    </p>
                     <CheckboxGroup
+                      name="ethnicity"
                       options={[
                         {value: 'ethnicity.caucasian', label: 'White or Caucasion'},
                         {value: 'ethnicity.latino', label: 'Hispanic or Latino'},
@@ -183,6 +195,7 @@ const ProfilePage = () => {
                         {value: 'ethnicity.multiRacial', label: 'Multi-Racial'},
                         {value: 'ethnicity.noAnswer', label: 'Don\'t care to answer'},
                       ]}
+                      checkedOnLoad={userData.nationality}
                       register={register}
                     />
                   </Box>
