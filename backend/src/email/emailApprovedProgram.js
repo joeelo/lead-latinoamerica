@@ -6,8 +6,8 @@ const emailApprovedProgram = (emailList, program) => {
     text: 'Checkout this new opportunity!',
     html: `
       <h1>A new opportunity has been added - ${program.name} </h1>
-      ${data.partnerUrl && (
-        `Their website - <a href=${data.partnerUrl} target="_blank">${data.partnerUrl}</a>`
+      ${program.partnerUrl && (
+        `Their website - <a href=${program.partnerUrl} target="_blank">${program.partnerUrl}</a>`
       )}
       <p>This opportunity will be on your profile for the next 2 days! <p/>
     `

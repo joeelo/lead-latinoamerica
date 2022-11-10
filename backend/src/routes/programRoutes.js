@@ -1,5 +1,6 @@
 const express = require('express')
 const Program = require('../models/Program')
+const User = require('../models/User')
 const seed = require('../seed/programSeed')
 const router = express.Router()
 const sendMail = require('../email/sendGrid')
@@ -64,8 +65,6 @@ router.post('/programs/add', async (req, res) => {
 
 router.get('/program/:href', async (req, res) => {
   try {
-    console.log('href: ', req.params.href)
-
     const program = await Program.findOne({
       href: req.params.href,
     })
@@ -138,14 +137,17 @@ router.put('/program/edit/:href/:approve', async (req, res) => {
       options,
       (error) => {
         if (error) {
-    
           console.log('ERROR IN UPDATED PROGRAM: ', error)
           res.send({ message: error, error: true })
         }
       }
     )
 
+    const users = await User.find({})
+    const userEmails = users.map((user) => user.email)
 
+    const emailMessage = emailApprovedProgram(userEmails, updatedProgram)
+    await sendMail(emailMessage)
 
     res.send({
       message: 'success',
@@ -191,19 +193,6 @@ router.delete('/programs/erase-all', async (_, res) => {
   } catch (error) {
     console.log(error)
     res.send({ message: error })
-  }
-})
-
-router.post('/email/test', async (req, res) => {
-  try {
-    console.log('POST EMAIL', req.body)
-    
-    const emailResponse = await sendMail(req.body, req.body.href) 
-    res.send({message: 'success', email: emailResponse})
-  } catch (error) {
-    console.log('ERROR: ', error) 
-
-    res.send({error: true, message: error})
   }
 })
 
