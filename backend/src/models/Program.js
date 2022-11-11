@@ -57,6 +57,10 @@ const programSchema = new mongoose.Schema({
       default: false,
     },
   },
+  approvalEmailSent: {
+    type: Boolean, 
+    default: false,
+  }
   
 }, {
   timestamps: true 

@@ -124,7 +124,13 @@ router.post('/programs/seed', async (_, res) => {
 
 router.put('/program/edit/:href/:approve', async (req, res) => {
   const filter = { href: req.params.href }
-  const update = { approved: req.params.approve }
+
+  const program = await Program.findOne({ ...filter })
+  console.log('program: ', program)
+
+  const hasEmailBeenSent = await !!program.approvalEmailSent
+
+  const update = { approved: req.params.approve, approvalEmailSent: true }
   const options = {
     returnOriginal: false,
     strict: false,
@@ -143,11 +149,14 @@ router.put('/program/edit/:href/:approve', async (req, res) => {
       }
     )
 
-    const users = await User.find({})
-    const userEmails = users.map((user) => user.email)
+    // only look for users if the email hasn't been sent to save a call. 
+    if (!hasEmailBeenSent) {
+      const users = await User.find({})
+      const userEmails = users.map((user) => user.email)
+      const emailMessage = emailApprovedProgram(userEmails, updatedProgram)
+      await sendMail(emailMessage)
+    }
 
-    const emailMessage = emailApprovedProgram(userEmails, updatedProgram)
-    await sendMail(emailMessage)
 
     res.send({
       message: 'success',
