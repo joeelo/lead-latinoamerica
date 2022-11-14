@@ -1,8 +1,15 @@
-const express = require('express');
-const Program = require('../models/Program');
-const seed = require('../seed/programSeed');
-const router = express.Router();
-const sendMail = require('../email/sendGrid');
+const express = require('express')
+const Program = require('../models/Program')
+const User = require('../models/User')
+const seed = require('../seed/programSeed')
+const router = express.Router()
+const sendMail = require('../email/sendGrid')
+const { emailFormatter } = require('../email/emailFormatter')
+const { emailApprovedProgram } = require('../email/emailApprovedProgram')
+
+const logError = (error) => {
+  console.log(error)
+}
 
 router.post('/programs/add', async (req, res) => {
   try {
@@ -13,14 +20,14 @@ router.post('/programs/add', async (req, res) => {
       partnerUrl,
       programType = {},
       expirationDate,
-    } = req.body;
+    } = req.body
 
     const href = name.split(' ').join('-').toLowerCase()
 
-    const programTypeKeys = Object.keys(programType);
-    const programTypes = {}; 
+    const programTypeKeys = Object.keys(programType)
+    const programTypes = {} 
     
-    programTypeKeys.forEach((key) => programTypes[key] = !!programType[key]);
+    programTypeKeys.forEach((key) => programTypes[key] = !!programType[key])
 
     const betweenZeroAndFour = () => {
       return Math.floor(Math.random() * 5)
@@ -42,12 +49,13 @@ router.post('/programs/add', async (req, res) => {
       expirationDate,
       programType: programTypes,
       coverImage: images[betweenZeroAndFour()]
-    });
+    })
 
-    const savedProgram = await newProgram.save();
+    const savedProgram = await newProgram.save()
 
     if (savedProgram) {
-      await sendMail(req.body, href)
+      const formattedMessageAndOptions = emailFormatter(req.body, href)
+      await sendMail(formattedMessageAndOptions)
       res.send({ success: true, message: 'success' })
     } 
   } catch (error) {
@@ -55,37 +63,42 @@ router.post('/programs/add', async (req, res) => {
       errorMessage: error._message, 
       error: true, 
       success: false 
-    });
+    })
   }
-});
+})
 
 router.get('/program/:href', async (req, res) => {
   try {
-    // eslint-disable-next-line
-    console.log('href: ', req.params.href);
-
     const program = await Program.findOne({
       href: req.params.href,
-    });
+    })
 
     if (!program) {
       res.send({
         message: 'We could not find that program',
-      });
+      })
 
-      return;
+      return
     }
 
-    res.send({ message: 'success', program });
+    res.send({ message: 'success', program })
   } catch (error) {
-    console.log('ERROR IN PROGRAM/:HREF ', error);
+    logError(error)
   }
-});
+})
+
+router.get('/new-programs', async () => {
+  try {
+    res.send({ success: true, message: '' })
+  } catch (error) {
+    logError(error)
+  }
+})
 
 router.get('/programs/resources', async (req, res) => {
   try {
-    const { programType } = req.query;
-    const key = `programType.${programType}`;
+    const { programType } = req.query
+    const key = `programType.${programType}`
     const programs = await Program
     .find({
       [key]: true,
@@ -93,46 +106,34 @@ router.get('/programs/resources', async (req, res) => {
       expirationDate: { $gt: new Date().toISOString() }
     })
 
-    res.send({ message: programs });
+    res.send({ success: true, message: programs })
   } catch (error) {
-    // eslint-disable-next-line
-    console.log('PROGRAMS ERROR: ', error);
-    res.send({ message: error });
+    logError(error)
+    res.send({ message: error })
   }
-});
+})
 
 router.get('/programs', async (req, res) => {
   try {
-    const programs = await Program.find({});
+    const programs = await Program.find({})
 
-    res.send({ message: programs });
+    res.send({ message: programs })
   } catch (error) {
-    // eslint-disable-next-line
-    console.log('PROGRAMS ERROR: ', error);
-    res.send({ message: error });
+    logError(error)
+    res.send({ success: true, message: error })
   }
-});
-
-router.post('/programs/seed', async (req, res) => {
-  try {
-    const response = await Program.insertMany(seed);
-
-    // eslint-disable-next-line
-    console.log('response', response);
-    res.send({ message: response });
-  } catch (error) {
-    // eslint-disable-next-line
-    console.log(error);
-  }
-});
+})
 
 router.put('/program/edit/:href/:approve', async (req, res) => {
-  const filter = { href: req.params.href };
-  const update = { approved: req.params.approve };
+  const filter = { href: req.params.href }
+
+  const program = await Program.findOne({ ...filter })
+  const hasEmailBeenSent = await !!program.approvalEmailSent
+  const update = { approved: req.params.approve, approvalEmailSent: true }
   const options = {
     returnOriginal: false,
     strict: false,
-  };
+  }
 
   try {
     const updatedProgram = await Program.findOneAndUpdate(
@@ -141,22 +142,30 @@ router.put('/program/edit/:href/:approve', async (req, res) => {
       options,
       (error) => {
         if (error) {
-          // eslint-disable-next-line
-          console.log('ERROR IN UPDATED PROGRAM: ', error);
-          res.send({ message: error, error: true });
+          logError(error)
+          res.send({ success: false, message: error, error: true })
         }
       }
-    );
+    )
+
+    // only look for users if the email hasn't been sent to save a call. 
+    if (!hasEmailBeenSent) {
+      const users = await User.find({})
+      const userEmails = users.map((user) => user.email)
+      const emailMessage = emailApprovedProgram(userEmails, updatedProgram)
+      await sendMail(emailMessage)
+    }
+
 
     res.send({
       message: 'success',
       program: updatedProgram,
-    });
+    })
   } catch (error) {
-    console.log('ERROR UPDATING: ', error);
-    res.send({ error: true, message: error });
+    logError(error)
+    res.send({ error: true, message: error })
   }
-});
+})
 
 router.put('/program/edit/:href', async(req, res) => {
   try {
@@ -167,45 +176,31 @@ router.put('/program/edit/:href', async(req, res) => {
     const options = {
       returnOriginal: false,
       strict: false,
-    };
+    }
 
     const updatedProgram = await Program.findOneAndUpdate(
       filter,
       update,
       options,
-    );
+    )
 
     res.send({ success: true, message: 'success', data: {...updatedProgram, href: newHref } })
 
   } catch (error) {
-    console.log('error editing program', error)
-
+    logError(error)
     res.send({error: true, message: error})
   }
 })
 
 router.delete('/programs/erase-all', async (_, res) => {
   try {
-    const response = await Program.deleteMany({});
+    const response = await Program.deleteMany({})
 
-    res.send({ message: 'Succesfully Deleted', response });
+    res.send({ message: 'Succesfully Deleted', response })
   } catch (error) {
-    console.log(error);
-    res.send({ message: error });
-  }
-});
-
-router.post('/email/test', async (req, res) => {
-  try {
-    console.log('POST EMAIL', req.body);
-    
-    const emailResponse = await sendMail(req.body, req.body.href); 
-    res.send({message: 'success', email: emailResponse});
-  } catch (error) {
-    console.log('ERROR: ', error); 
-
-    res.send({error: true, message: error});
+    logError(error)
+    res.send({ message: error })
   }
 })
 
-module.exports = router;
+module.exports = router

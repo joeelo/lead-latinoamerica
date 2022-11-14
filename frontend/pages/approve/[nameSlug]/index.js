@@ -29,18 +29,22 @@ const ApproveProgramPage = () => {
 
 	
 
-	if (!data) return <>Loading...</>
+	if (!data) {
+		return <>Loading...</>
+	}
+
 	const program = data
+	
 	return (
 		<>
 			<NavBar />
 			<FixedButton 
-					text="Approve Program"
-					approve={true} 
-					bgColor="#00B43C"
-					href={program.href} 
-					bgColorHover="#0ACC14"
-					onSuccess={handleSuccess}
+				text="Approve Program"
+				approve={true} 
+				bgColor="#00B43C"
+				href={program.href} 
+				bgColorHover="#0ACC14"
+				onSuccess={handleSuccess}
 			/>
 			<FixedButton 
 				text="Deny Program"
