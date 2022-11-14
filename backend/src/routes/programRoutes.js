@@ -7,6 +7,10 @@ const sendMail = require('../email/sendGrid')
 const { emailFormatter } = require('../email/emailFormatter')
 const { emailApprovedProgram } = require('../email/emailApprovedProgram')
 
+const logError = (error) => {
+  console.log(error)
+}
+
 router.post('/programs/add', async (req, res) => {
   try {
     const {
@@ -79,7 +83,15 @@ router.get('/program/:href', async (req, res) => {
 
     res.send({ message: 'success', program })
   } catch (error) {
-    console.log('ERROR IN PROGRAM/:HREF ', error)
+    logError(error)
+  }
+})
+
+router.get('/new-programs', async () => {
+  try {
+    res.send({ success: true, message: '' })
+  } catch (error) {
+    logError(error)
   }
 })
 
@@ -94,9 +106,9 @@ router.get('/programs/resources', async (req, res) => {
       expirationDate: { $gt: new Date().toISOString() }
     })
 
-    res.send({ message: programs })
+    res.send({ success: true, message: programs })
   } catch (error) {
-    console.log('PROGRAMS ERROR: ', error)
+    logError(error)
     res.send({ message: error })
   }
 })
@@ -107,18 +119,8 @@ router.get('/programs', async (req, res) => {
 
     res.send({ message: programs })
   } catch (error) {
-    console.log('PROGRAMS ERROR: ', error)
-    res.send({ message: error })
-  }
-})
-
-router.post('/programs/seed', async (_, res) => {
-  try {
-    const response = await Program.insertMany(seed)
-    console.log('response', response)
-    res.send({ message: response })
-  } catch (error) {
-    console.log(error)
+    logError(error)
+    res.send({ success: true, message: error })
   }
 })
 
@@ -126,10 +128,7 @@ router.put('/program/edit/:href/:approve', async (req, res) => {
   const filter = { href: req.params.href }
 
   const program = await Program.findOne({ ...filter })
-  console.log('program: ', program)
-
   const hasEmailBeenSent = await !!program.approvalEmailSent
-
   const update = { approved: req.params.approve, approvalEmailSent: true }
   const options = {
     returnOriginal: false,
@@ -143,8 +142,8 @@ router.put('/program/edit/:href/:approve', async (req, res) => {
       options,
       (error) => {
         if (error) {
-          console.log('ERROR IN UPDATED PROGRAM: ', error)
-          res.send({ message: error, error: true })
+          logError(error)
+          res.send({ success: false, message: error, error: true })
         }
       }
     )
@@ -163,7 +162,7 @@ router.put('/program/edit/:href/:approve', async (req, res) => {
       program: updatedProgram,
     })
   } catch (error) {
-    console.log('ERROR UPDATING: ', error)
+    logError(error)
     res.send({ error: true, message: error })
   }
 })
@@ -188,8 +187,7 @@ router.put('/program/edit/:href', async(req, res) => {
     res.send({ success: true, message: 'success', data: {...updatedProgram, href: newHref } })
 
   } catch (error) {
-    console.log('error editing program', error)
-
+    logError(error)
     res.send({error: true, message: error})
   }
 })
@@ -200,7 +198,7 @@ router.delete('/programs/erase-all', async (_, res) => {
 
     res.send({ message: 'Succesfully Deleted', response })
   } catch (error) {
-    console.log(error)
+    logError(error)
     res.send({ message: error })
   }
 })
