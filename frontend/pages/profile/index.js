@@ -210,7 +210,7 @@ const ProfilePage = () => {
           </Box>
 
           <Box>
-            <UserSavedPrograms programs={data?.programs} showExpiringPrograms/>
+            <UserSavedPrograms programs={data?.programs}/>
           </Box>
 
         </Box>

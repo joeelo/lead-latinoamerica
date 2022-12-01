@@ -7,7 +7,7 @@ import { useSession } from 'next-auth/client'
 import { useQueryClient } from 'react-query'
 import getToast from '@/utils/getToast'
 
-const UserSavedPrograms = ({ programs, showExpiringPrograms = false }) => {
+const UserSavedPrograms = ({ programs }) => {
   const [session] = useSession()
   const { user } = session || {}
   const queryClient = useQueryClient()
@@ -16,12 +16,6 @@ const UserSavedPrograms = ({ programs, showExpiringPrograms = false }) => {
     return null
   }
 
-  const programsWithExpirationDates = programs.filter(
-    (program) => program.expirationDate
-  )
-
-  const hasExpiringPrograms = programsWithExpirationDates.length > 0
-
   const handleRemoveSuccess = () => {
     queryClient.invalidateQueries('userPrograms')
 
@@ -29,40 +23,25 @@ const UserSavedPrograms = ({ programs, showExpiringPrograms = false }) => {
   }
 
   return (
-    <Box display="flex" fd="column" stackOnMobile>
-      {showExpiringPrograms && hasExpiringPrograms && (
-        <>
-          <TitleHeading>Expiring Opportunities</TitleHeading>
-          <Box display="flex" wrap="wrap">
-            {programsWithExpirationDates.map((program) => {
+    <Box display="flex" fd="column" stackOnMobile mb="20px">
+      <TitleHeading>Your Saved Opportunities</TitleHeading>
+      <Box display="flex" wrap="wrap">
+        {programs.length === 0 ? (
+          <p>You haven't saved any opportunities yet!</p>
+        ) : (
+          <>
+            {programs.map((program) => {
               return (
                 <ProgramCardSimple
                   program={program}
                   user={user}
                   key={program._id}
+                  onSuccess={handleRemoveSuccess}
                 />
               )
             })}
-          </Box>
-        </>
-      )}
-
-      <TitleHeading>Your Saved Opportunities</TitleHeading>
-      <Box display="flex" wrap="wrap">
-        {programs.map((program) => {
-          if (program.expirationDate && showExpiringPrograms) {
-            return null
-          }
-
-          return (
-            <ProgramCardSimple
-              program={program}
-              user={user}
-              key={program._id}
-              onSuccess={handleRemoveSuccess}
-            />
-          )
-        })}
+          </>
+        )}
       </Box>
     </Box>
   )
