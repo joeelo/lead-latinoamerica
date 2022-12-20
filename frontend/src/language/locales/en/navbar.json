@@ -1,6 +1,7 @@
 {
-	"resources": "Student Resources", 
-	"signIn": "Sign In", 
+	"resources": "Resources", 
+	"signIn": "Login", 
+	"signOut": "Sign Out",
 	"programs": "Programs", 
 	"scholarships": "Scholarships", 
 	"internships": "Internships", 
@@ -9,5 +10,6 @@
 	"addOrg": "Add a Program", 
 	"ourTeam": "Our Team", 
 	"donate": "Donate", 
-	"summer": "Summer"
+	"summer": "Summer", 
+	"profile": "My Profile"
 }

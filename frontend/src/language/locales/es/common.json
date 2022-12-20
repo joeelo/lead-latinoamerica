@@ -29,5 +29,6 @@
 		"sentence1": "Este portal asegura que los estudiantes estén al tanto de todas las becas y oportunidades disponibles para ellos.", 
 		"sentence2": "Nuestro objetivo es optimizar las listas de becas y oportunidades, para que los estudiantes y los padres ya no tengan que revisar varios sitios o páginas para ver todo lo que está disponible para ellos.", 
 		"sentence3": "Este portal proporciona nuestra lista más actualizada de oportunidades disponibles en su área. Si conoce una oportunidad que existe y no la ve aquí, háganoslo saber y la agregaremos para asegurarnos de que todos tengan acceso a las mismas oportunidades."
-	}
+	}, 
+	"noOpportunities": "No hay oportunidades en esta categoría en este momento. Vuelva a consultar en una fecha posterior."
 }

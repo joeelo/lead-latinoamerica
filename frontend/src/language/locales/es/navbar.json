@@ -1,13 +1,15 @@
 {
-	"resources": "Recursos para Estudiantes", 
+	"resources": "recursos", 
 	"signIn": "Iniciar Sesión", 
+	"signOut": "Desconectar",
 	"programs": "Programas", 
 	"scholarships": "Becas", 
 	"internships": "Pasantías", 
-	"portal": "Portal de la Organización", 
+	"portal": "Involucrarse", 
 	"home": "Hogar", 
 	"addOrg": "Involucrarse", 
 	"ourTeam": "Nuestro Equipo", 
 	"donate": "Donar",
-	"summer": "Verano"
+	"summer": "Verano",
+	"profile": "Mi Perfil"
 }

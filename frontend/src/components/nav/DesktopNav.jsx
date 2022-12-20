@@ -40,7 +40,7 @@ function DesktopNav() {
           data-name="get-involved"
           style={{ cursor: 'pointer' }}
         >
-          Get Involved
+          {t.portal}
         </Box>
         <Box
           width="110px"
@@ -48,14 +48,14 @@ function DesktopNav() {
           data-name="resources"
           style={{ cursor: 'pointer' }}
         >
-          Resources
+          {t.resources}
         </Box>
         <Box
           style={{ cursor: 'pointer' }}
           width="80px"
           onMouseEnter={handleExternalMouseEnter}
         >
-          <Link href="/">Home</Link>
+          <Link href="/">{t.home}</Link>
         </Box>
         <Box
           width="100px"
@@ -64,11 +64,11 @@ function DesktopNav() {
         >
           {!session ? (
             <Link className="link" href="/sign-in">
-              Login
+              {t.signIn}
             </Link>
           ) : (
             <div className="link" href="/" onClick={signOut}>
-              Sign out
+              {t.signOut}
             </div>
           )}
         </Box>
@@ -77,12 +77,12 @@ function DesktopNav() {
         <Popover anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
           <Box className="link-container" fd="column" display="flex">
             <Link href="/add-program">{t.addOrg}</Link>
-            <Link href="/profile">My Profile</Link>
+            <Link href="/profile">{t.profile}</Link>
             <a
               target="_blank"
               href="https://www.leadlatinoamerica.org/copy-of-our-team"
             >
-              Our Team
+              {t.ourTeam}
             </a>
           </Box>
         </Popover>
