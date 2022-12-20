@@ -1,24 +1,23 @@
-import { useRef, useEffect } from 'react'; 
-import styled from 'styled-components';
-import Link from 'next/link';
-import LinkUnderlineEffect from '@/components/generic/LinkUnderlineEffect';
+import styled from 'styled-components'
+import LinkUnderlineEffect from '@/components/generic/LinkUnderlineEffect'
 
-const FlexContentBox = ({ size, backgroundColor, content, color, minHeight }) => {
-
-	const ref = useRef();
-	useEffect(() => {
-		const tallestDiv = ref.current.clientHeight;
-	},[ref?.current])
-
+const TitleAndPhotoLinkBox = ({ 
+	size, 
+	backgroundColor, 
+	content, 
+	color, 
+	minHeight 
+}) => {
 	return (
     <Container 
-		size={ size }
-		backgroundColor={ backgroundColor }
-		color={ color }
-		ref={ ref }
-		minHeight={ minHeight }
+			size={size}
+			backgroundColor={backgroundColor}
+			color={color}
+			minHeight={minHeight}
     >
+
 		{ content.svg && <ContentPhoto src={`${ content.svg }`} /> }
+
 		<ContentTitle> { content.title } </ContentTitle>
 		<ContentText> { content.text } </ContentText>
 		<ContentFooter> 
@@ -32,7 +31,7 @@ const FlexContentBox = ({ size, backgroundColor, content, color, minHeight }) =>
 	)
 }
 
-export default FlexContentBox;
+export default TitleAndPhotoLinkBox
 
 const Container = styled.div`
 	display: flex;

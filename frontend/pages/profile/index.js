@@ -1,32 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { useSession } from 'next-auth/client';
-import NavBar from '@/components/nav/NavBar';
-import Footer from '@/components/footer/Footer';
-import styled from 'styled-components';
-import Image from 'next/image'; 
-import Box from '@/components/generic/Box';
-import getFullName from '@/utils/getFullName';
-import SelectInput from '@/components/form/select/SelectInput';
-import TextInput from '@/components/form/text-input/TextInput';
-import { useForm } from 'react-hook-form';
-import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup';
-import { editProfile, getProfile } from '@/fetch/profile/ProfileRequests';
-import Button from '@/components/buttons/Button';
-import { ToastContainer } from 'react-toastify';
-import ProgramRequests from '@/fetch/program/ProgramRequests';
-import UserSavedPrograms from '@/components/programs/UserSavedPrograms';
-import { useQuery } from 'react-query';
-import getToast from '@/utils/getToast';
+import React, { useState, useEffect } from 'react'
+import { useSession } from 'next-auth/client'
+import NavBar from '@/components/nav/NavBar'
+import Footer from '@/components/footer/Footer'
+import styled from 'styled-components'
+import Image from 'next/image' 
+import Box from '@/components/generic/Box'
+import getFullName from '@/utils/getFullName'
+import SelectInput from '@/components/form/select/SelectInput'
+import TextInput from '@/components/form/text-input/TextInput'
+import { useForm } from 'react-hook-form'
+import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup'
+import { editProfile, getProfile } from '@/fetch/profile/ProfileRequests'
+import Button from '@/components/buttons/Button'
+import ProgramRequests from '@/fetch/program/ProgramRequests'
+import UserSavedPrograms from '@/components/programs/UserSavedPrograms'
+import { useQuery } from 'react-query'
+import getToast from '@/utils/getToast'
 
 const ProfilePage = () => {
-  const [ session ] = useSession(); 
+  const [ session ] = useSession()
   const [ userData, setUserData ] = useState({});
-  const [ isEditing, setIsEditing ] = useState(false); 
+  const [ isEditing, setIsEditing ] = useState(false)
 
   const userName = getFullName(session)
   const email = session?.user?.email;
   
-  const { register, handleSubmit, setValue } = useForm(); 
+  const { register, handleSubmit, setValue } = useForm()
 
   const { data } = useQuery({
     queryKey: ['userPrograms', session?.user?.email], 
@@ -35,7 +34,7 @@ const ProfilePage = () => {
   })
   
   const onSubmit = async (data) => {
-    const response = await editProfile(data, email); 
+    const response = await editProfile(data, email)
 
     if (response.success) {
       setIsEditing(false);
@@ -46,9 +45,9 @@ const ProfilePage = () => {
   }
 
   const setProfileInfo = async () => {
-    const response = await getProfile(session); 
+    const response = await getProfile(session)
     if (response?.user?.name) {
-      setUserData(response.user); 
+      setUserData(response.user)
 
       response.user.interests.forEach((program) => {
         setValue(`programs.${program}`, `programs.${program}`);
@@ -73,15 +72,15 @@ const ProfilePage = () => {
   }
 
   const handleCancel = (event) => {
-    event.preventDefault(); 
+    event.preventDefault()
 
-    setIsEditing(false); 
+    setIsEditing(false)
     scrollTo({ top: 100 })
   }
 
   useEffect(() => {
     if (email) {
-      setProfileInfo(); 
+      setProfileInfo()
     }
   }, [email])
 
@@ -210,7 +209,7 @@ const ProfilePage = () => {
           </Box>
 
           <Box>
-            <UserSavedPrograms programs={data?.programs} showExpiringPrograms/>
+            <UserSavedPrograms programs={data?.programs}/>
           </Box>
 
         </Box>
@@ -219,11 +218,7 @@ const ProfilePage = () => {
   )
 }
 
-ProfilePage.propTypes = {
-
-}
-
-export default ProfilePage; 
+export default ProfilePage
 
 const PhotoContainer = styled.div`
   min-height: 300px; 

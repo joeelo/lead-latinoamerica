@@ -71,7 +71,7 @@ router.get('/program/:href', async (req, res) => {
   try {
     const program = await Program.findOne({
       href: req.params.href,
-    })
+    }).lean()
 
     if (!program) {
       res.send({
@@ -114,9 +114,9 @@ router.get('/programs/resources', async (req, res) => {
   }
 })
 
-router.get('/programs', async (req, res) => {
+router.get('/programs', async (_req, res) => {
   try {
-    const programs = await Program.find({})
+    const programs = await Program.find({}).lean()
 
     res.send({ message: programs })
   } catch (error) {

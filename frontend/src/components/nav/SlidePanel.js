@@ -52,9 +52,9 @@ const SlidePanel = ({ navOpen, setNavOpen }) => {
 			{session && (
 				<>
 					<LinkUnderlineEffect hrefFormatted='/profile' text='My Profile'  />
-					<LogoutButton onClick={signOut}>
+					<div onClick={signOut}>
 						<LinkUnderlineEffect hrefFormatted='/'  text='Log Out' />
-					</LogoutButton>
+					</div>
 				</>
 			)}
 
@@ -89,17 +89,9 @@ const Container = styled.nav`
 	box-shadow: ${ props => props.navOpen ? '3px 15px 25px -4px rgba(156,156,156,1)' : 'none' } ; 
 `
 
-const BottomSection = styled.div`
-	margin-top: 40px; 
-`
-
 const SectionHeader = styled.p`
 	font-size: 34px;
 	margin-bottom: 10px; 
 	font-weight: 300;
 	margin-top: 20px;
-`
-
-const LogoutButton = styled.div`
-
 `

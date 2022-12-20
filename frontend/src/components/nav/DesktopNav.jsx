@@ -7,6 +7,7 @@ import en from '@/language/locales/en/navbar.json'
 import es from '@/language/locales/es/navbar.json'
 import Link from 'next/link'
 import useLocale from '@/hooks/useLocale'
+import LanguageButtons from './LanguageButtons'
 
 function DesktopNav() {
   const [anchorEl, setAnchorEl] = useState(null)
@@ -23,14 +24,23 @@ function DesktopNav() {
 
   return (
     <Container>
-      <Box display="flex" justify="flex-end" width="100vw" mw="100%">
+      <Box display="flex" align="flex-start" ml="20px">
+        <LanguageButtons />
+      </Box>
+      <Box
+        display="flex"
+        justify="flex-end"
+        width="90vw"
+        mw="100%"
+        align="center"
+      >
         <Box
           width="120px"
           onMouseEnter={handleMouseEnter}
           data-name="get-involved"
           style={{ cursor: 'pointer' }}
         >
-          Get Involved
+          {t.portal}
         </Box>
         <Box
           width="110px"
@@ -38,14 +48,14 @@ function DesktopNav() {
           data-name="resources"
           style={{ cursor: 'pointer' }}
         >
-          Resources
+          {t.resources}
         </Box>
         <Box
           style={{ cursor: 'pointer' }}
           width="80px"
           onMouseEnter={handleExternalMouseEnter}
         >
-          <Link href="/">Home</Link>
+          <Link href="/">{t.home}</Link>
         </Box>
         <Box
           width="100px"
@@ -54,31 +64,29 @@ function DesktopNav() {
         >
           {!session ? (
             <Link className="link" href="/sign-in">
-              Login
+              {t.signIn}
             </Link>
           ) : (
             <div className="link" href="/" onClick={signOut}>
-              Sign out
+              {t.signOut}
             </div>
           )}
         </Box>
       </Box>
-
       {anchorEl && anchorEl.dataset.name === 'get-involved' && (
         <Popover anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
           <Box className="link-container" fd="column" display="flex">
             <Link href="/add-program">{t.addOrg}</Link>
-            <Link href="/profile">My Profile</Link>
+            <Link href="/profile">{t.profile}</Link>
             <a
               target="_blank"
               href="https://www.leadlatinoamerica.org/copy-of-our-team"
             >
-              Our Team
+              {t.ourTeam}
             </a>
           </Box>
         </Popover>
       )}
-
       {anchorEl && anchorEl.dataset.name === 'resources' && (
         <Popover anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
           <Box className="link-container" display="flex" fd="column">
@@ -101,6 +109,7 @@ const Container = styled.div`
   padding: 30px 0;
   position: relative;
   font-size: 18px;
+  display: flex;
 
   a {
     color: black;

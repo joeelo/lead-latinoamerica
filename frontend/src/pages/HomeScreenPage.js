@@ -1,48 +1,52 @@
-import { useContext } from 'react';
-import styled, { ThemeContext } from 'styled-components';
-import NavBar from '@/components/nav/NavBar';
-import FullScreenBack from '@/components/background/FullScreenBack';
-import CenterFlexContainer from '@/components/generic/CenterFlexContainer';
-import FlexContentBox from '@/components/content/FlexContentBox';
-import Footer from '@/components/footer/Footer';
-import ChangingBackgroundText from '@/components/content/ChangingBackgroundText';
-import ContentWithSideImage from '@/components/content/ContentWithSideImage';
-import VideoBackground from '@/components/background/VideoBackground';
-import FadeInText from '@/components/generic/FadeInText';
-import useGetRandomQuote from '@/hooks/useGetRandomQuote';
-import en from '@/language/locales/en/common.json';
-import es from '@/language/locales/es/common.json';
-import useLocale from '@/hooks/useLocale';
+import { useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components'
+import NavBar from '@/components/nav/NavBar'
+import FullScreenBack from '@/components/background/FullScreenBack'
+import CenterFlexContainer from '@/components/generic/CenterFlexContainer'
+import TitleAndPhotoLinkBox from '@/components/content/TitleAndPhotoLinkBox'
+import Footer from '@/components/footer/Footer'
+import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
+import ContentWithSideImage from '@/components/content/ContentWithSideImage'
+import VideoBackground from '@/components/background/VideoBackground'
+import FadeInText from '@/components/generic/FadeInText'
+import useGetRandomQuote from '@/hooks/useGetRandomQuote'
+import en from '@/language/locales/en/common.json'
+import es from '@/language/locales/es/common.json'
+import useLocale from '@/hooks/useLocale'
 
 const HomeScreenPage = () => {
-	const theme = useContext(ThemeContext);
-	const quote = useGetRandomQuote(); 
-	const t = useLocale() === 'en' ? en : es;
+	const theme = useContext(ThemeContext)
+	const quote = useGetRandomQuote() 
+	const t = useLocale() === 'en' ? en : es
 
 	const opportunityInfo = [
 		{ 
 			title: t.scholarships.headline, 
 			text:t.scholarships.bio, 
 			footer: t.scholarships.link,
-			svg: '/images/svg/scholarship-svgrepo-com.svg'
+			svg: '/images/svg/scholarship-svgrepo-com.svg', 
+			link: 'scholarships'
 		}, 
 		{
 			title: t.summer.headline, 
 			text:t.summer.bio, 
 			footer: t.summer.link,
-			svg: '/images/svg/summer-svgrepo-com.svg'
+			svg: '/images/svg/summer-svgrepo-com.svg',
+			link: 'summer'
 		}, 
 		{
 			title: t.internships.headline,
 			text:t.internships.bio, 
 			footer: t.internships.link,
-			svg: '/images/svg/learning-svgrepo-com.svg'
+			svg: '/images/svg/learning-svgrepo-com.svg', 
+			link: 'internships'
 		}, 
 		{
 			title: t.programs.headline,
 			text: t.programs.bio, 
 			footer: t.programs.link,
-			svg: '/images/svg/online-class-svgrepo-com.svg'
+			svg: '/images/svg/online-class-svgrepo-com.svg',
+			link: 'program'
 		}, 
 	]
 	
@@ -51,8 +55,8 @@ const HomeScreenPage = () => {
 			<NavBar />
 			<FullScreenBack src='/images/mission-high.jpeg'>
 				<PortalTitleContainer>
-				<Logo src="/images/svg/logo-FFFFFF.svg"/>
-				<PortalSubTitle>{t.headline2}</PortalSubTitle>
+					<Logo src="/images/svg/logo-FFFFFF.svg"/>
+					<PortalSubTitle>{t.headline2}</PortalSubTitle>
 				</PortalTitleContainer>
 
 				<RelativeTextContainer>
@@ -70,19 +74,18 @@ const HomeScreenPage = () => {
 					fontColorSecondary={theme.colors.cultured}
 				/>
 			</CenterFlexContainer>
+			
 			<CenterFlexContainer backgroundColor={theme.colors.cultured}>
-				{
-					opportunityInfo.map(info => (
-						<FlexContentBox 
-							key={info.title} 
-							size='halves' 
-							content={info} 
-							color={theme.colors.darkText}
-							backgroundColor={theme.white}
-							minHeight={420}
-						/>
-					))
-				}
+				{opportunityInfo.map(info => (
+					<TitleAndPhotoLinkBox 
+						key={info.title} 
+						size='halves' 
+						content={info} 
+						color={theme.colors.darkText}
+						backgroundColor={theme.white}
+						minHeight={420}
+					/>
+				))}
 			</CenterFlexContainer>
 
 
@@ -120,7 +123,7 @@ const HomeScreenPage = () => {
 	)
 }
 
-export default HomeScreenPage;
+export default HomeScreenPage
 
 const PortalTitleContainer = styled.div`
 	position: relative; 

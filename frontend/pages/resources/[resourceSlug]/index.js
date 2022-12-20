@@ -9,6 +9,9 @@ import { useQuery } from "react-query"
 import ProgramRequests from '@/fetch/program/ProgramRequests'
 import LoadingSpinner from '@/components/generic/LoadingSpinner'
 import Box from '@/components/generic/Box';
+import en from '@/language/locales/en/common.json'
+import es from '@/language/locales/es/common.json'
+import useLocale from '@/hooks/useLocale'
 
 
 const ResourcePage = () => {
@@ -16,6 +19,7 @@ const ResourcePage = () => {
 
 	const router = useRouter() 
 	const { resourceSlug } = router.query
+	const t = useLocale() === 'en' ? en : es
 
 
 	const singularSlug = resourceSlug[resourceSlug.length - 1] === 's' 
@@ -62,8 +66,8 @@ const ResourcePage = () => {
 								</Grid>
 							) : (
 								<Box ml="20px" mb="40px" style={{ height: 100}}>
-									<p>
-										There are no opporunities in this cateogry at this time. Please check back at a later date.
+									<p style={{ fontSize: 24 }}>
+										{t.noOpportunities}
 									</p>
 								</Box>
 							)
@@ -87,7 +91,7 @@ const Grid = styled.div`
 	grid-template-columns: repeat(3, 1fr);
 	width: 1400px; 
 	max-width: 90%; 
-	margin: 40px auto 0 auto; 
+	margin: 40px auto 20px auto; 
 	align-items: center; 
 
 	@media screen and (max-width: 1300px) {
