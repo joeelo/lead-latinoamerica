@@ -105,6 +105,7 @@ router.get('/programs/resources', async (req, res) => {
       approved: true,
       expirationDate: { $gt: new Date().toISOString() }
     })
+    .lean()
 
     res.send({ success: true, message: programs })
   } catch (error) {
