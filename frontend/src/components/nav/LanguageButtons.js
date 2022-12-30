@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import useIsMobile from '@/hooks/useIsMobile';
 
 const LanguageButtons = () => {
-
 	const router = useRouter()
 	const isMobile = useIsMobile()
 

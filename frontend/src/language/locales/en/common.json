@@ -24,6 +24,9 @@
 		"bio": "Select from a wide range of programs in your community that will help you thrive.", 
 		"link": "See our Program Opportunities"
 	}, 
+	"program": {
+		"headline": "Programs"
+	},
 	"purpose": "Our Purpose", 
 	"purposeArray": {
 		"sentence1": "This portal ensures that students are made aware of all of the scholarships and opportunities available to them.", 

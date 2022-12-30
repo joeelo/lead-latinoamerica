@@ -8,7 +8,7 @@ import styled from 'styled-components'
 import { useQuery } from "react-query"
 import ProgramRequests from '@/fetch/program/ProgramRequests'
 import LoadingSpinner from '@/components/generic/LoadingSpinner'
-import Box from '@/components/generic/Box';
+import Box from '@/components/generic/Box'
 import en from '@/language/locales/en/common.json'
 import es from '@/language/locales/es/common.json'
 import useLocale from '@/hooks/useLocale'

@@ -24,6 +24,9 @@
 		"bio": "Seleccione entre una amplia gama de programas en su comunidad que lo ayudarán a prosperar.", 
 		"link": "Vea nuestras Oportunidades de Programas"
 	}, 
+	"program": {
+		"headline": "Programas"
+	}, 
 	"purpose": "Nuestro propósito", 
 	"purposeArray": {
 		"sentence1": "Este portal asegura que los estudiantes estén al tanto de todas las becas y oportunidades disponibles para ellos.", 

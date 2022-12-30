@@ -22,7 +22,7 @@ const TitleAndPhotoLinkBox = ({
 		<ContentText> { content.text } </ContentText>
 		<ContentFooter> 
 			<LinkUnderlineEffect 
-				hrefFormatted={`/resources/${content.title.toLowerCase()}`} 
+				hrefFormatted={`/resources/${content.link}`} 
 				text={ content.footer } 
 				color={ 'primary' } 
 			/>
