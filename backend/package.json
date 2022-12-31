@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/translate": "^7.0.5",
     "@sendgrid/mail": "^7.4.5",
     "aws-sdk": "^2.1046.0",
     "bcrypt": "^5.0.1",

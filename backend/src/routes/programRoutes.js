@@ -1,11 +1,11 @@
 const express = require('express')
 const Program = require('../models/Program')
 const User = require('../models/User')
-const seed = require('../seed/programSeed')
 const router = express.Router()
 const sendMail = require('../email/sendGrid')
 const { emailFormatter } = require('../email/emailFormatter')
 const { emailApprovedProgram } = require('../email/emailApprovedProgram')
+const translateText = require('../translation/translator')
 
 const logError = (error) => {
   console.log(error)
@@ -69,6 +69,9 @@ router.post('/programs/add', async (req, res) => {
 
 router.get('/program/:href', async (req, res) => {
   try {
+    const translatedText = await translateText()
+    console.log('translatedText', translatedText)
+
     const program = await Program.findOne({
       href: req.params.href,
     }).lean()

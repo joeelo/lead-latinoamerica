@@ -10,6 +10,9 @@ const programSchema = new mongoose.Schema({
     max: 200,
     required: true,
   },
+  bioEs: {
+    type: String,
+  }, 
   helpsWith: {
     type: Array,
   },
