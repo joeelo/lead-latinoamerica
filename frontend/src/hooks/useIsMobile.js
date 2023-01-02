@@ -9,9 +9,12 @@ const useIsMobile = () => {
       setIsMobile(window.innerWidth < 768)
     }
     updateSize()
-    window.addEventListener('resize', debounce(updateSize, 250))
 
-    return () => window.removeEventListener('resize', updateSize)
+    const debouncedResizer = debounce(updateSize, 250)
+
+    window.addEventListener('resize', debouncedResizer)
+
+    return () => window.removeEventListener('resize', debouncedResizer)
   }, [])
 
   return isMobile

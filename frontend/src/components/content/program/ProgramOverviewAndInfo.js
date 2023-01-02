@@ -1,14 +1,20 @@
-import styled from 'styled-components';
-import Button from "@/components/buttons/Button";
-import { UpdateUsersSavedPrograms } from "@/fetch/user/UserRequests";
-import Box from "@/components/generic/Box";
-import Tiles from './Tiles';
-import ExternalLink from '@/components/generic/ExternalLink';
-import getToast from '@/utils/getToast';
+import styled from 'styled-components'
+import Button from "@/components/buttons/Button"
+import { UpdateUsersSavedPrograms } from "@/fetch/user/UserRequests"
+import Box from "@/components/generic/Box"
+import Tiles from './Tiles'
+import ExternalLink from '@/components/generic/ExternalLink'
+import getToast from '@/utils/getToast'
+import en from '@/language/locales/en/footer.json'
+import es from '@/language/locales/es/footer.json'
+import useLocale from '@/hooks/useLocale'
 
 const ProgramOverviewAndInfo = ({ program, email, preview }) => {
+	const t = useLocale() === 'en' ? en : es
+	const isEnglish = useLocale() === 'en'
+
 	const handleClick = async () => {
-		const response = await UpdateUsersSavedPrograms(email, program._id);
+		const response = await UpdateUsersSavedPrograms(email, program._id)
 		if (response.success) {
 			getToast({ message:'Successfully saved to profile!' })
 		} else {
@@ -16,17 +22,31 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 		}
 	}
 
+	const getProgramBioInLocale = () => {
+		if (!program.bioEs) {
+			return program.bio
+		}
+
+		if (!isEnglish && program.bioEs) {
+			return program.bioEs
+		}
+
+		return program.bio
+	}
+
 	new Date().toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})
 
 	const expDate = new Date(program.expirationDate)
 		.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})
+
+	
 
 	return (
 		<>
 			<Container>
 				<Box width="55%">
 					<LargeText> Overview </LargeText>
-					<StyledP> { program.bio } </StyledP>
+					<StyledP> { getProgramBioInLocale() } </StyledP>
 					{!preview ? (
 						<>
 							{program.partnerUrl && (

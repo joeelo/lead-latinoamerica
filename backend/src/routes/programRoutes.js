@@ -39,10 +39,15 @@ router.post('/programs/add', async (req, res) => {
       'https://images.unsplash.com/photo-1630025326456-1d384d371b24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1748&q=80', 
       'https://images.unsplash.com/photo-1527484583355-9c200f59f0fd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80', 
     ]
+
+
+
+    const translatedText = await translateText(bio)
     
     const newProgram = new Program({
       name,
       bio,
+      bioEs: translatedText[0],
       helpsWith,
       href,
       partnerUrl,
@@ -60,7 +65,7 @@ router.post('/programs/add', async (req, res) => {
     } 
   } catch (error) {
     res.send({ 
-      errorMessage: error._message, 
+      errorMessage: error, 
       error: true, 
       success: false 
     })
@@ -69,9 +74,6 @@ router.post('/programs/add', async (req, res) => {
 
 router.get('/program/:href', async (req, res) => {
   try {
-    const translatedText = await translateText()
-    console.log('translatedText', translatedText)
-
     const program = await Program.findOne({
       href: req.params.href,
     }).lean()

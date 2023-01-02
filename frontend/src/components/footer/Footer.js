@@ -1,15 +1,15 @@
-import styled, { ThemeContext } from 'styled-components';
-import { useContext } from 'react';
-import DynamicQuote from '../content/quote/DynamicQuote';
-import PropTypes from 'prop-types';
-import LinkUnderlineEffect from '@/components/generic/LinkUnderlineEffect';
-import en from '@/language/locales/en/footer.json';
-import es from '@/language/locales/es/footer.json';
-import useLocale from '@/hooks/useLocale';
+import styled, { ThemeContext } from 'styled-components'
+import { useContext } from 'react'
+import DynamicQuote from '../content/quote/DynamicQuote'
+import PropTypes from 'prop-types'
+import LinkUnderlineEffect from '@/components/generic/LinkUnderlineEffect'
+import en from '@/language/locales/en/footer.json'
+import es from '@/language/locales/es/footer.json'
+import useLocale from '@/hooks/useLocale'
 
 const Footer = ({ showQuote }) => {
 
-	const theme = useContext(ThemeContext);
+	const theme = useContext(ThemeContext)
 	const t = useLocale() === 'en' ? en : es
 
 	return (
@@ -35,7 +35,7 @@ const Footer = ({ showQuote }) => {
 	)
 }
 
-export default Footer;
+export default Footer
 
 Footer.propTypes = {
     showQuote: PropTypes.bool
