@@ -1,19 +1,37 @@
-import styled from 'styled-components';
-import Button from "@/components/buttons/Button";
-import { UpdateUsersSavedPrograms } from "@/fetch/user/UserRequests";
-import Box from "@/components/generic/Box";
-import Tiles from './Tiles';
-import ExternalLink from '@/components/generic/ExternalLink';
-import getToast from '@/utils/getToast';
+import styled from 'styled-components'
+import Button from "@/components/buttons/Button"
+import { UpdateUsersSavedPrograms } from "@/fetch/user/UserRequests"
+import Box from "@/components/generic/Box"
+import Tiles from './Tiles'
+import ExternalLink from '@/components/generic/ExternalLink'
+import getToast from '@/utils/getToast'
+import en from '@/language/locales/en/overview.json'
+import es from '@/language/locales/es/overview.json'
+import useLocale from '@/hooks/useLocale'
 
 const ProgramOverviewAndInfo = ({ program, email, preview }) => {
+	const t = useLocale() === 'en' ? en : es
+	const isEnglish = useLocale() === 'en'
+
 	const handleClick = async () => {
-		const response = await UpdateUsersSavedPrograms(email, program._id);
+		const response = await UpdateUsersSavedPrograms(email, program._id)
 		if (response.success) {
 			getToast({ message:'Successfully saved to profile!' })
 		} else {
 			getToast({ message: 'Something went wrong, check the logs!', variant: 'error' })
 		}
+	}
+
+	const getProgramBioInLocale = () => {
+		if (!program.bioEs) {
+			return program.bio
+		}
+
+		if (!isEnglish && program.bioEs) {
+			return program.bioEs
+		}
+
+		return program.bio
 	}
 
 	new Date().toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})
@@ -25,8 +43,8 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 		<>
 			<Container>
 				<Box width="55%">
-					<LargeText> Overview </LargeText>
-					<StyledP> { program.bio } </StyledP>
+					<LargeText> {t.overview} </LargeText>
+					<StyledP> { getProgramBioInLocale() } </StyledP>
 					{!preview ? (
 						<>
 							{program.partnerUrl && (
@@ -34,24 +52,24 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 									href={program.partnerUrl} 
 									bgColor="#0077B6"	
 								>
-									Sign up
+									{t.signUp}
 								</ExternalLink>
 							)}
 
-							<Button label='Save to profile' color='#1F2041' onClick={handleClick}/>
+							<Button label={t.saveToProfile} color='#1F2041' onClick={handleClick}/>
 						</>
 						) 
-						: <Button label='Sign up'></Button>
+						: <Button label={t.signUp}></Button>
 					}
 				</Box>
 
 				<Box width="40%">
-					<UnderlinedSectionHeader> Categories </UnderlinedSectionHeader>
+					<UnderlinedSectionHeader> {t.categories} </UnderlinedSectionHeader>
 					<Tiles adjectives={ program.helpsWith }/>
 
 					{program.expirationDate && (
 						<>
-							<UnderlinedSectionHeader> Deadline </UnderlinedSectionHeader>
+							<UnderlinedSectionHeader> {t.deadline} </UnderlinedSectionHeader>
 							<StyledP>{expDate}</StyledP>
 						</>
 					)}

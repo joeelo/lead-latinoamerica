@@ -1,20 +1,20 @@
-import { useState, useEffect } from 'react'; 
-import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react' 
+import { useRouter } from 'next/router'
 
 const useLocale = () => {
-	const [ lang, setLang ] = useState('en');
-	const router = useRouter(); 
-	const { locale } = router; 
+	const [ lang, setLang ] = useState('en')
+	const router = useRouter() 
+	const { locale } = router 
 
 	useEffect(() => {
 		if (locale === 'en') {
-			setLang('en');
+			setLang('en')
 		} else {
-			setLang('es');
+			setLang('es')
 		}
-	}, [ router.locale ])
+	}, [router.locale])
 
-	return lang; 
+	return lang 
 }
 
-export default useLocale; 
+export default useLocale 

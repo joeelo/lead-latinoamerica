@@ -1,26 +1,28 @@
 import styled from 'styled-components'
-import { useState } from 'react';
-import { useRouter } from 'next/router';
-import NavBar from '@/components/nav/NavBar';
-import Footer from '@/components/footer/Footer';
-import ChangingBackgroundText from '@/components/content/ChangingBackgroundText';
-import TextInput from '@/components/form/text-input/TextInput';
-import { useForm } from 'react-hook-form';
-import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup';
-import Button from '@/components/buttons/Button';
-import Box from '@/components/generic/Box';
-import StyledSectionHeading from '@/components/form/section/StyledSectionHeading';
-import { postToDatabase } from '@/fetch/requests';
-import WordSelectInput from '@/components/form/word-select/WordSelectInput';
-import Tooltip from '@/components/tooltip/Tooltip';
-import InputErrorMessage from '@/components/form/errors/InputErrorMessage'; 
-import DateInput from '@/components/form/date-input/DateInput';
+import { useState } from 'react'
+import { useRouter } from 'next/router'
+import NavBar from '@/components/nav/NavBar'
+import Footer from '@/components/footer/Footer'
+import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
+import TextInput from '@/components/form/text-input/TextInput'
+import { useForm } from 'react-hook-form'
+import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup'
+import Button from '@/components/buttons/Button'
+import Box from '@/components/generic/Box'
+import StyledSectionHeading from '@/components/form/section/StyledSectionHeading'
+import { postToDatabase } from '@/fetch/requests'
+import WordSelectInput from '@/components/form/word-select/WordSelectInput'
+import Tooltip from '@/components/tooltip/Tooltip'
+import InputErrorMessage from '@/components/form/errors/InputErrorMessage' 
+import DateInput from '@/components/form/date-input/DateInput'
+import getToast from '@/utils/getToast'
+
 
 const AddProgram = () => {
-	const [ isSubmitting, setIsSubmitting ] = useState(false); 
-	const [ wordList, setWordList ] = useState([]);
+	const [ isSubmitting, setIsSubmitting ] = useState(false) 
+	const [ wordList, setWordList ] = useState([])
 	const [ apiError, setApiError] = useState(null)
-	const router = useRouter();
+	const router = useRouter()
 
   const { 
 		setValue, 
@@ -29,56 +31,61 @@ const AddProgram = () => {
 		handleSubmit, 
 		watch, 
 		formState: { errors } 
-	} = useForm(); 
+	} = useForm() 
 
 	const onSubmit = async (data) => {
-		setIsSubmitting(true);		
-
-		if (Object.keys(errors).length) {
-			setIsSubmitting(false);
-		}
-
-		
-		Object.keys(data.programType).forEach((key) => {
-			if (data.programType[key]) {
-				data[`programType[${key}]`] = true;
+		try {
+			setIsSubmitting(true)		
+	
+			if (Object.keys(errors).length) {
+				setIsSubmitting(false)
 			}
-		});
-
-		data.helpsWith = wordList;
-
-		if (data.expirationDate) {
-			function dateIsValid(date) {
-				return date instanceof Date && !isNaN(date);
-			}
-		
-			const expirationDate = new Date(data.expirationDate)
-			const isDateValid = dateIsValid(expirationDate)
-
-			if (!isDateValid) {
-				setError('expirationDate', {
-					type: 'manual', 
-					message: 'Please input a valid date'
-				})
-
-				setIsSubmitting(false); 
-				return;
-			}
-
+	
 			
-			data.expirationDate = expirationDate.toISOString();
-		}
-
-		const response = await postToDatabase(data, '/programs/add')
-
-		if (response.errorMessage) {
-			setApiError(response.errorMessage)
-		}
-
-		if (response.success) {
-			router.push('/thanks-partner');
-		} else {
-			setIsSubmitting(false);
+			Object.keys(data.programType).forEach((key) => {
+				if (data.programType[key]) {
+					data[`programType[${key}]`] = true
+				}
+			})
+	
+			data.helpsWith = wordList
+	
+			if (data.expirationDate) {
+				function dateIsValid(date) {
+					return date instanceof Date && !isNaN(date)
+				}
+			
+				const expirationDate = new Date(data.expirationDate)
+				const isDateValid = dateIsValid(expirationDate)
+	
+				if (!isDateValid) {
+					setError('expirationDate', {
+						type: 'manual', 
+						message: 'Please input a valid date'
+					})
+	
+					setIsSubmitting(false) 
+					return
+				}
+	
+				
+				data.expirationDate = expirationDate.toISOString()
+			}
+	
+			const response = await postToDatabase(data, '/programs/add')
+	
+			if (response.errorMessage) {
+				setApiError(response.errorMessage)
+			}
+	
+			if (response.success) {
+				router.push('/thanks-partner')
+			} else {
+				setIsSubmitting(false)
+				getToast({ message: 'Something went wrong, please try again later', variant: 'error' })
+			}
+		} catch (error) {
+			console.log(error)
 		}
 	}
 
