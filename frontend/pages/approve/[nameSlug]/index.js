@@ -1,17 +1,17 @@
-import { useRouter } from 'next/router';
-import NavBar from "@/components/nav/NavBar";
-import Footer from "@/components/footer/Footer";
-import ProgramOverviewAndInfo from "@/components/content/program/ProgramOverviewAndInfo";
-import ProgramTitleAndPhoto from "@/components/content/program/ProgramTitleAndPhoto";
-import FixedButton from "@/components/buttons/FixedButton";
-import { useQuery } from "react-query";
+import { useRouter } from 'next/router'
+import NavBar from "@/components/nav/NavBar"
+import Footer from "@/components/footer/Footer"
+import ProgramOverviewAndInfo from "@/components/content/program/ProgramOverviewAndInfo"
+import ProgramTitleAndPhoto from "@/components/content/program/ProgramTitleAndPhoto"
+import FixedButton from "@/components/buttons/FixedButton"
+import { useQuery } from "react-query"
 import ProgramRequests from 'src/fetch/program/ProgramRequests'
-import { ToastContainer } from "react-toastify";
-import getToast from '@/utils/getToast';
+import { ToastContainer } from "react-toastify"
+import getToast from '@/utils/getToast'
 
 const ApproveProgramPage = () => {
 
-	const router = useRouter(); 
+	const router = useRouter() 
 
 	const { data } = useQuery({
 		queryKey: ['fetchProgram', {name: router.query.nameSlug}], 
@@ -61,4 +61,4 @@ const ApproveProgramPage = () => {
 	)
 }
 
-export default ApproveProgramPage;
+export default ApproveProgramPage
