@@ -11,7 +11,6 @@ async function translateText(text) {
     // multiple texts.
     let [translations] = await translate.translate(text, target)
     translations = Array.isArray(translations) ? translations : [translations]
-    console.log('Translations:')
     const translation = translations.map((translation) => translation)
   
     return translation
