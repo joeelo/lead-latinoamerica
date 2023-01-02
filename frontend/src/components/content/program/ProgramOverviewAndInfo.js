@@ -5,8 +5,8 @@ import Box from "@/components/generic/Box"
 import Tiles from './Tiles'
 import ExternalLink from '@/components/generic/ExternalLink'
 import getToast from '@/utils/getToast'
-import en from '@/language/locales/en/footer.json'
-import es from '@/language/locales/es/footer.json'
+import en from '@/language/locales/en/overview.json'
+import es from '@/language/locales/es/overview.json'
 import useLocale from '@/hooks/useLocale'
 
 const ProgramOverviewAndInfo = ({ program, email, preview }) => {
@@ -39,13 +39,11 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 	const expDate = new Date(program.expirationDate)
 		.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})
 
-	
-
 	return (
 		<>
 			<Container>
 				<Box width="55%">
-					<LargeText> Overview </LargeText>
+					<LargeText> {t.overview} </LargeText>
 					<StyledP> { getProgramBioInLocale() } </StyledP>
 					{!preview ? (
 						<>
@@ -54,24 +52,24 @@ const ProgramOverviewAndInfo = ({ program, email, preview }) => {
 									href={program.partnerUrl} 
 									bgColor="#0077B6"	
 								>
-									Sign up
+									{t.signUp}
 								</ExternalLink>
 							)}
 
-							<Button label='Save to profile' color='#1F2041' onClick={handleClick}/>
+							<Button label={t.saveToProfile} color='#1F2041' onClick={handleClick}/>
 						</>
 						) 
-						: <Button label='Sign up'></Button>
+						: <Button label={t.signUp}></Button>
 					}
 				</Box>
 
 				<Box width="40%">
-					<UnderlinedSectionHeader> Categories </UnderlinedSectionHeader>
+					<UnderlinedSectionHeader> {t.categories} </UnderlinedSectionHeader>
 					<Tiles adjectives={ program.helpsWith }/>
 
 					{program.expirationDate && (
 						<>
-							<UnderlinedSectionHeader> Deadline </UnderlinedSectionHeader>
+							<UnderlinedSectionHeader> {t.deadline} </UnderlinedSectionHeader>
 							<StyledP>{expDate}</StyledP>
 						</>
 					)}
