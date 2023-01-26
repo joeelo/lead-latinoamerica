@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { ToastContainer } from "react-toastify";
+import { Analytics } from '@vercel/analytics/react';
 // import { UserWrapper } from '@/context/UserContext';
 
 const theme = {
@@ -123,6 +124,7 @@ const App = ({ Component, pageProps }) => {
 						<ThemeProvider theme={theme}>
 							<LanguageWrapper>
 								<Component {...pageProps} />
+								<Analytics />
 							</LanguageWrapper>
 						</ThemeProvider>
 				</AuthProvider>
