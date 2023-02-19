@@ -17,11 +17,13 @@ import UserSavedPrograms from '@/components/programs/UserSavedPrograms'
 import { useQuery } from 'react-query'
 import getToast from '@/utils/getToast'
 import ProfileBarChart from '@/components/charts/ProfileBarChart'
+import { useRouter } from 'next/router'
 
 const ProfilePage = () => {
   const [ session ] = useSession()
-  const [ userData, setUserData ] = useState({});
+  const [ userData, setUserData ] = useState({})
   const [ isEditing, setIsEditing ] = useState(false)
+  const router = useRouter()
 
   const userName = getFullName(session)
   const email = session?.user?.email;
@@ -84,6 +86,10 @@ const ProfilePage = () => {
       setProfileInfo()
     }
   }, [email])
+
+  if (!session) {
+    router.push('sign-in')
+  }
 
   return (
     <>
@@ -208,6 +214,8 @@ const ProfilePage = () => {
               </Box>
             )}
           </Box>
+
+          <h1 style={{ marginBottom: 40 }}>Number of opportunities added by month</h1>    
 
           <ProfileBarChart />
 

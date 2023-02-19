@@ -9,6 +9,28 @@ import {
   ResponsiveContainer 
 } from 'recharts'
 
+function CustomTooltip({ payload, label, active }) {
+  if (active) {
+    return (
+      <div className='custom-tooltip'>
+        <div 
+          style={{ 
+            backgroundColor: 'white', 
+            padding: 15, 
+            maxWidth: 200,
+            borderRadius: 4, 
+            border: '1px solid rgba(0, 0, 0, .2)'
+          }}
+        >
+          There were {payload[0].value} opportunities added in {label}
+        </div>
+      </div>
+    )
+  }
+
+  return null
+}
+
 const ProfileBarChart = () => {
 
   const statsQuery = useQuery({
@@ -26,17 +48,14 @@ const ProfileBarChart = () => {
     }
   })
 
-
   return (
-    <ResponsiveContainer width={400} height={300}>
+    <ResponsiveContainer width={"100%"} height={400}>
         <BarChart
-          width={500}
-          height={300}
           data={data}
         >
           <XAxis dataKey="name" />
           <YAxis />
-          <Tooltip cursor={{fill: '#fff'}}/>
+          <Tooltip cursor={{fill: '#fff'}} content={<CustomTooltip />}/>
           <Bar dataKey="opportunityCount" fill="#1F2041" />
         </BarChart>
       </ResponsiveContainer>
