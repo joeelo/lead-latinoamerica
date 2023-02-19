@@ -1,3 +1,5 @@
+import StatsRequests from '@/fetch/stats/StatsRequests'
+import { useQuery } from 'react-query'
 import { 
   BarChart, 
   Bar, 
@@ -7,26 +9,23 @@ import {
   ResponsiveContainer 
 } from 'recharts'
 
-const data = [
-  {
-    name: 'Jan',
-    opportunities: 4000,
-  },
-  {
-    name: 'Feb',
-    opportunities: 3000,
-  },
-  {
-    name: 'Mar',
-    opportunities: 2000,
-  },
-  {
-    name: 'Apr',
-    opportunities: 2780,
-  },
-]
-
 const ProfileBarChart = () => {
+
+  const statsQuery = useQuery({
+    key: 'program-stats', 
+    queryFn: StatsRequests.getProgramStats
+  })
+
+  const { stats = {} } = statsQuery?.data?.message || {}
+
+  // stats = { January: 1, February: 3 }
+  const data = Object.entries(stats).map((stat) => {
+    return {
+      name: stat[0], 
+      opportunityCount: stat[1]
+    }
+  })
+
 
   return (
     <ResponsiveContainer width={400} height={300}>
@@ -38,7 +37,7 @@ const ProfileBarChart = () => {
           <XAxis dataKey="name" />
           <YAxis />
           <Tooltip cursor={{fill: '#fff'}}/>
-          <Bar dataKey="opportunities" fill="#82ca9d" />
+          <Bar dataKey="opportunityCount" fill="#1F2041" />
         </BarChart>
       </ResponsiveContainer>
   )
