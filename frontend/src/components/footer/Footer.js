@@ -14,7 +14,8 @@ const Footer = ({ showQuote }) => {
 
 	return (
     <>
-			{ showQuote && <DynamicQuote /> }
+			{showQuote && <DynamicQuote />}
+			
 			<Container data-testid='footer' theme={ theme }>
 				<Column>
 					<p> { t.explore } </p>

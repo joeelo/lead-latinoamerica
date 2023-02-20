@@ -18,6 +18,7 @@ import { useQuery } from 'react-query'
 import getToast from '@/utils/getToast'
 import ProfileBarChart from '@/components/charts/ProfileBarChart'
 import { useRouter } from 'next/router'
+import BarChart from '@/components/charts/BarChart'
 
 const ProfilePage = () => {
   const [ session ] = useSession()
@@ -218,6 +219,8 @@ const ProfilePage = () => {
           <h1 style={{ marginBottom: 40 }}>Number of opportunities added by month</h1>    
 
           <ProfileBarChart />
+
+          <BarChart />
 
           <Box>
             <UserSavedPrograms programs={data?.programs}/>
