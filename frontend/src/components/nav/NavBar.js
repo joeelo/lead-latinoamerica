@@ -1,10 +1,22 @@
 
-import useIsMobile from '@/hooks/useIsMobile';
-import DesktopNav from './DesktopNav';
-import MobileNav from './MobileNav';
+import useIsMobile from '@/hooks/useIsMobile'
+import DesktopNav from './DesktopNav'
+import MobileNav from './MobileNav'
+import { useState, useEffect } from 'react'
 
 const NavBar = () => {
 	const isMobile = useIsMobile()
+
+	const [hasMounted, setHasMounted] = useState(false)
+
+	useEffect(() => {
+		setHasMounted(true)
+	}, [])
+
+	if (!hasMounted) {
+		return null
+	}
+
 
 	return (
 		!isMobile ? (

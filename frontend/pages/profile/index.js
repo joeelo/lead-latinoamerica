@@ -16,7 +16,6 @@ import ProgramRequests from '@/fetch/program/ProgramRequests'
 import UserSavedPrograms from '@/components/programs/UserSavedPrograms'
 import { useQuery } from 'react-query'
 import getToast from '@/utils/getToast'
-import ProfileBarChart from '@/components/charts/ProfileBarChart'
 import { useRouter } from 'next/router'
 import BarChart from '@/components/charts/BarChart'
 
@@ -88,9 +87,11 @@ const ProfilePage = () => {
     }
   }, [email])
 
-  if (!session) {
-    router.push('sign-in')
-  }
+  useEffect(() => {
+    if (!session) {
+      router.push('sign-in')
+    }
+  }, [session])
 
   return (
     <>
@@ -216,11 +217,20 @@ const ProfilePage = () => {
             )}
           </Box>
 
-          <h1 style={{ marginBottom: 40 }}>Number of opportunities added by month</h1>    
+          <h1 style={{ marginBottom: 30 }}>Number of opportunities added by month</h1>    
 
-          <ProfileBarChart />
-
-          <BarChart />
+          <div 
+            style={{
+              borderRadius: 4, 
+              border: '1px solid rgba(0, 0, 0, .2)', 
+              padding: 20, 
+              width: '100%', 
+              height: 400,
+              marginBottom: 20
+            }}
+          >
+            <BarChart />
+          </div>
 
           <Box>
             <UserSavedPrograms programs={data?.programs}/>
