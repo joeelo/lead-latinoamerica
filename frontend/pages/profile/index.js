@@ -18,6 +18,7 @@ import { useQuery } from 'react-query'
 import getToast from '@/utils/getToast'
 import { useRouter } from 'next/router'
 import BarChart from '@/components/charts/BarChart'
+import ProgramChartWrapper from '@/components/charts/ProgramChartWrapper'
 
 const ProfilePage = () => {
   const [ session ] = useSession()
@@ -106,7 +107,7 @@ const ProfilePage = () => {
         <Box width='al-fu' center style={{position: 'relative'}}>
           {userName.initials && (
             <NameCircle>
-              { userName.initials }
+              {userName.initials}
             </NameCircle>
           )}
         </Box>
@@ -229,7 +230,7 @@ const ProfilePage = () => {
               marginBottom: 20
             }}
           >
-            <BarChart />
+            <ProgramChartWrapper />
           </div>
 
           <Box>
