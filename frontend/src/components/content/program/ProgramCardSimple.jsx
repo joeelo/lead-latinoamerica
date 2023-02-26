@@ -22,7 +22,12 @@ const ProgramCardSimple = ({
   }
 
   return (
-    <Box style={{ position: 'relative' }} mw="300px" mr={20} tabIndex="0">
+    <Box
+      style={{ position: 'relative', marginRight: 20 }}
+      mw="300px"
+      mr={20}
+      tabIndex="0"
+    >
       <Link href={`/resource/${program.href}`}>
         <Container
           isHovered={isHovered}
@@ -33,7 +38,6 @@ const ProgramCardSimple = ({
           <h3>{program.name}</h3>
         </Container>
       </Link>
-
       {showDeleteButton && (
         <>
           <StyledDeleteButton

@@ -1,12 +1,18 @@
 import BarChart from './BarChart'
 import { useQuery } from 'react-query'
+import { useSession } from 'next-auth/client'
 
-function ProgramChartWrapper() {
+function UserProgramChartWrapper() {
+  const [session] = useSession()
+  const email = session?.user?.email
+
   const programsAdded = async () => {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DB_LOCATION}/stats/programs`
+      `${process.env.NEXT_PUBLIC_DB_LOCATION}/stats/programs/${email}`
     )
     const json = await response.json()
+
+    console.log('JSON: ', json)
     return json
   }
 
@@ -21,6 +27,10 @@ function ProgramChartWrapper() {
 
   const { data = {} } = programsAddedQuery
   const { stats } = data.message || {}
+
+  if (!stats) {
+    return null
+  }
 
   const categories = Object.keys(stats)
   const seriesData = Object.values(stats)
@@ -74,4 +84,4 @@ function ProgramChartWrapper() {
   )
 }
 
-export default ProgramChartWrapper
+export default UserProgramChartWrapper

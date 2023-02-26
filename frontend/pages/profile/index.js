@@ -17,8 +17,7 @@ import UserSavedPrograms from '@/components/programs/UserSavedPrograms'
 import { useQuery } from 'react-query'
 import getToast from '@/utils/getToast'
 import { useRouter } from 'next/router'
-import BarChart from '@/components/charts/BarChart'
-import ProgramChartWrapper from '@/components/charts/ProgramChartWrapper'
+import UserProgramChartWrapper from '@/components/charts/UserProgramChartWrapper'
 
 const ProfilePage = () => {
   const [ session ] = useSession()
@@ -116,9 +115,11 @@ const ProfilePage = () => {
           <Box center mt='100px' mb='40px'>
             {!isEditing ? (
               <> 
-                {userData.preferredName && (
-                  <TitleHeading> Hey there {userData.preferredName}!</TitleHeading>
-                )}
+                <div style={{ marginTop: 40 }}>
+                  {userData.preferredName && (
+                    <TitleHeading> Hey there {userData.preferredName}!</TitleHeading>
+                  )}
+                </div>
 
                 <Span> 
                   We're bringing notifications to the profile page soon. So you can opt-in to get weekly emails on programs that have been uploaded, and specify what types of programs you're interested in by clicking the edit button below.
@@ -130,7 +131,7 @@ const ProfilePage = () => {
             ) : (
               <Box mw='600px' mr='40px'>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  <Box mb='40px'>
+                  <Box mb='30px'>
                     <TitleHeading>What year of school are you in</TitleHeading>
                     <SelectInput 
                       options={[
@@ -190,9 +191,11 @@ const ProfilePage = () => {
 
                   <Box>
                     <TitleHeading>What ethnicity are you? (check all that apply)</TitleHeading>
+
                     <p style={{ marginTop: -10, marginBottom: 10}}>
                       We ask because there are programs for specific groups and we'd like every possible opportunity to be available.
                     </p>
+
                     <CheckboxGroup
                       name="ethnicity"
                       options={[
@@ -218,24 +221,11 @@ const ProfilePage = () => {
             )}
           </Box>
 
-          <h1 style={{ marginBottom: 30 }}>Number of opportunities added by month</h1>    
-
-          <div 
-            style={{
-              borderRadius: 4, 
-              border: '1px solid rgba(0, 0, 0, .2)', 
-              padding: 20, 
-              width: '100%', 
-              height: 400,
-              marginBottom: 20
-            }}
-          >
-            <ProgramChartWrapper />
-          </div>
-
           <Box>
             <UserSavedPrograms programs={data?.programs}/>
           </Box>
+
+          <UserProgramChartWrapper />
 
         </Box>
       <Footer />
@@ -264,6 +254,7 @@ const NameCircle = styled.div`
   background-color: #1F2041; 
   color: white;
   font-size: 36px;
+
 `
 
 const TitleHeading = styled.p`

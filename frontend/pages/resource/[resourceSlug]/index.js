@@ -8,9 +8,9 @@ import { useQuery } from 'react-query'
 import ProgramRequests from '@/fetch/program/ProgramRequests'
 import LoadingSpinner from '@/components/generic/LoadingSpinner'
 
-const ProgramPage = () => {
+const ResourcePage = () => {
   const router = useRouter() 
-  const { programSlug: name } = router.query  || {}
+  const { resourceSlug: name } = router.query  || {}
 
   const [session, loading] = useSession()
   const isLoadingSession = loading
@@ -27,6 +27,7 @@ const ProgramPage = () => {
   const isCurrentlyLoading = !program || isLoadingSession || isLoading
 
   return (
+
     <>
       <NavBar />
       {isCurrentlyLoading ? (
@@ -46,4 +47,4 @@ const ProgramPage = () => {
   )
 }
 
-export default ProgramPage
+export default ResourcePage
