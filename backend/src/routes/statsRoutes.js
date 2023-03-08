@@ -63,9 +63,17 @@ router.get('/stats/programs/:email', async (req, res) => {
       stats[month].program += 1
     })
 
-    console.log('USER: ', user.savedProgramDates)
+    user.savedProgramDates.forEach((program) => {
+      const month = dayjs(program.dateAdded).startOf('month').toISOString().split('T')[0]
 
-    console.log("STATS BABYYYY : ", stats)
+      if (stats[month]) {
+        if (!Number(stats[month].user)) {
+          stats[month].user = 0
+        }
+          
+        stats[month].user += 1
+      }
+    })
 
     res.send({ success: true, message: { stats } })
   } catch (error) { 

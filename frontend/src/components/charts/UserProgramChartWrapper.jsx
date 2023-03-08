@@ -1,10 +1,14 @@
 import BarChart from './BarChart'
 import { useQuery } from 'react-query'
 import { useSession } from 'next-auth/client'
+import { DateTime } from 'luxon'
+import { useState, useMemo } from 'react'
+import { useEffect } from 'react'
 
 function UserProgramChartWrapper() {
   const [session] = useSession()
   const email = session?.user?.email
+  const [categories, setCategories] = useState([])
 
   const programsAdded = async () => {
     const response = await fetch(
@@ -12,28 +16,40 @@ function UserProgramChartWrapper() {
     )
     const json = await response.json()
 
-    console.log('JSON: ', json)
     return json
   }
 
   const programsAddedQuery = useQuery({
     key: 'report-programs',
     queryFn: programsAdded,
+    enabled: !!email,
   })
 
-  if (programsAddedQuery.isLoading || programsAddedQuery.error) {
+  const { data = {}, isLoading, error } = programsAddedQuery
+
+  const { stats } = useMemo(() => {
+    return data.message || {}
+  }, [data.message])
+
+  useEffect(() => {
+    const cats = Object.keys(stats || {})
+
+    setCategories(cats)
+  }, [stats])
+
+  const seriesData = Object.values(stats || {})
+
+  if (isLoading || error) {
     return null
   }
 
-  const { data = {} } = programsAddedQuery
-  const { stats } = data.message || {}
+  const programData = seriesData.map((data) => data.program)
+  const userData = seriesData.map((data) => data.user || 0)
 
-  if (!stats) {
-    return null
-  }
-
-  const categories = Object.keys(stats)
-  const seriesData = Object.values(stats)
+  const monthsFormatted = categories.map((cat) => {
+    const date = DateTime.fromISO(cat)
+    return date.toLocaleString({ month: 'long', day: 'numeric' })
+  })
 
   const options = {
     options: {
@@ -51,22 +67,28 @@ function UserProgramChartWrapper() {
         },
       },
       xaxis: {
-        categories,
+        categories: monthsFormatted,
       },
     },
     series: [
       {
         name: 'Programs added',
-        data: seriesData,
+        data: programData,
+      },
+      {
+        name: 'Programs saved',
+        data: userData,
       },
     ],
   }
 
   return (
     <>
-      <h1 style={{ marginBottom: 30 }}>
-        Number of opportunities added by month
-      </h1>
+      <h1>Number of opportunities added by month</h1>
+      <p style={{ marginBottom: 20 }}>
+        How many opportunities have been added vs how many you've saved month
+        over month
+      </p>
 
       <div
         style={{

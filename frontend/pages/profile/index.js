@@ -264,11 +264,6 @@ const TitleHeading = styled.p`
   margin-top: 20px;
 `
 
-const FormDetail = styled.p`
-  font-size: 22px; 
-  margin-bottom: 30px; 
-`
-
 const Span = styled.span`
   display: flex;
   max-width: 900px; 

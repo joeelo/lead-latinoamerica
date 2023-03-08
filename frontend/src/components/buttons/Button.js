@@ -33,7 +33,7 @@ Button.propTypes = {
 export default Button;
 
 const Container = styled.button`
-  width: 175px; 
+  width: 160px; 
   height: 60px; 
   display: flex; 
   justify-content: center; 
@@ -44,7 +44,7 @@ const Container = styled.button`
   border: 0; 
   margin-top: 30px; 
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   transition: .4s ease all; 
   font-size: 22px;
 

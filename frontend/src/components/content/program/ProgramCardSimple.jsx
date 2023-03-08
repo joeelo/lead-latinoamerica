@@ -49,7 +49,7 @@ const ProgramCardSimple = ({
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            x
+            <span>x</span>
           </StyledDeleteButton>
           <ReactTooltip
             id="delete-button"
@@ -117,5 +117,10 @@ const StyledDeleteButton = styled.div`
   &:hover {
     box-shadow: 2px 4px 8px -1px rgba(0, 0, 0, 1);
     cursor: pointer;
+  }
+
+  span {
+    margin-bottom: 1px;
+    font-size: 14px;
   }
 `
