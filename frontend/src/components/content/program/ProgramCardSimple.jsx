@@ -22,7 +22,12 @@ const ProgramCardSimple = ({
   }
 
   return (
-    <Box style={{ position: 'relative' }} mw="300px" mr={20} tabIndex="0">
+    <Box
+      style={{ position: 'relative', marginRight: 20 }}
+      mw="300px"
+      mr={20}
+      tabIndex="0"
+    >
       <Link href={`/resource/${program.href}`}>
         <Container
           isHovered={isHovered}
@@ -33,7 +38,6 @@ const ProgramCardSimple = ({
           <h3>{program.name}</h3>
         </Container>
       </Link>
-
       {showDeleteButton && (
         <>
           <StyledDeleteButton
@@ -45,7 +49,7 @@ const ProgramCardSimple = ({
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            x
+            <span>x</span>
           </StyledDeleteButton>
           <ReactTooltip
             id="delete-button"
@@ -113,5 +117,10 @@ const StyledDeleteButton = styled.div`
   &:hover {
     box-shadow: 2px 4px 8px -1px rgba(0, 0, 0, 1);
     cursor: pointer;
+  }
+
+  span {
+    margin-bottom: 1px;
+    font-size: 14px;
   }
 `

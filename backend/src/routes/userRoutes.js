@@ -135,20 +135,31 @@ router.get('/user/programs/:email/:programId', async (req, res) => {
       foundProgram = user.savedPrograms.find((id => id == programId))
     }
 
-    if (foundProgram) {
-      res.send({ 
+    const foundProgramDate = user.savedProgramDates.find((program) => {
+      program.id === programId
+    })
+
+    if (!foundProgramDate) {
+      user.savedProgramDates.push({ id: programId, dateAdded: new Date().toISOString() })
+    }
+
+    if (!foundProgram) {
+      user.savedPrograms.push(programId)
+      // https://stackoverflow.com/questions/22278761/mongoose-difference-between-save-and-using-update
+      await user.save() 
+
+      res.send({ message: 'Program Saved!', success: true })
+
+      return 
+    }
+
+    await user.save() 
+
+    res.send({ 
       message: 'This program is already saved!', 
       success: true, 
       warningMessage: 'This program is already saved!' 
-      }) 
-
-      return
-    }
-
-    user.savedPrograms.push(programId)
-    await user.save() 
-
-    res.send({ message: 'Program Saved!', success: true })
+    }) 
 
   } catch (error) {
     console.log('ERROR IN UPDATING SAVED PROGRAMS: ', error)

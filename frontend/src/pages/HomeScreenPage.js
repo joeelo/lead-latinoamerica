@@ -65,6 +65,14 @@ const HomeScreenPage = () => {
 				</RelativeTextContainer>
 			</FullScreenBack>
 
+			<div 
+				style={{
+					height: 100, 
+					width: '100%',
+					backgroundColor: theme.colors.cultured 
+				}}
+			/>
+
 			<CenterFlexContainer backgroundColor={theme.colors.cultured} minHeight='auto' padding={60}>
 				<ChangingBackgroundText 
 					initialColor={theme.colors.cultured}
@@ -157,7 +165,6 @@ const PortalSubTitle = styled.p`
 
 const RelativeTextContainer = styled.div`
 	position: relative; 
-	top: 100px;
 	left: 20px;
 	max-width: 90vw;
 `

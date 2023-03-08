@@ -13,6 +13,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
     "@vercel/analytics": "^0.1.8",
+    "apexcharts": "^3.37.1",
     "lodash": "^4.17.21",
     "luxon": "^2.3.1",
     "next": "^12.1.1",
@@ -20,6 +21,7 @@
     "next-i18next": "^8.10.0",
     "node-fetch": "^3.2.0",
     "react": "^16.8.0",
+    "react-apexcharts": "^1.4.0",
     "react-dom": "^16.8.0",
     "react-dropzone": "^11.5.1",
     "react-hook-form": "^7.25.0",
@@ -28,6 +30,7 @@
     "react-spring": "^9.4.2",
     "react-toastify": "^8.1.0",
     "react-tooltip": "^4.2.21",
+    "recharts": "^2.4.2",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {

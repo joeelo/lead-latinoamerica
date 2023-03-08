@@ -1,7 +1,7 @@
-import HomeScreenPage from '@/pages/HomeScreenPage';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import HomeScreenPage from '@/pages/HomeScreenPage'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-export default HomeScreenPage;
+export default HomeScreenPage
 
 export async function getStaticProps({ locale }) {
 	return {

@@ -73,11 +73,12 @@ function DesktopNav() {
           )}
         </Box>
       </Box>
+
       {anchorEl && anchorEl.dataset.name === 'get-involved' && (
         <Popover anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
           <Box className="link-container" fd="column" display="flex">
             <Link href="/add-program">{t.addOrg}</Link>
-            <Link href="/profile">{t.profile}</Link>
+            {session && <Link href="/profile">{t.profile}</Link>}
             <a
               target="_blank"
               href="https://www.leadlatinoamerica.org/copy-of-our-team"
@@ -87,6 +88,7 @@ function DesktopNav() {
           </Box>
         </Popover>
       )}
+
       {anchorEl && anchorEl.dataset.name === 'resources' && (
         <Popover anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
           <Box className="link-container" display="flex" fd="column">

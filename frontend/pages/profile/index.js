@@ -16,11 +16,14 @@ import ProgramRequests from '@/fetch/program/ProgramRequests'
 import UserSavedPrograms from '@/components/programs/UserSavedPrograms'
 import { useQuery } from 'react-query'
 import getToast from '@/utils/getToast'
+import { useRouter } from 'next/router'
+import UserProgramChartWrapper from '@/components/charts/UserProgramChartWrapper'
 
 const ProfilePage = () => {
   const [ session ] = useSession()
-  const [ userData, setUserData ] = useState({});
+  const [ userData, setUserData ] = useState({})
   const [ isEditing, setIsEditing ] = useState(false)
+  const router = useRouter()
 
   const userName = getFullName(session)
   const email = session?.user?.email;
@@ -84,6 +87,12 @@ const ProfilePage = () => {
     }
   }, [email])
 
+  useEffect(() => {
+    if (!session) {
+      router.push('sign-in')
+    }
+  }, [session])
+
   return (
     <>
       <NavBar/>
@@ -97,7 +106,7 @@ const ProfilePage = () => {
         <Box width='al-fu' center style={{position: 'relative'}}>
           {userName.initials && (
             <NameCircle>
-              { userName.initials }
+              {userName.initials}
             </NameCircle>
           )}
         </Box>
@@ -106,9 +115,11 @@ const ProfilePage = () => {
           <Box center mt='100px' mb='40px'>
             {!isEditing ? (
               <> 
-                {userData.preferredName && (
-                  <TitleHeading> Hey there {userData.preferredName}!</TitleHeading>
-                )}
+                <div style={{ marginTop: 40 }}>
+                  {userData.preferredName && (
+                    <TitleHeading> Hey there {userData.preferredName}!</TitleHeading>
+                  )}
+                </div>
 
                 <Span> 
                   We're bringing notifications to the profile page soon. So you can opt-in to get weekly emails on programs that have been uploaded, and specify what types of programs you're interested in by clicking the edit button below.
@@ -120,7 +131,7 @@ const ProfilePage = () => {
             ) : (
               <Box mw='600px' mr='40px'>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  <Box mb='40px'>
+                  <Box mb='30px'>
                     <TitleHeading>What year of school are you in</TitleHeading>
                     <SelectInput 
                       options={[
@@ -180,9 +191,11 @@ const ProfilePage = () => {
 
                   <Box>
                     <TitleHeading>What ethnicity are you? (check all that apply)</TitleHeading>
+
                     <p style={{ marginTop: -10, marginBottom: 10}}>
                       We ask because there are programs for specific groups and we'd like every possible opportunity to be available.
                     </p>
+
                     <CheckboxGroup
                       name="ethnicity"
                       options={[
@@ -212,6 +225,8 @@ const ProfilePage = () => {
             <UserSavedPrograms programs={data?.programs}/>
           </Box>
 
+          <UserProgramChartWrapper />
+
         </Box>
       <Footer />
     </>
@@ -239,6 +254,7 @@ const NameCircle = styled.div`
   background-color: #1F2041; 
   color: white;
   font-size: 36px;
+
 `
 
 const TitleHeading = styled.p`
@@ -246,11 +262,6 @@ const TitleHeading = styled.p`
   margin-bottom: 10px;
   font-weight: 500;
   margin-top: 20px;
-`
-
-const FormDetail = styled.p`
-  font-size: 22px; 
-  margin-bottom: 30px; 
 `
 
 const Span = styled.span`
