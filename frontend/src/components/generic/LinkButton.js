@@ -6,8 +6,6 @@ const LinkButton = ({
     text, 
     hrefFormatted, 
     hrefAs, 
-    marginLeft, 
-    marginTop,
     bgColor = '#0077B6',
     width,
     external

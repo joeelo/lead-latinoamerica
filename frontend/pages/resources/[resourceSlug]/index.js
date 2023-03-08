@@ -50,6 +50,7 @@ const ResourcePage = () => {
 					color: 'white' 
 				}}
 			/>
+			<div style={{ marginBottom: 100 }}/>
 				{isLoading ? (
 					<LoadingSpinner />
 				) : (

@@ -38,6 +38,10 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Program', 
   }],
+  
+  savedProgramDates: {
+    type: Array
+  },
 
   isAdmin: {
     type: Boolean, 

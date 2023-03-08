@@ -8,7 +8,7 @@ import { useQuery } from 'react-query'
 import ProgramRequests from '@/fetch/program/ProgramRequests'
 import LoadingSpinner from '@/components/generic/LoadingSpinner'
 
-const ProgramPage = () => {
+const ResourcePage = () => {
   const router = useRouter() 
   const { programSlug: name } = router.query  || {}
 
@@ -46,4 +46,4 @@ const ProgramPage = () => {
   )
 }
 
-export default ProgramPage
+export default ResourcePage

@@ -58,7 +58,6 @@ FullScreenBack.defaultProps = {
 
 const OuterWrapper = styled.div`
 	position: relative;
-	margin-bottom: 100px;
 `
 
 const Container = styled.div`
