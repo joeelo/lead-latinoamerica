@@ -59,6 +59,9 @@ function UserProgramChartWrapper() {
           show: false,
         },
       },
+      dataLabels: {
+        enabled: false,
+      },
       grid: {
         xaxis: {
           lines: {
@@ -77,7 +80,7 @@ function UserProgramChartWrapper() {
       },
       {
         name: 'Programs saved',
-        data: userData,
+        data: [null, null, 3, 6],
       },
     ],
   }
