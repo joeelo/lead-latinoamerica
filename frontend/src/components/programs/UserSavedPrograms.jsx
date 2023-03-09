@@ -23,9 +23,9 @@ const UserSavedPrograms = ({ programs }) => {
   }
 
   return (
-    <Box display="flex" fd="column" stackOnMobile mb="20px">
+    <Box display="flex" fd="column" mb="20px">
       <TitleHeading>Your Saved Opportunities</TitleHeading>
-      <Box display="flex" wrap="wrap">
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {programs.length === 0 ? (
           <p>You haven't saved any opportunities yet!</p>
         ) : (
@@ -42,7 +42,7 @@ const UserSavedPrograms = ({ programs }) => {
             })}
           </>
         )}
-      </Box>
+      </div>
     </Box>
   )
 }

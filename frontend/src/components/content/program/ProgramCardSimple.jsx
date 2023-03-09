@@ -25,7 +25,6 @@ const ProgramCardSimple = ({
     <Box
       style={{ position: 'relative', marginRight: 20 }}
       mw="300px"
-      mr={20}
       tabIndex="0"
     >
       <Link href={`/resource/${program.href}`}>

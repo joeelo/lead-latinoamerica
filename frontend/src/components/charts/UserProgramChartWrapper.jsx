@@ -39,10 +39,6 @@ function UserProgramChartWrapper() {
 
   const seriesData = Object.values(stats || {})
 
-  if (isLoading || error) {
-    return null
-  }
-
   const programData = seriesData.map((data) => data.program)
   const userData = seriesData.map((data) => data.user || 0)
 
@@ -58,6 +54,9 @@ function UserProgramChartWrapper() {
         toolbar: {
           show: false,
         },
+        selection: {
+          enabled: false,
+        },
       },
       dataLabels: {
         enabled: false,
@@ -71,6 +70,21 @@ function UserProgramChartWrapper() {
       },
       xaxis: {
         categories: monthsFormatted,
+        crosshairs: {
+          show: false, // <--- HERE DISABLES BACKGROUND BAR ON HOVER
+        },
+      },
+      states: {
+        hover: {
+          filter: {
+            type: 'none',
+          },
+        },
+        active: {
+          filter: {
+            type: 'none',
+          },
+        },
       },
     },
     series: [
@@ -80,7 +94,7 @@ function UserProgramChartWrapper() {
       },
       {
         name: 'Programs saved',
-        data: [null, null, 3, 6],
+        data: userData,
       },
     ],
   }
