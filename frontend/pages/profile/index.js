@@ -18,6 +18,12 @@ import { useQuery } from 'react-query'
 import getToast from '@/utils/getToast'
 import { useRouter } from 'next/router'
 import UserProgramChartWrapper from '@/components/charts/UserProgramChartWrapper'
+import dynamic from 'next/dynamic'
+
+const UserProfileCharts = dynamic(
+  () => import('@/components/charts/UserProgramChartWrapper'), 
+  {ssr: false}
+)
 
 const ProfilePage = () => {
   const [ session ] = useSession()
@@ -225,7 +231,7 @@ const ProfilePage = () => {
             <UserSavedPrograms programs={data?.programs}/>
           </Box>
 
-          <UserProgramChartWrapper />
+          <UserProfileCharts />
 
         </Box>
       <Footer />
