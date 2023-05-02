@@ -8,16 +8,15 @@ import { useSession, signIn } from 'next-auth/client';
 import Box from '@/components/generic/Box';
 
 const Signup = () => {
-
-  const theme = useContext(ThemeContext);
+  const theme = useContext(ThemeContext)
   
   //session comes back with google info - https://github.com/nextauthjs/next-auth
-  const [ session ] = useSession(); 
+  const [session] = useSession()
 
   return (
     <>
       <NavBar />
-        <Box stackOnMobile display="flex" >
+        <Box stackOnMobile display="flex" mw='100%'>
           <PhotoWithText>
             <Title>
               Sign in to <br/>
@@ -38,7 +37,7 @@ const Signup = () => {
             {!session ? (
               <>
                 <LoginButton onClick={() => signIn('google', {
-                  callbackUrl: `${window.location.origin}/`, 
+                  callbackUrl: '/profile', 
                 })}>
                   <GoogleLogo src='/images/google-logo.png'/>
                   Sign in with Google

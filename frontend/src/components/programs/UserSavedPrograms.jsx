@@ -58,4 +58,10 @@ const TitleHeading = styled.p`
   margin-bottom: 10px;
   font-weight: 500;
   margin-top: 20px;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
 `

@@ -43,6 +43,7 @@ const Container = styled.div`
 	color: ${ props => props.color ? props.color : '#222' };
 	flex-direction: column; 
 	min-height: ${props => props.minHeight ? `${props.minHeight}px` : '300px'};
+	box-shadow: 11px 13px 13px -11px rgba(0,0,0,0.5);
 	max-width: 600px;
 	width: ${props => {
 		if (props.size === 'halves') return '47%';

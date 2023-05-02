@@ -65,14 +65,6 @@ const HomeScreenPage = () => {
 				</RelativeTextContainer>
 			</FullScreenBack>
 
-			<div 
-				style={{
-					height: 100, 
-					width: '100%',
-					backgroundColor: theme.colors.cultured 
-				}}
-			/>
-
 			<CenterFlexContainer backgroundColor={theme.colors.cultured} minHeight='auto' padding={60}>
 				<ChangingBackgroundText 
 					initialColor={theme.colors.cultured}
@@ -125,7 +117,9 @@ const HomeScreenPage = () => {
 						mobileFontSize={36}
 					/>
 				</CenterFlexContainer>
+
 			</VideoBackground>
+			
 			<Footer showQuote={false} />
 		</>
 	)

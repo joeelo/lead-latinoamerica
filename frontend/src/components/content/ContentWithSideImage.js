@@ -1,14 +1,18 @@
 import styled from 'styled-components';
-import CenterFlexContainer from '../generic/CenterFlexContainer';
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 
 const ContentWithSideImage = ({ text, backgroundColor, imageSrc, textColor }) => {
 	return (
 		<Container bgColor={ backgroundColor }>
-				<Section> { text.map((sentence) => <P key={ sentence } textColor={ textColor }> { sentence } <br/></P> ) } </Section>
+				<Section> 
+					{text.map((sentence) => 
+						<P key={sentence} textColor={textColor}> {sentence} <br/></P>
+					)} 
+				</Section>
+				
 				<ImageContainer>
-					<Image src={ `${ imageSrc }` } layout='fill' quality='100' objectFit='cover'/>
+					<Image src={`${imageSrc}`} layout='fill' quality='100' objectFit='cover'/>
 				</ImageContainer>
 		</Container>
 	)

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import ReactTooltip from 'react-tooltip'
 import { RemoveUserSavedProgram } from '@/fetch/user/UserRequests'
 import Box from '@/components/generic/Box'
+import useIsMobile from '@/hooks/useIsMobile'
 
 const ProgramCardSimple = ({
   program,
@@ -21,9 +22,14 @@ const ProgramCardSimple = ({
     }
   }
 
+  const isMobile = useIsMobile()
+
   return (
     <Box
-      style={{ position: 'relative', marginRight: 20 }}
+      style={{
+        position: 'relative',
+        marginRight: !isMobile ? '20px' : 'auto',
+      }}
       mw="300px"
       tabIndex="0"
     >

@@ -112,13 +112,11 @@ const Container = styled.div`
   position: relative;
   font-size: 18px;
   display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
   a {
     color: black;
     text-decoration: none;
-  }
-
-  a {
     margin: 3px 0;
   }
 `
