@@ -53,7 +53,7 @@ function ProgramChartWrapper() {
   }
 
   return (
-    <>
+    <div style={{ padding: '0 20px' }}>
       <h1 style={{ marginBottom: 30 }}>
         Number of opportunities added by month
       </h1>
@@ -70,7 +70,7 @@ function ProgramChartWrapper() {
       >
         <BarChart options={options} />
       </div>
-    </>
+    </div>
   )
 }
 

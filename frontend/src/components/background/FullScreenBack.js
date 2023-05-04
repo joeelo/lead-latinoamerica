@@ -18,6 +18,7 @@ const FullScreenBack = ({ src, children, titleInfo, height }) => {
 					priority={true}
 					src={src}
 					layout='fill'
+					alt="mission-highschool-building"
 					objectFit="cover"
 					objectPosition="center"
 				/>

@@ -14,10 +14,9 @@ const Tooltip = ({ explanation, style, ...props }) => {
         <>
           <img
             src="/images/svg/icons8-info.svg"
-            style={{ display: 'inline' }}
+            style={{ display: 'inline', ...style }}
             alt={`Tooltip to explain ${explanation}`}
             data-tip={explanation}
-            style={style}
           />
 
           <ReactTooltip

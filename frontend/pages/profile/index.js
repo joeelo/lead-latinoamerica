@@ -219,8 +219,8 @@ const ProfilePage = () => {
                   </Box>
 
                   <Box display='flex'>
-                    <Button  label='cancel' onClick={handleCancel} style={{marginRight: 40}}/>
-                    <Button label='Submit'/>
+                    <Button  label='Cancel' onClick={handleCancel} style={{marginRight: 40}}/>
+                    <Button label='Update'/>
                   </Box>
                 </form>
               </Box>

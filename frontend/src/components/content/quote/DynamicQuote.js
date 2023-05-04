@@ -1,12 +1,12 @@
-import { useContext } from 'react';
-import CenterFlexContainer from '@/components/generic/CenterFlexContainer';
-import styled, { ThemeContext } from 'styled-components';
-import useGetRandomQuote from '@/hooks/useGetRandomQuote';
+import { useContext } from 'react'
+import CenterFlexContainer from '@/components/generic/CenterFlexContainer'
+import styled, { ThemeContext } from 'styled-components'
+import useGetRandomQuote from '@/hooks/useGetRandomQuote'
 
 const DynamicQuote = () => {
 	
-	const theme = useContext(ThemeContext);
-	const quote = useGetRandomQuote(); 
+	const theme = useContext(ThemeContext)
+	const quote = useGetRandomQuote() 
 	
 	return (
 		<CenterFlexContainer backgroundColor={theme.colors.darkBlue} align='center' minHeight='300px'>
@@ -32,6 +32,10 @@ const Container = styled.div`
 	flex-direction: column;
 	color: white;
 	font-size: 34px; 
+
+	@media screen and (max-width: 768px) {
+		padding: 0 10px;
+	}
 `
 
 const QuoteText = styled.span`

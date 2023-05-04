@@ -100,7 +100,7 @@ function UserProgramChartWrapper() {
   }
 
   return (
-    <>
+    <div style={{ padding: '0 20px' }}>
       <h1>Number of opportunities added by month</h1>
       <p style={{ marginBottom: 20 }}>
         How many opportunities have been added vs how many you've saved month
@@ -119,7 +119,7 @@ function UserProgramChartWrapper() {
       >
         <BarChart options={options} />
       </div>
-    </>
+    </div>
   )
 }
 
