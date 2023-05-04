@@ -5,10 +5,15 @@ import PropTypes from 'prop-types'
 import useLocale from '@/hooks/useLocale'
 import en from '@/language/locales/en/common.json'
 import es from '@/language/locales/es/common.json'
+import { useEffect } from 'react'
 
 const FullScreenBack = ({ src, children, titleInfo, height }) => {
 	const t = useLocale() === 'en' ? en : es
 	const { text, backgroundColor, color, show } = titleInfo
+
+	useEffect(() => {
+		console.log('SRC: ', src)
+	}, [src])
 
 	return (
 		<OuterWrapper>
@@ -18,7 +23,6 @@ const FullScreenBack = ({ src, children, titleInfo, height }) => {
 					priority={true}
 					src={src}
 					layout='fill'
-					alt="mission-highschool-building"
 					objectFit="cover"
 					objectPosition="center"
 				/>
