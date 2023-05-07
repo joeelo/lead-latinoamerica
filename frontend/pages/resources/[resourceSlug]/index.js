@@ -13,14 +13,12 @@ import en from '@/language/locales/en/common.json'
 import es from '@/language/locales/es/common.json'
 import useLocale from '@/hooks/useLocale'
 
-
 const ResourcePage = () => {
 	// ex: /resource/program
 
 	const router = useRouter() 
 	const { resourceSlug } = router.query
 	const t = useLocale() === 'en' ? en : es
-
 
 	const singularSlug = resourceSlug[resourceSlug.length - 1] === 's' 
 		? resourceSlug.slice(0, resourceSlug.length - 1) 

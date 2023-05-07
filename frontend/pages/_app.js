@@ -1,15 +1,15 @@
-import { createGlobalStyle, ThemeProvider } from 'styled-components'; 
-import Head from 'next/head';
-import { useState } from 'react'; 
-import { LanguageWrapper } from '@/context/LanguageContext';
-import { config, dom } from "@fortawesome/fontawesome-svg-core";
-import { Provider as AuthProvider } from 'next-auth/client';
+import { createGlobalStyle, ThemeProvider } from 'styled-components' 
+import Head from 'next/head'
+import { useState } from 'react' 
+import { LanguageWrapper } from '@/context/LanguageContext'
+import { config, dom } from "@fortawesome/fontawesome-svg-core"
+import { Provider as AuthProvider } from 'next-auth/client'
 import { getSession } from "next-auth/client"
-import 'react-toastify/dist/ReactToastify.css';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import 'react-toastify/dist/ReactToastify.css'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
-import { ToastContainer } from "react-toastify";
-import { Analytics } from '@vercel/analytics/react';
+import { ToastContainer } from "react-toastify"
+import { Analytics } from '@vercel/analytics/react'
 // import { UserWrapper } from '@/context/UserContext';
 
 const theme = {
