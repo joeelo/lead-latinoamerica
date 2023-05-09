@@ -12,7 +12,6 @@ const FullScreenBack = ({ src, children, titleInfo, height }) => {
 
 	const blurDataUrl = 'LKDvT59~E2af~pIuNHodIVt6s:WC'
 
-
 	return (
 		<OuterWrapper>
 			<Container {...{ height }}>
