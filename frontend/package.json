@@ -12,6 +12,8 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
+    "@mui/styled-engine-sc": "^5.12.0",
+    "@mui/system": "^5.12.3",
     "@vercel/analytics": "^0.1.8",
     "apexcharts": "^3.37.1",
     "lodash": "^4.17.21",
@@ -32,7 +34,7 @@
     "react-tooltip": "^4.2.21",
     "recharts": "^2.4.2",
     "sharp": "^0.32.1",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.10"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.1",
