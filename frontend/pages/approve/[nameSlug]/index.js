@@ -6,11 +6,9 @@ import ProgramTitleAndPhoto from "@/components/content/program/ProgramTitleAndPh
 import FixedButton from "@/components/buttons/FixedButton"
 import { useQuery } from "react-query"
 import ProgramRequests from 'src/fetch/program/ProgramRequests'
-import { ToastContainer } from "react-toastify"
 import getToast from '@/utils/getToast'
 
 const ApproveProgramPage = () => {
-
 	const router = useRouter() 
 
 	const { data } = useQuery({

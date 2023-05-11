@@ -6,7 +6,8 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
-    "alt-port": "npm run dev -- -p 3005"
+    "alt-port": "npm run dev -- -p 3005",
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
@@ -43,6 +44,9 @@
     "@testing-library/react": "^11.2.7",
     "babel-jest": "^26.6.3",
     "babel-plugin-styled-components": "^1.13.3",
+    "eslint": "8.40.0",
+    "eslint-config-next": "13.4.1",
+    "husky": "^8.0.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.3",
     "mutationobserver-shim": "^0.3.7"

@@ -54,7 +54,7 @@ const ProgramCardSimple = ({
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            <span>x</span>
+            <span style={{ paddingRight: 2 }}>x</span>
           </StyledDeleteButton>
           <ReactTooltip
             id="delete-button"
@@ -103,8 +103,8 @@ const Container = styled.div`
 `
 
 const StyledDeleteButton = styled.div`
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   background-color: #ce2029;
   border-radius: 50%;
   color: white;
@@ -120,7 +120,7 @@ const StyledDeleteButton = styled.div`
   opacity: ${(props) => (props.isHovered ? 0.9 : 0)};
 
   &:hover {
-    box-shadow: 2px 4px 8px -1px rgba(0, 0, 0, 1);
+    box-shadow: 2px 4px 5px -1px rgba(0, 0, 0, 1);
     cursor: pointer;
   }
 
