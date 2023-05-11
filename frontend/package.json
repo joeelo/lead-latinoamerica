@@ -7,7 +7,8 @@
     "start": "next start",
     "test": "jest",
     "alt-port": "npm run dev -- -p 3005",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "cd .. && husky install frontend/.husky"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
