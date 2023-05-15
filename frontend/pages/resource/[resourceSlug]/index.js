@@ -1,24 +1,24 @@
-import { useRouter } from 'next/router'
-import NavBar from '@/components/nav/NavBar'
 import Footer from '@/components/footer/Footer'
-import ProgramTitleAndPhoto from '@/components/content/program/ProgramTitleAndPhoto'
-import ProgramOverviewAndInfo from '@/components/content/program/ProgramOverviewAndInfo'
-import { useSession } from 'next-auth/client'
-import { useQuery } from 'react-query'
-import ProgramRequests from '@/fetch/program/ProgramRequests'
 import LoadingSpinner from '@/components/generic/LoadingSpinner'
+import NavBar from '@/components/nav/NavBar'
+import ProgramOverviewAndInfo from '@/components/content/program/ProgramOverviewAndInfo'
+import ProgramRequests from '@/fetch/program/ProgramRequests'
+import ProgramTitleAndPhoto from '@/components/content/program/ProgramTitleAndPhoto'
+import { useQuery } from 'react-query'
+import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/client'
 
 const ResourcePage = () => {
-  const router = useRouter() 
-  const { resourceSlug: name } = router.query  || {}
+  const router = useRouter()
+  const { resourceSlug: name } = router.query || {}
 
   const [session, loading] = useSession()
   const isLoadingSession = loading
 
   const programQuery = useQuery({
-		queryKey: ['resourcePrograms', { name }], 
-		queryFn: ProgramRequests.getProgram
-	})
+    queryKey: ['resourcePrograms', { name }],
+    queryFn: ProgramRequests.getProgram,
+  })
 
   const { isLoading } = programQuery
 
@@ -27,22 +27,21 @@ const ResourcePage = () => {
   const isCurrentlyLoading = !program || isLoadingSession || isLoading
 
   return (
-
     <>
       <NavBar />
       {isCurrentlyLoading ? (
         <LoadingSpinner />
       ) : (
         <>
-          <ProgramTitleAndPhoto program={program} router={router}/>
-          <ProgramOverviewAndInfo 
-            program={program} 
-            marginTop={true} 
+          <ProgramTitleAndPhoto program={program} router={router} />
+          <ProgramOverviewAndInfo
+            program={program}
+            marginTop={true}
             email={session?.user?.email}
           />
         </>
       )}
-      <Footer marginTop={ true }/>
+      <Footer marginTop={true} />
     </>
   )
 }

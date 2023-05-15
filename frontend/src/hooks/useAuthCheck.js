@@ -12,6 +12,7 @@ const useAuthCheck = () => {
     if (id === 'password1234' && name === 'mikeE') {
       setIsAuthed(true)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return isAuthed
