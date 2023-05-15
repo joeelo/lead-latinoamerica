@@ -8,7 +8,9 @@
     "test": "jest",
     "alt-port": "npm run dev -- -p 3005",
     "lint": "next lint",
-    "prepare": "cd .. && husky install frontend/.husky"
+    "prepare": "cd .. && husky install frontend/.husky", 
+    "pre-commit-lint": "npm run lint-staged",
+    "lint-staged": "next lint"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",

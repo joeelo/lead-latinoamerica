@@ -5,4 +5,4 @@
 # yarn lint-staged
 
 # If using npm, remove above and uncomment below
-npm run lint-staged
+npm run pre-commit-lint

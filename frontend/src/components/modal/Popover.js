@@ -10,10 +10,6 @@ Popover.propTypes = {
 }
 
 function Popover({ anchorEl, setAnchorEl, children }) {
-  if (!anchorEl) {
-    return null
-  }
-
   const updateInnerWidth = useMemo(() => {
     debounce(() => setInnerWidth(window.innerWidth), 50)
   }, [])
@@ -31,10 +27,12 @@ function Popover({ anchorEl, setAnchorEl, children }) {
     return () => {
       window.removeEventListener('resize', updateInnerWidth)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
     setLeft(offsetLeft)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [innerWidth, anchorEl])
 
   const containerPosition = useMemo(() => {
@@ -51,6 +49,7 @@ function Popover({ anchorEl, setAnchorEl, children }) {
       bottom: containerPositionAttributes.bottom,
       right: containerPositionAttributes.right,
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [containerRef.current, innerWidth])
 
   useEffect(() => {
@@ -64,6 +63,7 @@ function Popover({ anchorEl, setAnchorEl, children }) {
     if (mouseX < left || mouseX > right || mouseY > bottom) {
       setAnchorEl(null)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mousePosition])
 
   return (
