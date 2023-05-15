@@ -102,10 +102,13 @@ const ProfilePage = () => {
   return (
     <>
       <NavBar/>
+
         <PhotoContainer>
-          <Image src='/images/profile-images/david-marcu-unsplash-nature.jpg'
+          <Image 
+            src='/images/profile-images/david-marcu-unsplash-nature.jpg'
             layout='fill'
             objectFit='cover'
+            alt="nature photo banner"
           />
         </PhotoContainer>
 
@@ -121,11 +124,10 @@ const ProfilePage = () => {
           <Box center mt='100px' mb='40px'>
             {!isEditing ? (
               <> 
-                <div style={{ marginTop: 40 }}>
-                  {userData.preferredName && (
-                    <TitleHeading> Hey there {userData.preferredName}!</TitleHeading>
-                  )}
-                </div>
+
+                {userData.preferredName && (
+                  <TitleHeading> Hey there {userData.preferredName}!</TitleHeading>
+                )}
 
                 <Span> 
                   We're bringing notifications to the profile page soon. So you can opt-in to get weekly emails on programs that have been uploaded, and specify what types of programs you're interested in by clicking the edit button below.
