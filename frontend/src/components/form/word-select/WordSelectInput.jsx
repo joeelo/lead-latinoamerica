@@ -1,5 +1,5 @@
 import Box from '@/components/generic/Box'
-import { useState, useEffect, useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 const WordSelectInput = ({ wordList, setWordList, placeHolder }) => {

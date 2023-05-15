@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { animated, useSpring, config } from 'react-spring'
+import { animated, config, useSpring } from 'react-spring'
 
 const Checkbox = ({ option, register, checkOnLoad = false }) => {
   const [isChecked, setIsChecked] = useState(checkOnLoad)

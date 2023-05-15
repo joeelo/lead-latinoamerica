@@ -27,7 +27,7 @@ const UserSavedPrograms = ({ programs }) => {
       <TitleHeading>Your Saved Opportunities</TitleHeading>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {programs.length === 0 ? (
-          <p>You haven't saved any opportunities yet!</p>
+          <p>You haven`t saved any opportunities yet!</p>
         ) : (
           <>
             {programs.map((program) => {

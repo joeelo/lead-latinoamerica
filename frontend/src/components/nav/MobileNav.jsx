@@ -1,6 +1,6 @@
 import Hamburger from '@/components/nav/Hamburger'
 import SlidePanel from './SlidePanel'
-import { React, useState, useEffect } from 'react'
+import { React, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
 

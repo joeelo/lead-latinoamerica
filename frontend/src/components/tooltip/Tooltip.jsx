@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import ReactTooltip from 'react-tooltip'
 
 const Tooltip = ({ explanation, style, ...props }) => {

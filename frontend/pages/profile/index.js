@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/client'
 import NavBar from '@/components/nav/NavBar'
 import Footer from '@/components/footer/Footer'
@@ -130,7 +130,7 @@ const ProfilePage = () => {
                 )}
 
                 <Span> 
-                  We're bringing notifications to the profile page soon. So you can opt-in to get weekly emails on programs that have been uploaded, and specify what types of programs you're interested in by clicking the edit button below.
+                  We`re bringing notifications to the profile page soon. So you can opt-in to get weekly emails on programs that have been uploaded, and specify what types of programs you`re interested in by clicking the edit button below.
                 </Span>
 
                 <Button label='Edit' onClick={handleClick}/>
@@ -201,7 +201,7 @@ const ProfilePage = () => {
                     <TitleHeading>What ethnicity are you? (check all that apply)</TitleHeading>
 
                     <p style={{ marginTop: -10, marginBottom: 10}}>
-                      We ask because there are programs for specific groups and we'd like every possible opportunity to be available.
+                      We ask because there are programs for specific groups and we`d like every possible opportunity to be available.
                     </p>
 
                     <CheckboxGroup

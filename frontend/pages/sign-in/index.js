@@ -4,7 +4,7 @@ import Footer from "@/components/footer/Footer";
 import NavBar from "@/components/nav/NavBar";
 import ChangingBackgroundText from '@/components/content/ChangingBackgroundText';
 import Button from '@/components/generic/Button';
-import { useSession, signIn } from 'next-auth/client';
+import { signIn, useSession } from 'next-auth/client';
 import Box from '@/components/generic/Box';
 
 const Signup = () => {
@@ -44,7 +44,7 @@ const Signup = () => {
                 </LoginButton>
               </>
             ): (
-              <span style={{marginTop: 20, fontSize: 24}}>You're signed in!</span>
+              <span style={{marginTop: 20, fontSize: 24}}>You&apos;re signed in!</span>
             )}
     
           </Column>

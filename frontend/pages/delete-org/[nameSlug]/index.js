@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { getProgramBySlug } from "@/fetch/requests";

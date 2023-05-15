@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import NavBar from '@/components/nav/NavBar';
 import Footer from '@/components/footer/Footer';

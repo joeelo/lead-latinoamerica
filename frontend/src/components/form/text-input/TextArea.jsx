@@ -1,5 +1,5 @@
 import styled, { ThemeContext } from 'styled-components'
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 const Textarea = ({
   register,

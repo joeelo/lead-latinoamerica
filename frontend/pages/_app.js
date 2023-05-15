@@ -1,4 +1,4 @@
-import { createGlobalStyle, ThemeProvider } from 'styled-components' 
+import { ThemeProvider, createGlobalStyle } from 'styled-components' 
 import Head from 'next/head'
 import { useState } from 'react' 
 import { LanguageWrapper } from '@/context/LanguageContext'

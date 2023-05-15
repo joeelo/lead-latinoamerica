@@ -2,7 +2,7 @@
 import useIsMobile from '@/hooks/useIsMobile'
 import DesktopNav from './DesktopNav'
 import MobileNav from './MobileNav'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const NavBar = () => {
 	const isMobile = useIsMobile()

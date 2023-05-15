@@ -2,7 +2,7 @@ import BarChart from './BarChart'
 import { useQuery } from 'react-query'
 import { useSession } from 'next-auth/client'
 import { DateTime } from 'luxon'
-import { useState, useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useEffect } from 'react'
 
 function UserProgramChartWrapper() {
@@ -103,7 +103,7 @@ function UserProgramChartWrapper() {
     <div style={{ padding: '0 20px' }}>
       <h1>Number of opportunities added by month</h1>
       <p style={{ marginBottom: 20 }}>
-        How many opportunities have been added vs how many you've saved month
+        How many opportunities have been added vs how many you`ve saved month
         over month
       </p>
 

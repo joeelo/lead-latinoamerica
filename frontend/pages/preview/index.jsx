@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Footer from '@/components/footer/Footer'
 import NavBar from '@/components/nav/NavBar'
 import ProgramOverviewAndInfo from '@/components/content/program/ProgramOverviewAndInfo'
