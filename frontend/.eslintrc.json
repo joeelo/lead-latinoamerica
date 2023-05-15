@@ -1,13 +1,28 @@
 {
-  "extends": "next/core-web-vitals", 
+  "extends": ["next", "next/core-web-vitals", "prettier"],
   "rules": {
-    "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }], 
-    "sort-imports": ["error", {
-      "ignoreCase": true,
-      "ignoreDeclarationSort": false,
-      "ignoreMemberSort": true, 
-      "allowSeparatedGroups": true, 
-      "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
-  }]
-}
+    "no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": false
+      }
+    ],
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": false,
+        "ignoreMemberSort": true,
+        "allowSeparatedGroups": true,
+        "memberSyntaxSortOrder": [
+          "none",
+          "all",
+          "multiple",
+          "single"
+        ]
+      }
+    ]
+  }
 }

@@ -7,10 +7,13 @@
     "start": "next start",
     "test": "jest",
     "alt-port": "npm run dev -- -p 3005",
-    "lint": "next lint",
+    "lint": "next lint --fix",
     "prepare": "cd .. && husky install frontend/.husky", 
     "pre-commit-lint": "npm run lint-staged",
-    "lint-staged": "next lint"
+    "lint-staged": {
+      "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
+    },
+    "lint:write": "next lint --cache --fix"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
