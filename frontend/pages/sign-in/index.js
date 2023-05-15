@@ -1,11 +1,11 @@
-import { useContext } from 'react';
-import styled, { ThemeContext } from 'styled-components';
-import Footer from "@/components/footer/Footer";
-import NavBar from "@/components/nav/NavBar";
-import ChangingBackgroundText from '@/components/content/ChangingBackgroundText';
-import Button from '@/components/generic/Button';
-import { signIn, useSession } from 'next-auth/client';
-import Box from '@/components/generic/Box';
+import { signIn, useSession } from 'next-auth/client'
+import styled, { ThemeContext } from 'styled-components'
+import Box from '@/components/generic/Box'
+import Button from '@/components/generic/Button'
+import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
+import Footer from "@/components/footer/Footer"
+import NavBar from "@/components/nav/NavBar"
+import { useContext } from 'react'
 
 const Signup = () => {
   const theme = useContext(ThemeContext)
@@ -113,10 +113,4 @@ const GoogleLogo = styled.img`
   position: absolute; 
   left: 10px;
   top: 25px;
-`
-
-const Span = styled.span`
-  margin-top: 40px; 
-  font-weight: bold; 
-  font-size: 18px; 
 `

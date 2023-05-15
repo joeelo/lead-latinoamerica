@@ -6,15 +6,17 @@ const useIsMobile = () => {
 
   const debouncedFunc = useCallback(() => {
     return setIsMobile(window.innerWidth < 768)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMobile])
 
   useEffect(() => {
     debouncedFunc()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
     const debouncedCb = debounce(debouncedFunc, 250)
-    
+
     window.addEventListener('resize', debouncedCb)
 
     return () => {

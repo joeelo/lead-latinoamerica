@@ -1,6 +1,6 @@
-import { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import CenterFlexContainer from '@/components/generic/CenterFlexContainer'
+import { useContext } from 'react'
 import useGetRandomQuote from '@/hooks/useGetRandomQuote'
 
 const DynamicQuote = () => {

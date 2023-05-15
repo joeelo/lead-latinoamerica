@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import Box from '@/components/generic/Box'
 import Link from 'next/link'
 import ReactTooltip from 'react-tooltip'
 import { RemoveUserSavedProgram } from '@/fetch/user/UserRequests'
-import Box from '@/components/generic/Box'
+import styled from 'styled-components'
 import useIsMobile from '@/hooks/useIsMobile'
 
 const ProgramCardSimple = ({

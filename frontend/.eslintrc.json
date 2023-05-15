@@ -2,10 +2,12 @@
   "extends": "next/core-web-vitals", 
   "rules": {
     "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }], 
-    "sort-imports": ["warn", {
-      "ignoreCase": false,
+    "sort-imports": ["error", {
+      "ignoreCase": true,
       "ignoreDeclarationSort": false,
-      "ignoreMemberSort": false
+      "ignoreMemberSort": true, 
+      "allowSeparatedGroups": true, 
+      "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
   }]
 }
 }

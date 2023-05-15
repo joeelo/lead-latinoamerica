@@ -1,9 +1,8 @@
+import { useEffect, useMemo, useState } from 'react'
 import BarChart from './BarChart'
+import { DateTime } from 'luxon'
 import { useQuery } from 'react-query'
 import { useSession } from 'next-auth/client'
-import { DateTime } from 'luxon'
-import { useMemo, useState } from 'react'
-import { useEffect } from 'react'
 
 function UserProgramChartWrapper() {
   const [session] = useSession()
@@ -25,7 +24,7 @@ function UserProgramChartWrapper() {
     enabled: !!email,
   })
 
-  const { data = {}, isLoading, error } = programsAddedQuery
+  const { data = {} } = programsAddedQuery
 
   const { stats } = useMemo(() => {
     return data.message || {}

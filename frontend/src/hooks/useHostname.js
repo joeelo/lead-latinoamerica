@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
 const useHostname = () => {
-  const [hs, setHs] = useState(null);
-  const w = typeof window === 'undefined';
+  const [hs, setHs] = useState(null)
+  const w = typeof window === 'undefined'
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setHs(window.location.origin); // origin includes port hostname does not
+      setHs(window.location.origin) // origin includes port hostname does not
     }
   }, [w])
 
-  return hs;
+  return hs
 }
 
-export default useHostname;
+export default useHostname
