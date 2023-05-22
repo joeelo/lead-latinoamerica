@@ -201,7 +201,7 @@ const ProfilePage = () => {
                       { value: 'programs.programs', label: 'Programs' },
                     ]}
                     register={register}
-                    checkedOnLoad={userData.interests}
+                    checkedOnLoad={userData.interests || []}
                     name="program"
                   />
                 </Box>

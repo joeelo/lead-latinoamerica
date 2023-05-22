@@ -39,7 +39,8 @@ const ResourcePage = () => {
 		<>
 			<NavBar />
 			<FullScreenBack 
-				src={fakeData[resourceSlug].coverImage}
+				// TOOD: Investigate - TypeError: Cannot read properties of undefined (reading 'coverImage')
+				src={fakeData[resourceSlug].coverImage || ''}
 				height="50vh"
 				titleInfo={{ 
 					show: true, 
