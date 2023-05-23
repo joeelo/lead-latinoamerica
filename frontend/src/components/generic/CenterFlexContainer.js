@@ -43,15 +43,14 @@ const FullScreenContainerForBackground = styled.div`
 	display: flex; 
 	min-width: 100vw; 
 	background-color: ${ props => props.backgroundColor ? props.backgroundColor : 'white' };
-	margin: 0 auto; 
 	padding-top: ${ props => props.paddingTop ? '100px' : '0' }; 
 	padding-bottom: ${ props => props.paddingBottom ? '100px' : '0' };
+	justify-content: center;
 `
 
 const Container = styled.div`
 	width: 95%;
 	position: relative; 
-	margin: 0 auto;
 	display: flex; 
 	align-items: ${ props => {
 		if (props.align === 'center') return 'center'; 

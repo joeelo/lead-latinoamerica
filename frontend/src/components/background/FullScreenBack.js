@@ -11,6 +11,7 @@ const FullScreenBack = ({ src, children, titleInfo, height }) => {
 	const { text, backgroundColor, color, show } = titleInfo
 
 	const blurDataUrl = 'LKDvT59~E2af~pIuNHodIVt6s:WC'
+	const { headline } = t[text] || { headline: "" }
 
 	return (
 		<OuterWrapper>
@@ -33,7 +34,7 @@ const FullScreenBack = ({ src, children, titleInfo, height }) => {
 			{show &&
 				<TitleContainer className='titleContainer'>
 					<TitleWithBackground 
-						text={t[text].headline} 
+						text={headline} 
 						backgroundColor={backgroundColor} 
 						color={color} 
 						absolute

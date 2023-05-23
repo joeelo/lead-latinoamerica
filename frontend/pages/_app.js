@@ -50,6 +50,7 @@ const GlobalStyle = createGlobalStyle`
 		font-family: "Helvetica Neue", sans-serif;
 		max-width: 100vw;
 		font-weight: 300;
+		overflow-x: hidden;
 	}
 
 	h1, h2 {

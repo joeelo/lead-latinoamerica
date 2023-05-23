@@ -55,7 +55,7 @@ const Container = styled.div`
 	min-height: 550px;
 	max-width: 400px;
 	width: 30%;
-	box-shadow: 4px 5px 17px 5px rgba(184,177,184,.7);
+	box-shadow: 1px 2px 15px 0px rgba(184,177,184, .5);
 	border-radius: 4px;
 	padding-bottom: 15px;
 	margin-bottom: 40px;
@@ -65,7 +65,7 @@ const Container = styled.div`
 
 	:hover {
 		cursor: pointer;
-		box-shadow: 1px 2px 15px 0px rgba(184,177,184,1);
+		box-shadow: 4px 5px 17px 5px rgba(184,177,184, .7);
 	}
 
 	@media screen and (max-width: 768px) {

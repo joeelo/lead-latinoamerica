@@ -34,13 +34,14 @@ const ResourcePage = () => {
 	const programs = programsQuery.data || []
 
 	const hasPrograms = programs.length > 0
+
+	const { coverImage } = fakeData[resourceSlug] || { coverImage: '' }
 	
 	return (
 		<>
 			<NavBar />
 			<FullScreenBack 
-				// TOOD: Investigate - TypeError: Cannot read properties of undefined (reading 'coverImage')
-				src={fakeData[resourceSlug].coverImage || ''}
+				src={coverImage}
 				height="50vh"
 				titleInfo={{ 
 					show: true, 
@@ -59,7 +60,7 @@ const ResourcePage = () => {
 									{programs.map(( program ) => (
 										<PhotoWithTextBox 
 											key={program.href} 
-											coverImage={program.coverImage} 
+											coverImage={program.coverImage || ''} 
 											program={program} 
 										/>
 									))}
