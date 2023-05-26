@@ -70,6 +70,7 @@ const P = styled.p`
 	}
 
 	a:visited {
-		color: ${ props => props.color ? props.theme.colors[props.color] : '#222' };
+		color: black;
+		color: ${ props => props.color ? props.color : '#222' };
 	}
 `

@@ -80,8 +80,8 @@ const Container = styled.div`
   width: 100%;
   box-shadow: ${(props) =>
     props.isHovered
-      ? '2px 2px 15px 0px rgba(184, 177, 184, 1)'
-      : '1px 1px 12px 5px rgba(184, 177, 184, 1)'};
+      ? '4px 5px 17px 5px rgba(184,177,184, .4)'
+      : '1px 2px 15px 0px rgba(184,177,184, .4)'};
   min-height: 200px;
   margin-top: 20px;
   padding: 10px;
