@@ -5,6 +5,7 @@ import LinkUnderlineEffect from '@/components/generic/LinkUnderlineEffect'
 import en from '@/language/locales/en/footer.json'
 import es from '@/language/locales/es/footer.json'
 import useLocale from '@/hooks/useLocale'
+import Box from '@/components/generic/Box'
 
 const Footer = ({ showQuote }) => {
 	const t = useLocale() === 'en' ? en : es
@@ -16,17 +17,28 @@ const Footer = ({ showQuote }) => {
 			<Container data-testid='footer'>
 				<Column>
 					<p> { t.explore } </p>
-					<LinkUnderlineEffect color="#222" hrefFormatted="/resources/program" text={t.programs} />
-					<LinkUnderlineEffect color="#222" hrefFormatted="/resources/scholarships" text={t.scholarships} />
-					<LinkUnderlineEffect color="#222" hrefFormatted="/resources/internships" text={t.internships} />
-					<LinkUnderlineEffect color="#222" hrefFormatted="/resources/summer" text={t.summer} />
-					<LinkUnderlineEffect 
-						openInNewTab
-						hrefFormatted="https://www.leadlatinoamerica.org/copy-of-our-team" 
-						color="#222"
-						text={ t.ourTeam } 
-					/>
-					<LinkUnderlineEffect hrefFormatted="/add-program" text={ t.addYourOrg } color='#222'/>
+					<div style={{ 
+						display: 'flex', 
+						justifyContent: 'space-between', 
+						width: '100%', 
+						flexWrap: 'wrap', 
+						maxWidth: 550 
+					}}>
+						<LinkUnderlineEffect size="md" color="#222" hrefFormatted="/resources/program" text={t.programs} />
+						<LinkUnderlineEffect size="md" color="#222" hrefFormatted="/resources/scholarships" text={t.scholarships} />
+						<LinkUnderlineEffect size="md" color="#222" hrefFormatted="/resources/internships" text={t.internships} />
+						<LinkUnderlineEffect size="md" color="#222" hrefFormatted="/resources/summer" text={t.summer} />
+						<Box mt="8px">
+							<LinkUnderlineEffect 
+								size="md"
+								openInNewTab
+								hrefFormatted="https://www.leadlatinoamerica.org/copy-of-our-team" 
+								color="#222"
+								text={ t.ourTeam } 
+							/>
+						</Box>
+						<LinkUnderlineEffect size="md" hrefFormatted="/add-program" text={ t.addYourOrg } color='#222'/>
+					</div>
 					</Column>
 			</Container>
 		</>
@@ -44,7 +56,6 @@ Footer.defaultProps = {
 }
 
 const Container = styled.div`
-    min-height: 300px; 
     width: 100vw; 
     display: flex; 
     padding-left: 20px; 
@@ -56,7 +67,8 @@ const Column = styled.div`
     display: flex; 
     flex-direction: column; 
     padding: 20px;
-    font-size: 26px;
+    font-size: 24px;
+		width: 100%;
     
     & > p:first-child {
         font-weight: 600;

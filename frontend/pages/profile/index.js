@@ -135,7 +135,7 @@ const ProfilePage = () => {
               )}
 
               <Span>
-                We`re bringing notifications to the profile page soon. So you
+                We're bringing notifications to the profile page soon. So you
                 can opt-in to get weekly emails on programs that have been
                 uploaded, and specify what types of programs you`re interested
                 in by clicking the edit button below.
@@ -213,7 +213,7 @@ const ProfilePage = () => {
 
                   <p style={{ marginTop: -10, marginBottom: 10 }}>
                     We ask because there are programs for specific groups and
-                    we`d like every possible opportunity to be available.
+                    we'd like every possible opportunity to be available.
                   </p>
 
                   <CheckboxGroup

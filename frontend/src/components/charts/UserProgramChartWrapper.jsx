@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import BarChart from './BarChart'
 import { DateTime } from 'luxon'
 import { useQuery } from 'react-query'
@@ -7,7 +7,6 @@ import { useSession } from 'next-auth/client'
 function UserProgramChartWrapper() {
   const [session] = useSession()
   const email = session?.user?.email
-  const [categories, setCategories] = useState([])
 
   const programsAdded = async () => {
     const response = await fetch(
@@ -26,17 +25,24 @@ function UserProgramChartWrapper() {
 
   const { data = {} } = programsAddedQuery
 
-  const { stats } = useMemo(() => {
-    return data.message || {}
+  const { categories, seriesData } = useMemo(() => {
+    const { stats } = data.message || {}
+
+    const categories = Object.keys(stats || {})
+    categories.sort((a, b) => new Date(a) > new Date(b))
+
+    const seriesData = []
+
+    categories.forEach((cat) => {
+      seriesData.push(stats[cat])
+    })
+
+    return {
+      stats,
+      categories, 
+      seriesData,
+    }
   }, [data.message])
-
-  useEffect(() => {
-    const cats = Object.keys(stats || {})
-
-    setCategories(cats)
-  }, [stats])
-
-  const seriesData = Object.values(stats || {})
 
   const programData = seriesData.map((data) => data.program)
   const userData = seriesData.map((data) => data.user || 0)
