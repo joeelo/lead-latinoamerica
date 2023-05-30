@@ -19,7 +19,7 @@ import { useRouter } from 'next/router'
 import UserSavedPrograms from '@/components/programs/UserSavedPrograms'
 import { useSession } from 'next-auth/client'
 
-const UserProfileCharts = dynamic(
+const UserProgramChartWrapper = dynamic(
   () => import('@/components/charts/UserProgramChartWrapper'),
   { ssr: false }
 )
@@ -267,7 +267,7 @@ const ProfilePage = () => {
           <UserSavedPrograms programs={data?.programs} />
         </Box>
 
-        <UserProfileCharts />
+        <UserProgramChartWrapper />
       </Box>
       <Footer />
     </>

@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import Box from '@/components/generic/Box'
 import Link from 'next/link'
-import ReactTooltip from 'react-tooltip'
+import { Tooltip } from 'react-tooltip'
 import { RemoveUserSavedProgram } from '@/fetch/user/UserRequests'
 import styled from 'styled-components'
 import useIsMobile from '@/hooks/useIsMobile'
+import Image from 'next/image'
 
 const ProgramCardSimple = ({
   program,
@@ -46,27 +47,26 @@ const ProgramCardSimple = ({
       {showDeleteButton && (
         <>
           <StyledDeleteButton
-            data-tip
-            data-for="delete-button"
+            data-tooltip-id="delete-button"
+            data-tooltip-content='This will be removed from your saved programs'
+            data-tooltip-variant='warning'
             className="delete-button"
             isHovered={isHovered}
             onClick={handleRemoveClick}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            <span style={{ paddingRight: 2 }}>x</span>
+            <Image 
+              alt="trash can svg"
+              src="/images/svg/trash-icon.svg"
+              width={13}
+              height={13}
+            />
           </StyledDeleteButton>
-          <ReactTooltip
+        
+          <Tooltip 
             id="delete-button"
-            effect="solid"
-            type="warning"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <span>
-              Clicking this will remove this program from your saved programs
-            </span>
-          </ReactTooltip>
+          />
         </>
       )}
     </Box>
@@ -103,29 +103,18 @@ const Container = styled.div`
 `
 
 const StyledDeleteButton = styled.div`
-  width: 20px;
-  height: 20px;
-  background-color: #ce2029;
+  width: 25px;
+  height: 25px;
+  background-color: white;
   border-radius: 50%;
   color: white;
   position: absolute;
   top: 30px;
+  cursor: pointer;
   right: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 2px;
-  box-shadow: 1px 2px 3px -1px rgba(0, 0, 0, 1);
   transition: 0.075s ease-in-out all;
   opacity: ${(props) => (props.isHovered ? 0.9 : 0)};
-
-  &:hover {
-    box-shadow: 2px 4px 5px -1px rgba(0, 0, 0, 1);
-    cursor: pointer;
-  }
-
-  span {
-    margin-bottom: 1px;
-    font-size: 14px;
-  }
 `

@@ -105,10 +105,10 @@ function UserProgramChartWrapper() {
   }
 
   return (
-    <div style={{ padding: '0 20px' }}>
+    <div>
       <h1>Number of opportunities added by month</h1>
       <p style={{ marginBottom: 20 }}>
-        How many opportunities have been added vs how many you`ve saved month
+        How many opportunities have been added vs how many you've saved month
         over month
       </p>
 
