@@ -1,16 +1,16 @@
-import { ThemeProvider, createGlobalStyle } from 'styled-components' 
-import Head from 'next/head'
-import { useState } from 'react' 
-import { LanguageWrapper } from '@/context/LanguageContext'
+/* eslint-disable @next/next/no-page-custom-font */
+import 'react-toastify/dist/ReactToastify.css'
 import { config, dom } from "@fortawesome/fontawesome-svg-core"
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { ThemeProvider, createGlobalStyle } from 'styled-components' 
+import { Analytics } from '@vercel/analytics/react'
 import { Provider as AuthProvider } from 'next-auth/client'
 import { getSession } from "next-auth/client"
-import 'react-toastify/dist/ReactToastify.css'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import Head from 'next/head'
+import { LanguageWrapper } from '@/context/LanguageContext'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { ToastContainer } from "react-toastify"
-import { Analytics } from '@vercel/analytics/react'
-// import { UserWrapper } from '@/context/UserContext';
+import { useState } from 'react' 
 
 const theme = {
 	colors: {
@@ -116,8 +116,10 @@ const App = ({ Component, pageProps }) => {
 		<>
 			<Head>
 				<link rel="preconnect" href="https://fonts.gstatic.com"></link>
-				<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap&family=Source+Sans+Pro:wght@300;500;700;900&display=swap" rel="stylesheet"></link> 
-				<style>{dom.css()}</style>
+				<link 
+					href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap&family=Source+Sans+Pro:wght@300;500;700;900&display=swap"
+					rel="stylesheet"></link> 
+				<style>{dom.css()}</style>a
 			</Head>
 			<GlobalStyle />
 			<QueryClientProvider client={queryClient}>
