@@ -1,31 +1,29 @@
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import NavBar from '@/components/nav/NavBar';
-import Footer from '@/components/footer/Footer';
-import TextInput from '@/components/form/text-input/TextInput';
-import { useForm } from 'react-hook-form';
-import Button from '@/components/buttons/Button';
-import Box from '@/components/generic/Box';
-import StyledSectionHeading from '@/components/form/section/StyledSectionHeading';
-import { findProgramAndUpdate } from '@/fetch/requests';
-import WordSelectInput from '@/components/form/word-select/WordSelectInput';
-import Tooltip from '@/components/tooltip/Tooltip';
-import InputErrorMessage from '@/components/form/errors/InputErrorMessage'; 
-import DateInput from '@/components/form/date-input/DateInput';
-import { useQuery } from 'react-query';
-import ProgramRequests from '@/fetch/program/ProgramRequests';
-import { useCallback } from 'react';
+import { useEffect, useState } from 'react'
+import Box from '@/components/generic/Box'
+import Button from '@/components/buttons/Button'
+import DateInput from '@/components/form/date-input/DateInput'
+import { findProgramAndUpdate } from '@/fetch/requests'
+import Footer from '@/components/footer/Footer'
+import getToast from '@/utils/getToast'
+import InputErrorMessage from '@/components/form/errors/InputErrorMessage' 
+import LoadingSpinner from '@/components/generic/LoadingSpinner'
+import NavBar from '@/components/nav/NavBar'
+import ProgramRequests from '@/fetch/program/ProgramRequests'
 import styled from 'styled-components'
-import LoadingSpinner from '@/components/generic/LoadingSpinner';
-import getToast from '@/utils/getToast';
-import Textarea from '@/components/form/text-input/TextArea';
-
-
+import StyledSectionHeading from '@/components/form/section/StyledSectionHeading'
+import Textarea from '@/components/form/text-input/TextArea'
+import TextInput from '@/components/form/text-input/TextInput'
+import { Tooltip } from 'react-tooltip'
+import { useCallback } from 'react'
+import { useForm } from 'react-hook-form'
+import { useQuery } from 'react-query'
+import { useRouter } from 'next/router'
+import WordSelectInput from '@/components/form/word-select/WordSelectInput'
 
 const EditOrg = () => {
-	const [ isSubmitting, setIsSubmitting ] = useState(false); 
-	const [ wordList, setWordList ] = useState([]);
-	const router = useRouter();
+	const [ isSubmitting, setIsSubmitting ] = useState(false) 
+	const [ wordList, setWordList ] = useState([])
+	const router = useRouter()
 
   const { data: programData, isLoading } = useQuery({
     queryKey: ['program', { name: router.query.nameSlug }], 
@@ -39,7 +37,7 @@ const EditOrg = () => {
 		handleSubmit, 
 		watch, 
 		formState: { errors } 
-	} = useForm(); 
+	} = useForm() 
 
   const setWordListOnLoad = useCallback(() => {
     if (!programData) {
@@ -59,20 +57,21 @@ const EditOrg = () => {
     setValue('partnerUrl', programData.partnerUrl)
     setValue('expirationDate', programData.expirationDate)
     setWordListOnLoad()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [programData])
 
 	const onSubmit = async (data) => {
-		setIsSubmitting(true);		
+		setIsSubmitting(true)		
 
 		if (Object.keys(errors).length) {
-			setIsSubmitting(false);
+			setIsSubmitting(false)
 		}
 
-		data.helpsWith = wordList;
+		data.helpsWith = wordList
 
 		if (data.expirationDate) {
 			function dateIsValid(date) {
-				return date instanceof Date && !isNaN(date);
+				return date instanceof Date && !isNaN(date)
 			}
 		
 			const expirationDate = new Date(data.expirationDate)
@@ -84,15 +83,15 @@ const EditOrg = () => {
 					message: 'Please input a valid date'
 				})
 
-				setIsSubmitting(false); 
-				return;
+				setIsSubmitting(false) 
+				return
 			}
 
 			
-			data.expirationDate = expirationDate.toISOString();
+			data.expirationDate = expirationDate.toISOString()
 		}
 
-		const response = await findProgramAndUpdate(data, `/program/edit/${programData.href}`); 
+		const response = await findProgramAndUpdate(data, `/program/edit/${programData.href}`) 
 		if (response.success) {
 			getToast({ message: 'Successfully Updated!'})
 			router.push(`/edit-org/${response.data.href}`)
@@ -163,10 +162,15 @@ const EditOrg = () => {
 
 						<Box>
 							<Box mt='30px'>
-								<StyledSectionHeading style={{display: 'inline', marginTop: 30}}>
+								<StyledSectionHeading 
+									style={{display: 'inline', marginTop: 30}}
+									data-tooltip-id="explanation"
+									data-tooltip-content='Example: “Latinx” “LGBTQ” “Black” “All”'
+									data-tooltip-variant='info'
+								>
 									Who does this opportunity serve?
 								</StyledSectionHeading>
-								<Tooltip explanation='Example: “Latinx” “LGBTQ” “Black” “All”' style={{marginLeft: 10}}/>
+								<Tooltip id="explanation"/>
 							</Box>
 							<WordSelectInput
 								setWordList={setWordList}
@@ -208,7 +212,7 @@ const EditOrg = () => {
 	)
 }
 
-export default EditOrg;
+export default EditOrg
 
 const Form = styled.form`
 	margin-left: 50px; 

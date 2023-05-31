@@ -124,18 +124,17 @@ const ProfilePage = () => {
         mw="1000px"
         stackOnMobile
       >
-        <Box center mt="100px" mb="40px">
+        <Box center mt="80px" mb="40px">
           {!isEditing ? (
             <>
               {userData.preferredName && (
-                <TitleHeading>
-                  {' '}
+                <TitleHeading style={{ marginTop: 40}}>
                   Hey there {userData.preferredName}!
                 </TitleHeading>
               )}
 
               <Span>
-                We're bringing notifications to the profile page soon. So you
+                We&apos;re bringing notifications to the profile page soon. So you
                 can opt-in to get weekly emails on programs that have been
                 uploaded, and specify what types of programs you`re interested
                 in by clicking the edit button below.
@@ -213,7 +212,7 @@ const ProfilePage = () => {
 
                   <p style={{ marginTop: -10, marginBottom: 10 }}>
                     We ask because there are programs for specific groups and
-                    we'd like every possible opportunity to be available.
+                    we&apos;d like every possible opportunity to be available.
                   </p>
 
                   <CheckboxGroup
@@ -295,6 +294,13 @@ const NameCircle = styled.div`
   background-color: #1f2041;
   color: white;
   font-size: 36px;
+
+  @media screen and (max-width: 768px) {
+    height: 120px; 
+    width: 120px; 
+    font-size: 30; 
+    top: -60px;
+  }
 `
 
 const TitleHeading = styled.p`

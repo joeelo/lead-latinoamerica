@@ -8,6 +8,7 @@
     "test": "jest",
     "alt-port": "yarn run dev -- -p 3005",
     "lint": "next lint --fix",
+    "lint:fix": "npm run lint -- --fix",
     "prepare": "cd .. && husky install frontend/.husky",
     "pre-commit-lint": "yarn run lint-staged",
     "lint-staged": "next lint"

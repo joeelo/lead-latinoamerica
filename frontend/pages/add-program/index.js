@@ -11,7 +11,7 @@ import { postToDatabase } from '@/fetch/requests'
 import styled from 'styled-components'
 import StyledSectionHeading from '@/components/form/section/StyledSectionHeading'
 import TextInput from '@/components/form/text-input/TextInput'
-import Tooltip from '@/components/tooltip/Tooltip'
+import { Tooltip } from 'react-tooltip'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
@@ -139,10 +139,15 @@ const AddProgram = () => {
 
 						<Box>
 							<Box mt='30px'>
-								<StyledSectionHeading style={{display: 'inline', marginTop: 30}}>
+								<StyledSectionHeading 
+									style={{display: 'inline', marginTop: 30}}
+									data-tooltip-id="explanation"
+									data-tooltip-content='Example: “Latinx” “LGBTQ” “Black” “All”'
+									data-tooltip-variant='info'
+								>
 									Who does this opportunity serve?
 								</StyledSectionHeading>
-								<Tooltip explanation='Example: “Latinx” “LGBTQ” “Black” “All”' style={{marginLeft: 10}}/>
+								<Tooltip id="explanation"/>
 							</Box>
 							<WordSelectInput
 								setWordList={setWordList}

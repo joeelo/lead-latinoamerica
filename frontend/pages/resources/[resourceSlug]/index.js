@@ -1,17 +1,17 @@
-import FullScreenBack from '@/components/background/FullScreenBack'
-import PhotoWithTextBox from '@/components/content/PhotoWithTextBox'
-import Footer from '@/components/footer/Footer'
-import NavBar from '@/components/nav/NavBar'
-import fakeData from '@/data/fakeData'
-import { useRouter } from 'next/router'
-import styled from 'styled-components'
-import { useQuery } from "react-query"
-import ProgramRequests from '@/fetch/program/ProgramRequests'
-import LoadingSpinner from '@/components/generic/LoadingSpinner'
 import Box from '@/components/generic/Box'
 import en from '@/language/locales/en/common.json'
 import es from '@/language/locales/es/common.json'
+import fakeData from '@/data/fakeData'
+import Footer from '@/components/footer/Footer'
+import FullScreenBack from '@/components/background/FullScreenBack'
+import LoadingSpinner from '@/components/generic/LoadingSpinner'
+import NavBar from '@/components/nav/NavBar'
+import PhotoWithTextBox from '@/components/content/PhotoWithTextBox'
+import ProgramRequests from '@/fetch/program/ProgramRequests'
+import styled from 'styled-components'
 import useLocale from '@/hooks/useLocale'
+import { useQuery } from "react-query"
+import { useRouter } from 'next/router'
 
 const ResourcePage = () => {
 	// ex: /resource/program
