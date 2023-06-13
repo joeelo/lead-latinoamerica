@@ -1,38 +1,36 @@
-import styled from 'styled-components';
-import { useRef, useState } from 'react';
+import styled from 'styled-components'
+import { useRef, useState } from 'react'
 
 const Hamburger = ({ navOpen, setNavOpen }) => {
+  const lineHeight = 6
+  const lineWidth = 40
 
-  const lineHeight = 6;
-  const lineWidth = 40;
-
-  const menuBtn = useRef();
+  const menuBtn = useRef()
 
   const clickHandler = () => {
-    setNavOpen(!navOpen);
+    setNavOpen(!navOpen)
   }
 
   return (
-    <Menu ref={ menuBtn } onClick={ clickHandler }>
-      <Lines 
-        className={ navOpen ? 'open' : '' }
-        lineHeight={ lineHeight }
-        lineWidth={ lineWidth }
-      >
-      </Lines>
+    <Menu ref={menuBtn} onClick={clickHandler}>
+      <Lines
+        className={navOpen ? 'open' : ''}
+        lineHeight={lineHeight}
+        lineWidth={lineWidth}
+      ></Lines>
     </Menu>
   )
 }
 
-export default Hamburger;
+export default Hamburger
 
 const Menu = styled.div`
-  position: relative; 
-  display: flex; 
+  position: relative;
+  display: flex;
   width: 50px;
-  transition: all .5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   align-items: center;
-  left: 20px; 
+  left: 20px;
   top: 10px;
   height: 50px;
   cursor: pointer;
@@ -40,26 +38,26 @@ const Menu = styled.div`
   div.open {
     background: rgba(3, 4, 94, 0);
   }
-  div.open::before, 
+  div.open::before,
   div.open::after {
     background: rgba(3, 4, 94, 1);
   }
 `
-  
-  const Lines = styled.div`
-  width: ${props => props.lineWidth}px;
-  height: ${props => props.lineHeight}px; 
+
+const Lines = styled.div`
+  width: ${(props) => props.lineWidth}px;
+  height: ${(props) => props.lineHeight}px;
   border-radius: 10px;
-  transition: all .5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   background: rgb(3, 4, 94);
-  
+
   &::before,
   &::after {
     content: '';
-    width: ${props => props.lineWidth}px;
-    height: ${props => props.lineHeight}px; 
-    border-radius:10px;
-    transition: all .5s ease-in-out;
+    width: ${(props) => props.lineWidth}px;
+    height: ${(props) => props.lineHeight}px;
+    border-radius: 10px;
+    transition: all 0.5s ease-in-out;
     background: rgb(3, 4, 94);
     position: absolute;
   }

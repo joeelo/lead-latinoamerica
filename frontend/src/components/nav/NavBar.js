@@ -1,30 +1,22 @@
-
 import { useEffect, useState } from 'react'
 import DesktopNav from './DesktopNav'
 import MobileNav from './MobileNav'
 import useIsMobile from '@/hooks/useIsMobile'
 
 const NavBar = () => {
-	const isMobile = useIsMobile()
+  const isMobile = useIsMobile()
 
-	const [hasMounted, setHasMounted] = useState(false)
+  const [hasMounted, setHasMounted] = useState(false)
 
-	useEffect(() => {
-		setHasMounted(true)
-	}, [])
+  useEffect(() => {
+    setHasMounted(true)
+  }, [])
 
-	if (!hasMounted) {
-		return null
-	}
+  if (!hasMounted) {
+    return null
+  }
 
-
-	return (
-		!isMobile ? (
-			<DesktopNav />
-		) : (
-			<MobileNav />
-		)
-	)
+  return !isMobile ? <DesktopNav /> : <MobileNav />
 }
 
-export default NavBar;
+export default NavBar

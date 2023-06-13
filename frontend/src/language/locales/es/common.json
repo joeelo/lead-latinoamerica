@@ -1,35 +1,35 @@
 {
-	"headline1": "Portal Web", 
-	"headline2": "Energizado por LEAD.Latinoamérica", 
-	"headline3": "Conectando a los estudiantes", 
-	"headline4": "con oportunidades en la comunidad", 
-	"missionDistrict": "Distrito de la Misión", 
-	"scholarships": {
-		"headline": "Becas", 
-		"bio": "Encuentre becas para ayudar a financiar su viaje educativo.", 
-		"link": "Vea nuestras Oportunidades de Becas"
-	},
-	"summer": {
-		"headline": "Verano", 
-		"bio": "Encuentre una oportunidad de verano que le permita conectarse con sus compañeros mientras desarrolla su experiencia educativa y profesional.", 
-		"link": "Vea nuestras Oportunidades de Verano"
-	}, 
-	"internships": {
-		"headline": "Pasantías", 
-		"bio": "Explore las oportunidades de pasantías que le permitirán desarrollar su experiencia profesional.", 
-		"link": "Vea nuestras Oportunidades de Pasantías"
-	},
-	"programs": {
-		"headline": "Programas", 
-		"bio": "Seleccione entre una amplia gama de programas en su comunidad que lo ayudarán a prosperar.", 
-		"link": "Vea nuestras Oportunidades de Programas"
-	}, 
-	"program": { "headline": "Programas" },
-	"purpose": "Nuestro propósito", 
-	"purposeArray": {
-		"sentence1": "Este portal asegura que los estudiantes estén al tanto de todas las becas y oportunidades disponibles para ellos.", 
-		"sentence2": "Nuestro objetivo es optimizar las listas de becas y oportunidades, para que los estudiantes y los padres ya no tengan que revisar varios sitios o páginas para ver todo lo que está disponible para ellos.", 
-		"sentence3": "Este portal proporciona nuestra lista más actualizada de oportunidades disponibles en su área. Si conoce una oportunidad que existe y no la ve aquí, háganoslo saber y la agregaremos para asegurarnos de que todos tengan acceso a las mismas oportunidades."
-	}, 
-	"noOpportunities": "No hay oportunidades en esta categoría en este momento. Vuelva a consultar en una fecha posterior."
+  "headline1": "Portal Web",
+  "headline2": "Energizado por LEAD.Latinoamérica",
+  "headline3": "Conectando a los estudiantes",
+  "headline4": "con oportunidades en la comunidad",
+  "missionDistrict": "Distrito de la Misión",
+  "scholarships": {
+    "headline": "Becas",
+    "bio": "Encuentre becas para ayudar a financiar su viaje educativo.",
+    "link": "Vea nuestras Oportunidades de Becas"
+  },
+  "summer": {
+    "headline": "Verano",
+    "bio": "Encuentre una oportunidad de verano que le permita conectarse con sus compañeros mientras desarrolla su experiencia educativa y profesional.",
+    "link": "Vea nuestras Oportunidades de Verano"
+  },
+  "internships": {
+    "headline": "Pasantías",
+    "bio": "Explore las oportunidades de pasantías que le permitirán desarrollar su experiencia profesional.",
+    "link": "Vea nuestras Oportunidades de Pasantías"
+  },
+  "programs": {
+    "headline": "Programas",
+    "bio": "Seleccione entre una amplia gama de programas en su comunidad que lo ayudarán a prosperar.",
+    "link": "Vea nuestras Oportunidades de Programas"
+  },
+  "program": { "headline": "Programas" },
+  "purpose": "Nuestro propósito",
+  "purposeArray": {
+    "sentence1": "Este portal asegura que los estudiantes estén al tanto de todas las becas y oportunidades disponibles para ellos.",
+    "sentence2": "Nuestro objetivo es optimizar las listas de becas y oportunidades, para que los estudiantes y los padres ya no tengan que revisar varios sitios o páginas para ver todo lo que está disponible para ellos.",
+    "sentence3": "Este portal proporciona nuestra lista más actualizada de oportunidades disponibles en su área. Si conoce una oportunidad que existe y no la ve aquí, háganoslo saber y la agregaremos para asegurarnos de que todos tengan acceso a las mismas oportunidades."
+  },
+  "noOpportunities": "No hay oportunidades en esta categoría en este momento. Vuelva a consultar en una fecha posterior."
 }

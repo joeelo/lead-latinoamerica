@@ -1,20 +1,20 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext } from 'react'
 
-const LanguageContext = createContext(); 
+const LanguageContext = createContext()
 
 export const LanguageWrapper = ({ children }) => {
-	let language = {
-		// activeLanguage: 'en',
-		// changeLanguage: (lang) => {
-		// 	activeLanguage: lang;
-		// }
-	}
+  let language = {
+    // activeLanguage: 'en',
+    // changeLanguage: (lang) => {
+    // 	activeLanguage: lang;
+    // }
+  }
 
-	return (
-		<LanguageContext.Provider value={ language }>
-			{ children }
-		</LanguageContext.Provider>
-	)
+  return (
+    <LanguageContext.Provider value={language}>
+      {children}
+    </LanguageContext.Provider>
+  )
 }
 
-export const useLanguageContext = () => useContext(LanguageContext);
+export const useLanguageContext = () => useContext(LanguageContext)

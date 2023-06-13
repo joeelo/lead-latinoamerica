@@ -21,8 +21,8 @@ import { useRouter } from 'next/router'
 import WordSelectInput from '@/components/form/word-select/WordSelectInput'
 
 const EditOrg = () => {
-	const [ isSubmitting, setIsSubmitting ] = useState(false) 
-	const [ wordList, setWordList ] = useState([])
+	const [isSubmitting, setIsSubmitting] = useState(false) 
+	const [wordList, setWordList] = useState([])
 	const router = useRouter()
 
   const { data: programData, isLoading } = useQuery({
@@ -45,6 +45,7 @@ const EditOrg = () => {
     }
 
     setWordList(programData.helpsWith)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {

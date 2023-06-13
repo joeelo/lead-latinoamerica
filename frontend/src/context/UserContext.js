@@ -1,25 +1,22 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from 'react'
 
-const UserContext = createContext(); 
+const UserContext = createContext()
 
 export function UserWrapper({ children }) {
-
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({})
 
   return (
-    <UserContext.Provider 
+    <UserContext.Provider
       value={{
-        user, 
+        user,
         setUser,
       }}
     >
-      { children }
+      {children}
     </UserContext.Provider>
   )
-
-
 }
 
 export function useUserContext() {
-  return useContext(UserContext);
+  return useContext(UserContext)
 }

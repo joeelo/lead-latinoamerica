@@ -1,15 +1,15 @@
 {
-	"resources": "recursos", 
-	"signIn": "Iniciar Sesión", 
-	"signOut": "Desconectar",
-	"programs": "Programas", 
-	"scholarships": "Becas", 
-	"internships": "Pasantías", 
-	"portal": "Involucrarse", 
-	"home": "Hogar", 
-	"addOrg": "Involucrarse", 
-	"ourTeam": "Nuestro Equipo", 
-	"donate": "Donar",
-	"summer": "Verano",
-	"profile": "Mi Perfil"
+  "resources": "recursos",
+  "signIn": "Iniciar Sesión",
+  "signOut": "Desconectar",
+  "programs": "Programas",
+  "scholarships": "Becas",
+  "internships": "Pasantías",
+  "portal": "Involucrarse",
+  "home": "Hogar",
+  "addOrg": "Involucrarse",
+  "ourTeam": "Nuestro Equipo",
+  "donate": "Donar",
+  "summer": "Verano",
+  "profile": "Mi Perfil"
 }

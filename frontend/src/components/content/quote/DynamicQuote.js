@@ -4,46 +4,44 @@ import { useContext } from 'react'
 import useGetRandomQuote from '@/hooks/useGetRandomQuote'
 
 const DynamicQuote = () => {
-	
-	const theme = useContext(ThemeContext)
-	const quote = useGetRandomQuote() 
-	
-	return (
-		<CenterFlexContainer backgroundColor={theme.colors.darkBlue} align='center' minHeight='300px'>
-			<Container>
-				<QuoteText>
-					{ quote?.text }
-				</QuoteText>
-				<br/>
-				<QuoteAuthor>
-					- { quote?.author }
-				</QuoteAuthor>
-			</Container>
+  const theme = useContext(ThemeContext)
+  const quote = useGetRandomQuote()
 
-		</CenterFlexContainer>
-	)
+  return (
+    <CenterFlexContainer
+      backgroundColor={theme.colors.darkBlue}
+      align="center"
+      minHeight="300px"
+    >
+      <Container>
+        <QuoteText>{quote?.text}</QuoteText>
+        <br />
+        <QuoteAuthor>- {quote?.author}</QuoteAuthor>
+      </Container>
+    </CenterFlexContainer>
+  )
 }
 
-export default DynamicQuote;
+export default DynamicQuote
 
 const Container = styled.div`
-	display: flex; 
-	margin: 0 auto; 
-	flex-direction: column;
-	color: white;
-	font-size: 34px; 
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  color: white;
+  font-size: 34px;
 
-	@media screen and (max-width: 768px) {
-		padding: 0 10px;
-	}
+  @media screen and (max-width: 768px) {
+    padding: 0 10px;
+  }
 `
 
 const QuoteText = styled.span`
-	width: 100%; 
-	text-align: center;
+  width: 100%;
+  text-align: center;
 `
 
 const QuoteAuthor = styled.span`
-	text-align: right; 
-	width: 100%; 
+  text-align: right;
+  width: 100%;
 `

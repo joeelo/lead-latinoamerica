@@ -1,7 +1,7 @@
 const logFormData = (formData) => {
-  for (const [key, value] of formData.entries()) { 
-    console.log(key, value);
+  for (const [key, value] of formData.entries()) {
+    console.log(key, value)
   }
 }
 
-export default logFormData;
+export default logFormData

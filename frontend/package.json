@@ -9,8 +9,9 @@
     "alt-port": "yarn run dev -- -p 3005",
     "lint": "next lint --fix",
     "lint:fix": "npm run lint -- --fix",
-    "prepare": "cd .. && husky install frontend/.husky",
     "pre-commit-lint": "yarn run lint-staged",
+    "prepare": "cd .. && husky install frontend/.husky",
+    "prettier:fix": "npx prettier 'src/**/*.{js,ts,mjs,cjs,json}' --write",
     "lint-staged": "next lint"
   },
   "dependencies": {

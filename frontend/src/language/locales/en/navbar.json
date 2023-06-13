@@ -1,15 +1,15 @@
 {
-	"resources": "Resources", 
-	"signIn": "Login", 
-	"signOut": "Sign Out",
-	"programs": "Programs", 
-	"scholarships": "Scholarships", 
-	"internships": "Internships", 
-	"portal": "Get Involved", 
-	"home": "Home", 
-	"addOrg": "Add a Program", 
-	"ourTeam": "Our Team", 
-	"donate": "Donate", 
-	"summer": "Summer", 
-	"profile": "My Profile"
+  "resources": "Resources",
+  "signIn": "Login",
+  "signOut": "Sign Out",
+  "programs": "Programs",
+  "scholarships": "Scholarships",
+  "internships": "Internships",
+  "portal": "Get Involved",
+  "home": "Home",
+  "addOrg": "Add a Program",
+  "ourTeam": "Our Team",
+  "donate": "Donate",
+  "summer": "Summer",
+  "profile": "My Profile"
 }
