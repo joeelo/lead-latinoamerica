@@ -1,3 +1,4 @@
+import { CacheProvider } from '@emotion/react'
 /* eslint-disable @next/next/no-page-custom-font */
 import 'react-toastify/dist/ReactToastify.css'
 import { config, dom } from "@fortawesome/fontawesome-svg-core"
@@ -5,6 +6,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { ThemeProvider, createGlobalStyle } from 'styled-components' 
 import { Analytics } from '@vercel/analytics/react'
 import { Provider as AuthProvider } from 'next-auth/client'
+import createEmotionCache from '@/createEmotionCache'
 import { getSession } from "next-auth/client"
 import Head from 'next/head'
 import { LanguageWrapper } from '@/context/LanguageContext'
@@ -105,7 +107,9 @@ const GlobalStyle = createGlobalStyle`
 
 config.autoAddCss = false;
 
-const App = ({ Component, pageProps }) => {
+const clientSideEmotionCache = createEmotionCache()
+
+const App = ({ Component, pageProps, emotionCache = clientSideEmotionCache }) => {
 
 	const props = pageProps || {}
 
@@ -114,26 +118,28 @@ const App = ({ Component, pageProps }) => {
 
 	return (
 		<>
-			<Head>
-				<link rel="preconnect" href="https://fonts.gstatic.com"></link>
-				<link 
-					href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap&family=Source+Sans+Pro:wght@300;500;700;900&display=swap"
-					rel="stylesheet"></link> 
-				<style>{dom.css()}</style>a
-			</Head>
-			<GlobalStyle />
-			<QueryClientProvider client={queryClient}>
-				<AuthProvider session={props.session || {}}>
-						<ThemeProvider theme={theme}>
-							<LanguageWrapper>
-								<Component {...pageProps} />
-								<Analytics />
-							</LanguageWrapper>
-						</ThemeProvider>
-				</AuthProvider>
-				<ToastContainer />
-				<ReactQueryDevtools initialIsOpen={false} />
-			</QueryClientProvider>
+			<CacheProvider value={emotionCache}>
+				<Head>
+					<link rel="preconnect" href="https://fonts.gstatic.com"></link>
+					<link 
+						href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap&family=Source+Sans+Pro:wght@300;500;700;900&display=swap"
+						rel="stylesheet"></link> 
+					<style>{dom.css()}</style>a
+				</Head>
+				<GlobalStyle />
+				<QueryClientProvider client={queryClient}>
+					<AuthProvider session={props.session || {}}>
+							<ThemeProvider theme={theme}>
+								<LanguageWrapper>
+									<Component {...pageProps} />
+									<Analytics />
+								</LanguageWrapper>
+							</ThemeProvider>
+					</AuthProvider>
+					<ToastContainer />
+					<ReactQueryDevtools initialIsOpen={false} />
+				</QueryClientProvider>
+			</CacheProvider>
 		</>
 	)
 }

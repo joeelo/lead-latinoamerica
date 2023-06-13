@@ -1,4 +1,4 @@
-import Box from '../generic/Box'
+import Box from '@mui/material/Box'
 import getToast from '@/utils/getToast'
 import ProgramCardSimple from '@/components/content/program/ProgramCardSimple'
 import PropTypes from 'prop-types'
@@ -23,7 +23,7 @@ const UserSavedPrograms = ({ programs }) => {
   }
 
   return (
-    <Box display="flex" fd="column" mb="20px">
+    <Box display="flex" flexDirection="column" mb={2.5}>
       <TitleHeading>Your Saved Opportunities</TitleHeading>
       <div style={{ display: 'flex', flexWrap: 'wrap', width: '100%' }}>
         {programs.length === 0 ? (

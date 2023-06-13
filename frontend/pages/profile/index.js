@@ -90,12 +90,14 @@ const ProfilePage = () => {
     if (email) {
       setProfileInfo()
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email])
 
   useEffect(() => {
     if (!session) {
       router.push('sign-in')
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session])
 
   return (

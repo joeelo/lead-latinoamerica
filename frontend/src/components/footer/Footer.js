@@ -1,11 +1,11 @@
-import styled from 'styled-components'
+import Box from '@/components/generic/Box'
 import DynamicQuote from '@/components/content/quote/DynamicQuote'
-import PropTypes from 'prop-types'
-import LinkUnderlineEffect from '@/components/generic/LinkUnderlineEffect'
 import en from '@/language/locales/en/footer.json'
 import es from '@/language/locales/es/footer.json'
+import LinkUnderlineEffect from '@/components/generic/LinkUnderlineEffect'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import useLocale from '@/hooks/useLocale'
-import Box from '@/components/generic/Box'
 
 const Footer = ({ showQuote }) => {
   const t = useLocale() === 'en' ? en : es
