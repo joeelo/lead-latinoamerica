@@ -1,4 +1,4 @@
-import Box from '@/components/generic/Box'
+import Box from '@mui/material/Box'
 import Button from '@/components/buttons/Button'
 import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
 import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup'
@@ -19,9 +19,9 @@ import WordSelectInput from '@/components/form/word-select/WordSelectInput'
 
 
 const AddProgram = () => {
-	const [ isSubmitting, setIsSubmitting ] = useState(false) 
-	const [ wordList, setWordList ] = useState([])
-	const [ apiError, setApiError] = useState(null)
+	const [isSubmitting, setIsSubmitting] = useState(false) 
+	const [wordList, setWordList] = useState([])
+	const [apiError, setApiError] = useState(null)
 	const router = useRouter()
 
   const { 
@@ -93,7 +93,13 @@ const AddProgram = () => {
 		<>
 			<NavBar />
 
-			<Box stackOnMobile display='flex' fd='column' width='al-fu' center pt='40px'>
+			<Box 
+				display='flex' 
+				flexDirection='column' 
+				width='90%' 
+				margin='0 auto' 
+				pt='40px'
+			>
 				<ChangingBackgroundText 
 					fontSize='48px'
 					initialColor='#1F2041'
@@ -105,7 +111,6 @@ const AddProgram = () => {
 				/>
 
 				<Box display="flex">
-
 					<Form 
 						style={{maxWidth: '600px', margin: '40px auto 40px auto'}} 
 						onSubmit={handleSubmit(onSubmit)} 
@@ -188,7 +193,7 @@ const AddProgram = () => {
 							/>
 						</Box>
 
-						<Box display='flex' justify='flex-end'>
+						<Box display='flex' justifyContent='flex-end'>
 							<Button label='Go Back' style={{ marginRight: 20 }}/>
 							<Button type="submit" label='Submit' isSubmitting={isSubmitting}/>
 						</Box>

@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
-import Box from '@/components/generic/Box'
-import Popover from '../modal/Popover'
 import { signOut, useSession } from 'next-auth/client'
+import Box from '@mui/material/Box'
 import en from '@/language/locales/en/navbar.json'
 import es from '@/language/locales/es/navbar.json'
-import Link from 'next/link'
-import useLocale from '@/hooks/useLocale'
 import LanguageButtons from './LanguageButtons'
+import Link from 'next/link'
+import Popover from '../modal/Popover'
+import styled from 'styled-components'
+import useLocale from '@/hooks/useLocale'
 
 function DesktopNav() {
   const [anchorEl, setAnchorEl] = useState(null)
@@ -24,27 +24,31 @@ function DesktopNav() {
 
   return (
     <Container>
-      <Box display="flex" align="flex-start" ml="20px">
+      <Box display="flex" alignItems="flex-start" ml="20px">
         <LanguageButtons />
       </Box>
       <Box
         display="flex"
-        justify="flex-end"
+        justifyContent="flex-end"
         width="90vw"
-        mw="100%"
-        align="center"
+        maxWidth="100%"
+        alignItems="center"
       >
-        <Box
+        <div
           width="120px"
-          onMouseEnter={handleMouseEnter}
+          onPointerEnter={(e) => {
+            console.log('E : ', e)
+          }}
           data-name="get-involved"
           style={{ cursor: 'pointer' }}
         >
           {t.portal}
-        </Box>
+        </div>
         <Box
           width="110px"
-          onMouseEnter={handleMouseEnter}
+          onMouseEnter={(event) => {
+            console.log('EVENT: ')
+          }}
           data-name="resources"
           style={{ cursor: 'pointer' }}
         >
@@ -59,7 +63,7 @@ function DesktopNav() {
         </Box>
         <Box
           width="100px"
-          onMouseEnter={handleExternalMouseEnter}
+          onMouseOver={handleExternalMouseEnter}
           style={{ cursor: 'pointer' }}
         >
           {!session ? (
@@ -76,7 +80,7 @@ function DesktopNav() {
 
       {anchorEl && anchorEl.dataset.name === 'get-involved' && (
         <Popover anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
-          <Box className="link-container" fd="column" display="flex">
+          <Box className="link-container" flexDirection="column" display="flex">
             <Link href="/add-program">{t.addOrg}</Link>
             {session && <Link href="/profile">{t.profile}</Link>}
             <a
@@ -91,7 +95,7 @@ function DesktopNav() {
 
       {anchorEl && anchorEl.dataset.name === 'resources' && (
         <Popover anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
-          <Box className="link-container" display="flex" fd="column">
+          <Box className="link-container" display="flex" flexDirection="column">
             <Link href="/resources/program">{t.programs}</Link>
             <Link href="/resources/scholarships">{t.scholarships}</Link>
             <Link href="/resources/internships">{t.internships}</Link>

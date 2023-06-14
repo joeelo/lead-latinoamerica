@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
 import styled, { keyframes } from 'styled-components'
+import { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import useOnScreen from '@/hooks/useOnScreen'
 
@@ -23,6 +23,7 @@ const ChangingBackgroundText = ({
     } else if (!onlyRunOneTransition && !isOnScreen) {
       setChangeTextColor(false)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOnScreen])
 
   return (
