@@ -10,8 +10,6 @@ Popover.propTypes = {
 }
 
 function Popover({ anchorEl, setAnchorEl, children }) {
-  console.log('ajifjeif: ', anchorEl)
-
   const updateInnerWidth = useMemo(() => {
     debounce(() => setInnerWidth(window.innerWidth), 50)
   }, [])

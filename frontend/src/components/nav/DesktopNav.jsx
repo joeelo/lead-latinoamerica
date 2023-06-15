@@ -34,21 +34,17 @@ function DesktopNav() {
         maxWidth="100%"
         alignItems="center"
       >
-        <div
+        <Box
           width="120px"
-          onPointerEnter={(e) => {
-            console.log('E : ', e)
-          }}
+          onPointerEnter={handleMouseEnter}
           data-name="get-involved"
           style={{ cursor: 'pointer' }}
         >
           {t.portal}
-        </div>
+        </Box>
         <Box
           width="110px"
-          onMouseEnter={(event) => {
-            console.log('EVENT: ')
-          }}
+          onPointerEnter={handleMouseEnter}
           data-name="resources"
           style={{ cursor: 'pointer' }}
         >
@@ -57,13 +53,13 @@ function DesktopNav() {
         <Box
           style={{ cursor: 'pointer' }}
           width="80px"
-          onMouseEnter={handleExternalMouseEnter}
+          onPointerEnter={handleExternalMouseEnter}
         >
           <Link href="/">{t.home}</Link>
         </Box>
         <Box
           width="100px"
-          onMouseOver={handleExternalMouseEnter}
+          onPointerEnter={handleExternalMouseEnter}
           style={{ cursor: 'pointer' }}
         >
           {!session ? (
