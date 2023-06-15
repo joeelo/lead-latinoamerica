@@ -1,22 +1,37 @@
-import Box from '@/components/generic/Box'
+import Box from '@mui/material/Box'
 import DynamicQuote from '@/components/content/quote/DynamicQuote'
 import en from '@/language/locales/en/footer.json'
 import es from '@/language/locales/es/footer.json'
 import LinkUnderlineEffect from '@/components/generic/LinkUnderlineEffect'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import useLocale from '@/hooks/useLocale'
 
-const Footer = ({ showQuote }) => {
+
+export default function Footer ({ 
+  showQuote = true 
+}) {
   const t = useLocale() === 'en' ? en : es
 
   return (
     <>
       {showQuote && <DynamicQuote />}
 
-      <Container data-testid="footer">
-        <Column>
-          <p> {t.explore} </p>
+      <Box
+        width='100vw'
+        display='flex'
+        pl={2.5}
+        style={{ 
+          boxShadow: 'inset 0px 2px 12px 2px rgba(184, 177, 184, 0.4)'
+        }}
+      >
+        <Box 
+          display="flex" 
+          flexDirection="column"
+          p={2.5}
+          fontSize={22}
+          width="100%"
+        >
+
+          <p style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 16 }}> {t.explore} </p>
           <div
             style={{
               display: 'flex',
@@ -50,54 +65,25 @@ const Footer = ({ showQuote }) => {
               hrefFormatted="/resources/summer"
               text={t.summer}
             />
-            <Box mt="8px">
-              <LinkUnderlineEffect
-                size="md"
-                openInNewTab
-                hrefFormatted="https://www.leadlatinoamerica.org/copy-of-our-team"
-                color="#222"
-                text={t.ourTeam}
-              />
-            </Box>
-            <LinkUnderlineEffect
-              size="md"
-              hrefFormatted="/add-program"
-              text={t.addYourOrg}
-              color="#222"
-            />
           </div>
-        </Column>
-      </Container>
+
+          <LinkUnderlineEffect
+            size="md"
+            openInNewTab
+            hrefFormatted="https://www.leadlatinoamerica.org/copy-of-our-team"
+            color="#222"
+            text={t.ourTeam}
+          />
+
+
+          <LinkUnderlineEffect
+            size="md"
+            hrefFormatted="/add-program"
+            text={t.addYourOrg}
+            color="#222"
+          />
+        </Box>
+      </Box>
     </>
   )
 }
-
-export default Footer
-
-Footer.propTypes = {
-  showQuote: PropTypes.bool,
-}
-
-Footer.defaultProps = {
-  showQuote: true,
-}
-
-const Container = styled.div`
-  width: 100vw;
-  display: flex;
-  padding-left: 20px;
-  box-shadow: inset 0px 2px 12px 2px rgba(184, 177, 184, 0.4);
-`
-
-const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  font-size: 24px;
-  width: 100%;
-
-  & > p:first-child {
-    font-weight: 600;
-    margin-bottom: 20px;
-  }
-`
