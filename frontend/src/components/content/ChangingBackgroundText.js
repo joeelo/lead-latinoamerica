@@ -23,7 +23,7 @@ const ChangingBackgroundText = ({
     } else if (!onlyRunOneTransition && !isOnScreen) {
       setChangeTextColor(false)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOnScreen])
 
   return (

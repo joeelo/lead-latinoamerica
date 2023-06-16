@@ -5,10 +5,7 @@ import es from '@/language/locales/es/footer.json'
 import LinkUnderlineEffect from '@/components/generic/LinkUnderlineEffect'
 import useLocale from '@/hooks/useLocale'
 
-
-export default function Footer ({ 
-  showQuote = true 
-}) {
+export default function Footer({ showQuote = true }) {
   const t = useLocale() === 'en' ? en : es
 
   return (
@@ -16,22 +13,24 @@ export default function Footer ({
       {showQuote && <DynamicQuote />}
 
       <Box
-        width='100vw'
-        display='flex'
+        width="100vw"
+        display="flex"
         pl={2.5}
-        style={{ 
-          boxShadow: 'inset 0px 2px 12px 2px rgba(184, 177, 184, 0.4)'
+        style={{
+          boxShadow: 'inset 0px 2px 12px 2px rgba(184, 177, 184, 0.4)',
         }}
       >
-        <Box 
-          display="flex" 
+        <Box
+          display="flex"
           flexDirection="column"
           p={2.5}
           fontSize={22}
           width="100%"
         >
-
-          <p style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 16 }}> {t.explore} </p>
+          <p style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 16 }}>
+            {' '}
+            {t.explore}{' '}
+          </p>
           <div
             style={{
               display: 'flex',
@@ -74,7 +73,6 @@ export default function Footer ({
             color="#222"
             text={t.ourTeam}
           />
-
 
           <LinkUnderlineEffect
             size="md"
