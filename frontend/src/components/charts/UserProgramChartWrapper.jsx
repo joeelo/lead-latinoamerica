@@ -1,6 +1,6 @@
-import { useMemo } from 'react'
 import BarChart from './BarChart'
 import { DateTime } from 'luxon'
+import { useMemo } from 'react'
 import { useQuery } from 'react-query'
 import { useSession } from 'next-auth/client'
 
@@ -49,7 +49,7 @@ function UserProgramChartWrapper() {
 
   const monthsFormatted = categories.map((cat) => {
     const date = DateTime.fromISO(cat)
-    return date.toLocaleString({ month: 'long', day: 'numeric' })
+    return date.toLocaleString({ month: 'long' })
   })
 
   const options = {

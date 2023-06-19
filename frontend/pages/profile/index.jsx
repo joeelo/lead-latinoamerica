@@ -1,18 +1,22 @@
+
 import { editProfile, getProfile } from '@/fetch/profile/ProfileRequests'
 import React, { useEffect, useState } from 'react'
 import Box from '@/components/generic/Box'
 import Button from '@/components/buttons/Button'
 import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup'
 import dynamic from 'next/dynamic'
+import { Ethnicity } from './Ethnicity'
 import Footer from '@/components/footer/Footer'
 import getFullName from '@/utils/getFullName'
 import getToast from '@/utils/getToast'
 import Image from 'next/image'
+import { Interests } from './Interests'
 import NavBar from '@/components/nav/NavBar'
 import ProgramRequests from '@/fetch/program/ProgramRequests'
 import SelectInput from '@/components/form/select/SelectInput'
 import styled from 'styled-components'
 import TextInput from '@/components/form/text-input/TextInput'
+import Typography from '@mui/material/Typography'
 import { useForm } from 'react-hook-form'
 import { useQuery } from 'react-query'
 import { useRouter } from 'next/router'
@@ -42,7 +46,30 @@ const ProfilePage = () => {
   })
 
   const onSubmit = async (data) => {
-    const response = await editProfile(data, email)
+    const interestKeys = Object.values(Interests)
+    const nationalityKeys = Object.values(Ethnicity)
+
+    const interestData = []
+    const nationalityData = []
+
+    interestKeys.forEach((interest) => {
+      if (!!data[interest]) {
+        interestData.push(interest)
+      }
+    })
+
+    nationalityKeys.forEach((nationality) => {
+      if (!!data[nationality]) {
+        nationalityData.push(nationality)
+      }
+    })
+
+    const apiData = {
+      interests: interestData,
+      nationality: nationalityData,
+    }
+
+    const response = await editProfile(apiData, email)
 
     if (response.success) {
       setIsEditing(false)
@@ -54,15 +81,16 @@ const ProfilePage = () => {
 
   const setProfileInfo = async () => {
     const response = await getProfile(session)
-    if (response?.user?.name) {
+
+    if (response?.user) {
       setUserData(response.user)
 
       response.user.interests.forEach((program) => {
-        setValue(`programs.${program}`, `programs.${program}`)
+        setValue(`${program}`, `${program}`)
       })
 
       response.user.nationality.forEach((ethnicity) => {
-        setValue(`ethnicity.${ethnicity}`, `ethnicity.${ethnicity}`)
+        setValue(`${ethnicity}`, `${ethnicity}`)
       })
     }
   }
@@ -71,11 +99,11 @@ const ProfilePage = () => {
     setIsEditing(true)
 
     userData.interests.forEach((program) => {
-      setValue(`programs.${program}`, true)
+      setValue(`${program}`, true)
     })
 
     userData.nationality.forEach((ethnicity) => {
-      setValue(`ethnicity.${ethnicity}`, true)
+      setValue(`${ethnicity}`, true)
     })
   }
 
@@ -135,12 +163,12 @@ const ProfilePage = () => {
                 </TitleHeading>
               )}
 
-              <Span>
+              <Typography>
                 We&apos;re bringing notifications to the profile page soon. So you
                 can opt-in to get weekly emails on programs that have been
                 uploaded, and specify what types of programs you`re interested
                 in by clicking the edit button below.
-              </Span>
+              </Typography>
 
               <Button label="Edit" onClick={handleClick} />
             </>
@@ -181,7 +209,7 @@ const ProfilePage = () => {
                       { value: 'he', label: 'He/His' },
                       { value: 'she', label: 'She/Her' },
                       { value: 'they', label: 'They/Them' },
-                      { value: 'none', label: "Doesn't matter" },
+                      { value: 'none', label: "No preference" },
                     ]}
                     setValue={setValue}
                     register={register}
@@ -196,10 +224,10 @@ const ProfilePage = () => {
                   </TitleHeading>
                   <CheckboxGroup
                     options={[
-                      { value: 'programs.summer', label: 'Summer' },
-                      { value: 'programs.scholarships', label: 'Scholarships' },
-                      { value: 'programs.internships', label: 'Internships' },
-                      { value: 'programs.programs', label: 'Programs' },
+                      { value: Interests.Summer, label: 'Summer' },
+                      { value: Interests.Scholarships, label: 'Scholarships' },
+                      { value: Interests.Internships, label: 'Internships' },
+                      { value: Interests.Programs, label: 'Programs' },
                     ]}
                     register={register}
                     checkedOnLoad={userData.interests || []}
@@ -221,28 +249,31 @@ const ProfilePage = () => {
                     name="ethnicity"
                     options={[
                       {
-                        value: 'ethnicity.caucasian',
+                        value: Ethnicity.Caucasian,
                         label: 'White or Caucasion',
                       },
                       {
-                        value: 'ethnicity.latino',
+                        value: Ethnicity.Latino,
                         label: 'Hispanic or Latino',
                       },
                       {
-                        value: 'ethnicity.african',
+                        value: Ethnicity.African,
                         label: 'African or African-American',
                       },
                       {
-                        value: 'ethnicity.asian',
+                        value: Ethnicity.Asian,
                         label: 'Asian or Asian-American',
                       },
                       {
-                        value: 'ethnicity.nativeAmerican',
+                        value: Ethnicity.NativeAmerican,
                         label: 'Native American',
                       },
-                      { value: 'ethnicity.multiRacial', label: 'Multi-Racial' },
+                      { 
+                        value: Ethnicity.MultiRacial, 
+                        label: 'Multi-Racial' 
+                      },
                       {
-                        value: 'ethnicity.noAnswer',
+                        value: Ethnicity.NoAnswer,
                         label: "Don't care to answer",
                       },
                     ]}

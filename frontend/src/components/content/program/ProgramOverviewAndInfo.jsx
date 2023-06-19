@@ -68,11 +68,11 @@ const ProgramOverviewAndInfo = ({
         justifyContent='space-between'
         flexDirection={isMobile ? 'column-reverse' : 'inherit'}
       >
-        <Box width="50%">
+        <Box width={isMobile ? '90%' : '50%'}>
           <Typography
             fontWeight={600}
             fontSize={isMobile ? 48 : 72}
-            mt={isMobile ? 0 : 2.5}
+            mt={isMobile ? 2.5 : 0}
           > 
             {t.overview} 
           </Typography>
@@ -80,7 +80,7 @@ const ProgramOverviewAndInfo = ({
           <Typography fontSize={20}> {getProgramBioInLocale()} </Typography>
 
           {!preview ? (
-            <Box display="flex">
+            <Box display={!isMobile ? 'flex' : 'inherit'}>
               {program.partnerUrl && (
                 <ExternalLink href={program.partnerUrl} bgColor="#0055B6">
                   {t.signUp}

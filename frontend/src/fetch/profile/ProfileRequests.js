@@ -43,6 +43,8 @@ const getProfile = async (session) => {
 }
 
 const editProfile = async (data, email) => {
+  const body = JSON.stringify({ data })
+
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_DB_LOCATION}/user/profile/${email}/edit`,
@@ -51,7 +53,7 @@ const editProfile = async (data, email) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ data }),
+        body,
       }
     )
     const json = await response.json()
