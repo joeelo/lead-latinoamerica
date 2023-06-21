@@ -1,4 +1,4 @@
-export const Ethnicity = {
+const Ethnicity = {
   Caucasian: 'caucasian',
   Latino: 'latino',
   African: 'african',
@@ -7,3 +7,5 @@ export const Ethnicity = {
   MultiRacial: 'multiRacial',
   NoAnswer: 'noAnswer',
 }
+
+export default Ethnicity
