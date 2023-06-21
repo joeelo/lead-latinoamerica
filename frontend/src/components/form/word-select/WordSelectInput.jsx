@@ -1,5 +1,5 @@
-import Box from '@/components/generic/Box'
 import { useCallback, useEffect, useState } from 'react'
+import Box from '@/components/generic/Box'
 import styled from 'styled-components'
 
 const WordSelectInput = ({ wordList, setWordList, placeHolder }) => {
@@ -20,6 +20,7 @@ const WordSelectInput = ({ wordList, setWordList, placeHolder }) => {
         setCurrentWord('')
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [currentWord, wordList, setWordList]
   )
 

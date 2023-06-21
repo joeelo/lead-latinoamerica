@@ -1,9 +1,9 @@
-import { useContext } from 'react'
-import { ThemeContext } from 'styled-components'
-import NavBar from '@/components/nav/NavBar'
-import Footer from '@/components/footer/Footer'
-import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
 import Box from '@/components/generic/Box'
+import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
+import Footer from '@/components/footer/Footer'
+import NavBar from '@/components/nav/NavBar'
+import { ThemeContext } from 'styled-components'
+import { useContext } from 'react'
 
 const ThanksPartnerPage = () => {
   const theme = useContext(ThemeContext)
@@ -32,6 +32,7 @@ const ThanksPartnerPage = () => {
           </span>
         </Box>
       </Box>
+      
       <Footer />
     </>
   )

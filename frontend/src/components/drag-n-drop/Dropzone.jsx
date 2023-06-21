@@ -10,6 +10,7 @@ const Dropzone = ({ onChange }) => {
     setFile(acceptedFiles[0])
 
     onChange(acceptedFiles[0])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   //TODO: add validator for 5mb max.

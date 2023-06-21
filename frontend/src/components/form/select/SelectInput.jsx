@@ -1,10 +1,15 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import PropTypes from 'prop-types'
+import Box from '@mui/material/Box'
 import styled from 'styled-components'
-import Box from '@/components/generic/Box'
 import useHandleClickOutside from '@/hooks/useHandleClickOutside'
 
-const SelectInput = ({ options, register, setValue, name, initialVal }) => {
+export default function SelectInput({ 
+  options = [], 
+  register, 
+  setValue, 
+  name, 
+  initialVal,
+}) {
   const wrapperRef = useRef(null)
   const [showOptions, setShowOptions] = useState(false)
   const [selectedOption, setSelectedOption] = useState({})
@@ -21,6 +26,7 @@ const SelectInput = ({ options, register, setValue, name, initialVal }) => {
       setSelectedOption(foundInitialOption)
       setValue(name, initialVal)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialVal])
 
   const cb = () => {
@@ -31,10 +37,11 @@ const SelectInput = ({ options, register, setValue, name, initialVal }) => {
 
   useEffect(() => {
     setInitialValue()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialVal])
 
   return (
-    <Box style={{ position: 'relative' }}>
+    <Box position='relative'>
       <StyledInput
         {...register(name)}
         readOnly
@@ -44,7 +51,7 @@ const SelectInput = ({ options, register, setValue, name, initialVal }) => {
         focused={showOptions}
       />
       {showOptions && (
-        <Box mw="350px" display="flex" fd="column">
+        <Box maxWidth={350} display='flex' flexDirection='column'>
           <StyledOptionDropdown focused={showOptions}>
             {options.map((opt) => {
               return (
@@ -59,13 +66,6 @@ const SelectInput = ({ options, register, setValue, name, initialVal }) => {
     </Box>
   )
 }
-
-SelectInput.propTypes = {
-  options: PropTypes.array.isRequired,
-  extend: PropTypes.bool,
-}
-
-export default SelectInput
 
 const StyledInput = styled.input`
   max-width: 350px;

@@ -1,5 +1,5 @@
-import ProgramChartWrapper from 'src/components/charts/ProgramChartWrapper'
 import Box from '@mui/system/Box'
+import ProgramChartWrapper from 'src/components/charts/ProgramChartWrapper'
 
 export default function StatsPage() {
   return (

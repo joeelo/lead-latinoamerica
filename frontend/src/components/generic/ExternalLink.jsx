@@ -1,11 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import Button from '@/components/generic/Button';
+import Button from '@/components/generic/Button'
+import PropTypes from 'prop-types'
+import React from 'react'
+import styled from 'styled-components'
 
 const ExternalLink = ({
   bgColor,
-  buttonProps,
   children,
   href,
   hoverColor,
@@ -26,16 +25,16 @@ const ExternalLink = ({
         <Span>{children}</Span>
       </StyledButton>
     </a>
-  );
-};
+  )
+}
 
 ExternalLink.propTypes = {
   href: PropTypes.string.isRequired,
   buttonProps: PropTypes.any,
   children: PropTypes.any,
-};
+}
 
-export default ExternalLink;
+export default ExternalLink
 
 const StyledButton = styled(Button)`
   color: white;
@@ -47,9 +46,9 @@ const StyledButton = styled(Button)`
     background-color: ${(props) =>
       props.hoverColor ? props.hoverColor : '#07004d'};
   }
-`;
+`
 
 const Span = styled.span`
   color: white;
   font-size: 22px;
-`;
+`

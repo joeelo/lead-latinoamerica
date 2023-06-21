@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from 'react'
 import Footer from '@/components/footer/Footer'
 import NavBar from '@/components/nav/NavBar'
 import ProgramOverviewAndInfo from '@/components/content/program/ProgramOverviewAndInfo'
-import windowHasLoaded from '@/utils/windowHasLoaded'
 import ProgramTitleAndPhoto from '@/components/content/program/ProgramTitleAndPhoto'
+import windowHasLoaded from '@/utils/windowHasLoaded'
 
 const PreviewPage = () => {
   const [program, setProgram] = useState({})
@@ -28,6 +28,7 @@ const PreviewPage = () => {
         ...program,
       })
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasWindowLoaded])
 
   useEffect(() => {

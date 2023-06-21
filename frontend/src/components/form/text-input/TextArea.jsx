@@ -20,6 +20,7 @@ const Textarea = ({
     if (initialVal) {
       setValue(name, initialVal)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialVal])
 
   return (

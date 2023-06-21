@@ -1,6 +1,7 @@
-import { useState } from 'react'
-import styled from 'styled-components'
 import { animated, config, useSpring } from 'react-spring'
+import Box from '@mui/material/Box'
+import styled from 'styled-components'
+import { useState } from 'react'
 
 const Checkbox = ({ option, register, checkOnLoad = false }) => {
   const [isChecked, setIsChecked] = useState(checkOnLoad)
@@ -16,9 +17,12 @@ const Checkbox = ({ option, register, checkOnLoad = false }) => {
     config: config.gentle,
   })
 
-  if (!option?.value) return <></>
+  if (!option?.value) return (
+    <></>
+  )
+
   return (
-    <Container>
+    <Box display="flex">
       <Label className="cbx">
         <Input
           name={option.value}
@@ -49,15 +53,11 @@ const Checkbox = ({ option, register, checkOnLoad = false }) => {
         </animated.svg>
         {option.label}
       </Label>
-    </Container>
+    </Box>
   )
 }
 
 export default Checkbox
-
-const Container = styled.div`
-  display: flex;
-`
 
 const Label = styled.label`
   font-size: 16px;

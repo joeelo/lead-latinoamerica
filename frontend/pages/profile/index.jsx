@@ -128,6 +128,13 @@ const ProfilePage = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session])
 
+  const titleHeadingStyle = {
+    fontSize: '28px',
+    marginBottom: 10,
+    fontWeight: 500,
+    marginTop: 20, 
+  }
+
   return (
     <>
       <NavBar />
@@ -158,15 +165,15 @@ const ProfilePage = () => {
           {!isEditing ? (
             <>
               {userData.preferredName && (
-                <TitleHeading style={{ marginTop: 40}}>
+                <Typography style={titleHeadingStyle}>
                   Hey there {userData.preferredName}!
-                </TitleHeading>
+                </Typography>
               )}
 
-              <Typography>
+              <Typography style={{...titleHeadingStyle, fontSize: 18}}>
                 We&apos;re bringing notifications to the profile page soon. So you
                 can opt-in to get weekly emails on programs that have been
-                uploaded, and specify what types of programs you`re interested
+                uploaded, and specify what types of programs you&apos;re interested
                 in by clicking the edit button below.
               </Typography>
 
@@ -176,7 +183,7 @@ const ProfilePage = () => {
             <Box mw="600px" mr="40px">
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Box mb="30px">
-                  <TitleHeading>What year of school are you in</TitleHeading>
+                  <Typography style={titleHeadingStyle}>What year of school are you in</Typography>
                   <SelectInput
                     options={[
                       { value: 'freshman', label: 'Freshman' },
@@ -193,7 +200,7 @@ const ProfilePage = () => {
                 </Box>
 
                 <Box mb="30px" mw="400px">
-                  <TitleHeading>What is your preferred name?</TitleHeading>
+                  <Typography style={titleHeadingStyle}>What is your preferred name?</Typography>
                   <TextInput
                     name="preferredName"
                     register={register}
@@ -203,7 +210,7 @@ const ProfilePage = () => {
                 </Box>
 
                 <Box mb="30px">
-                  <TitleHeading>What are your preferred pronouns?</TitleHeading>
+                  <Typography style={titleHeadingStyle}>What are your preferred pronouns?</Typography>
                   <SelectInput
                     options={[
                       { value: 'he', label: 'He/His' },
@@ -219,9 +226,9 @@ const ProfilePage = () => {
                 </Box>
 
                 <Box mb="30px">
-                  <TitleHeading>
+                  <Typography style={titleHeadingStyle}>
                     What programs are you most interested in?
-                  </TitleHeading>
+                  </Typography>
                   <CheckboxGroup
                     options={[
                       { value: Interests.Summer, label: 'Summer' },
@@ -236,9 +243,9 @@ const ProfilePage = () => {
                 </Box>
 
                 <Box>
-                  <TitleHeading>
+                  <Typography style={titleHeadingStyle}>
                     What ethnicity are you? (check all that apply)
-                  </TitleHeading>
+                  </Typography>
 
                   <p style={{ marginTop: -10, marginBottom: 10 }}>
                     We ask because there are programs for specific groups and
@@ -334,18 +341,4 @@ const NameCircle = styled.div`
     font-size: 30; 
     top: -60px;
   }
-`
-
-const TitleHeading = styled.p`
-  font-size: 28px;
-  margin-bottom: 10px;
-  font-weight: 500;
-  margin-top: 20px;
-`
-
-const Span = styled.span`
-  display: flex;
-  max-width: 900px;
-  font-size: 18px;
-  margin-top: 20px;
 `
