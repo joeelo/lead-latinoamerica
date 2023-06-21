@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
-import styled from 'styled-components';
-import { useRouter } from 'next/router';
-import { getProgramBySlug } from "@/fetch/requests";
-import NavBar from "@/components/nav/NavBar";
-import Footer from "@/components/footer/Footer";
-import ProgramOverviewAndInfo from "@/components/content/program/ProgramOverviewAndInfo";
-import ProgramTitleAndPhoto from "@/components/content/program/ProgramTitleAndPhoto";
-import FaButton from "@/components/buttons/FaButton";
-import Modal from "@/components/modal/Modal";
+import { useEffect, useState } from "react"
+import Box from "@mui/material/Box"
+import FaButton from "@/components/buttons/FaButton"
+import Footer from "@/components/footer/Footer"
+import { getProgramBySlug } from "@/fetch/requests"
+import Modal from "@/components/modal/Modal"
+import NavBar from "@/components/nav/NavBar"
+import ProgramOverviewAndInfo from "@/components/content/program/ProgramOverviewAndInfo"
+import ProgramTitleAndPhoto from "@/components/content/program/ProgramTitleAndPhoto"
+import { useRouter } from 'next/router'
 
 const DeleteOrgPage = () => {
 	const router = useRouter()
-	const [ program, setProgram ] = useState({}) 
+	const [program, setProgram] = useState({}) 
 	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	const getProgram = async () => {
@@ -27,7 +27,9 @@ const DeleteOrgPage = () => {
 	useEffect(() => {
 			if (!router.isReady) return
 			getProgram() 
-	}, [ router.isReady ])
+			
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [router.isReady])
 
 	if (!program) {
 		return null
@@ -36,11 +38,25 @@ const DeleteOrgPage = () => {
 	return (
 		<>
 			<NavBar />
-			<ProgramTitleAndPhoto program={ program } router={ router }/>
-			<ProgramOverviewAndInfo program={ program } marginTop={ true }/>
-			<ButtonContainer onClick={() => setIsModalOpen(true)}>
-					<FaButton size="2x" color="white"/>
-			</ButtonContainer>
+
+			<ProgramTitleAndPhoto program={program} router={router}/>
+			<ProgramOverviewAndInfo program={program} marginTop={true}/>
+			<Box 
+				width={75} 
+				height={75} 
+				border-radius='50%'
+				background-color='#CE1620'
+				display='flex'
+				justify-content='center'
+				align-items='center'
+				position='fixed'
+				top={120} 
+				right={50} 
+				style={{ cursor: 'pointer' }}
+				onClick={() => setIsModalOpen(true)}
+			>
+				<FaButton size="2x" color="white"/>
+			</Box>
 			<Modal isOpen={isModalOpen} setOpen={setIsModalOpen}> truth fam </Modal>
 			<Footer marginTop={ true }/>
 		</>
@@ -48,21 +64,3 @@ const DeleteOrgPage = () => {
 }
 
 export default DeleteOrgPage
-
-const ButtonContainer = styled.div`
-	width: 75px; 
-	height: 75px; 
-	border-radius: 50%; 
-	background-color: #CE1620;
-	display: flex; 
-	justify-content: center; 
-	align-items: center; 
-	position: fixed; 
-	top: 120px; 
-	right: 50px; 
-
-	:hover {
-			cursor: pointer;
-	}
-`
-

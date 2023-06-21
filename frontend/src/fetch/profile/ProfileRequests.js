@@ -1,4 +1,4 @@
-const createProfile = async (session) => {
+async function createProfile(session) {
   try {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_DB_LOCATION}/profile/create`,
@@ -18,7 +18,7 @@ const createProfile = async (session) => {
   }
 }
 
-const getProfile = async (session) => {
+async function getProfile(session) {
   // if there is no profile we will create one with creds given.
   if (!session.user) return
   const { email } = session.user
@@ -42,7 +42,7 @@ const getProfile = async (session) => {
   }
 }
 
-const editProfile = async (data, email) => {
+async function editProfile(data, email)  {
   const body = JSON.stringify({ data })
 
   try {
@@ -63,4 +63,8 @@ const editProfile = async (data, email) => {
   }
 }
 
-export { createProfile, getProfile, editProfile }
+export { 
+  createProfile, 
+  getProfile, 
+  editProfile,
+}

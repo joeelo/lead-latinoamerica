@@ -1,5 +1,5 @@
-import styled from 'styled-components'
 import { useEffect, useRef } from 'react'
+import styled from 'styled-components'
 
 const Modal = ({ isOpen, setOpen, children }) => {
   const wrapperRef = useRef()

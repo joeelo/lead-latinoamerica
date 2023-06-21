@@ -1,11 +1,11 @@
+import { signOut, useSession } from 'next-auth/client'
 import { useEffect, useRef } from 'react'
-import styled from 'styled-components'
-import LanguageButtons from './LanguageButtons'
-import LinkUnderlineEffect from '../generic/LinkUnderlineEffect'
 import en from '@/language/locales/en/navbar.json'
 import es from '@/language/locales/es/navbar.json'
+import LanguageButtons from './LanguageButtons'
+import LinkUnderlineEffect from '../generic/LinkUnderlineEffect'
+import styled from 'styled-components'
 import useLocale from '@/hooks/useLocale'
-import { signOut, useSession } from 'next-auth/client'
 
 const SlidePanel = ({ navOpen, setNavOpen }) => {
   const wrapperRef = useRef(null)
@@ -30,6 +30,7 @@ const SlidePanel = ({ navOpen, setNavOpen }) => {
     }
 
     return () => document.removeEventListener('click', handleClickOutside)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navOpen])
 
   return (

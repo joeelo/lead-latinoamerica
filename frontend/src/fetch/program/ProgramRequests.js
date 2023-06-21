@@ -1,4 +1,4 @@
-export default {
+const ProgramRequests =  {
   getAllPrograms,
   getProgram,
   getPrograms,
@@ -50,3 +50,5 @@ async function getPrograms(queryContext) {
     return { message: error }
   }
 }
+
+export default ProgramRequests

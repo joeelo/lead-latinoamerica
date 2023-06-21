@@ -1,10 +1,10 @@
-import styled from 'styled-components'
-import PropTypes from 'prop-types'
+import CheckboxContainer from '@/components/form/CheckboxContainer'
 import FormInput from '@/components/form/FormInput'
 import FormTextarea from '@/components/form/FormTextarea'
-import { useForm } from 'react-hook-form'
 import { postToDatabase } from '@/fetch/requests'
-import CheckboxContainer from '@/components/form/CheckboxContainer'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 
 const Form = ({

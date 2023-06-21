@@ -3,7 +3,6 @@ import styled from 'styled-components'
 const TitleWithBackground = ({
   text = 'title',
   topOffset,
-  opacity,
   color,
   backgroundColor,
   marginBottom,

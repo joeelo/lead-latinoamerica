@@ -5,7 +5,7 @@ import en from '@/language/locales/en/navbar.json'
 import es from '@/language/locales/es/navbar.json'
 import LanguageButtons from './LanguageButtons'
 import Link from 'next/link'
-import Popover from '../modal/Popover'
+import Popover from '@/components/modal/Popover'
 import styled from 'styled-components'
 import useLocale from '@/hooks/useLocale'
 

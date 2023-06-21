@@ -1,4 +1,5 @@
 //exported as an object so you can reference the key in the dynamic resources routes.
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   scholarships: {
     coverImage: '/images/linkedin-sales-solutions-jJFrkJP_-RA-unsplash.jpg',
