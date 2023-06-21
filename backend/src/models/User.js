@@ -47,8 +47,9 @@ const userSchema = new mongoose.Schema({
     type: Boolean, 
     default: false,
   }
-});
+})
 
+// @ts-ignore
 const User = new mongoose.model('User', userSchema);
 
 module.exports = User;

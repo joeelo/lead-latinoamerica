@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }))
 
 const port = process.env.PORT || 7000
 
-app.get('/ping', (req, res) => res.send('pinged'))
+app.get('/ping', (_req, res) => res.send('pinged'))
 
 app.use(userRoutes)
 app.use(programRoutes)

@@ -92,7 +92,7 @@ router.get('/program/:href', async (req, res) => {
   }
 })
 
-router.get('/new-programs', async () => {
+router.get('/new-programs', async (req, res) => {
   try {
     res.send({ success: true, message: '' })
   } catch (error) {

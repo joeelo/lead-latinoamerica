@@ -29,7 +29,7 @@ router.post('/users/sign-up', async (req, res) => {
     await newUser.save()
     res.send(newUser)
   } catch (error) {
-    res.status(400).send(error)
+    res.send(error)
   }
 })
 
@@ -59,7 +59,7 @@ router.get('/user/show/:id', async (req, res) => {
 
     res.send(user)
   } catch (error) {
-    res.status(400).send(error)
+    res.send(error)
   }
 })
 
@@ -67,22 +67,15 @@ router.put('/user/profile/:email/edit', async (req, res) => {
   const { data } = req.body
   const { email } = req.params
 
-  const nationalities = Object.keys(data.ethnicity).filter(
-    (eth) => !!data.ethnicity[eth]
-  )
-
-  const programs = Object.keys(data.programs).filter(
-    (p) => data.programs[p]
-  )
+  console.log('DATAAAAA: ', data)
 
   try {
     const user = await User.findOne({ email: email })
-
-    user.preferredName = data.preferredName 
-    user.grade = data.grade 
-    user.nationality = nationalities
-    user.pronouns = data.pronouns 
-    user.interests = programs
+    user.preferredName = data.preferredName || user.preferredName
+    user.grade = data.grade || user.grade
+    user.pronouns = data.pronouns || user.pronouns 
+    user.interests = data.interests || user.interests
+    user.nationality = data.nationality || user.nationality
 
     const updatedUser = await user.save()
 
@@ -90,7 +83,7 @@ router.put('/user/profile/:email/edit', async (req, res) => {
 
     return
   } catch (error) {
-    res.status(400).send(error)
+    res.send(error)
   }
 })
 
@@ -115,7 +108,7 @@ router.post('/profile/:email', async (req, res) => {
 
     res.send({ email, message: 'success', user })
   } catch (error) {
-    console.log('ERROR', error)
+    res.send(error)
   }
 })
 
@@ -162,7 +155,7 @@ router.get('/user/programs/:email/:programId', async (req, res) => {
     }) 
 
   } catch (error) {
-    console.log('ERROR IN UPDATING SAVED PROGRAMS: ', error)
+    res.send(error)
   }
 })
 
@@ -181,7 +174,6 @@ router.get('/user/:email/programs', async (req, res) => {
 
     res.send({ programs: null, success: true })
   } catch (error) {
-    console.log('ERROR IN USER GET PROGRAMS: ', error) 
     res.send({ error, success: false })
   }
 })
