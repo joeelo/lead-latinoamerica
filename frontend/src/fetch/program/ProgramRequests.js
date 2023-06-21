@@ -21,6 +21,7 @@ async function getAllPrograms(queryContext) {
 
 async function getProgram(queryContext) {
   const { queryKey } = queryContext
+  // eslint-disable-next-line no-unused-vars
   const [_, data] = queryKey
   const { name } = data
   try {
@@ -37,6 +38,7 @@ async function getProgram(queryContext) {
 
 async function getPrograms(queryContext) {
   const { queryKey } = queryContext
+  // eslint-disable-next-line no-unused-vars
   const [_, data] = queryKey
   const { programType } = data
   try {

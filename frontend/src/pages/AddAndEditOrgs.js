@@ -8,7 +8,6 @@ import Footer from '@/components/footer/Footer'
 import Form from '@/components/form/container/Form'
 import NavBar from '@/components/nav/NavBar'
 import { postToDatabase } from '@/fetch/requests'
-import styled from 'styled-components'
 import StyledSectionHeading from '@/components/form/section/StyledSectionHeading'
 import Textarea from '@/components/form/text-input/TextArea'
 import TextInput from '@/components/form/text-input/TextInput'
@@ -66,7 +65,6 @@ const AddAndEditOrgs = () => {
     setValue('file', file)
   }
 
-  const isDev = process.env.NEXT_PUBLIC_ENV === 'dev'
   const hostname = useHostname()
 
   const externalLink = `${hostname}/preview`
@@ -214,4 +212,3 @@ const AddAndEditOrgs = () => {
 
 export default AddAndEditOrgs
 
-const Container = styled.div``

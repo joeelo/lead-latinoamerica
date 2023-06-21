@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
 import styled, { keyframes } from 'styled-components'
+import { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import useOnScreen from '@/hooks/useOnScreen'
 

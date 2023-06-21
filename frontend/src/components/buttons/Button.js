@@ -1,21 +1,22 @@
-import React from 'react'
+import Image from 'next/image'
 import PropTypes from 'prop-types'
+import React from 'react'
 import styled from 'styled-components'
 
 const Button = ({ label, color, onClick, isSubmitting = false, ...props }) => {
-  const handleClick = () => {
-    if (onClick) {
-      onClick()
-    }
-
-    return null
-  }
-
   return (
     <Container onClick={onClick} {...{ color }} {...props}>
       <span>
         {isSubmitting ? (
-          <StyledLoader src="/loaders/spinning-loader.svg" />
+          <Image 
+            alt=""
+            style={{
+              border: 0, 
+              outline: 0, 
+              maxWidth: 35
+            }} 
+            src="/loaders/spinning-loader.svg" 
+          />
         ) : (
           label
         )}
@@ -55,10 +56,4 @@ const Container = styled.button`
     cursor: pointer;
     background-color: #3a3970;
   }
-`
-
-const StyledLoader = styled.img`
-  border: 0;
-  outline: 0;
-  max-width: 35px;
 `

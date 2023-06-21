@@ -1,6 +1,6 @@
-import { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import Link from 'next/link'
+import { useContext } from 'react'
 
 const getFontSize = (size) => {
   switch (size) {

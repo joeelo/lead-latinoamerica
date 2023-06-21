@@ -1,6 +1,6 @@
-import styled from 'styled-components'
 import Image from 'next/image'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 const ContentWithSideImage = ({
   text,
@@ -20,7 +20,8 @@ const ContentWithSideImage = ({
       </Section>
 
       <ImageContainer>
-        <Image
+        <Image  
+          alt="" // TODO: figure out fix
           src={`${imageSrc}`}
           layout="fill"
           quality="100"

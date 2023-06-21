@@ -12,6 +12,7 @@ const LoadingScreenVariableWidth = () => {
       setCurrentIndex(newIndex)
     }, 300)
     return () => clearInterval(interval)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex])
 
   return (

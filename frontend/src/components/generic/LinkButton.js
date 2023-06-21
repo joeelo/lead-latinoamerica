@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import Link from 'next/link'
 import Button from '@/components/generic/Button'
+import Link from 'next/link'
+import styled from 'styled-components'
 
 const LinkButton = ({
   text,

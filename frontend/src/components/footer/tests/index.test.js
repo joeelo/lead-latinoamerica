@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react'
-import ReactDOM from 'react-dom'
 import Footer from '../Footer'
 
 describe('Footer', () => {

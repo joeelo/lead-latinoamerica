@@ -1,7 +1,7 @@
 import styled, { ThemeContext } from 'styled-components'
 import { useContext } from 'react'
 
-const FormTextarea = ({ data, register, hasErrors }) => {
+const FormTextarea = ({ data, register }) => {
   const theme = useContext(ThemeContext)
 
   return (

@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 
-const FormCheckbox = ({ option, register, label }) => {
+const FormCheckbox = ({ option, register }) => {
   return (
     <Container>
       <Label>
@@ -18,6 +18,7 @@ const FormCheckbox = ({ option, register, label }) => {
 
 export default FormCheckbox
 
+// eslint-disable-next-line no-unused-vars
 const jelly = keyframes`
 	from {
 		transform: scale(1, 1);
