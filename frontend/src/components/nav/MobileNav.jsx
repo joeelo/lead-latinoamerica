@@ -17,7 +17,7 @@ function MobileNav() {
 
   return (
     <>
-      <PlaceHolderContainer></PlaceHolderContainer>
+      <PlaceHolderContainer/>
       <Container>
         <Hamburger {...{ navOpen, setNavOpen }} />
         <SlidePanel {...{ navOpen, setNavOpen }} />
