@@ -33,7 +33,7 @@ const ThanksPartnerPage = () => {
         </Box>
       </Box>
       
-      <Footer />
+      <Footer fixed/>
     </>
   )
 }

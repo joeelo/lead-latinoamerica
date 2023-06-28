@@ -5,11 +5,19 @@ import es from '@/language/locales/es/footer.json'
 import LinkUnderlineEffect from '@/components/generic/LinkUnderlineEffect'
 import useLocale from '@/hooks/useLocale'
 
-export default function Footer({ showQuote = true }) {
+export default function Footer({ showQuote = true, fixed = false }) {
   const t = useLocale() === 'en' ? en : es
 
   return (
-    <>
+    <Box
+      display="flex"
+      flexDirection="column"
+      width="100%"
+      mt={16}
+      position={fixed ? 'fixed' : 'inherit'}
+      bottom={fixed ? 0 : ''}
+    >
+
       {showQuote && <DynamicQuote />}
 
       <Box
@@ -82,6 +90,6 @@ export default function Footer({ showQuote = true }) {
           />
         </Box>
       </Box>
-    </>
+    </Box>
   )
 }

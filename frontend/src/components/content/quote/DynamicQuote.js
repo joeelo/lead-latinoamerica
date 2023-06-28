@@ -1,5 +1,6 @@
-import styled, { ThemeContext } from 'styled-components'
-import CenterFlexContainer from '@/components/generic/CenterFlexContainer'
+import Box from '@mui/material/Box'
+import { ThemeContext } from 'styled-components'
+import Typography from '@mui/material/Typography'
 import { useContext } from 'react'
 import useGetRandomQuote from '@/hooks/useGetRandomQuote'
 
@@ -8,40 +9,26 @@ const DynamicQuote = () => {
   const quote = useGetRandomQuote()
 
   return (
-    <CenterFlexContainer
+    <Box
       backgroundColor={theme.colors.darkBlue}
-      align="center"
+      alignItems="center"
       minHeight="300px"
+      justifyContent="center"
+      display="flex"
     >
-      <Container>
-        <QuoteText>{quote?.text}</QuoteText>
-        <br />
-        <QuoteAuthor>- {quote?.author}</QuoteAuthor>
-      </Container>
-    </CenterFlexContainer>
+      <Box
+        flexDirection="column"
+        display="flex"
+        color="white"
+        p={1.5}
+        maxWidth={800}
+        justifyContent="center"
+      >
+        <Typography fontSize={34}>{quote?.text}</Typography>
+        <Typography textAlign="right" fontSize={34}>- {quote?.author}</Typography>
+      </Box>
+    </Box>
   )
 }
 
 export default DynamicQuote
-
-const Container = styled.div`
-  display: flex;
-  margin: 0 auto;
-  flex-direction: column;
-  color: white;
-  font-size: 34px;
-
-  @media screen and (max-width: 768px) {
-    padding: 0 10px;
-  }
-`
-
-const QuoteText = styled.span`
-  width: 100%;
-  text-align: center;
-`
-
-const QuoteAuthor = styled.span`
-  text-align: right;
-  width: 100%;
-`
