@@ -11,6 +11,8 @@ const logError = (error) => {
   console.log(error)
 }
 
+const isLocalEnv = process.env.DEPLOY_ENV === 'local'
+
 router.post('/programs/add', async (req, res) => {
   try {
     const {
@@ -39,8 +41,6 @@ router.post('/programs/add', async (req, res) => {
       'https://images.unsplash.com/photo-1630025326456-1d384d371b24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1748&q=80', 
       'https://images.unsplash.com/photo-1527484583355-9c200f59f0fd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80', 
     ]
-
-
 
     const translatedText = await translateText(bio)
     
@@ -157,11 +157,13 @@ router.put('/program/edit/:href/:approve', async (req, res) => {
     // only look for users if the email hasn't been sent to save a call. 
     if (!hasEmailBeenSent) {
       const users = await User.find({})
-      const userEmails = users.map((user) => user.email)
+      const userEmails = !isLocalEnv 
+        ? users.map((user) => user.email)
+        : ['joeephus@gmail.com']
+
       const emailMessage = emailApprovedProgram(userEmails, updatedProgram)
       await sendMail(emailMessage)
     }
-
 
     res.send({
       message: 'success',

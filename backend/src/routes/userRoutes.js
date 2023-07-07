@@ -1,8 +1,9 @@
 const express = require('express')
-
-const router = express.Router()
 const User = require('../models/User')
 const Program = require('../models/Program')
+const router = express.Router()
+
+const isLocalEnv = process.env.DEPLOY_ENV === 'local'
 
 
 router.post('/users/sign-up', async (req, res) => {
@@ -66,8 +67,6 @@ router.get('/user/show/:id', async (req, res) => {
 router.put('/user/profile/:email/edit', async (req, res) => {
   const { data } = req.body
   const { email } = req.params
-
-  console.log('DATAAAAA: ', data)
 
   try {
     const user = await User.findOne({ email: email })
@@ -192,6 +191,27 @@ router.delete('/user/programs/:email/:programId', async (req, res) => {
     res.send({ message: 'Program successfully removed', success: true })
   } catch (error) {
     res.send({ message: 'There was a problem removing the program', success: false })
+  }
+})
+
+// Tests
+router.get('/users/email-list', async (_req, res) => {
+
+  try {
+    const users = await User
+      .find({ interests: { $in: ['summer']}})
+      .lean()
+    const userEmails = !isLocalEnv 
+      ? users.map((user) => user.email)
+      : ['joeephus@gmail.com']
+
+    res.send({
+      message: 'success',
+      data: userEmails, 
+      sendTo: users.map((user) => user.email)
+    })
+  } catch (error) {
+    res.send({ error: true, message: error })
   }
 })
 

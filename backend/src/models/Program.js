@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const programSchema = new mongoose.Schema({
   name: {
@@ -67,8 +67,9 @@ const programSchema = new mongoose.Schema({
   
 }, {
   timestamps: true 
-});
+})
 
-const Program = new mongoose.model('Program', programSchema, 'programs');
+// @ts-ignore
+const Program = new mongoose.model('Program', programSchema, 'programs')
 
-module.exports = Program;
+module.exports = Program
