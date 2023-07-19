@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
-import Box from '@/components/generic/Box'
 import styled from 'styled-components'
+
+import Box from '@/components/generic/Box'
 
 const WordSelectInput = ({ wordList, setWordList, placeHolder }) => {
   const [isInFocus, setIsInFocus] = useState(false)

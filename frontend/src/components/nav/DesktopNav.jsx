@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
-import { signOut, useSession } from 'next-auth/client'
 import Box from '@mui/material/Box'
+import Link from 'next/link'
+import { signOut, useSession } from 'next-auth/client'
+import React, { useState } from 'react'
+import styled from 'styled-components'
+
+import Popover from '@/components/modal/Popover'
+import useLocale from '@/hooks/useLocale'
 import en from '@/language/locales/en/navbar.json'
 import es from '@/language/locales/es/navbar.json'
+
 import LanguageButtons from './LanguageButtons'
-import Link from 'next/link'
-import Popover from '@/components/modal/Popover'
-import styled from 'styled-components'
-import useLocale from '@/hooks/useLocale'
 
 function DesktopNav() {
   const [anchorEl, setAnchorEl] = useState(null)

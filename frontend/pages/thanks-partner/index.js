@@ -1,9 +1,10 @@
-import Box from '@/components/generic/Box'
+import { useContext } from 'react'
+import { ThemeContext } from 'styled-components'
+
 import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
 import Footer from '@/components/footer/Footer'
+import Box from '@/components/generic/Box'
 import NavBar from '@/components/nav/NavBar'
-import { ThemeContext } from 'styled-components'
-import { useContext } from 'react'
 
 const ThanksPartnerPage = () => {
   const theme = useContext(ThemeContext)

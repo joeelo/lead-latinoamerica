@@ -1,5 +1,5 @@
-import styled, { ThemeContext } from 'styled-components'
 import { useContext, useEffect, useState } from 'react'
+import styled, { ThemeContext } from 'styled-components'
 
 const TextInput = ({
   register,

@@ -1,5 +1,5 @@
-import styled from 'styled-components'
 import { useRef } from 'react'
+import styled from 'styled-components'
 
 const Hamburger = ({ navOpen, setNavOpen }) => {
   const lineHeight = 6

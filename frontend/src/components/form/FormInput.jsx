@@ -1,5 +1,5 @@
-import styled, { ThemeContext } from 'styled-components';
 import { useContext } from 'react';
+import styled, { ThemeContext } from 'styled-components';
 
 const FormInput = ({ data, register, hasError  }) => {
   // register and hasError are properties of parent

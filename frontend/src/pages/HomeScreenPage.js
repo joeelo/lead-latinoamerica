@@ -1,18 +1,19 @@
+import { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
-import CenterFlexContainer from '@/components/generic/CenterFlexContainer'
+
+import FullScreenBack from '@/components/background/FullScreenBack'
+import VideoBackground from '@/components/background/VideoBackground'
 import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
 import ContentWithSideImage from '@/components/content/ContentWithSideImage'
-import en from '@/language/locales/en/common.json'
-import es from '@/language/locales/es/common.json'
-import FadeInText from '@/components/generic/FadeInText'
-import Footer from '@/components/footer/Footer'
-import FullScreenBack from '@/components/background/FullScreenBack'
-import NavBar from '@/components/nav/NavBar'
 import TitleAndPhotoLinkBox from '@/components/content/TitleAndPhotoLinkBox'
-import { useContext } from 'react'
+import Footer from '@/components/footer/Footer'
+import CenterFlexContainer from '@/components/generic/CenterFlexContainer'
+import FadeInText from '@/components/generic/FadeInText'
+import NavBar from '@/components/nav/NavBar'
 import useGetRandomQuote from '@/hooks/useGetRandomQuote'
 import useLocale from '@/hooks/useLocale'
-import VideoBackground from '@/components/background/VideoBackground'
+import en from '@/language/locales/en/common.json'
+import es from '@/language/locales/es/common.json'
 
 const HomeScreenPage = () => {
   const theme = useContext(ThemeContext)

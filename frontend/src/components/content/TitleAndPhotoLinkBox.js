@@ -1,5 +1,6 @@
-import LinkUnderlineEffect from '@/components/generic/LinkUnderlineEffect'
 import styled from 'styled-components'
+
+import LinkUnderlineEffect from '@/components/generic/LinkUnderlineEffect'
 
 const TitleAndPhotoLinkBox = ({
   size,

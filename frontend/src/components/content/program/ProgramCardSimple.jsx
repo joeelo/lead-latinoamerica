@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
 import Box from '@mui/material/Box'
 import Image from 'next/image'
 import Link from 'next/link'
-import { RemoveUserSavedProgram } from '@/fetch/user/UserRequests'
+import React, { useState } from 'react'
 import { Tooltip } from 'react-tooltip'
+
+import { RemoveUserSavedProgram } from '@/fetch/user/UserRequests'
 import useIsMobile from '@/hooks/useIsMobile'
 
 export default function ProgramCardSimple ({

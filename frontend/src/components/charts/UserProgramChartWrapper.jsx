@@ -1,8 +1,9 @@
-import BarChart from './BarChart'
 import { DateTime } from 'luxon'
+import { useSession } from 'next-auth/client'
 import { useMemo } from 'react'
 import { useQuery } from 'react-query'
-import { useSession } from 'next-auth/client'
+
+import BarChart from './BarChart'
 
 function UserProgramChartWrapper() {
   const [session] = useSession()

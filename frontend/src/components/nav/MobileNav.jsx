@@ -1,8 +1,10 @@
-import { React, useEffect, useState } from 'react'
-import Hamburger from '@/components/nav/Hamburger'
-import SlidePanel from './SlidePanel'
-import styled from 'styled-components'
 import { useRouter } from 'next/router'
+import { React, useEffect, useState } from 'react'
+import styled from 'styled-components'
+
+import Hamburger from '@/components/nav/Hamburger'
+
+import SlidePanel from './SlidePanel'
 
 function MobileNav() {
   const [navOpen, setNavOpen] = useState(false)

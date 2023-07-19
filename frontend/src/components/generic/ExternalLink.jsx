@@ -1,7 +1,8 @@
-import Button from '@/components/generic/Button'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
+
+import Button from '@/components/generic/Button'
 
 const ExternalLink = ({
   bgColor,

@@ -1,6 +1,7 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
 import Box from '@mui/material/Box'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
+
 import useHandleClickOutside from '@/hooks/useHandleClickOutside'
 
 export default function SelectInput({ 

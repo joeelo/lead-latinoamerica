@@ -1,12 +1,13 @@
-import FixedButton from "@/components/buttons/FixedButton"
-import Footer from "@/components/footer/Footer"
-import getToast from '@/utils/getToast'
-import NavBar from "@/components/nav/NavBar"
-import ProgramOverviewAndInfo from "@/components/content/program/ProgramOverviewAndInfo"
-import ProgramRequests from 'src/fetch/program/ProgramRequests'
-import ProgramTitleAndPhoto from "@/components/content/program/ProgramTitleAndPhoto"
-import { useQuery } from "react-query"
 import { useRouter } from 'next/router'
+import { useQuery } from "react-query"
+import ProgramRequests from 'src/fetch/program/ProgramRequests'
+
+import FixedButton from "@/components/buttons/FixedButton"
+import ProgramOverviewAndInfo from "@/components/content/program/ProgramOverviewAndInfo"
+import ProgramTitleAndPhoto from "@/components/content/program/ProgramTitleAndPhoto"
+import Footer from "@/components/footer/Footer"
+import NavBar from "@/components/nav/NavBar"
+import getToast from '@/utils/getToast'
 
 const ApproveProgramPage = () => {
 	const router = useRouter() 

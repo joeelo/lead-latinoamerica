@@ -1,19 +1,21 @@
 import '../styles/global.css'
-import { CacheProvider } from '@emotion/react'
 /* eslint-disable @next/next/no-page-custom-font */
 import 'react-toastify/dist/ReactToastify.css'
+
+import { CacheProvider } from '@emotion/react'
 import { config, dom } from "@fortawesome/fontawesome-svg-core"
-import { QueryClient, QueryClientProvider } from 'react-query'
-import { ThemeProvider, createGlobalStyle } from 'styled-components' 
 import { Analytics } from '@vercel/analytics/react'
-import { Provider as AuthProvider } from 'next-auth/client'
-import createEmotionCache from '@/createEmotionCache'
-import { getSession } from "next-auth/client"
 import Head from 'next/head'
-import { LanguageWrapper } from '@/context/LanguageContext'
+import { Provider as AuthProvider } from 'next-auth/client'
+import { getSession } from "next-auth/client"
+import { useState } from 'react' 
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { ToastContainer } from "react-toastify"
-import { useState } from 'react' 
+import { createGlobalStyle,ThemeProvider } from 'styled-components' 
+
+import { LanguageWrapper } from '@/context/LanguageContext'
+import createEmotionCache from '@/createEmotionCache'
 
 const theme = {
 	colors: {

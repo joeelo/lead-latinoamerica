@@ -1,5 +1,6 @@
-import { findProgramAndUpdate } from '@/fetch/requests'
 import styled from 'styled-components'
+
+import { findProgramAndUpdate } from '@/fetch/requests'
 
 const FixedButton = ({
   approve,

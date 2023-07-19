@@ -1,6 +1,7 @@
-import styled from 'styled-components'
-import useIsMobile from '@/hooks/useIsMobile'
 import { useRouter } from 'next/router'
+import styled from 'styled-components'
+
+import useIsMobile from '@/hooks/useIsMobile'
 
 const LanguageButtons = () => {
   const router = useRouter()

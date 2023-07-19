@@ -1,14 +1,16 @@
 import Box from '@mui/material/Box'
-import Button from '@/components/buttons/Button'
-import en from '@/language/locales/en/overview.json'
-import es from '@/language/locales/es/overview.json'
-import ExternalLink from '@/components/generic/ExternalLink'
-import getToast from '@/utils/getToast'
-import Tiles from './Tiles'
 import Typography from '@mui/material/Typography'
+import useMediaQuery from '@mui/material/useMediaQuery'
+
+import Button from '@/components/buttons/Button'
+import ExternalLink from '@/components/generic/ExternalLink'
 import { UpdateUsersSavedPrograms } from '@/fetch/user/UserRequests'
 import useLocale from '@/hooks/useLocale'
-import useMediaQuery from '@mui/material/useMediaQuery'
+import en from '@/language/locales/en/overview.json'
+import es from '@/language/locales/es/overview.json'
+import getToast from '@/utils/getToast'
+
+import Tiles from './Tiles'
 
 const ProgramOverviewAndInfo = ({ 
   program, 

@@ -1,7 +1,8 @@
-import createEmotionCache from '@/createEmotionCache'
 import createEmotionServer from '@emotion/server/create-instance'
 import Document from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
+
+import createEmotionCache from '@/createEmotionCache'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {

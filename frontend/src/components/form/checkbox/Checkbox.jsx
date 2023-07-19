@@ -1,7 +1,7 @@
-import { animated, config, useSpring } from 'react-spring'
 import Box from '@mui/material/Box'
-import styled from 'styled-components'
 import { useState } from 'react'
+import { animated, config, useSpring } from 'react-spring'
+import styled from 'styled-components'
 
 const Checkbox = ({ option, register, checkOnLoad = false }) => {
   const [isChecked, setIsChecked] = useState(checkOnLoad)

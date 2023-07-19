@@ -1,7 +1,8 @@
 import Box from '@mui/material/Box'
-import { ThemeContext } from 'styled-components'
 import Typography from '@mui/material/Typography'
 import { useContext } from 'react'
+import { ThemeContext } from 'styled-components'
+
 import useGetRandomQuote from '@/hooks/useGetRandomQuote'
 
 const DynamicQuote = () => {

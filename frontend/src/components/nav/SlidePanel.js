@@ -1,11 +1,13 @@
 import { signOut, useSession } from 'next-auth/client'
 import { useEffect, useRef } from 'react'
+import styled from 'styled-components'
+
+import useLocale from '@/hooks/useLocale'
 import en from '@/language/locales/en/navbar.json'
 import es from '@/language/locales/es/navbar.json'
-import LanguageButtons from './LanguageButtons'
+
 import LinkUnderlineEffect from '../generic/LinkUnderlineEffect'
-import styled from 'styled-components'
-import useLocale from '@/hooks/useLocale'
+import LanguageButtons from './LanguageButtons'
 
 const SlidePanel = ({ navOpen, setNavOpen }) => {
   const wrapperRef = useRef(null)

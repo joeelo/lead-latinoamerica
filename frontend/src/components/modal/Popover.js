@@ -1,7 +1,8 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
 import debounce from 'lodash/debounce'
 import PropTypes from 'prop-types'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
+
 import useMousePosition from '@/hooks/useMousePosition'
 
 Popover.propTypes = {

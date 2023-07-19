@@ -1,6 +1,7 @@
-import styled, { keyframes } from 'styled-components'
-import { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
+import { useEffect, useRef, useState } from 'react'
+import styled, { keyframes } from 'styled-components'
+
 import useOnScreen from '@/hooks/useOnScreen'
 
 const ChangingBackgroundText = ({

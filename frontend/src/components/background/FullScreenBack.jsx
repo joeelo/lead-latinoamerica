@@ -1,10 +1,12 @@
-import en from '@/language/locales/en/common.json'
-import es from '@/language/locales/es/common.json'
 import Image from 'next/image'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import TitleWithBackground from '../generic/TitleWithBackground'
+
 import useLocale from '@/hooks/useLocale'
+import en from '@/language/locales/en/common.json'
+import es from '@/language/locales/es/common.json'
+
+import TitleWithBackground from '../generic/TitleWithBackground'
 
 const FullScreenBack = ({ src, children, titleInfo, height }) => {
   const t = useLocale() === 'en' ? en : es

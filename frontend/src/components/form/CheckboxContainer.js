@@ -1,5 +1,6 @@
-import Checkbox from './checkbox/Checkbox'
 import styled from 'styled-components'
+
+import Checkbox from './checkbox/Checkbox'
 
 const CheckboxContainer = ({ data, register }) => {
   return (

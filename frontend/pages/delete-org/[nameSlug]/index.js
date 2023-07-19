@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react"
 import Box from "@mui/material/Box"
+import { useRouter } from 'next/router'
+import { useEffect, useState } from "react"
+
 import FaButton from "@/components/buttons/FaButton"
-import Footer from "@/components/footer/Footer"
-import { getProgramBySlug } from "@/fetch/requests"
-import Modal from "@/components/modal/Modal"
-import NavBar from "@/components/nav/NavBar"
 import ProgramOverviewAndInfo from "@/components/content/program/ProgramOverviewAndInfo"
 import ProgramTitleAndPhoto from "@/components/content/program/ProgramTitleAndPhoto"
-import { useRouter } from 'next/router'
+import Footer from "@/components/footer/Footer"
+import Modal from "@/components/modal/Modal"
+import NavBar from "@/components/nav/NavBar"
+import { getProgramBySlug } from "@/fetch/requests"
 
 const DeleteOrgPage = () => {
 	const router = useRouter()

@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from 'react'
-import Button from '@/components/buttons/Button'
-import styled from 'styled-components'
 import { useDropzone } from 'react-dropzone'
+import styled from 'styled-components'
+
+import Button from '@/components/buttons/Button'
 
 const Dropzone = ({ onChange }) => {
   const [file, setFile] = useState(null)

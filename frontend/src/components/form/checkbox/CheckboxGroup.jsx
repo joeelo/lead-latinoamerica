@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box'
-import Checkbox from './Checkbox'
 import { useMemo } from 'react'
+
+import Checkbox from './Checkbox'
 
 export default function CheckboxGroup ({ 
   options, 

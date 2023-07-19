@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
-import Footer from '@/components/footer/Footer'
-import NavBar from '@/components/nav/NavBar'
+
 import ProgramOverviewAndInfo from '@/components/content/program/ProgramOverviewAndInfo'
 import ProgramTitleAndPhoto from '@/components/content/program/ProgramTitleAndPhoto'
+import Footer from '@/components/footer/Footer'
+import NavBar from '@/components/nav/NavBar'
 import windowHasLoaded from '@/utils/windowHasLoaded'
 
 const PreviewPage = () => {

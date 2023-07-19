@@ -1,9 +1,10 @@
 import Box from '@mui/material/Box'
+
 import DynamicQuote from '@/components/content/quote/DynamicQuote'
-import en from '@/language/locales/en/footer.json'
-import es from '@/language/locales/es/footer.json'
 import LinkUnderlineEffect from '@/components/generic/LinkUnderlineEffect'
 import useLocale from '@/hooks/useLocale'
+import en from '@/language/locales/en/footer.json'
+import es from '@/language/locales/es/footer.json'
 
 export default function Footer({ showQuote = true, fixed = false }) {
   const t = useLocale() === 'en' ? en : es

@@ -1,8 +1,9 @@
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import styled from 'styled-components'
+
 import Box from '@/components/generic/Box'
 import getDiff from '@/utils/getDiff'
-import Link from 'next/link'
-import styled from 'styled-components'
-import { useRouter } from 'next/router'
 
 const PhotoWithTextBox = ({
   program: { name = '', coverImage, bio, href, expirationDate },

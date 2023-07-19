@@ -1,11 +1,12 @@
 import { signIn, useSession } from 'next-auth/client'
+import { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
-import Box from '@/components/generic/Box'
-import Button from '@/components/generic/Button'
+
 import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
 import Footer from "@/components/footer/Footer"
+import Box from '@/components/generic/Box'
+import Button from '@/components/generic/Button'
 import NavBar from "@/components/nav/NavBar"
-import { useContext } from 'react'
 
 const Signup = () => {
   const theme = useContext(ThemeContext)
