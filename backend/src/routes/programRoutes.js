@@ -156,7 +156,29 @@ router.put('/program/edit/:href/:approve', async (req, res) => {
 
     // only look for users if the email hasn't been sent to save a call. 
     if (!hasEmailBeenSent) {
-      const users = await User.find({})
+      const programArr = []
+
+      const { summer, internship, scholarship, program } = updatedProgram.programType
+
+      if (summer) {
+        programArr.push('summer')
+      }
+
+      if (internship) {
+        programArr.push('internship')
+      }
+
+      if (scholarship) {
+        programArr.push('scholarship')
+      }
+
+      if (program) {
+        programArr.push('program')
+      }
+
+      const users = await User
+        .find({ interests: { $in: programArr }})
+        .lean()
       const userEmails = !isLocalEnv 
         ? users.map((user) => user.email)
         : ['joeephus@gmail.com']
