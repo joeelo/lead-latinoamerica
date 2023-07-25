@@ -1,16 +1,16 @@
+import Box from '@mui/material/Box'
 import { useContext } from 'react'
 import { ThemeContext } from 'styled-components'
 
 import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
 import Footer from '@/components/footer/Footer'
-import Box from '@/components/generic/Box'
 import NavBar from '@/components/nav/NavBar'
 
 const ThanksPartnerPage = () => {
   const theme = useContext(ThemeContext)
 
   return (
-    <>
+    <Box position="relative" height="100vh">
       <NavBar />
       <Box align="center" justify="center" mt="100px" center>
         <ChangingBackgroundText
@@ -23,7 +23,7 @@ const ThanksPartnerPage = () => {
           onlyRunOneTransition={true}
         />
 
-        <Box display="flex" wrap="true" justify="center">
+        <Box display="flex" justifyContent="center">
           <span
             style={{ margin: 40, fontSize: 24, maxWidth: 500 }}
             width="al-fu"
@@ -34,8 +34,8 @@ const ThanksPartnerPage = () => {
         </Box>
       </Box>
       
-      <Footer fixed/>
-    </>
+      <Footer style={{ position: 'relative' }}/>
+    </Box>
   )
 }
 

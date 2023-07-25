@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 import DynamicQuote from '@/components/content/quote/DynamicQuote'
 import LinkUnderlineEffect from '@/components/generic/LinkUnderlineEffect'
@@ -6,17 +7,19 @@ import useLocale from '@/hooks/useLocale'
 import en from '@/language/locales/en/footer.json'
 import es from '@/language/locales/es/footer.json'
 
-export default function Footer({ showQuote = true, fixed = false }) {
+export default function Footer({ showQuote = true, style = {} }) {
   const t = useLocale() === 'en' ? en : es
+  const isMobile = useMediaQuery('(max-width:768px)')
 
   return (
     <Box
       display="flex"
       flexDirection="column"
       width="100%"
-      mt={16}
-      position={fixed ? 'fixed' : 'inherit'}
-      bottom={fixed ? 0 : ''}
+      position='relative'
+      bottom={0}
+      style={{ ...style }}
+      className="footer"
     >
 
       {showQuote && <DynamicQuote />}
@@ -33,13 +36,13 @@ export default function Footer({ showQuote = true, fixed = false }) {
           display="flex"
           flexDirection="column"
           p={2.5}
-          fontSize={22}
+          fontSize={!isMobile ? 22 : 18}
           width="100%"
         >
-          <p style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 16 }}>
-            {' '}
-            {t.explore}{' '}
+          <p style={{ fontSize: !isMobile ? 24 : 20 , fontWeight: 'bold', marginBottom: 16 }}>
+            {t.explore}
           </p>
+
           <div
             style={{
               display: 'flex',
@@ -76,7 +79,6 @@ export default function Footer({ showQuote = true, fixed = false }) {
           </div>
 
           <LinkUnderlineEffect
-            size="md"
             openInNewTab
             hrefFormatted="https://www.leadlatinoamerica.org/copy-of-our-team"
             color="#222"

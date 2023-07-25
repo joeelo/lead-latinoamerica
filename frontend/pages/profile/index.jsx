@@ -306,10 +306,9 @@ const ProfilePage = () => {
         <Box>
           <UserSavedPrograms programs={data?.programs} />
         </Box>
-
-        <UserProgramChartWrapper />
       </Box>
-      <Footer />
+
+      <Footer style={{ marginTop: 120 }} />
     </>
   )
 }

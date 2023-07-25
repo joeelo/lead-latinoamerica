@@ -1,10 +1,10 @@
+import Box from '@mui/material/Box'
 import { signIn, useSession } from 'next-auth/client'
 import { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 
 import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
 import Footer from "@/components/footer/Footer"
-import Box from '@/components/generic/Box'
 import Button from '@/components/generic/Button'
 import NavBar from "@/components/nav/NavBar"
 
@@ -15,9 +15,19 @@ const Signup = () => {
   const [session] = useSession()
 
   return (
-    <>
+    <Box position="relative" minHeight="100vh" height="100vh" minWidth="100vw">
       <NavBar />
-        <Box stackOnMobile display="flex" mw='100%'>
+        <Box 
+          display="flex" 
+          maxWidth="100%" 
+          minHeight="65vh"
+          sx={{
+            flexDirection: { 
+              sm: 'column', 
+              xs: 'column', 
+              md: 'row' }
+          }}
+        >
           <PhotoWithText>
             <Title>
               Sign in to <br/>
@@ -51,11 +61,11 @@ const Signup = () => {
           </Column>
         </Box>
       <Footer />
-    </>
+    </Box>
   )
 }
 
-export default Signup; 
+export default Signup
 
 const PhotoWithText = styled.div`
   width: 60%; 
@@ -90,6 +100,8 @@ const Column = styled.div`
     width: 90%;
     padding-top: 60px;
     margin-bottom: 60px;
+    align-items: center;
+    justify-content: center;
   }
 `
 

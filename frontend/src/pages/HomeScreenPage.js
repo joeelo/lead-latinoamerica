@@ -1,3 +1,4 @@
+import Box from '@mui/material/Box'
 import { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 
@@ -52,7 +53,7 @@ const HomeScreenPage = () => {
   ]
 
   return (
-    <>
+    <Box position="relative">
       <NavBar />
       <FullScreenBack src="/images/mission-high.jpeg">
         <PortalTitleContainer>
@@ -122,7 +123,7 @@ const HomeScreenPage = () => {
       </VideoBackground>
 
       <Footer showQuote={false} />
-    </>
+    </Box>
   )
 }
 

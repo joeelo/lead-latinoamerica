@@ -19,7 +19,6 @@ const ProgramOverviewAndInfo = ({
 }) => {
   const t = useLocale() === 'en' ? en : es
   const isEnglish = useLocale() === 'en'
-  
   const isMobile = useMediaQuery('(max-width:600px)')
 
   const handleClick = async () => {
