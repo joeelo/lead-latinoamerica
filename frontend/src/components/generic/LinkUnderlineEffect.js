@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography'
 export default function LinkUnderlineEffect({
   text,
   hrefFormatted,
-  color = 'cyan',
+  color = 'rgb(0, 119, 182)',
   openInNewTab,
 }) {
 
@@ -26,11 +26,12 @@ export default function LinkUnderlineEffect({
           '&:hover': {
             backgroundPosition: '100% 100%', /*OR bottom right*/
             backgroundSize: '100% 2px', 
-            // color,
+            color: color,
           }, 
           '&:visited': {
-            color: '#222',
+            color,
             textDecoration: 'none',
+
           }
         }}
         mb={.5}

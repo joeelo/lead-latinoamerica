@@ -27,7 +27,7 @@ export default function Footer({ showQuote = true, style = {} }) {
       <Box
         width="100vw"
         display="flex"
-        pl={2.5}
+        pl={!isMobile ? 2.5 : 1.25}
         style={{
           boxShadow: 'inset 0px 2px 12px 2px rgba(184, 177, 184, 0.4)',
         }}
@@ -35,7 +35,8 @@ export default function Footer({ showQuote = true, style = {} }) {
         <Box
           display="flex"
           flexDirection="column"
-          p={2.5}
+          p={!isMobile ? 2.5 : 1.25}
+          pr={!isMobile ? '' : 3 }
           fontSize={!isMobile ? 22 : 18}
           width="100%"
         >

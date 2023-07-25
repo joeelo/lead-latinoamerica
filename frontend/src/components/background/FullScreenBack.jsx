@@ -20,7 +20,6 @@ const FullScreenBack = ({ src, children, titleInfo, height }) => {
       <Container {...{ height }}>
         <Image
           alt={`image-source-${src}`} // TODO: add alt props to images.
-          className=".next-image"
           priority={true}
           src={src}
           layout="fill"
@@ -28,6 +27,10 @@ const FullScreenBack = ({ src, children, titleInfo, height }) => {
           objectPosition="center"
           placeholder="blur"
           blurDataURL={blurDataUrl}
+          style={{ 
+            zIndex: '-1', 
+            position: 'absolute' 
+          }}
         />
         <div style={{ zIndex: 10, position: 'relative' }}>{children}</div>
       </Container>

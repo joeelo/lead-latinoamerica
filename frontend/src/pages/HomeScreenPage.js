@@ -101,6 +101,7 @@ const HomeScreenPage = () => {
         <ChangingBackgroundText secondaryColor="white" text={t.purpose} />
         <ContentWithSideImage
           backgroundColor={theme.colors.darkBlue}
+          imageStyle={{ borderRadius: 16 }}
           imageSrc={'/images/tony-luginsland-yXnnR9smke0-unsplash.jpg'}
           text={[
             t.purposeArray.sentence1,
@@ -156,6 +157,7 @@ const PortalSubTitle = styled.p`
     top: 0px;
     left: 0;
     line-height: 20px;
+    margin-bottom: 35px;
   }
 `
 

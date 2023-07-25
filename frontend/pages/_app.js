@@ -67,11 +67,6 @@ const GlobalStyle = createGlobalStyle`
 	p, div, span, textarea {
 		font-family: "source sans pro", sans-serif;
 	}
-
-	.next-image {
-		zIndex: -1 !important; 
-		position: 'absolute' !important;
-	}
 	.lds-ring {
 		display: inline-block;
 		position: relative;

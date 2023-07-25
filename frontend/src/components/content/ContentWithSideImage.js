@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const ContentWithSideImage = ({
-  text,
   backgroundColor,
   imageSrc,
+  imageStyle,
+  text,
   textColor,
 }) => {
   return (
@@ -21,6 +22,7 @@ const ContentWithSideImage = ({
 
       <ImageContainer>
         <Image  
+          style={{ ...imageStyle }}
           alt="" // TODO: figure out fix
           src={`${imageSrc}`}
           layout="fill"
