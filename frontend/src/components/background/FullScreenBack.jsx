@@ -28,7 +28,6 @@ const FullScreenBack = ({ src, children, titleInfo, height }) => {
           placeholder="blur"
           blurDataURL={blurDataUrl}
           style={{ 
-            zIndex: '-1', 
             position: 'absolute' 
           }}
         />

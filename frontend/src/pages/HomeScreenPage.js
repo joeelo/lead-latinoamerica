@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box'
-import { useContext } from 'react'
-import styled, { ThemeContext } from 'styled-components'
+import { useTheme } from '@mui/material/styles'
+import styled from 'styled-components'
 
 import FullScreenBack from '@/components/background/FullScreenBack'
 import VideoBackground from '@/components/background/VideoBackground'
@@ -17,7 +17,7 @@ import en from '@/language/locales/en/common.json'
 import es from '@/language/locales/es/common.json'
 
 const HomeScreenPage = () => {
-  const theme = useContext(ThemeContext)
+  const theme = useTheme()
   const quote = useGetRandomQuote()
   const t = useLocale() === 'en' ? en : es
 
@@ -151,6 +151,7 @@ const PortalSubTitle = styled.p`
   top: -10px;
   left: 5px;
   color: white;
+  margin-bottom: 45px;
 
   @media screen and (max-width: 768px) {
     font-size: 14px;

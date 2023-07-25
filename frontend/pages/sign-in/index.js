@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { useTheme } from '@mui/material/styles'
 import { signIn, useSession } from 'next-auth/client'
 import { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
@@ -9,7 +10,7 @@ import Button from '@/components/generic/Button'
 import NavBar from "@/components/nav/NavBar"
 
 const Signup = () => {
-  const theme = useContext(ThemeContext)
+  const theme = useTheme()
   
   //session comes back with google info - https://github.com/nextauthjs/next-auth
   const [session] = useSession()

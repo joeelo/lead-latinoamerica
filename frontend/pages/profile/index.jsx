@@ -1,6 +1,6 @@
 
 import Typography from '@mui/material/Typography'
-import dynamic from 'next/dynamic'
+// import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
@@ -24,10 +24,10 @@ import ProgramRequests from '@/fetch/program/ProgramRequests'
 import getFullName from '@/utils/getFullName'
 import getToast from '@/utils/getToast'
 
-const UserProgramChartWrapper = dynamic(
-  () => import('@/components/charts/UserProgramChartWrapper'),
-  { ssr: false }
-)
+// const UserProgramChartWrapper = dynamic(
+//   () => import('@/components/charts/UserProgramChartWrapper'),
+//   { ssr: false }
+// ) // TODO: Put back when we have more data
 
 const ProfilePage = () => {
   const [session] = useSession()
