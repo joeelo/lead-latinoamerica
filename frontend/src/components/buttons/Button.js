@@ -8,14 +8,14 @@ const Button = ({ label, color, onClick, isSubmitting = false, ...props }) => {
     <Container onClick={onClick} {...{ color }} {...props}>
       <span>
         {isSubmitting ? (
-          <Image 
+          <Image
             alt=""
             style={{
-              border: 0, 
-              outline: 0, 
-              maxWidth: 35
-            }} 
-            src="/loaders/spinning-loader.svg" 
+              border: 0,
+              outline: 0,
+              maxWidth: 35,
+            }}
+            src="/loaders/spinning-loader.svg"
           />
         ) : (
           label

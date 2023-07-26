@@ -21,7 +21,7 @@ const ContentWithSideImage = ({
       </Section>
 
       <ImageContainer>
-        <Image  
+        <Image
           style={{ ...imageStyle }}
           alt="" // TODO: figure out fix
           src={`${imageSrc}`}

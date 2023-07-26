@@ -29,7 +29,9 @@ const DynamicQuote = () => {
         maxWidth={isMobile ? '95%' : '90%'}
       >
         <Typography fontSize={fontSize}>{quote?.text}</Typography>
-        <Typography textAlign="right" fontSize={fontSize}>- {quote?.author}</Typography>
+        <Typography textAlign="right" fontSize={fontSize}>
+          - {quote?.author}
+        </Typography>
       </Box>
     </Box>
   )

@@ -42,7 +42,7 @@ async function getProfile(session) {
   }
 }
 
-async function editProfile(data, email)  {
+async function editProfile(data, email) {
   const body = JSON.stringify({ data })
 
   try {
@@ -63,8 +63,4 @@ async function editProfile(data, email)  {
   }
 }
 
-export { 
-  createProfile, 
-  getProfile, 
-  editProfile,
-}
+export { createProfile, getProfile, editProfile }

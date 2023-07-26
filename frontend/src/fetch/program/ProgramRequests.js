@@ -1,4 +1,4 @@
-const ProgramRequests =  {
+const ProgramRequests = {
   getAllPrograms,
   getProgram,
   getPrograms,

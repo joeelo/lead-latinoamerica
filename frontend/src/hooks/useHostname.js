@@ -1,4 +1,4 @@
-import { useEffect,useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const useHostname = () => {
   const [hs, setHs] = useState(null)

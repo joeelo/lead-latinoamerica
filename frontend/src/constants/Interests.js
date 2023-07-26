@@ -1,7 +1,7 @@
 const Interests = {
-  Summer: 'summer', 
-  Scholarships: 'scholarships', 
-  Internships: 'internships', 
+  Summer: 'summer',
+  Scholarships: 'scholarships',
+  Internships: 'internships',
   Programs: 'programs',
 }
 

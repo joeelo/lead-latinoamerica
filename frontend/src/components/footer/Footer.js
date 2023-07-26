@@ -16,12 +16,11 @@ export default function Footer({ showQuote = true, style = {} }) {
       display="flex"
       flexDirection="column"
       width="100%"
-      position='relative'
+      position="relative"
       bottom={0}
       style={{ ...style }}
       className="footer"
     >
-
       {showQuote && <DynamicQuote />}
 
       <Box
@@ -36,11 +35,17 @@ export default function Footer({ showQuote = true, style = {} }) {
           display="flex"
           flexDirection="column"
           p={!isMobile ? 2.5 : 1.25}
-          pr={!isMobile ? '' : 3 }
+          pr={!isMobile ? '' : 3}
           fontSize={!isMobile ? 22 : 18}
           width="100%"
         >
-          <p style={{ fontSize: !isMobile ? 24 : 20 , fontWeight: 'bold', marginBottom: 16 }}>
+          <p
+            style={{
+              fontSize: !isMobile ? 24 : 20,
+              fontWeight: 'bold',
+              marginBottom: 16,
+            }}
+          >
             {t.explore}
           </p>
 

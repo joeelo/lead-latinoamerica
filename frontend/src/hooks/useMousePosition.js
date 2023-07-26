@@ -1,5 +1,5 @@
 import { debounce } from 'lodash'
-import { useEffect,useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function useMousePosition() {
   const [mousePositionX, setMousePositionX] = useState(null)

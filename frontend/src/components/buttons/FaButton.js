@@ -10,4 +10,3 @@ const FaButton = ({ size, ...props }) => {
 }
 
 export default FaButton
-
