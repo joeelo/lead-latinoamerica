@@ -1,18 +1,21 @@
 import Box from '@mui/material/Box'
-import { useContext } from 'react'
-import { ThemeContext } from 'styled-components'
+import { useTheme } from '@mui/material/styles'
 
+import DaConfetti from '@/components/confetti/Confetti'
 import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
 import Footer from '@/components/footer/Footer'
 import NavBar from '@/components/nav/NavBar'
 
 const ThanksPartnerPage = () => {
-  const theme = useContext(ThemeContext)
+  const theme = useTheme()
 
   return (
     <Box position="relative" height="100vh">
       <NavBar />
-      <Box align="center" justify="center" mt="100px" center>
+
+      <DaConfetti />
+
+      <Box align="center" justifyContent="center" mt="100px">
         <ChangingBackgroundText
           text="Hooray! Thanks for Joining Us!"
           fontSize="24px"

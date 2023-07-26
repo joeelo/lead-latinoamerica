@@ -1,8 +1,7 @@
 import Box from '@mui/material/Box'
 import { useTheme } from '@mui/material/styles'
 import { signIn, useSession } from 'next-auth/client'
-import { useContext } from 'react'
-import styled, { ThemeContext } from 'styled-components'
+import styled from 'styled-components'
 
 import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
 import Footer from "@/components/footer/Footer"

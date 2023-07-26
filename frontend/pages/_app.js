@@ -18,30 +18,6 @@ import { ToastContainer } from "react-toastify"
 import { LanguageWrapper } from '@/context/LanguageContext'
 import createEmotionCache from '@/createEmotionCache'
 
-// const theme = {
-// 	colors: {
-// 		primary: '#0077B6',
-// 		darkBlue: '#1F2041', 
-// 		cyan: '#0077B6', 
-// 		red: '#DA5552',
-// 		cultured: '#F8FAFA', 
-// 		white: '#FFFFFF', 
-// 		darkText: '#222222',
-// 		lightGrey: '#DFDFDF',
-// 	},
-// 	fonts: {
-// 		mont: 'Montserrat', 
-// 		sans: 'source sans pro',
-// 	}, 
-// 	fontSizes: {
-// 		extraLarge: '48px', 
-// 		large: '34px', 
-// 		regular: '24px', 
-// 		small: '12px',
-// 		body: '24px'
-// 	}
-// }
-
 const theme = createTheme({
 	typography: {
 		fontFamily: [
@@ -62,57 +38,7 @@ const theme = createTheme({
 		darkText: '#222222',
 		lightGrey: '#DFDFDF',
 	},
-	components: {
-		MuiCssBaseline: {
-			"@global": {
-				margin: 0, 
-				padding: 0, 
-				boxSizing: 'border-box'
-			}, 
-			body: {
-				boxSizing: 'border-box', 
-				position: 'relative', 
-				minHeight: '100vh',
-				height: '100vh',
-				fontFamily: "Helvetica Neue sans-serif",
-				maxWidth: '100vw',
-				fontWeight: 300,
-				overflowX: 'hidden',
-			},
-			h1: {
-				lineHeight: '20px'
-			}
-		}
-	}
 })
-
-// const GlobalStyle = createGlobalStyle`
-//   	html, *, body {
-// 		margin: 0;
-// 		padding: 0;
-// 		box-sizing: border-box;
-// 	}
-
-// 	body {
-// 		box-sizing: border-box;
-// 		position: relative; 
-// 		min-height: 100vh; 
-// 		height: 100vh;
-// 		font-family: "Helvetica Neue", sans-serif;
-// 		max-width: 100vw;
-// 		font-weight: 300;
-// 		overflow-x: hidden;
-// 	}
-
-// 	h1, h2 {
-// 		font-family: "Montserrat", sans-serif !important;
-// 		font-weight: 600;
-// 	}
-
-// 	p, div, span, textarea {
-// 		font-family: "source sans pro", sans-serif;
-// 	}
-// `
 
 config.autoAddCss = false;
 

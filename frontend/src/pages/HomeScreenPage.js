@@ -116,7 +116,6 @@ const HomeScreenPage = () => {
           <FadeInText
             onlyRunOneTransition={true}
             textArray={[quote?.text, `- ${quote?.author}`]}
-            maxWidth="800"
             fontSize={48}
             mobileFontSize={36}
           />

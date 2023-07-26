@@ -100,6 +100,7 @@ const AddProgram = () => {
 				width='90%' 
 				margin='0 auto' 
 				pt='40px'
+				mb={5}
 			>
 				<ChangingBackgroundText 
 					fontSize='48px'

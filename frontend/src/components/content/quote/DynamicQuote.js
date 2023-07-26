@@ -1,13 +1,12 @@
 import Box from '@mui/material/Box'
+import { useTheme } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { useContext } from 'react'
-import { ThemeContext } from 'styled-components'
 
 import useGetRandomQuote from '@/hooks/useGetRandomQuote'
 
 const DynamicQuote = () => {
-  const theme = useContext(ThemeContext)
+  const theme = useTheme()
   const quote = useGetRandomQuote()
   const isMobile = useMediaQuery('(max-width:768px)')
 
@@ -26,8 +25,8 @@ const DynamicQuote = () => {
         display="flex"
         color="white"
         p={1.5}
-        maxWidth={800}
         justifyContent="center"
+        maxWidth={isMobile ? '95%' : '90%'}
       >
         <Typography fontSize={fontSize}>{quote?.text}</Typography>
         <Typography textAlign="right" fontSize={fontSize}>- {quote?.author}</Typography>
