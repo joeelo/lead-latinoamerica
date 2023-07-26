@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box'
 import { useTheme } from '@mui/material/styles'
 
-import DaConfetti from '@/components/confetti/Confetti'
+import DaConfetti from '@/components/confetti/DaConfetti'
 import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
 import Footer from '@/components/footer/Footer'
 import NavBar from '@/components/nav/NavBar'
