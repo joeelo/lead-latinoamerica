@@ -21,6 +21,7 @@ import createEmotionCache from '@/createEmotionCache'
 const theme = createTheme({
 	typography: {
 		fontFamily: [
+			'"Lato"',
 			'"Montserrat"', 
 			'source sans pro', 
 			'"Helvetica Neue"', 

@@ -33,8 +33,9 @@ const Container = styled.div`
 `
 
 const Span = styled.span`
-  font-size: 26px;
+  font-size: 30px;
   cursor: pointer;
+  font-weight: 300;
 `
 
 const CenterDivider = styled.div`

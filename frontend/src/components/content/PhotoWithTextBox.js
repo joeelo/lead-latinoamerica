@@ -84,8 +84,8 @@ const PhotoWithTextOverlay = styled.div`
 const RightAlignedText = styled.p`
   width: 100px;
   color: white;
-  font-size: 34px;
-  line-height: 34px;
+  font-size: 18px;
+  line-height: 18px;
   z-index: 10;
   color: white;
   position: relative;
@@ -97,7 +97,7 @@ const RightAlignedText = styled.p`
 `
 
 const Bio = styled.p`
-  font-size: 20px;
+  font-size: 18px;
   line-height: 26px;
   padding: 20px;
   padding-top: 5px;

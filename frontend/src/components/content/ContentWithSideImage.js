@@ -70,16 +70,8 @@ const Section = styled.div`
   flex-direction: column;
   margin-top: 40px;
 
-  p {
-    font-size: 24px;
-  }
-
   @media screen and (max-width: 768px) {
     width: 100%;
-
-    p {
-      font-size: 18px;
-    }
   }
 `
 
@@ -100,5 +92,5 @@ const ImageContainer = styled.div`
 const P = styled.p`
   color: ${(props) => props.textColor};
   margin-bottom: 20px;
-  font-size: 26px;
+  font-size: 22px;
 `

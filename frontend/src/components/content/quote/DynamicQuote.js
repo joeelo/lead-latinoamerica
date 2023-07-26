@@ -19,6 +19,7 @@ const DynamicQuote = () => {
       minHeight="250px"
       justifyContent="center"
       display="flex"
+      fontFamily="Montserrat"
     >
       <Box
         flexDirection="column"
@@ -29,7 +30,7 @@ const DynamicQuote = () => {
         maxWidth={isMobile ? '95%' : '90%'}
       >
         <Typography fontSize={fontSize}>{quote?.text}</Typography>
-        <Typography textAlign="right" fontSize={fontSize}>
+        <Typography textAlign="right" fontSize={fontSize - 4} fontWeight={300}>
           - {quote?.author}
         </Typography>
       </Box>

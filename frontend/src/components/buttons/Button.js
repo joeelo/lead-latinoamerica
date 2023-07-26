@@ -43,14 +43,13 @@ const Container = styled.button`
   justify-content: center;
   align-items: center;
   outline: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: ${(props) => (props.color ? props.color : 'blue')};
   border: 0;
   margin-top: 30px;
   color: white;
-  font-size: 16px;
   transition: 0.4s ease all;
-  font-size: 22px;
+  font-size: 18px;
 
   :hover {
     cursor: pointer;
