@@ -1,8 +1,8 @@
-import Link from 'next/link'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
 
-import Box from '@/components/generic/Box'
 import getDiff from '@/utils/getDiff'
 
 const PhotoWithTextBox = ({
@@ -22,23 +22,33 @@ const PhotoWithTextBox = ({
   const imageSrc = coverImage || '/images/pexels-cottonbro-6209356.jpg'
 
   return (
-    <Box display="flex" align="center" justify="center">
+    <Box display="flex" alignItems="center" justifyContent="center">
       <Container onClick={clickHandler}>
         <PhotoWithTextOverlay>
           <StyledImage src={imageSrc} />
-          <RightAlignedText>{name}</RightAlignedText>
+          <Typography
+            position="absolute"
+            color="white"
+            fontWeight={500}
+            zIndex={10}
+            textAlign="right"
+            top={0}
+            pt={2}
+            right={0}
+            pr={2}
+            fontSize={24}
+          >
+            {name}
+          </Typography>
 
           {isInNextTwoWeeks && (
             <StyledBellImage src="/images/bell-icon-white.png" />
           )}
         </PhotoWithTextOverlay>
-        <Bio> - {truncatedString} </Bio>
-        <Link
-          href={`/resources/[resourceSlug]/[programSlug]`}
-          as={`${router.asPath}/${href}`}
-        >
-          <StyledAnchor> explore {name} </StyledAnchor>
-        </Link>
+        <Box height={215} p={1.5} display="flex" justifyContent="space-between" flexDirection="column">
+          <Typography fontSize={18} mb={4}> - {truncatedString} </Typography>
+          <Typography fontSize={18}> explore {name} </Typography>
+        </Box>
       </Container>
     </Box>
   )
@@ -79,46 +89,6 @@ const PhotoWithTextOverlay = styled.div`
   text-align: right;
   margin-bottom: 20px;
   min-height: 300px;
-`
-
-const RightAlignedText = styled.p`
-  width: 100px;
-  color: white;
-  font-size: 18px;
-  line-height: 18px;
-  z-index: 10;
-  color: white;
-  position: relative;
-  text-align: right;
-  width: 100%;
-  padding-right: 15px;
-  padding-top: 15px;
-  font-weight: 300;
-`
-
-const Bio = styled.p`
-  font-size: 18px;
-  line-height: 26px;
-  padding: 20px;
-  padding-top: 5px;
-
-  @media screen and (max-width: 768px) {
-    font-size: 16px;
-  }
-`
-
-const StyledAnchor = styled.a`
-  margin-top: auto;
-  display: block;
-  cursor: pointer;
-  font-size: 20px;
-  color: inherit;
-  text-decoration: none;
-  margin-left: 20px;
-
-  @media screen and (max-width: 768px) {
-    font-size: 16px;
-  }
 `
 
 const StyledImage = styled.img`

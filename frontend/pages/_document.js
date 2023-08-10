@@ -1,3 +1,6 @@
+// https://github.com/mui/material-ui/blob/master/examples/material-next/pages/_document.js
+// Check for latest example periodically, there may be changes to material injection. 
+
 import createEmotionServer from '@emotion/server/create-instance'
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 import PropTypes from 'prop-types'
