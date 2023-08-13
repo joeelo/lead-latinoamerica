@@ -41,6 +41,7 @@ const ResourcePage = () => {
 	return (
 		<>
 			<NavBar />
+			
 			<FullScreenBack 
 				src={coverImage}
 				height="50vh"
@@ -80,8 +81,8 @@ const ResourcePage = () => {
 					</>
 				)}
 
-		<Footer/>
-
+			<Box mb="120px"/>
+			<Footer/>
 		</>
 	)
 }

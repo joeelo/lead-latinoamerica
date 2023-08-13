@@ -10,6 +10,7 @@ export default function LinkUnderlineEffect({
   return (
     <Box margin={0} padding={0} height={35}>
       <Typography
+        fontSize={18}
         component="a"
         href={`${hrefFormatted}`}
         target={openInNewTab ? '_blank' : ''}

@@ -1,3 +1,4 @@
+import Box from '@mui/material/Box'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
 import { useQuery } from 'react-query'
@@ -42,6 +43,8 @@ const ProgramPage = () => {
           />
         </>
       )}
+
+      <Box mb={15}/>
       <Footer marginTop={ true }/>
     </>
   )

@@ -83,9 +83,7 @@ const ProgramOverviewAndInfo = ({
           {!preview ? (
             <Box display={!isMobile ? 'flex' : 'inherit'}>
               {program.partnerUrl && (
-                <ExternalLink href={program.partnerUrl} bgColor="#0055B6">
-                  {t.signUp}
-                </ExternalLink>
+                <ExternalLink href={program.partnerUrl} label={t.signUp} />
               )}
 
               <Button

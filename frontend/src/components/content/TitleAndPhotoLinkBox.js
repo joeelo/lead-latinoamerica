@@ -24,7 +24,6 @@ const TitleAndPhotoLinkBox = ({
         <LinkUnderlineEffect
           hrefFormatted={`/resources/${content.link}`}
           text={content.footer}
-          color={'primary'}
         />
       </ContentFooter>
     </Container>

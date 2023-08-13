@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 
-const useOnScreen = (ref, rootMargin = '0px') => {
+const useOnScreen = (ref = {}, rootMargin = '0px') => {
   const [intersecting, setIntersecting] = useState(false)
+  const windowLoaded = typeof window !== 'undefined'
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -11,15 +12,21 @@ const useOnScreen = (ref, rootMargin = '0px') => {
       },
       { rootMargin }
     )
-    if (ref.current) {
-      observer.observe(ref.current)
+
+    const currentElement = ref?.current
+
+    if (currentElement) {
+      observer.observe(currentElement)
     }
+
     return () => {
-      //eslint-disable-next-line
-      observer.unobserve(ref.current)
+      if (currentElement) {
+        //eslint-disable-next-line
+        observer.unobserve(currentElement)
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [windowLoaded])
 
   return intersecting
 }
