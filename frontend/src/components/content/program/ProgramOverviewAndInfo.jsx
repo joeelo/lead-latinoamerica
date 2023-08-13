@@ -90,7 +90,7 @@ const ProgramOverviewAndInfo = ({
                 label={t.saveToProfile}
                 color="#0055B6"
                 onClick={handleClick}
-                style={{ marginTop: 40}}
+                style={{ marginLeft: 20 }}
               />
             </Box>
           ) : (

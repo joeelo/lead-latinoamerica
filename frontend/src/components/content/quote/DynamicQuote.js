@@ -14,7 +14,7 @@ const DynamicQuote = () => {
 
   return (
     <Box
-      backgroundColor={theme.colors.cyan}
+      backgroundColor={theme.colors.darkBlue}
       alignItems="center"
       minHeight="250px"
       justifyContent="center"
