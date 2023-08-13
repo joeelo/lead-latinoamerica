@@ -16,12 +16,22 @@ const ChangingBackgroundText = ({
 }) => {
   const ref = useRef()
   const [changeTextColor, setChangeTextColor] = useState(false)
+  const [hasBeenOnScreen, setHasBeenOnScreen] = useState(false)
   let isOnScreen = useOnScreen(ref)
 
+
   useEffect(() => {
+    if (hasBeenOnScreen && onlyRunOneTransition) {
+      return 
+    }
+
     if (isOnScreen) {
       setChangeTextColor(true)
-    } else if (!onlyRunOneTransition && !isOnScreen) {
+
+      setHasBeenOnScreen(true)
+    } 
+    
+    if (!onlyRunOneTransition && !isOnScreen) {
       setChangeTextColor(false)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -29,19 +39,17 @@ const ChangingBackgroundText = ({
 
   return (
     <Container ref={ref} {...{ maxWidth }}>
-      <>
-        <StyledHeading
-          {...{ text, changeTextColor, fontColorInitial, fontColorSecondary }}
-          style={{
-            color: !changeTextColor ? fontColorInitial : fontColorSecondary,
-          }}
-        >
-          {text}
-        </StyledHeading>
-        <InnerContainer
-          {...{ fontSize, initialColor, secondaryColor, changeTextColor }}
-        ></InnerContainer>
-      </>
+      <StyledHeading
+        {...{ text, changeTextColor, fontColorInitial, fontColorSecondary }}
+        style={{
+          color: !changeTextColor ? fontColorInitial : fontColorSecondary,
+        }}
+      >
+        {text}
+      </StyledHeading>
+      <InnerContainer
+        {...{ fontSize, initialColor, secondaryColor, changeTextColor }}
+      ></InnerContainer>
     </Container>
   )
 }

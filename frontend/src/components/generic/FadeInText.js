@@ -13,21 +13,19 @@ const FadeInText = ({
   maxWidth,
 }) => {
   const [animate, setAnimation] = useState(false)
-  const [usableRef, setUsableRef] = useState(null)
-  const ref = useRef({})
-  const isOnScreen = useOnScreen(usableRef)
+  const ref = useRef()
+  const isOnScreen = useOnScreen(ref)
+  const [hasBeenOnScreen, setHasBeenOnScreen] = useState(false)
 
   useEffect(() => {
-    if (!ref.current) {
+    if (hasBeenOnScreen) {
       return
     }
 
-    setUsableRef(ref)
-  }, [ref.current])
-
-  useEffect(() => {
     if (isOnScreen && onlyRunOneTransition) {
       setAnimation(true)
+      setHasBeenOnScreen(true)
+      
       return
     }
     if (isOnScreen) {

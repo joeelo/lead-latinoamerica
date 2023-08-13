@@ -41,6 +41,7 @@ function DesktopNav() {
           onPointerEnter={handleMouseEnter}
           data-name="get-involved"
           style={{ cursor: 'pointer' }}
+          mr={4}
         >
           {t.portal}
         </Box>
@@ -49,6 +50,7 @@ function DesktopNav() {
           onPointerEnter={handleMouseEnter}
           data-name="resources"
           style={{ cursor: 'pointer' }}
+          mr={4}
         >
           {t.resources}
         </Box>
@@ -56,6 +58,7 @@ function DesktopNav() {
           style={{ cursor: 'pointer' }}
           width="80px"
           onPointerEnter={handleExternalMouseEnter}
+          mr={4}
         >
           <Link href="/">{t.home}</Link>
         </Box>

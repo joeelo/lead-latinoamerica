@@ -73,6 +73,7 @@ const HomeScreenPage = () => {
         padding={60}
       >
         <ChangingBackgroundText
+          onlyRunOneTransition
           initialColor={theme.colors.cultured}
           secondaryColor={theme.colors.darkBlue}
           text={t.missionDistrict}
@@ -98,7 +99,7 @@ const HomeScreenPage = () => {
         backgroundColor={theme.colors.darkBlue}
         padding="padTop"
       >
-        <ChangingBackgroundText secondaryColor="white" text={t.purpose} />
+        <ChangingBackgroundText onlyRunOneTransition secondaryColor="white" text={t.purpose} />
         <ContentWithSideImage
           backgroundColor={theme.colors.darkBlue}
           imageStyle={{ borderRadius: 16 }}
@@ -112,14 +113,14 @@ const HomeScreenPage = () => {
       </CenterFlexContainer>
 
       <VideoBackground src="/pexels-rodnae-productions-8419363.mp4">
-        <CenterFlexContainer justify="start" align="start" paddingTop>
+        <Box display="flex" p={12}>
           <FadeInText
-            onlyRunOneTransition={true}
+            onlyRunOneTransition
             textArray={[quote?.text, `- ${quote?.author}`]}
             fontSize={48}
             mobileFontSize={36}
           />
-        </CenterFlexContainer>
+        </Box>
       </VideoBackground>
 
       <Footer showQuote={false} />
