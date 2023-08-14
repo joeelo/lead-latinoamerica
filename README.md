@@ -14,3 +14,7 @@ Refer to this ticket number when you branch off of main. So if the ticket number
 git checkout -b "LEAD-55-<short-description-of-fix>"
 ```
 In your commit message, please also include the ticket number and brief description of the commit. 
+
+## To run 
+* CD into FE directory and yarn install, CD into BE directory and yarn install. After install run yarn dev and go to `localhost:3005`
+* Ask about the ENV files required to run this in dev. 
