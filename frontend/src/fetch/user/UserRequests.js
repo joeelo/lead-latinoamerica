@@ -1,7 +1,9 @@
 const UpdateUsersSavedPrograms = async (email, programId) => {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/user/programs/${email}/${programId}`)
-    const json = await response.json();
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_DB_LOCATION}/user/programs/${email}/${programId}`
+    )
+    const json = await response.json()
     return json
   } catch (error) {
     console.error(error)
@@ -10,10 +12,12 @@ const UpdateUsersSavedPrograms = async (email, programId) => {
 
 const RemoveUserSavedProgram = async (email, programId) => {
   try {
-    const response = 
-      await fetch(`${process.env.NEXT_PUBLIC_DB_LOCATION}/user/programs/${email}/${programId}`, {
-        method: "DELETE",
-      })
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_DB_LOCATION}/user/programs/${email}/${programId}`,
+      {
+        method: 'DELETE',
+      }
+    )
     const json = await response.json()
     return json
   } catch (error) {
@@ -21,7 +25,4 @@ const RemoveUserSavedProgram = async (email, programId) => {
   }
 }
 
-export {
-  UpdateUsersSavedPrograms, 
-  RemoveUserSavedProgram,
-}
+export { UpdateUsersSavedPrograms, RemoveUserSavedProgram }

@@ -1,17 +1,17 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const Tiles = ({ adjectives }) => {
-  if (!adjectives) return <></>;
+  if (!adjectives) return <></>
   return (
     <Container>
       {adjectives.map((adj) => (
         <Tile key={adj}> {adj} </Tile>
       ))}
     </Container>
-  );
-};
+  )
+}
 
-export default Tiles;
+export default Tiles
 
 const Container = styled.div`
   width: 100%;
@@ -24,7 +24,7 @@ const Container = styled.div`
   @media screen and (max-width: 768px) {
     margin-bottom: 0;
   }
-`;
+`
 
 const Tile = styled.div`
   height: 45px;
@@ -38,4 +38,4 @@ const Tile = styled.div`
   color: white;
   margin-bottom: 10px;
   font-size: 16px;
-`;
+`

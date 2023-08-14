@@ -1,8 +1,10 @@
-import Hamburger from '@/components/nav/Hamburger'
-import SlidePanel from './SlidePanel'
-import { React, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { React, useEffect, useState } from 'react'
 import styled from 'styled-components'
+
+import Hamburger from '@/components/nav/Hamburger'
+
+import SlidePanel from './SlidePanel'
 
 function MobileNav() {
   const [navOpen, setNavOpen] = useState(false)
@@ -12,11 +14,12 @@ function MobileNav() {
     if (navOpen) {
       setNavOpen(false)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.asPath])
 
   return (
     <>
-      <PlaceHolderContainer></PlaceHolderContainer>
+      <PlaceHolderContainer/>
       <Container>
         <Hamburger {...{ navOpen, setNavOpen }} />
         <SlidePanel {...{ navOpen, setNavOpen }} />

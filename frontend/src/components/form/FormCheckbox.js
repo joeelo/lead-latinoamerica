@@ -1,24 +1,24 @@
-import styled, { keyframes } from 'styled-components'; 
+import styled, { keyframes } from 'styled-components'
 
-const FormCheckbox = ({ option, register, label }) => {
-	
-	return (
-		<Container>
-			<Label>
-				<Input
-					name={ option }
-					value={ option }
-					type='checkbox'
-					{...register(option)}
-				/>
-				{ option }
-			</Label>
-		</Container>
-	)
+const FormCheckbox = ({ option, register }) => {
+  return (
+    <Container>
+      <Label>
+        <Input
+          name={option}
+          value={option}
+          type="checkbox"
+          {...register(option)}
+        />
+        {option}
+      </Label>
+    </Container>
+  )
 }
 
-export default FormCheckbox; 
+export default FormCheckbox
 
+// eslint-disable-next-line no-unused-vars
 const jelly = keyframes`
 	from {
 		transform: scale(1, 1);
@@ -44,27 +44,27 @@ const jelly = keyframes`
 `
 
 const Container = styled.div`
-	display: flex; 
+  display: flex;
 `
 
 const Label = styled.label`
-	font-size: 26px;
+  font-size: 26px;
 
-	:hover {
-		cursor: pointer;
-	}
+  :hover {
+    cursor: pointer;
+  }
 `
 
 const Input = styled.input`
-	margin-right: 20px;
+  margin-right: 20px;
 
-	.cbx:checked ~ .cbx {
-		border-color: transparent;
-		background: #6871f1;
-		animation: jelly 0.6s ease;
-	}
-	.cbx:checked ~ .cbx:after {
-		opacity: 1;
-		transform: rotate(45deg) scale(1);
-	}
+  .cbx:checked ~ .cbx {
+    border-color: transparent;
+    background: #6871f1;
+    animation: jelly 0.6s ease;
+  }
+  .cbx:checked ~ .cbx:after {
+    opacity: 1;
+    transform: rotate(45deg) scale(1);
+  }
 `

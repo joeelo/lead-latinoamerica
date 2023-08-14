@@ -1,17 +1,12 @@
-import styled from 'styled-components';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const FaButton = ({backgroundColor, size, ...props}) => {
-    return (
-        <Container>
-            <FontAwesomeIcon icon={faTrash} {...props} size={size}/>
-        </Container>
-    )
+const FaButton = ({ size, ...props }) => {
+  return (
+    <div>
+      <FontAwesomeIcon icon={faTrash} {...props} size={size} />
+    </div>
+  )
 }
 
-export default FaButton;
-
-const Container = styled.div`
-
-`
+export default FaButton

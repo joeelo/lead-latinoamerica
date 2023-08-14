@@ -1,14 +1,14 @@
 import { debounce } from 'lodash'
-import { useState, useEffect, useCallback } from 'react'
+import { useEffect, useState } from 'react'
 
 function useMousePosition() {
-  const [ mousePositionX, setMousePositionX ] = useState(null)
-  const [ mousePositionY, setMousePositionY ] = useState(null)
+  const [mousePositionX, setMousePositionX] = useState(null)
+  const [mousePositionY, setMousePositionY] = useState(null)
 
   const getMousePosition = (event) => {
     setMousePositionX(event.clientX)
     setMousePositionY(event.clientY)
-  }  
+  }
 
   const debouncedFn = debounce((event) => getMousePosition(event), 50)
 
@@ -22,7 +22,7 @@ function useMousePosition() {
   }, [debouncedFn])
 
   return {
-    mouseX: mousePositionX, 
+    mouseX: mousePositionX,
     mouseY: mousePositionY,
   }
 }

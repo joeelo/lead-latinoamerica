@@ -1,18 +1,18 @@
+import { useRouter } from 'next/router'
+import { useQuery } from "react-query"
+import styled from 'styled-components'
+
 import FullScreenBack from '@/components/background/FullScreenBack'
 import PhotoWithTextBox from '@/components/content/PhotoWithTextBox'
 import Footer from '@/components/footer/Footer'
+import Box from '@/components/generic/Box'
+import LoadingSpinner from '@/components/generic/LoadingSpinner'
 import NavBar from '@/components/nav/NavBar'
 import fakeData from '@/data/fakeData'
-import { useRouter } from 'next/router'
-import styled from 'styled-components'
-import { useQuery } from "react-query"
 import ProgramRequests from '@/fetch/program/ProgramRequests'
-import LoadingSpinner from '@/components/generic/LoadingSpinner'
-import Box from '@/components/generic/Box'
+import useLocale from '@/hooks/useLocale'
 import en from '@/language/locales/en/common.json'
 import es from '@/language/locales/es/common.json'
-import useLocale from '@/hooks/useLocale'
-
 
 const ResourcePage = () => {
 	// ex: /resource/program
@@ -20,7 +20,6 @@ const ResourcePage = () => {
 	const router = useRouter() 
 	const { resourceSlug } = router.query
 	const t = useLocale() === 'en' ? en : es
-
 
 	const singularSlug = resourceSlug[resourceSlug.length - 1] === 's' 
 		? resourceSlug.slice(0, resourceSlug.length - 1) 
@@ -36,12 +35,15 @@ const ResourcePage = () => {
 	const programs = programsQuery.data || []
 
 	const hasPrograms = programs.length > 0
+
+	const { coverImage } = fakeData[resourceSlug] || { coverImage: '' }
 	
 	return (
 		<>
 			<NavBar />
+			
 			<FullScreenBack 
-				src={fakeData[resourceSlug].coverImage}
+				src={coverImage}
 				height="50vh"
 				titleInfo={{ 
 					show: true, 
@@ -60,7 +62,7 @@ const ResourcePage = () => {
 									{programs.map(( program ) => (
 										<PhotoWithTextBox 
 											key={program.href} 
-											coverImage={program.coverImage} 
+											coverImage={program.coverImage || ''} 
 											program={program} 
 										/>
 									))}
@@ -79,8 +81,8 @@ const ResourcePage = () => {
 					</>
 				)}
 
-		<Footer/>
-
+			<Box mb="120px"/>
+			<Footer/>
 		</>
 	)
 }

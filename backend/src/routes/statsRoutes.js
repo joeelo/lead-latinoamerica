@@ -51,26 +51,29 @@ router.get('/stats/programs/:email', async (req, res) => {
     })
     .lean()
 
+    // create a list of months in '03-01-2023' format starting from 6 months ago
+    for (let i = 0; i < 6; i++) {
+      const month = dayjs()
+      .subtract(i, 'month')
+      .startOf('month')
+      .toISOString()
+      .split('T')[0]
+
+      stats[month] = { program: 0, user: 0 }
+    }
+
     programs.forEach((program) => {
       const month = dayjs(program.createdAt).startOf('month').toISOString().split('T')[0]
 
-      const doesHaveDataForMonth = !!stats[month]
-
-      if (!doesHaveDataForMonth) {
-        stats[month] = { program: 0 }
+      if (stats[month] && stats[month].program > -1) {
+        stats[month].program += 1
       }
-
-      stats[month].program += 1
     })
 
     user.savedProgramDates.forEach((program) => {
       const month = dayjs(program.dateAdded).startOf('month').toISOString().split('T')[0]
 
-      if (stats[month]) {
-        if (!Number(stats[month].user)) {
-          stats[month].user = 0
-        }
-          
+      if (stats[month] && stats[month].user > -1) {
         stats[month].user += 1
       }
     })

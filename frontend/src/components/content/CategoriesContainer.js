@@ -1,9 +1,5 @@
 const CategoriesContainer = () => {
-  return (
-    <>
-      
-    </>
-  )
+  return <></>
 }
 
-export default CategoriesContainer;
+export default CategoriesContainer

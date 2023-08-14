@@ -1,6 +1,7 @@
-import Box from '@/components/generic/Box'
-import { useState, useEffect, useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
+
+import Box from '@/components/generic/Box'
 
 const WordSelectInput = ({ wordList, setWordList, placeHolder }) => {
   const [isInFocus, setIsInFocus] = useState(false)
@@ -20,6 +21,7 @@ const WordSelectInput = ({ wordList, setWordList, placeHolder }) => {
         setCurrentWord('')
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [currentWord, wordList, setWordList]
   )
 
@@ -90,11 +92,10 @@ const StyledInput = styled.input`
   width: 100%;
   min-height: 40px;
   height: 40px;
-  font-size: 20px;
+  font-size: 16px;
   padding: 5px 5px 2px 5px;
   margin-bottom: 10px;
   border: 0px;
-  font-weight: lighter;
 
   &:focus {
     outline: none;

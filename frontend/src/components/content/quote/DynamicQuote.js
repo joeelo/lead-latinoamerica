@@ -1,49 +1,41 @@
-import { useContext } from 'react'
-import CenterFlexContainer from '@/components/generic/CenterFlexContainer'
-import styled, { ThemeContext } from 'styled-components'
+import Box from '@mui/material/Box'
+import { useTheme } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
+import useMediaQuery from '@mui/material/useMediaQuery'
+
 import useGetRandomQuote from '@/hooks/useGetRandomQuote'
 
 const DynamicQuote = () => {
-	
-	const theme = useContext(ThemeContext)
-	const quote = useGetRandomQuote() 
-	
-	return (
-		<CenterFlexContainer backgroundColor={theme.colors.darkBlue} align='center' minHeight='300px'>
-			<Container>
-				<QuoteText>
-					{ quote?.text }
-				</QuoteText>
-				<br/>
-				<QuoteAuthor>
-					- { quote?.author }
-				</QuoteAuthor>
-			</Container>
+  const theme = useTheme()
+  const quote = useGetRandomQuote()
+  const isMobile = useMediaQuery('(max-width:768px)')
 
-		</CenterFlexContainer>
-	)
+  const fontSize = isMobile ? 24 : 32
+
+  return (
+    <Box
+      backgroundColor={theme.colors.darkBlue}
+      alignItems="center"
+      minHeight="250px"
+      justifyContent="center"
+      display="flex"
+      fontFamily="Montserrat"
+    >
+      <Box
+        flexDirection="column"
+        display="flex"
+        color="white"
+        p={1.5}
+        justifyContent="center"
+        maxWidth={isMobile ? '95%' : '90%'}
+      >
+        <Typography fontSize={fontSize}>{quote?.text}</Typography>
+        <Typography textAlign="right" fontSize={fontSize - 4} fontWeight={300}>
+          - {quote?.author}
+        </Typography>
+      </Box>
+    </Box>
+  )
 }
 
-export default DynamicQuote;
-
-const Container = styled.div`
-	display: flex; 
-	margin: 0 auto; 
-	flex-direction: column;
-	color: white;
-	font-size: 34px; 
-
-	@media screen and (max-width: 768px) {
-		padding: 0 10px;
-	}
-`
-
-const QuoteText = styled.span`
-	width: 100%; 
-	text-align: center;
-`
-
-const QuoteAuthor = styled.span`
-	text-align: right; 
-	width: 100%; 
-`
+export default DynamicQuote

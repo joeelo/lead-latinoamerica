@@ -1,51 +1,63 @@
-import { useState, useEffect, useRef } from 'react';
-import styled, { keyframes } from 'styled-components';
-import PropTypes from 'prop-types';
-import useOnScreen from '@/hooks/useOnScreen';
+/* eslint-disable react-hooks/exhaustive-deps */
+import PropTypes from 'prop-types'
+import { useEffect, useRef, useState } from 'react'
+import styled, { keyframes } from 'styled-components'
 
-const FadeInText = ({ 
-	textArray, 
-	onlyRunOneTransition, 
-	fontSize,
-	mobileFontSize, 
-	maxWidth,
+import useOnScreen from '@/hooks/useOnScreen'
+
+const FadeInText = ({
+  textArray,
+  onlyRunOneTransition,
+  fontSize,
+  mobileFontSize,
+  maxWidth,
 }) => {
+  const [animate, setAnimation] = useState(false)
+  const ref = useRef()
+  const isOnScreen = useOnScreen(ref)
+  const [hasBeenOnScreen, setHasBeenOnScreen] = useState(false)
 
-	const [ animate, setAnimation ] = useState(false);
-	const ref = useRef(); 
-	const isOnScreen = useOnScreen(ref); 
+  useEffect(() => {
+    if (hasBeenOnScreen) {
+      return
+    }
 
-	useEffect(() => {
-		if (isOnScreen && onlyRunOneTransition) {
-			setAnimation(true);
-			return; 
-		}
-		if (isOnScreen) {
-			setAnimation(true);
-		}
-		if (!isOnScreen && !onlyRunOneTransition) {
-			setAnimation(false);
-		}
+    if (isOnScreen && onlyRunOneTransition) {
+      setAnimation(true)
+      setHasBeenOnScreen(true)
+      
+      return
+    }
+    if (isOnScreen) {
+      setAnimation(true)
+    }
+    if (!isOnScreen && !onlyRunOneTransition) {
+      setAnimation(false)
+    }
+  }, [isOnScreen])
 
-	}, [ isOnScreen ]);
-
-	return (
-		<Container ref={ref} maxWidth={maxWidth}>
-			{ animate &&
-				textArray && textArray.map((text) => <P key={text} {...{ fontSize, mobileFontSize }}> { text } </P>)
-			}	
-		</Container>
-	)
+  return (
+    <Container ref={ref} maxWidth={maxWidth}>
+      {animate &&
+        textArray &&
+        textArray.map((text) => (
+          <P key={text} {...{ fontSize, mobileFontSize }}>
+            {' '}
+            {text}{' '}
+          </P>
+        ))}
+    </Container>
+  )
 }
 
-export default FadeInText; 
+export default FadeInText
 
 FadeInText.propTypes = {
-	textArray: PropTypes.array
+  textArray: PropTypes.array,
 }
 
 FadeInText.defaultProps = {
-	textArray: [],
+  textArray: [],
 }
 
 const fadeIn = keyframes`
@@ -60,23 +72,26 @@ const fadeIn = keyframes`
 `
 
 const Container = styled.div`
-	width: auto; 
-	position: relative; 
+  width: auto;
+  position: relative;
 
-	${({ maxWidth }) => maxWidth && `
+  ${({ maxWidth }) =>
+    maxWidth &&
+    `
 		max-width: ${maxWidth}px; 
-	`}	
+	`}
 `
 
 const P = styled.p`
-	animation: ${fadeIn} 2s; 
-	animation-iteration-count: 1;  
-	color: white; 
-	position: relative; 
-	color: white;
-	font-size: ${props => props.fontSize ? `${props.fontSize}px` : '24px'};
+  animation: ${fadeIn} 2s;
+  animation-iteration-count: 1;
+  color: white;
+  position: relative;
+  color: white;
+  font-size: ${(props) => (props.fontSize ? `${props.fontSize}px` : '24px')};
 
-	@media screen and (max-width: 768px) {
-	font-size: ${(props) => props.mobileFontSize ? `${props.mobileFontSize}px` : '18px'}
-	}
+  @media screen and (max-width: 768px) {
+    font-size: ${(props) =>
+      props.mobileFontSize ? `${props.mobileFontSize}px` : '18px'};
+  }
 `

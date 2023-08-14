@@ -1,14 +1,13 @@
-import BarChart from './BarChart'
-import { useQuery } from 'react-query'
-import { useSession } from 'next-auth/client'
 import { DateTime } from 'luxon'
-import { useState, useMemo } from 'react'
-import { useEffect } from 'react'
+import { useSession } from 'next-auth/client'
+import { useMemo } from 'react'
+import { useQuery } from 'react-query'
+
+import BarChart from './BarChart'
 
 function UserProgramChartWrapper() {
   const [session] = useSession()
   const email = session?.user?.email
-  const [categories, setCategories] = useState([])
 
   const programsAdded = async () => {
     const response = await fetch(
@@ -25,26 +24,33 @@ function UserProgramChartWrapper() {
     enabled: !!email,
   })
 
-  const { data = {}, isLoading, error } = programsAddedQuery
+  const { data = {} } = programsAddedQuery
 
-  const { stats } = useMemo(() => {
-    return data.message || {}
+  const { categories, seriesData } = useMemo(() => {
+    const { stats } = data.message || {}
+
+    const categories = Object.keys(stats || {})
+    categories.sort((a, b) => new Date(a) > new Date(b))
+
+    const seriesData = []
+
+    categories.forEach((cat) => {
+      seriesData.push(stats[cat])
+    })
+
+    return {
+      stats,
+      categories, 
+      seriesData,
+    }
   }, [data.message])
-
-  useEffect(() => {
-    const cats = Object.keys(stats || {})
-
-    setCategories(cats)
-  }, [stats])
-
-  const seriesData = Object.values(stats || {})
 
   const programData = seriesData.map((data) => data.program)
   const userData = seriesData.map((data) => data.user || 0)
 
   const monthsFormatted = categories.map((cat) => {
     const date = DateTime.fromISO(cat)
-    return date.toLocaleString({ month: 'long', day: 'numeric' })
+    return date.toLocaleString({ month: 'long' })
   })
 
   const options = {
@@ -100,10 +106,10 @@ function UserProgramChartWrapper() {
   }
 
   return (
-    <div style={{ padding: '0 20px' }}>
+    <div>
       <h1>Number of opportunities added by month</h1>
       <p style={{ marginBottom: 20 }}>
-        How many opportunities have been added vs how many you've saved month
+        How many opportunities have been added vs how many you&apos;ve saved month
         over month
       </p>
 

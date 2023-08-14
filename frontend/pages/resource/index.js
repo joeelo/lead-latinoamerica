@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router'
-import NavBar from '@/components/nav/NavBar'
-import Footer from '@/components/footer/Footer'
-import ProgramTitleAndPhoto from '@/components/content/program/ProgramTitleAndPhoto'
-import ProgramOverviewAndInfo from '@/components/content/program/ProgramOverviewAndInfo'
 import { useSession } from 'next-auth/client'
 import { useQuery } from 'react-query'
-import ProgramRequests from '@/fetch/program/ProgramRequests'
+
+import ProgramOverviewAndInfo from '@/components/content/program/ProgramOverviewAndInfo'
+import ProgramTitleAndPhoto from '@/components/content/program/ProgramTitleAndPhoto'
+import Footer from '@/components/footer/Footer'
 import LoadingSpinner from '@/components/generic/LoadingSpinner'
+import NavBar from '@/components/nav/NavBar'
+import ProgramRequests from '@/fetch/program/ProgramRequests'
 
 const ResourcePage = () => {
   const router = useRouter() 

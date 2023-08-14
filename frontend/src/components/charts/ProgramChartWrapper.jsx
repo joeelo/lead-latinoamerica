@@ -1,5 +1,6 @@
-import BarChart from './BarChart'
 import { useQuery } from 'react-query'
+
+import BarChart from './BarChart'
 
 function ProgramChartWrapper() {
   const programsAdded = async () => {

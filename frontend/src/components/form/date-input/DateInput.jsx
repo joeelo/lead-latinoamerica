@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
-import TextInput from '@/components/form/text-input/TextInput'
+
 import InputErrorMessage from '@/components/form/errors/InputErrorMessage'
+import TextInput from '@/components/form/text-input/TextInput'
 
 const INVALID_MESSAGES = {
   VALID_DATE: '',
@@ -129,6 +130,7 @@ const DateInput = ({
     if (trueLength === 4 && date[5] !== '/' && !isBackspace) {
       setValue(name, `${date}/`)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date])
 
   useEffect(() => {

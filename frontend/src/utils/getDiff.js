@@ -1,4 +1,4 @@
-import { DateTime } from 'luxon';
+import { DateTime } from 'luxon'
 
 export default function getDiff(d1, d2) {
   const date1 = DateTime.fromISO(d1)

@@ -16,12 +16,10 @@ const LoadingSpinner = () => {
 export default LoadingSpinner
 
 const Container = styled.div`
-  min-height: 50px; 
-  min-width: 100%; 
-  max-height: 50px; 
-  margin: 200px 0; 
-  display: flex; 
+  min-height: 50px;
+  min-width: 100%;
+  max-height: 50px;
+  margin: 200px 0;
+  display: flex;
   justify-content: center;
 `
-
-

@@ -1,5 +1,6 @@
-import HomeScreenPage from '@/pages/HomeScreenPage'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
+import HomeScreenPage from '@/pages/HomeScreenPage'
 
 export default HomeScreenPage
 

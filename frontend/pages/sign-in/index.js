@@ -1,22 +1,33 @@
-import { useContext } from 'react';
-import styled, { ThemeContext } from 'styled-components';
-import Footer from "@/components/footer/Footer";
-import NavBar from "@/components/nav/NavBar";
-import ChangingBackgroundText from '@/components/content/ChangingBackgroundText';
-import Button from '@/components/generic/Button';
-import { useSession, signIn } from 'next-auth/client';
-import Box from '@/components/generic/Box';
+import Box from '@mui/material/Box'
+import { useTheme } from '@mui/material/styles'
+import { signIn, useSession } from 'next-auth/client'
+import styled from 'styled-components'
+
+import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
+import Footer from "@/components/footer/Footer"
+import Button from '@/components/generic/Button'
+import NavBar from "@/components/nav/NavBar"
 
 const Signup = () => {
-  const theme = useContext(ThemeContext)
+  const theme = useTheme()
   
   //session comes back with google info - https://github.com/nextauthjs/next-auth
   const [session] = useSession()
 
   return (
-    <>
+    <Box position="relative" minHeight="100vh" height="100vh" minWidth="100vw">
       <NavBar />
-        <Box stackOnMobile display="flex" mw='100%'>
+        <Box 
+          display="flex" 
+          maxWidth="100%" 
+          minHeight="65vh"
+          sx={{
+            flexDirection: { 
+              sm: 'column', 
+              xs: 'column', 
+              md: 'row' }
+          }}
+        >
           <PhotoWithText>
             <Title>
               Sign in to <br/>
@@ -44,17 +55,17 @@ const Signup = () => {
                 </LoginButton>
               </>
             ): (
-              <span style={{marginTop: 20, fontSize: 24}}>You're signed in!</span>
+              <span style={{marginTop: 20, fontSize: 24}}>You&apos;re signed in!</span>
             )}
     
           </Column>
         </Box>
       <Footer />
-    </>
+    </Box>
   )
 }
 
-export default Signup; 
+export default Signup
 
 const PhotoWithText = styled.div`
   width: 60%; 
@@ -89,6 +100,8 @@ const Column = styled.div`
     width: 90%;
     padding-top: 60px;
     margin-bottom: 60px;
+    align-items: center;
+    justify-content: center;
   }
 `
 
@@ -113,10 +126,4 @@ const GoogleLogo = styled.img`
   position: absolute; 
   left: 10px;
   top: 25px;
-`
-
-const Span = styled.span`
-  margin-top: 40px; 
-  font-weight: bold; 
-  font-size: 18px; 
 `

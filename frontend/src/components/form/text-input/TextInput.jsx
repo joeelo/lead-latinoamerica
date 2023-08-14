@@ -1,5 +1,5 @@
+import { useContext, useEffect, useState } from 'react'
 import styled, { ThemeContext } from 'styled-components'
-import { useContext, useState, useEffect } from 'react'
 
 const TextInput = ({
   register,
@@ -20,6 +20,7 @@ const TextInput = ({
     if (initialVal) {
       setValue(name, initialVal)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialVal])
 
   return (
@@ -67,7 +68,6 @@ const StyledInput = styled.input`
   padding: 5px 5px 2px 5px;
   margin-bottom: 10px;
   border: 0px;
-  font-weight: lighter;
 
   &:focus {
     outline: none;

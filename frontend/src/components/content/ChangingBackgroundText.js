@@ -1,68 +1,77 @@
-import { useState, useEffect, useRef } from 'react';
-import styled, { keyframes } from 'styled-components';
-import PropTypes from 'prop-types';
-import useOnScreen from '@/hooks/useOnScreen';
+import PropTypes from 'prop-types'
+import { useEffect, useRef, useState } from 'react'
+import styled, { keyframes } from 'styled-components'
 
-const ChangingBackgroundText = ({ 
-	fontSize, 
-	initialColor, 
-	secondaryColor, 
-	text, 
-	fontColorInitial, 
-	fontColorSecondary, 
-	onlyRunOneTransition, 
-	maxWidth
+import useOnScreen from '@/hooks/useOnScreen'
+
+const ChangingBackgroundText = ({
+  fontSize,
+  initialColor,
+  secondaryColor,
+  text,
+  fontColorInitial,
+  fontColorSecondary,
+  onlyRunOneTransition,
+  maxWidth,
 }) => {
+  const ref = useRef()
+  const [changeTextColor, setChangeTextColor] = useState(false)
+  const [hasBeenOnScreen, setHasBeenOnScreen] = useState(false)
+  let isOnScreen = useOnScreen(ref)
 
-	const ref = useRef(); 
-	const [ changeTextColor, setChangeTextColor ] = useState(false);
-	let isOnScreen = useOnScreen(ref);
 
-	useEffect(() => {
-		if (isOnScreen) {
-			setChangeTextColor(true);
-		} else if (!onlyRunOneTransition && !isOnScreen) {
-			setChangeTextColor(false);
-		}
+  useEffect(() => {
+    if (hasBeenOnScreen && onlyRunOneTransition) {
+      return 
+    }
 
-	}, [ isOnScreen ])
-	
-	return (
-		<Container ref={ ref } {...{maxWidth}}>
-			<>
-				<StyledHeading 
-					{...{ text, changeTextColor, fontColorInitial, fontColorSecondary }}
-					style={{ color: !changeTextColor ? fontColorInitial : fontColorSecondary }}
-				> 
-					{ text } 
-				</StyledHeading>
-				<InnerContainer {...{ fontSize, initialColor, secondaryColor, changeTextColor }}>
-				</InnerContainer>
-			</>
-				
-			
-		</Container>
-	)
+    if (isOnScreen) {
+      setChangeTextColor(true)
+
+      setHasBeenOnScreen(true)
+    } 
+    
+    if (!onlyRunOneTransition && !isOnScreen) {
+      setChangeTextColor(false)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOnScreen])
+
+  return (
+    <Container ref={ref} {...{ maxWidth }}>
+      <StyledHeading
+        {...{ text, changeTextColor, fontColorInitial, fontColorSecondary }}
+        style={{
+          color: !changeTextColor ? fontColorInitial : fontColorSecondary,
+        }}
+      >
+        {text}
+      </StyledHeading>
+      <InnerContainer
+        {...{ fontSize, initialColor, secondaryColor, changeTextColor }}
+      ></InnerContainer>
+    </Container>
+  )
 }
 
-export default ChangingBackgroundText;
+export default ChangingBackgroundText
 
 ChangingBackgroundText.propTypes = {
-	fontSize: PropTypes.any, 
-	intialColor: PropTypes.string, 
-	secondaryColor: PropTypes.string,
-	text: PropTypes.string, 
-	fontColorInitial: PropTypes.string, 
-	fontColorSecondary: PropTypes.string
+  fontSize: PropTypes.any,
+  intialColor: PropTypes.string,
+  secondaryColor: PropTypes.string,
+  text: PropTypes.string,
+  fontColorInitial: PropTypes.string,
+  fontColorSecondary: PropTypes.string,
 }
 
 ChangingBackgroundText.defaultProps = {
-	fontSize: null, 
-	intialColor: '#222', 
-	secondaryColor: 'white',
-	text: 'Im text!', 
-	fontColorInitial: 'white', 
-	fontColorSecondary: 'black'
+  fontSize: null,
+  intialColor: '#222',
+  secondaryColor: 'white',
+  text: 'Im text!',
+  fontColorInitial: 'white',
+  fontColorSecondary: 'black',
 }
 
 const slideRight = keyframes`
@@ -78,17 +87,17 @@ const slideRight = keyframes`
 `
 
 const Container = styled.div`
-	margin: 0 auto; 
-	padding: 20px; 
-	font-size: ${ props => props.fontSize ? props.fontSize : '24px' };
-	font-weight: ${ props => props.fontWeight ? '700' : '400' };
-	position: relative; 
-	width: 90%;
-	max-width: ${props => props.maxWidth ? props.maxWidth : '500px'}; 
-	display: flex; 
-	align-items: center; 
-	justify-content: center; 
-	padding: 20px; 
+  margin: 0 auto;
+  padding: 20px;
+  font-size: ${(props) => (props.fontSize ? props.fontSize : '24px')};
+  font-weight: ${(props) => (props.fontWeight ? '700' : '400')};
+  position: relative;
+  width: 90%;
+  max-width: ${(props) => (props.maxWidth ? props.maxWidth : '500px')};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 `
 
 const InnerContainer = styled.div`
@@ -99,18 +108,18 @@ const InnerContainer = styled.div`
 	background-color: 
 	width: 0%;
 	border-radius: 4px; 
-	animation-name: ${ props => props.changeTextColor ? slideRight : null }; 
+	animation-name: ${(props) => (props.changeTextColor ? slideRight : null)}; 
 	animation-duration: 3s;
 	animation-fill-mode: forwards;
-	background-color: ${ props => props.secondaryColor }; 
+	background-color: ${(props) => props.secondaryColor}; 
 `
-	
-const StyledHeading = styled.h2`
-	z-index: 10;
-	transition: 3s ease-in all;
-	text-align: center;
 
-	@media screen and (max-width: 768px) {
-		font-size: 26px;
-	}
+const StyledHeading = styled.h2`
+  z-index: 10;
+  transition: 3s ease-in all;
+  text-align: center;
+
+  @media screen and (max-width: 768px) {
+    font-size: 26px;
+  }
 `

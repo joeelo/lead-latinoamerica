@@ -1,5 +1,5 @@
 const windowHasLoaded = () => {
-  return typeof window !== 'undefined';
+  return typeof window !== 'undefined'
 }
 
-export default windowHasLoaded;
+export default windowHasLoaded

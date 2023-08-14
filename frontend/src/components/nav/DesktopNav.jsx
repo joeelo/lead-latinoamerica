@@ -1,12 +1,14 @@
+import Box from '@mui/material/Box'
+import Link from 'next/link'
+import { signOut, useSession } from 'next-auth/client'
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Box from '@/components/generic/Box'
-import Popover from '../modal/Popover'
-import { useSession, signOut } from 'next-auth/client'
+
+import Popover from '@/components/modal/Popover'
+import useLocale from '@/hooks/useLocale'
 import en from '@/language/locales/en/navbar.json'
 import es from '@/language/locales/es/navbar.json'
-import Link from 'next/link'
-import useLocale from '@/hooks/useLocale'
+
 import LanguageButtons from './LanguageButtons'
 
 function DesktopNav() {
@@ -24,42 +26,45 @@ function DesktopNav() {
 
   return (
     <Container>
-      <Box display="flex" align="flex-start" ml="20px">
+      <Box display="flex" alignItems="flex-start" ml="20px">
         <LanguageButtons />
       </Box>
       <Box
         display="flex"
-        justify="flex-end"
+        justifyContent="flex-end"
         width="90vw"
-        mw="100%"
-        align="center"
+        maxWidth="100%"
+        alignItems="center"
       >
         <Box
           width="120px"
-          onMouseEnter={handleMouseEnter}
+          onPointerEnter={handleMouseEnter}
           data-name="get-involved"
           style={{ cursor: 'pointer' }}
+          mr={4}
         >
           {t.portal}
         </Box>
         <Box
           width="110px"
-          onMouseEnter={handleMouseEnter}
+          onPointerEnter={handleMouseEnter}
           data-name="resources"
           style={{ cursor: 'pointer' }}
+          mr={4}
         >
           {t.resources}
         </Box>
         <Box
           style={{ cursor: 'pointer' }}
           width="80px"
-          onMouseEnter={handleExternalMouseEnter}
+          onPointerEnter={handleExternalMouseEnter}
+          mr={4}
         >
           <Link href="/">{t.home}</Link>
         </Box>
         <Box
           width="100px"
-          onMouseEnter={handleExternalMouseEnter}
+          onPointerEnter={handleExternalMouseEnter}
           style={{ cursor: 'pointer' }}
         >
           {!session ? (
@@ -76,7 +81,7 @@ function DesktopNav() {
 
       {anchorEl && anchorEl.dataset.name === 'get-involved' && (
         <Popover anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
-          <Box className="link-container" fd="column" display="flex">
+          <Box className="link-container" flexDirection="column" display="flex">
             <Link href="/add-program">{t.addOrg}</Link>
             {session && <Link href="/profile">{t.profile}</Link>}
             <a
@@ -91,7 +96,7 @@ function DesktopNav() {
 
       {anchorEl && anchorEl.dataset.name === 'resources' && (
         <Popover anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
-          <Box className="link-container" display="flex" fd="column">
+          <Box className="link-container" display="flex" flexDirection="column">
             <Link href="/resources/program">{t.programs}</Link>
             <Link href="/resources/scholarships">{t.scholarships}</Link>
             <Link href="/resources/internships">{t.internships}</Link>

@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 const useAuthCheck = () => {
-    const router = useRouter(); 
-    const [isAuthed, setIsAuthed] = useState(false);
-    
-    useEffect(() => {
-        const id = localStorage.getItem('id');
-        const name = router.query.name; 
+  const router = useRouter()
+  const [isAuthed, setIsAuthed] = useState(false)
 
-        if (id === 'password1234' && name === 'mikeE') {
-            setIsAuthed(true)
-        }
-    }, [])
-    
+  useEffect(() => {
+    const id = localStorage.getItem('id')
+    const name = router.query.name
 
-    return isAuthed
+    if (id === 'password1234' && name === 'mikeE') {
+      setIsAuthed(true)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  return isAuthed
 }
 
 export default useAuthCheck

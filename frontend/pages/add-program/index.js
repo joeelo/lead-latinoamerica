@@ -1,27 +1,28 @@
-import styled from 'styled-components'
-import { useState } from 'react'
+import Box from '@mui/material/Box'
 import { useRouter } from 'next/router'
-import NavBar from '@/components/nav/NavBar'
-import Footer from '@/components/footer/Footer'
-import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
-import TextInput from '@/components/form/text-input/TextInput'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup'
+import { Tooltip } from 'react-tooltip'
+import styled from 'styled-components'
+
 import Button from '@/components/buttons/Button'
-import Box from '@/components/generic/Box'
-import StyledSectionHeading from '@/components/form/section/StyledSectionHeading'
-import { postToDatabase } from '@/fetch/requests'
-import WordSelectInput from '@/components/form/word-select/WordSelectInput'
-import Tooltip from '@/components/tooltip/Tooltip'
-import InputErrorMessage from '@/components/form/errors/InputErrorMessage' 
+import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
+import Footer from '@/components/footer/Footer'
+import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup'
 import DateInput from '@/components/form/date-input/DateInput'
+import InputErrorMessage from '@/components/form/errors/InputErrorMessage' 
+import StyledSectionHeading from '@/components/form/section/StyledSectionHeading'
+import TextInput from '@/components/form/text-input/TextInput'
+import WordSelectInput from '@/components/form/word-select/WordSelectInput'
+import NavBar from '@/components/nav/NavBar'
+import { postToDatabase } from '@/fetch/requests'
 import getToast from '@/utils/getToast'
 
 
 const AddProgram = () => {
-	const [ isSubmitting, setIsSubmitting ] = useState(false) 
-	const [ wordList, setWordList ] = useState([])
-	const [ apiError, setApiError] = useState(null)
+	const [isSubmitting, setIsSubmitting] = useState(false) 
+	const [wordList, setWordList] = useState([])
+	const [apiError, setApiError] = useState(null)
 	const router = useRouter()
 
   const { 
@@ -93,7 +94,14 @@ const AddProgram = () => {
 		<>
 			<NavBar />
 
-			<Box stackOnMobile display='flex' fd='column' width='al-fu' center pt='40px'>
+			<Box 
+				display='flex' 
+				flexDirection='column' 
+				width='90%' 
+				margin='0 auto' 
+				pt='40px'
+				mb={5}
+			>
 				<ChangingBackgroundText 
 					fontSize='48px'
 					initialColor='#1F2041'
@@ -105,7 +113,6 @@ const AddProgram = () => {
 				/>
 
 				<Box display="flex">
-
 					<Form 
 						style={{maxWidth: '600px', margin: '40px auto 40px auto'}} 
 						onSubmit={handleSubmit(onSubmit)} 
@@ -139,10 +146,15 @@ const AddProgram = () => {
 
 						<Box>
 							<Box mt='30px'>
-								<StyledSectionHeading style={{display: 'inline', marginTop: 30}}>
+								<StyledSectionHeading 
+									style={{display: 'inline', marginTop: 30}}
+									data-tooltip-id="explanation"
+									data-tooltip-content='Example: “Latinx” “LGBTQ” “Black” “All”'
+									data-tooltip-variant='info'
+								>
 									Who does this opportunity serve?
 								</StyledSectionHeading>
-								<Tooltip explanation='Example: “Latinx” “LGBTQ” “Black” “All”' style={{marginLeft: 10}}/>
+								<Tooltip id="explanation"/>
 							</Box>
 							<WordSelectInput
 								setWordList={setWordList}
@@ -183,7 +195,7 @@ const AddProgram = () => {
 							/>
 						</Box>
 
-						<Box display='flex' justify='flex-end'>
+						<Box display='flex' justifyContent='flex-end'>
 							<Button label='Go Back' style={{ marginRight: 20 }}/>
 							<Button type="submit" label='Submit' isSubmitting={isSubmitting}/>
 						</Box>

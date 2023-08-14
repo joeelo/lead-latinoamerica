@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react';
-import { quotes } from '@/data/quotes';
+import { useEffect, useState } from 'react'
+
+import { quotes } from '@/data/quotes'
 
 const useGetRandomQuote = () => {
-	const [ quote, setQuote ] = useState('');
+  const [quote, setQuote] = useState('')
 
-	useEffect(() => {
-		const randomIndex = Math.floor( Math.random() * quotes.length);
-		setQuote(quotes[randomIndex]);
-	}, [])
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * quotes.length)
+    setQuote(quotes[randomIndex])
+  }, [])
 
-	return quote; 
+  return quote
 }
 
-export default useGetRandomQuote; 
+export default useGetRandomQuote

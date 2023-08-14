@@ -1,10 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import Box from '../generic/Box'
-import ProgramCardSimple from '@/components/content/program/ProgramCardSimple'
+import Box from '@mui/material/Box'
 import { useSession } from 'next-auth/client'
+import PropTypes from 'prop-types'
+import React from 'react'
 import { useQueryClient } from 'react-query'
+import styled from 'styled-components'
+
+import ProgramCardSimple from '@/components/content/program/ProgramCardSimple'
 import getToast from '@/utils/getToast'
 
 const UserSavedPrograms = ({ programs }) => {
@@ -23,11 +24,11 @@ const UserSavedPrograms = ({ programs }) => {
   }
 
   return (
-    <Box display="flex" fd="column" mb="20px">
+    <Box display="flex" flexDirection="column" mb={2.5}>
       <TitleHeading>Your Saved Opportunities</TitleHeading>
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', width: '100%' }}>
         {programs.length === 0 ? (
-          <p>You haven't saved any opportunities yet!</p>
+          <p>You haven`t saved any opportunities yet!</p>
         ) : (
           <>
             {programs.map((program) => {

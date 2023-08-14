@@ -1,5 +1,5 @@
+import { useContext, useEffect, useState } from 'react'
 import styled, { ThemeContext } from 'styled-components'
-import { useContext, useState, useEffect } from 'react'
 
 const Textarea = ({
   register,
@@ -20,6 +20,7 @@ const Textarea = ({
     if (initialVal) {
       setValue(name, initialVal)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialVal])
 
   return (
