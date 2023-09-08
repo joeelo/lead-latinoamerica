@@ -1,34 +1,34 @@
-import styled from 'styled-components'
+import Box from '@mui/material/Box'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
-const VideoBackground = ({ children, src }) => {
+export default function VideoBackground({ children, src }) {
+  const isDestktopOrGreater = useMediaQuery('(max-width:1400px)')
+
   return (
-    <Container>
-      <Video playsInline autoPlay muted loop src={src}></Video>
+    <Box
+      minHeight={isDestktopOrGreater ? 650 : 800}
+      minWidth='100vw'
+      position='relative'
+      overflow='hidden'
+    >
+      <video 
+        playsInline 
+        autoPlay 
+        muted 
+        loop 
+        src={src} 
+        style={{ 
+          position: 'absolute', 
+          height: '100%', 
+          width: '177.77777vh', // /* 100 * 16 / 9 */
+          minWidth: '100%', 
+          minHeight: '56.25vw', // /* 100 * 9 / 16 */, 
+          left: '50%', 
+          top: '50%', 
+          transform: 'translate(-50%, -50%)' // /* % of current element */
+        }}
+      />
       {children}
-    </Container>
+    </Box>
   )
 }
-
-export default VideoBackground
-
-const Container = styled.div`
-  min-height: 800px;
-  min-width: 100vw;
-  position: relative;
-  overflow: hidden;
-
-  @media screen and (max-width: 1400px) {
-    min-height: 650px;
-  }
-`
-
-const Video = styled.video`
-  position: absolute;
-  height: 100%;
-  width: 177.77777778vh; /* 100 * 16 / 9 */
-  min-width: 100%;
-  min-height: 56.25vw; /* 100 * 9 / 16 */
-  left: 50%; /* % of surrounding element */
-  top: 50%;
-  transform: translate(-50%, -50%); /* % of current element */
-`

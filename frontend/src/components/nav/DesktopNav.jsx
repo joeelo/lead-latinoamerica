@@ -25,7 +25,22 @@ function DesktopNav() {
   }
 
   return (
-    <Container>
+    <Box
+      width='100%'
+      background-color='white'
+      padding='30px 0'
+      position='relative'
+      fontSize='18px'
+      display='flex'
+      borderBottomm='1px solid rgba(0, 0, 0, 0.1)'
+      sx={{
+      'a': {
+          color: 'black',
+          textDecoration: 'none',
+          margin: '3px 0',
+        }
+      }}
+    >
       <Box display="flex" alignItems="flex-start" ml="20px">
         <LanguageButtons />
       </Box>
@@ -104,7 +119,7 @@ function DesktopNav() {
           </Box>
         </Popover>
       )}
-    </Container>
+    </Box>
   )
 }
 

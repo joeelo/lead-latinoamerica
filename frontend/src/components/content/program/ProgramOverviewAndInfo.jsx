@@ -12,11 +12,11 @@ import getToast from '@/utils/getToast'
 
 import Tiles from './Tiles'
 
-const ProgramOverviewAndInfo = ({ 
+export default function ProgramOverviewAndInfo({ 
   program, 
   email, 
   preview 
-}) => {
+}) {
   const t = useLocale() === 'en' ? en : es
   const isEnglish = useLocale() === 'en'
   const isMobile = useMediaQuery('(max-width:600px)')
@@ -90,7 +90,7 @@ const ProgramOverviewAndInfo = ({
                 label={t.saveToProfile}
                 color="#0055B6"
                 onClick={handleClick}
-                style={{ marginLeft: 20 }}
+                style={{ marginLeft: isMobile ? 0 : 20 }}
               />
             </Box>
           ) : (
@@ -130,6 +130,4 @@ const ProgramOverviewAndInfo = ({
       </Box>
   )
 }
-
-export default ProgramOverviewAndInfo
 

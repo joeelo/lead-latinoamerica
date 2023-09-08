@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import Box from '@mui/material/Box'
 import PropTypes from 'prop-types'
 import { useEffect, useRef, useState } from 'react'
-import styled, { keyframes } from 'styled-components'
 
 import useOnScreen from '@/hooks/useOnScreen'
 
@@ -37,16 +37,43 @@ const FadeInText = ({
   }, [isOnScreen])
 
   return (
-    <Container ref={ref} maxWidth={maxWidth}>
+    <Box 
+      ref={ref} 
+      maxWidth={maxWidth}
+      width='auto'
+      position='relative'
+    >
       {animate &&
         textArray &&
         textArray.map((text) => (
-          <P key={text} {...{ fontSize, mobileFontSize }}>
-            {' '}
-            {text}{' '}
-          </P>
+          <Box 
+            component="p"
+            key={text} 
+            sx={{
+              "@keyframes fade-in": {
+                "0%": {
+                  opacity: 0,
+                  top: "30px",
+                },
+                "100%": {
+                  opacity: 1,
+                  top: 0,
+                }
+              }, 
+              animation: 'fade-in 2s', 
+              animationIterationCount: 1, 
+              color: 'white', 
+              position: 'relative', 
+              fontSize: fontSize || 24, 
+              '@media screen and (max-width: 768px)': {
+                fontSize: mobileFontSize || 20,
+              }
+            }}
+          >
+            {text}
+          </Box>
         ))}
-    </Container>
+    </Box>
   )
 }
 
@@ -59,39 +86,3 @@ FadeInText.propTypes = {
 FadeInText.defaultProps = {
   textArray: [],
 }
-
-const fadeIn = keyframes`
-	0% {
-		opacity: 0;
-		top: 30px; 
-	}
-	100% {
-		opacity: 1;
-		top: 0;
-	}
-`
-
-const Container = styled.div`
-  width: auto;
-  position: relative;
-
-  ${({ maxWidth }) =>
-    maxWidth &&
-    `
-		max-width: ${maxWidth}px; 
-	`}
-`
-
-const P = styled.p`
-  animation: ${fadeIn} 2s;
-  animation-iteration-count: 1;
-  color: white;
-  position: relative;
-  color: white;
-  font-size: ${(props) => (props.fontSize ? `${props.fontSize}px` : '24px')};
-
-  @media screen and (max-width: 768px) {
-    font-size: ${(props) =>
-      props.mobileFontSize ? `${props.mobileFontSize}px` : '18px'};
-  }
-`

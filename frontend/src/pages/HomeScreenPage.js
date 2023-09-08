@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import { useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import styled from 'styled-components'
 
 import FullScreenBack from '@/components/background/FullScreenBack'
@@ -19,6 +20,7 @@ import es from '@/language/locales/es/common.json'
 const HomeScreenPage = () => {
   const theme = useTheme()
   const quote = useGetRandomQuote()
+  const isMobile = useMediaQuery('(max-width:600px)')
   const t = useLocale() === 'en' ? en : es
 
   const opportunityInfo = [
@@ -113,17 +115,17 @@ const HomeScreenPage = () => {
       </CenterFlexContainer>
 
       <VideoBackground src="/pexels-rodnae-productions-8419363.mp4">
-        <Box display="flex" p={12}>
+        <Box display="flex" p={isMobile ? 3 : 12}>
           <FadeInText
             onlyRunOneTransition
             textArray={[quote?.text, `- ${quote?.author}`]}
-            fontSize={48}
+            fontSize={isMobile ? 36 : 48}
             mobileFontSize={36}
           />
         </Box>
       </VideoBackground>
 
-      <Footer showQuote={false} />
+      <Footer showQuote={false} noMarginTop/>
     </Box>
   )
 }

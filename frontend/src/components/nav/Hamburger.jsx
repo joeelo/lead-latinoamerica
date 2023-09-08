@@ -11,6 +11,8 @@ const Hamburger = ({ navOpen, setNavOpen }) => {
     setNavOpen(!navOpen)
   }
 
+  console.log('NAV OPEN< ', navOpen)
+
   return (
     <Menu ref={menuBtn} onClick={clickHandler}>
       <Lines

@@ -60,7 +60,7 @@ const Signup = () => {
     
           </Column>
         </Box>
-      <Footer />
+      <Footer noMarginTop/>
     </Box>
   )
 }

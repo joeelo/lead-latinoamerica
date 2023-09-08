@@ -7,7 +7,11 @@ import useLocale from '@/hooks/useLocale'
 import en from '@/language/locales/en/footer.json'
 import es from '@/language/locales/es/footer.json'
 
-export default function Footer({ showQuote = true, style = {} }) {
+export default function Footer({ 
+  showQuote = true, 
+  style = {},
+  noMarginTop = false 
+}) {
   const t = useLocale() === 'en' ? en : es
   const isMobile = useMediaQuery('(max-width:768px)')
 
@@ -19,6 +23,7 @@ export default function Footer({ showQuote = true, style = {} }) {
       position="relative"
       bottom={0}
       style={{ ...style }}
+      mt={noMarginTop ? 0 : 20}
       className="footer"
     >
       {showQuote && <DynamicQuote />}
@@ -56,6 +61,8 @@ export default function Footer({ showQuote = true, style = {} }) {
               width: '100%',
               flexWrap: 'wrap',
               maxWidth: 550,
+              flexDirection: isMobile ? 'column' : 'row',
+              marginBottom: isMobile ? 10 : 0,
             }}
           >
             <LinkUnderlineEffect

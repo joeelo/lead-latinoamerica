@@ -53,9 +53,11 @@ const ApproveProgramPage = () => {
 				bgColorHover="#E82C4A"
 				onSuccess={handleSuccess}
 			/>
+			
 			<ProgramTitleAndPhoto program={program} router={router}/>
 			<ProgramOverviewAndInfo program={program} marginTop={true}/>
-			<Footer marginTop={true}/>
+
+			<Footer/>
 		</>
 	)
 }

@@ -131,7 +131,6 @@ const EditOrg = () => {
         </Box>
 
 				<Box display="flex">
-
 					<Form 
 						onSubmit={handleSubmit(onSubmit)} 
 					>
@@ -203,7 +202,6 @@ const EditOrg = () => {
 						</Box>
 
 						<Box display='flex' justify='flex-end'>
-							<Button label='Go Back' style={{ marginRight: 20 }}/>
 							<Button label='Submit' isSubmitting={isSubmitting}/>
 						</Box>
 					</Form>

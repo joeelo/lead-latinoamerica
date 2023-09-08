@@ -71,6 +71,10 @@ const TextContainer = styled.div`
     padding: 80px 20px;
   }
 
+  @media screen and (max-width: 768px) {
+    padding-top: 20px;
+  }
+
   h2,
   p,
   span {
@@ -95,8 +99,6 @@ const Heading = styled.h2`
 
   @media screen and (max-width: 768px) {
     font-size: 48px;
-    line-height: 50px;
-    margin-top: -40px;
   }
 `
 

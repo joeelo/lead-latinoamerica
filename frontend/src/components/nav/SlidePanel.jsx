@@ -9,29 +9,18 @@ import es from '@/language/locales/es/navbar.json'
 import LinkUnderlineEffect from '../generic/LinkUnderlineEffect'
 import LanguageButtons from './LanguageButtons'
 
-const SlidePanel = ({ navOpen, setNavOpen }) => {
+const SlidePanel = ({ navOpen }) => {
   const wrapperRef = useRef(null)
   const [session] = useSession()
-
-  const handleClickOutside = (event) => {
-    if (!navOpen) return
-    if (wrapperRef && !wrapperRef.current.contains(event.target)) {
-      setNavOpen(false)
-    }
-  }
 
   const t = useLocale() === 'en' ? en : es
 
   useEffect(() => {
-    document.addEventListener('click', handleClickOutside)
-
     if (navOpen === true) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = 'visible'
     }
-
-    return () => document.removeEventListener('click', handleClickOutside)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navOpen])
 
@@ -40,7 +29,6 @@ const SlidePanel = ({ navOpen, setNavOpen }) => {
       className="slide-panel"
       navOpen={navOpen}
       ref={wrapperRef}
-      onClick={(event) => handleClickOutside(event)}
     >
       <LanguageButtons />
 
@@ -88,16 +76,14 @@ export default SlidePanel
 const Container = styled.nav`
   z-index: 10000;
   background-color: white;
-  width: 400px;
+  width: 100vw;
   height: 100vh;
   position: absolute;
   top: 70px;
-  left: ${(props) => (props.navOpen === false ? '-400px' : '0')};
+  left: ${(props) => (props.navOpen === false ? '-100vw' : '0')};
   padding: 10px;
   transition: 0.4s ease-in-out;
   padding: 50px 20px;
-  box-shadow: ${(props) =>
-    props.navOpen ? '3px 15px 25px -4px rgba(156,156,156,1)' : 'none'};
 `
 
 const SectionHeader = styled.p`

@@ -45,7 +45,7 @@ const ProgramPage = () => {
       )}
 
       <Box mb={15}/>
-      <Footer marginTop={ true }/>
+      <Footer />
     </>
   )
 }

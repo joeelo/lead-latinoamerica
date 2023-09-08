@@ -196,7 +196,6 @@ const AddProgram = () => {
 						</Box>
 
 						<Box display='flex' justifyContent='flex-end'>
-							<Button label='Go Back' style={{ marginRight: 20 }}/>
 							<Button type="submit" label='Submit' isSubmitting={isSubmitting}/>
 						</Box>
 					</Form>
@@ -207,6 +206,7 @@ const AddProgram = () => {
 
 				</Box>
 			</Box>
+
 			<Footer />
 		</>
 	)

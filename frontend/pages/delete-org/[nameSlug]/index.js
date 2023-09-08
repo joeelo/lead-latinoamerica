@@ -59,7 +59,7 @@ const DeleteOrgPage = () => {
 				<FaButton size="2x" color="white"/>
 			</Box>
 			<Modal isOpen={isModalOpen} setOpen={setIsModalOpen}> truth fam </Modal>
-			<Footer marginTop={ true }/>
+			<Footer />
 		</>
 	)
 }

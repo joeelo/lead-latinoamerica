@@ -308,7 +308,7 @@ const ProfilePage = () => {
         </Box>
       </Box>
 
-      <Footer style={{ marginTop: 120 }} />
+      <Footer />
     </>
   )
 }

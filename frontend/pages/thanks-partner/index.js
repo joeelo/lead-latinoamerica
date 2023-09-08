@@ -37,7 +37,7 @@ const ThanksPartnerPage = () => {
         </Box>
       </Box>
       
-      <Footer style={{ position: 'absolute' }}/>
+      <Footer />
     </Box>
   )
 }

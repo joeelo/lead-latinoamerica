@@ -1,12 +1,12 @@
+import Box from '@mui/material/Box'
 import { useRouter } from 'next/router'
 import { React, useEffect, useState } from 'react'
-import styled from 'styled-components'
 
 import Hamburger from '@/components/nav/Hamburger'
 
 import SlidePanel from './SlidePanel'
 
-function MobileNav() {
+export default function MobileNav() {
   const [navOpen, setNavOpen] = useState(false)
   const router = useRouter()
 
@@ -19,31 +19,29 @@ function MobileNav() {
 
   return (
     <>
-      <PlaceHolderContainer/>
-      <Container>
+      <Box
+        // To take up the fixed height at the top of page and force content down
+        height='70px'
+        width='100vw'
+        bgcolor='white'
+        zIndex={1000}
+      />
+      <Box
+        width='100vw'
+        bgcolor='white'
+        position='fixed'
+        minHeight='70px'
+        top={0}
+        zIndex={1000}
+        boxShadow={
+          navOpen
+          ? 0 
+          : '3px 0px 35px -4px rgba(156, 156, 156, 1)'
+        }
+      >
         <Hamburger {...{ navOpen, setNavOpen }} />
         <SlidePanel {...{ navOpen, setNavOpen }} />
-      </Container>
+      </Box>
     </>
   )
 }
-
-export default MobileNav
-
-const Container = styled.div`
-  width: 100vw;
-  background-color: white;
-  position: fixed;
-  min-height: 70px;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 3px 0px 35px -4px rgba(156, 156, 156, 1);
-`
-
-const PlaceHolderContainer = styled.div`
-  // To take up the fixed height at the top of page and force content down
-  height: 70px;
-  width: 100vw;
-  background-color: white;
-  z-index: 1000;
-`
