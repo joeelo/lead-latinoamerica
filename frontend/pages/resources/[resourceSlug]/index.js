@@ -44,7 +44,7 @@ export default function ResourcePage() {
 			
 			<FullScreenBack 
 				src={coverImage}
-				height="50vh"
+				height="40vh"
 				titleInfo={{ 
 					show: true, 
 					text: `${resourceSlug}`, 

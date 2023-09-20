@@ -2,7 +2,6 @@ import Box from '@mui/material/Box'
 import Link from 'next/link'
 import { signOut, useSession } from 'next-auth/client'
 import React, { useState } from 'react'
-import styled from 'styled-components'
 
 import Popover from '@/components/modal/Popover'
 import useLocale from '@/hooks/useLocale'
@@ -11,7 +10,7 @@ import es from '@/language/locales/es/navbar.json'
 
 import LanguageButtons from './LanguageButtons'
 
-function DesktopNav() {
+export default function DesktopNav() {
   const [anchorEl, setAnchorEl] = useState(null)
   const [session] = useSession()
   const t = useLocale() === 'en' ? en : es
@@ -32,7 +31,7 @@ function DesktopNav() {
       position='relative'
       fontSize='18px'
       display='flex'
-      borderBottomm='1px solid rgba(0, 0, 0, 0.1)'
+      borderBottom='1px solid rgba(0, 0, 0, 0.1)'
       sx={{
       'a': {
           color: 'black',
@@ -44,6 +43,7 @@ function DesktopNav() {
       <Box display="flex" alignItems="flex-start" ml="20px">
         <LanguageButtons />
       </Box>
+
       <Box
         display="flex"
         justifyContent="flex-end"
@@ -116,27 +116,10 @@ function DesktopNav() {
             <Link href="/resources/scholarships">{t.scholarships}</Link>
             <Link href="/resources/internships">{t.internships}</Link>
             <Link href="/resources/summer">{t.summer}</Link>
+            <Link href="/local-resources">Local Resources</Link>
           </Box>
         </Popover>
       )}
     </Box>
   )
 }
-
-export default DesktopNav
-
-const Container = styled.div`
-  width: 100%;
-  background-color: white;
-  padding: 30px 0;
-  position: relative;
-  font-size: 18px;
-  display: flex;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-
-  a {
-    color: black;
-    text-decoration: none;
-    margin: 3px 0;
-  }
-`

@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
 import DynamicQuote from '@/components/content/quote/DynamicQuote'
@@ -12,6 +13,7 @@ export default function Footer({
   style = {},
   noMarginTop = false 
 }) {
+  const theme = useTheme()
   const t = useLocale() === 'en' ? en : es
   const isMobile = useMediaQuery('(max-width:768px)')
 
@@ -34,6 +36,7 @@ export default function Footer({
         pl={!isMobile ? 2.5 : 1.25}
         style={{
           boxShadow: 'inset 0px 2px 12px 2px rgba(184, 177, 184, 0.4)',
+          color: theme.colors.cultured
         }}
       >
         <Box
@@ -49,6 +52,7 @@ export default function Footer({
               fontSize: !isMobile ? 24 : 20,
               fontWeight: 'bold',
               marginBottom: 16,
+              color: 'black'
             }}
           >
             {t.explore}

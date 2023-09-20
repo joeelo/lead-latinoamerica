@@ -1,31 +1,26 @@
 import styled from 'styled-components'
 
-const TitleWithBackground = ({
+export default function TitleWithBackground({
   text = 'title',
   topOffset,
   color,
   backgroundColor,
-  marginBottom,
   absolute = false,
-}) => {
+}) {
   return (
     <TitleContainer
       topOffset={topOffset}
-      marginBottom={marginBottom}
       absolute={absolute}
     >
       <Title
         backgroundColor={backgroundColor}
         color={color}
-        marginBottom={marginBottom}
       >
         {text}
       </Title>
     </TitleContainer>
   )
 }
-
-export default TitleWithBackground
 
 const TitleContainer = styled.div`
   top: ${(props) => (props.topOffset ? `${props.topOffset}px` : 'auto')};
@@ -34,7 +29,6 @@ const TitleContainer = styled.div`
   position: ${(props) => (props.absolute ? 'absolute' : 'relative')};
   justify-content: center;
   width: 100vw;
-  margin-bottom: ${(props) => (props.marginBottom ? '80px' : '80px')};
   text-transform: capitalize;
 `
 

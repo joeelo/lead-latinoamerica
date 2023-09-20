@@ -1,9 +1,14 @@
 import Image from 'next/image'
-import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
-const Button = ({ label, color, onClick, isSubmitting = false, ...props }) => {
+export default function Button ({ 
+  label, 
+  color = '#1F2041', 
+  onClick, 
+  isSubmitting = false, 
+  ...props 
+}) {
   return (
     <Container onClick={onClick} {...{ color }} {...props}>
       <span>
@@ -24,17 +29,6 @@ const Button = ({ label, color, onClick, isSubmitting = false, ...props }) => {
     </Container>
   )
 }
-
-Button.defaultProps = {
-  color: '#1F2041',
-}
-
-Button.propTypes = {
-  label: PropTypes.string,
-  color: PropTypes.string,
-}
-
-export default Button
 
 const Container = styled.button`
   width: 160px;

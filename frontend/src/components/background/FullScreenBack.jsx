@@ -1,5 +1,5 @@
+import Box from '@mui/material/Box'
 import Image from 'next/image'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import useLocale from '@/hooks/useLocale'
@@ -8,15 +8,22 @@ import es from '@/language/locales/es/common.json'
 
 import TitleWithBackground from '../generic/TitleWithBackground'
 
-const FullScreenBack = ({ src, children, titleInfo, height }) => {
+export default function FullScreenBack({ 
+  src = '', 
+  children = '', 
+  titleInfo = {}, 
+  height, 
+  title, 
+  noMarginBottom = true, 
+}) {
   const t = useLocale() === 'en' ? en : es
   const { text, backgroundColor, color, show } = titleInfo
 
   const blurDataUrl = 'LKDvT59~E2af~pIuNHodIVt6s:WC'
-  const { headline } = t[text] || { headline: '' }
+  const { headline } = (t[text] || { headline: '' } || titleInfo)
 
   return (
-    <OuterWrapper>
+    <Box position="relative" mb={noMarginBottom ? 0 : 10}>
       <Container {...{ height }}>
         <Image
           alt={`image-source-${src}`} // TODO: add alt props to images.
@@ -35,38 +42,24 @@ const FullScreenBack = ({ src, children, titleInfo, height }) => {
       </Container>
 
       {show && (
-        <TitleContainer className="titleContainer">
+        <Box 
+          bottom={60}
+          className="titleContainer"
+          position="relative"
+          zIndex={10}
+        >
           <TitleWithBackground
-            text={headline}
+            text={headline || title}
             backgroundColor={backgroundColor}
             color={color}
             absolute
             marginBottom
           />
-        </TitleContainer>
+        </Box>
       )}
-    </OuterWrapper>
+    </Box>
   )
 }
-
-export default FullScreenBack
-
-FullScreenBack.propTypes = {
-  src: PropTypes.string,
-  children: PropTypes.node,
-  titleInfo: PropTypes.object,
-  height: PropTypes.string,
-}
-
-FullScreenBack.defaultProps = {
-  src: '',
-  children: '',
-  titleInfo: {},
-}
-
-const OuterWrapper = styled.div`
-  position: relative;
-`
 
 const Container = styled.div`
   position: relative;
@@ -74,10 +67,4 @@ const Container = styled.div`
   min-height: ${(props) => (props.height ? props.height : '70vh')};
   background-color: azure;
   overflow-x: hidden;
-`
-
-const TitleContainer = styled.div`
-  position: absolute;
-  z-index: 10;
-  bottom: 60px;
 `
