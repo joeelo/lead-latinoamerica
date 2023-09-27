@@ -18,7 +18,7 @@ const LanguageButtons = () => {
   }
 
   return (
-    <Box display="flex" alignItems="center" marginBottom={isMobile ? 20 : 0}>
+    <Box display="flex" alignItems="center">
       <Box 
         fontSize={30}
         style={{ cursor: 'pointer' }}

@@ -81,6 +81,7 @@ export default function DesktopNav() {
           width="100px"
           onPointerEnter={handleExternalMouseEnter}
           style={{ cursor: 'pointer' }}
+          mr={2}
         >
           {!session ? (
             <Link className="link" href="/sign-in">

@@ -48,17 +48,19 @@ const SlidePanel = ({ navOpen }) => {
       <LinkUnderlineEffect hrefFormatted="/resources/summer" text={t.summer} />
 
       <SectionHeader> {t.portal} </SectionHeader>
+      
       {session && (
         <>
-          <LinkUnderlineEffect hrefFormatted="/profile" text="My Profile" />
+          <LinkUnderlineEffect hrefFormatted="/profile" text={t.profile} />
+
           <div onClick={signOut}>
-            <LinkUnderlineEffect hrefFormatted="/" text="Log Out" />
+            <LinkUnderlineEffect hrefFormatted="/" text={t.signOut} />
           </div>
         </>
       )}
 
       {!session && (
-        <LinkUnderlineEffect hrefFormatted="/sign-in" text="Sign In" />
+        <LinkUnderlineEffect hrefFormatted="/sign-in" text={t.signIn} />
       )}
       <LinkUnderlineEffect hrefFormatted="/add-program" text={t.addOrg} />
       <LinkUnderlineEffect hrefFormatted="/" text={t.home} />
