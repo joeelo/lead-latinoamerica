@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box'
 import Image from 'next/image'
-import styled from 'styled-components'
 
 import useLocale from '@/hooks/useLocale'
 import en from '@/language/locales/en/common.json'
@@ -24,7 +23,13 @@ export default function FullScreenBack({
 
   return (
     <Box position="relative" mb={noMarginBottom ? 0 : 10}>
-      <Container {...{ height }}>
+      <Box 
+        position="relative"
+        height={height || '70vh'}
+        minWidth='100vw'
+        bgcolor="azure"
+        style={{ overFlowX: 'hidden' }}
+      >
         <Image
           alt={`image-source-${src}`} // TODO: add alt props to images.
           priority={true}
@@ -39,7 +44,7 @@ export default function FullScreenBack({
           }}
         />
         <div style={{ zIndex: 10, position: 'relative' }}>{children}</div>
-      </Container>
+      </Box>
 
       {show && (
         <Box 
@@ -61,10 +66,3 @@ export default function FullScreenBack({
   )
 }
 
-const Container = styled.div`
-  position: relative;
-  min-width: 100vw;
-  min-height: ${(props) => (props.height ? props.height : '70vh')};
-  background-color: azure;
-  overflow-x: hidden;
-`
