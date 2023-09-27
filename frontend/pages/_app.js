@@ -6,7 +6,6 @@ import { CacheProvider } from '@emotion/react'
 import { config, dom } from "@fortawesome/fontawesome-svg-core"
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { StyledEngineProvider } from '@mui/styled-engine-sc';
 import { Analytics } from '@vercel/analytics/react'
 import Head from 'next/head'
 import { Provider as AuthProvider } from 'next-auth/client'
@@ -65,15 +64,13 @@ const App = ({ Component, pageProps, emotionCache = clientSideEmotionCache }) =>
 				</Head>
 				<QueryClientProvider client={queryClient}>
 					<AuthProvider session={props.session || {}}>
-						<StyledEngineProvider injectFirst>
-							<ThemeProvider theme={theme}>
-								<CssBaseline />
-								<LanguageWrapper>
-									<Component {...pageProps} />
-									<Analytics />
-								</LanguageWrapper>
-							</ThemeProvider>
-						</StyledEngineProvider>
+						<ThemeProvider theme={theme}>
+							<CssBaseline />
+							<LanguageWrapper>
+								<Component {...pageProps} />
+								<Analytics />
+							</LanguageWrapper>
+						</ThemeProvider>
 					</AuthProvider>
 					<ToastContainer />
 					<ReactQueryDevtools initialIsOpen={false} />
