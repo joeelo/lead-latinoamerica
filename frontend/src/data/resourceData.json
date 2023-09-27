@@ -1,0 +1,18 @@
+{
+  "resources": [
+    {
+      "src": "/images/joshua-woroniecki-compressed.jpg",
+      "name": "Family Paths",
+      "description": "Family Paths is a welcoming and inclusive agency dedicated to strengthening family relationships by providing mental health treatment and supportive services with respect, integrity, compassion, and hope. It is important to us that every client feels welcome and safe, and that they receive treatment in a non-judgmental fashion.",
+      "descriptionEs": "Family Paths es una agencia acogedora e inclusiva dedicada a fortalecer las relaciones familiares brindando tratamiento de salud mental y servicios de apoyo con respeto, integridad, compasión y esperanza. Para nosotros es importante que cada cliente se sienta bienvenido y seguro, y que reciba un tratamiento sin prejuicios.",
+      "href": "https://familypaths.org/"
+    },
+    {
+      "src": "/images/joshua-sortino-unsplash-compressed.jpg",
+      "name": "One Degree",
+      "description": "Empowering you to find what you need from over 26,000 free, up-to-date resources. Search from any phone or computer. Easily share resources with family and friends. Always 100% free.",
+      "descriptionEs": "Permitiéndole encontrar lo que necesita entre más de 26,000 recursos gratuitos y actualizados. Busca desde cualquier teléfono o computadora. Comparta fácilmente recursos con familiares y amigos. Siempre 100% gratis.",
+      "href": "https://1degree.org/"
+    }
+  ]
+}

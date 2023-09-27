@@ -2,12 +2,12 @@ import Image from 'next/image'
 import React from 'react'
 import styled from 'styled-components'
 
-export default function Button ({ 
-  label, 
-  color = '#1F2041', 
-  onClick, 
-  isSubmitting = false, 
-  ...props 
+export default function Button({
+  label,
+  color = '#1F2041',
+  onClick,
+  isSubmitting = false,
+  ...props
 }) {
   return (
     <Container onClick={onClick} {...{ color }} {...props}>

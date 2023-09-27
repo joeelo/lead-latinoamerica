@@ -8,14 +8,8 @@ export default function TitleWithBackground({
   absolute = false,
 }) {
   return (
-    <TitleContainer
-      topOffset={topOffset}
-      absolute={absolute}
-    >
-      <Title
-        backgroundColor={backgroundColor}
-        color={color}
-      >
+    <TitleContainer topOffset={topOffset} absolute={absolute}>
+      <Title backgroundColor={backgroundColor} color={color}>
         {text}
       </Title>
     </TitleContainer>

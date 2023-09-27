@@ -101,7 +101,11 @@ const HomeScreenPage = () => {
         backgroundColor={theme.colors.darkBlue}
         padding="padTop"
       >
-        <ChangingBackgroundText onlyRunOneTransition secondaryColor="white" text={t.purpose} />
+        <ChangingBackgroundText
+          onlyRunOneTransition
+          secondaryColor="white"
+          text={t.purpose}
+        />
         <ContentWithSideImage
           backgroundColor={theme.colors.darkBlue}
           imageStyle={{ borderRadius: 16 }}
@@ -125,7 +129,7 @@ const HomeScreenPage = () => {
         </Box>
       </VideoBackground>
 
-      <Footer showQuote={false} noMarginTop/>
+      <Footer showQuote={false} noMarginTop />
     </Box>
   )
 }

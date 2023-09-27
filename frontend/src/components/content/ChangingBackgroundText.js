@@ -19,18 +19,17 @@ const ChangingBackgroundText = ({
   const [hasBeenOnScreen, setHasBeenOnScreen] = useState(false)
   let isOnScreen = useOnScreen(ref)
 
-
   useEffect(() => {
     if (hasBeenOnScreen && onlyRunOneTransition) {
-      return 
+      return
     }
 
     if (isOnScreen) {
       setChangeTextColor(true)
 
       setHasBeenOnScreen(true)
-    } 
-    
+    }
+
     if (!onlyRunOneTransition && !isOnScreen) {
       setChangeTextColor(false)
     }

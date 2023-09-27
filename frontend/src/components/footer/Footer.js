@@ -8,10 +8,10 @@ import useLocale from '@/hooks/useLocale'
 import en from '@/language/locales/en/footer.json'
 import es from '@/language/locales/es/footer.json'
 
-export default function Footer({ 
-  showQuote = true, 
+export default function Footer({
+  showQuote = true,
   style = {},
-  noMarginTop = false 
+  noMarginTop = false,
 }) {
   const theme = useTheme()
   const t = useLocale() === 'en' ? en : es
@@ -36,7 +36,7 @@ export default function Footer({
         pl={!isMobile ? 2.5 : 1.25}
         style={{
           boxShadow: 'inset 0px 2px 12px 2px rgba(184, 177, 184, 0.4)',
-          color: theme.colors.cultured
+          color: theme.colors.cultured,
         }}
       >
         <Box
@@ -52,7 +52,7 @@ export default function Footer({
               fontSize: !isMobile ? 24 : 20,
               fontWeight: 'bold',
               marginBottom: 16,
-              color: 'black'
+              color: 'black',
             }}
           >
             {t.explore}

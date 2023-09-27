@@ -25,7 +25,7 @@ const FadeInText = ({
     if (isOnScreen && onlyRunOneTransition) {
       setAnimation(true)
       setHasBeenOnScreen(true)
-      
+
       return
     }
     if (isOnScreen) {
@@ -37,37 +37,32 @@ const FadeInText = ({
   }, [isOnScreen])
 
   return (
-    <Box 
-      ref={ref} 
-      maxWidth={maxWidth}
-      width='auto'
-      position='relative'
-    >
+    <Box ref={ref} maxWidth={maxWidth} width="auto" position="relative">
       {animate &&
         textArray &&
         textArray.map((text) => (
-          <Box 
+          <Box
             component="p"
-            key={text} 
+            key={text}
             sx={{
-              "@keyframes fade-in": {
-                "0%": {
+              '@keyframes fade-in': {
+                '0%': {
                   opacity: 0,
-                  top: "30px",
+                  top: '30px',
                 },
-                "100%": {
+                '100%': {
                   opacity: 1,
                   top: 0,
-                }
-              }, 
-              animation: 'fade-in 2s', 
-              animationIterationCount: 1, 
-              color: 'white', 
-              position: 'relative', 
-              fontSize: fontSize || 24, 
+                },
+              },
+              animation: 'fade-in 2s',
+              animationIterationCount: 1,
+              color: 'white',
+              position: 'relative',
+              fontSize: fontSize || 24,
               '@media screen and (max-width: 768px)': {
                 fontSize: mobileFontSize || 20,
-              }
+              },
             }}
           >
             {text}

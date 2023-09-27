@@ -1,10 +1,12 @@
+import Box from '@mui/material/Box'
 import { useRouter } from 'next/router'
-import styled from 'styled-components'
 
 import useIsMobile from '@/hooks/useIsMobile'
+import useLocale from '@/hooks/useLocale'
 
 const LanguageButtons = () => {
   const router = useRouter()
+  const t = useLocale()
   const isMobile = useIsMobile()
 
   const handleClick = (lang) => {
@@ -16,31 +18,32 @@ const LanguageButtons = () => {
   }
 
   return (
-    <Container isMobile={isMobile}>
-      <Span onClick={() => handleClick('en')}> EN </Span>
-      <CenterDivider></CenterDivider>
-      <Span onClick={() => handleClick('es')}> ES </Span>
-    </Container>
+    <Box display="flex" alignItems="center" marginBottom={isMobile ? 20 : 0}>
+      <Box 
+        fontSize={30}
+        style={{ cursor: 'pointer' }}
+        fontWeight={t === 'en' ? 500 : 300}
+        component="span" 
+        onClick={() => handleClick('en')}
+      > EN </Box>
+
+      <div style={{
+          minHeight: 30,
+          width: 1,
+          backgroundColor: 'black',
+          margin: '0 10px',
+        }}
+      />
+
+      <Box 
+        fontSize={30}
+        style={{ cursor: 'pointer' }}
+        fontWeight={t === 'es' ? 500 : 300}
+        component="span" 
+        onClick={() => handleClick('es')}
+      > ES </Box>
+    </Box>
   )
 }
 
 export default LanguageButtons
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: ${(props) => (props.isMobile ? '20px' : 0)};
-`
-
-const Span = styled.span`
-  font-size: 30px;
-  cursor: pointer;
-  font-weight: 300;
-`
-
-const CenterDivider = styled.div`
-  height: 20px;
-  width: 2px;
-  background-color: black;
-  margin: 0 10px;
-`

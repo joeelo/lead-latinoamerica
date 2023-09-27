@@ -45,8 +45,17 @@ const PhotoWithTextBox = ({
             <StyledBellImage src="/images/bell-icon-white.png" />
           )}
         </PhotoWithTextOverlay>
-        <Box height={215} p={1.5} display="flex" justifyContent="space-between" flexDirection="column">
-          <Typography fontSize={18} mb={4}> - {truncatedString} </Typography>
+        <Box
+          height={215}
+          p={1.5}
+          display="flex"
+          justifyContent="space-between"
+          flexDirection="column"
+        >
+          <Typography fontSize={18} mb={4}>
+            {' '}
+            - {truncatedString}{' '}
+          </Typography>
           <Typography fontSize={18}> explore {name} </Typography>
         </Box>
       </Container>
