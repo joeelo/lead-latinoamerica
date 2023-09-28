@@ -38,7 +38,7 @@ export default function ResourceCard({
       </Box>
 
       <Box display="flex" flexDirection="column" maxWidth={550}>
-        <Typography variant="h4" fontWeight="bold">
+        <Typography variant="h4" fontWeight="bold" mt={isMobile ? 2 : 0}>
           {name}
         </Typography>
         <Typography mt={2}>
