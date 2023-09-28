@@ -22,6 +22,7 @@ export default function MyDocument(props) {
         {emotionStyleTags}
       </Head>
       <body>
+        <script>0</script>
         <Main />
         <NextScript />
       </body>
