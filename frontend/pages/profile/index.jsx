@@ -1,6 +1,5 @@
 
 import Typography from '@mui/material/Typography'
-// import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
@@ -133,7 +132,6 @@ const ProfilePage = () => {
     fontSize: '28px',
     marginBottom: 10,
     fontWeight: 500,
-    marginTop: 20, 
   }
 
   return (
@@ -143,9 +141,9 @@ const ProfilePage = () => {
       <PhotoContainer>
         <Image
           src="/images/profile-images/david-marcu-unsplash-nature.jpg"
-          layout="fill"
-          objectFit="cover"
           alt="nature photo banner"
+          fill
+          style={{ objectFit: 'cover' }}
         />
       </PhotoContainer>
 

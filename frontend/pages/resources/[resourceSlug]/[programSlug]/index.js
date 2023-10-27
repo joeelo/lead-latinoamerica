@@ -14,8 +14,6 @@ export default function ProgramPage() {
   const router = useRouter() 
   const { programSlug: name } = router.query  || {}
 
-  console.log('jaifjejf')
-
   const [session, loading] = useSession()
   const isLoadingSession = loading
 
