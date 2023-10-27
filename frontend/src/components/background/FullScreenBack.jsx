@@ -34,13 +34,12 @@ export default function FullScreenBack({
           alt={`image-source-${src}`} // TODO: add alt props to images.
           priority={true}
           src={src}
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
+          fill
           placeholder="blur"
           blurDataURL={blurDataUrl}
           style={{ 
-            position: 'absolute' 
+            position: 'absolute', 
+            objectFit: 'cover'
           }}
         />
         <div style={{ zIndex: 10, position: 'relative' }}>{children}</div>

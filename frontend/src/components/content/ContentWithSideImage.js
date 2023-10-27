@@ -22,12 +22,11 @@ const ContentWithSideImage = ({
 
       <ImageContainer>
         <Image
-          style={{ ...imageStyle }}
+          style={{ ...imageStyle, objectFit: 'cover' }}
           alt="" // TODO: figure out fix
           src={`${imageSrc}`}
-          layout="fill"
+          fill
           quality="100"
-          objectFit="cover"
         />
       </ImageContainer>
     </Container>

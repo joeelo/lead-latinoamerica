@@ -1,13 +1,11 @@
 import Box from '@mui/material/Box'
 import { useRouter } from 'next/router'
 
-import useIsMobile from '@/hooks/useIsMobile'
 import useLocale from '@/hooks/useLocale'
 
 const LanguageButtons = () => {
   const router = useRouter()
   const t = useLocale()
-  const isMobile = useIsMobile()
 
   const handleClick = (lang) => {
     const { asPath } = router

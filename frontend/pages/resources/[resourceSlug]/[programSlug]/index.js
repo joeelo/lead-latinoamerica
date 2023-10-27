@@ -10,7 +10,7 @@ import LoadingSpinner from '@/components/generic/LoadingSpinner'
 import NavBar from '@/components/nav/NavBar'
 import ProgramRequests from '@/fetch/program/ProgramRequests'
 
-const ProgramPage = () => {
+export default function ProgramPage() {
   const router = useRouter() 
   const { programSlug: name } = router.query  || {}
 
@@ -49,5 +49,3 @@ const ProgramPage = () => {
     </>
   )
 }
-
-export default ProgramPage

@@ -2,6 +2,7 @@
 // Check for latest example periodically, there may be changes to material injection. 
 
 import createEmotionServer from '@emotion/server/create-instance'
+import { ServerStyleSheets } from '@mui/styles'
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 import PropTypes from 'prop-types'
 import * as React from 'react'
@@ -55,6 +56,7 @@ MyDocument.getInitialProps = async (ctx) => {
   // 4. page.render
 
   const originalRenderPage = ctx.renderPage
+  const sheets = new ServerStyleSheets()
 
   // You can consider sharing the same Emotion cache between all the SSR requests to speed up performance.
   // However, be aware that it can have global side effects.
@@ -84,7 +86,7 @@ MyDocument.getInitialProps = async (ctx) => {
 
   return {
     ...initialProps,
-    emotionStyleTags,
+    styles: [...emotionStyleTags, sheets.getStyleElement()]
   }
 }
 

@@ -1,6 +1,8 @@
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
+import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/client'
 
 import Button from '@/components/buttons/Button'
 import ExternalLink from '@/components/generic/ExternalLink'
@@ -20,6 +22,9 @@ export default function ProgramOverviewAndInfo({
   const t = useLocale() === 'en' ? en : es
   const isEnglish = useLocale() === 'en'
   const isMobile = useMediaQuery('(max-width:600px)')
+  const [session] = useSession()
+  const router = useRouter()
+
 
   const handleClick = async () => {
     const response = await UpdateUsersSavedPrograms(email, program._id)
@@ -74,16 +79,18 @@ export default function ProgramOverviewAndInfo({
             fontWeight={600}
             fontSize={isMobile ? 48 : 72}
             mt={isMobile ? 2.5 : 0}
+            mb={4}
+            lineHeight={1}
           > 
             {t.overview} 
           </Typography>
 
           <Typography fontSize={20}> {getProgramBioInLocale()} </Typography>
 
-          {!preview ? (
+          {(!preview && !!session) ? (
             <Box display={!isMobile ? 'flex' : 'inherit'}>
               {program.partnerUrl && (
-                <ExternalLink href={program.partnerUrl} label={t.signUp} />
+                <ExternalLink href={program.partnerUrl} label={t.seeDetails} />
               )}
 
               <Button
@@ -94,7 +101,7 @@ export default function ProgramOverviewAndInfo({
               />
             </Box>
           ) : (
-            <Button label={t.signUp}></Button>
+            <Button onClick={() => router.push('/sign-in')} label={t.signUp}></Button>
           )}
         </Box>
 

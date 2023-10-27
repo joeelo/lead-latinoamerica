@@ -7,9 +7,14 @@ import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
 import Footer from "@/components/footer/Footer"
 import Button from '@/components/generic/Button'
 import NavBar from "@/components/nav/NavBar"
+import useLocale from '@/hooks/useLocale'
+import en from '@/language/locales/en/signIn.json'
+import es from '@/language/locales/es/signIn.json'
 
 const Signup = () => {
   const theme = useTheme()
+  const t = useLocale() === 'en' ? en : es
+  const isEnglish = useLocale() === 'en'
   
   //session comes back with google info - https://github.com/nextauthjs/next-auth
   const [session] = useSession()
@@ -30,8 +35,8 @@ const Signup = () => {
         >
           <PhotoWithText>
             <Title>
-              Sign in to <br/>
-              Lead With Us
+              {t.signIn} <br/>
+              {t.lead}
             </Title>
           </PhotoWithText>
 
@@ -39,7 +44,7 @@ const Signup = () => {
             <ChangingBackgroundText 
               initialColor={theme.colors.cultured}
               secondaryColor={theme.colors.darkBlue}
-              text='Sign In'
+              text={isEnglish ? 'Sign in' : 'Iniciar sesión'}
               fontColorInitial={theme.colors.darkBlue}
               fontColorSecondary={theme.colors.cultured}
               maxWidth='400px'
@@ -51,7 +56,7 @@ const Signup = () => {
                   callbackUrl: '/profile', 
                 })}>
                   <GoogleLogo src='/images/google-logo.png'/>
-                  Sign in with Google
+                  {t.googleSignIn}
                 </LoginButton>
               </>
             ): (
