@@ -23,13 +23,19 @@ export default function AddProgramSlides() {
             </Typography>
           </Box>
         </Box>
-        <Box width="50%" display="flex"  bgcolor='rgb(245, 245, 245)'  alignItems="center" p={4}>
+        <Box width="50%" display="flex" position="relative" bgcolor='rgb(245, 245, 245)'  alignItems="center" p={4}>
           <TextField sx={{
             '.MuiInputBase-input': {
               minHeight: '75px', 
               fontSize: 48, 
             }
           }}/>
+
+          <Box position="absolute" bottom={50}>
+            
+
+            <button>weeee</button>
+          </Box>
         </Box>
       </Box>
     </>
