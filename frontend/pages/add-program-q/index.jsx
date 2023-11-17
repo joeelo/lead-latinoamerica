@@ -53,8 +53,6 @@ export default function AddProgramSlides() {
 
   const currentKey = answers[questionKeys[step]]
 
-  console.log(answers)
-
   return (
     <>
       <NavBar />
