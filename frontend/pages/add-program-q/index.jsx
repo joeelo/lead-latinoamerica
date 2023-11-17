@@ -7,12 +7,14 @@ import NavBar from '@/components/nav/NavBar'
 
 export default function AddProgramSlides() {
   const [step, setStep] = useState(0)
+  const [answer, setAnser] = useState('')
   const [answers, setAnswers] = useState({
     name: {
       label: 'What is the name of the program?', 
       type: 'text', 
       value: '', 
-      validation: { min: 3 }
+      validation: { min: 3 }, 
+      validationMet: false
     }, 
     description: {
       label: 'A short description about the program', 
@@ -29,7 +31,9 @@ export default function AddProgramSlides() {
       label: 'What type of program is it?',
       subText: 'Choose all that apply', 
       type: 'checkbox', 
-      value: '',
+      value: [],
+      validationMet: false,
+      validation: { min: 1 }
     },  
     partnerUrl: {
       label: 'Does this opportunity have a url?', 
@@ -42,6 +46,7 @@ export default function AddProgramSlides() {
       value: ''
     }, 
   })
+
   const questionKeys = ['name', 'description', 'keywords', 'programType', 'partnerUrl', 'expirationDate']
 
   const currentKey = answers[questionKeys[step]]
@@ -75,6 +80,7 @@ export default function AddProgramSlides() {
         <Box width="50%" display="flex" position="relative" bgcolor='rgb(245, 245, 245)'  alignItems="center" p={4}>
           <TextField
             error
+            value={'weeeee'}
             helperText="3 character minimum"
             sx={{
               '.MuiInputBase-input': {
@@ -82,11 +88,13 @@ export default function AddProgramSlides() {
                 fontSize: 48, 
               }
             }}
+            onBlur={(event) => console.log(event.target.value)}
           />
 
           <Box position="absolute" bottom={50}>
             <button className='fade-button' onClick={() => {
-              setStep((prevState) => prevState + 1)
+
+              // setStep((prevState) => prevState + 1)
             }}>Next question</button>
           </Box>
         </Box>
