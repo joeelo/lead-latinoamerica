@@ -39,7 +39,8 @@ p, div, span, textarea, a {
   position: relative;
 }
 
-button{
+/* https://codepen.io/onediv/pen/jEmjap */
+.fade-button{
   background:#1AAB8A;
   color:#fff;
   border:none;
@@ -51,11 +52,11 @@ button{
   transition:800ms ease all;
   outline:none;
 }
-button:hover{
+.fade-button:hover{
   background:#fff;
   color:#1AAB8A;
 }
-button:before,button:after{
+.fade-button:before,.fade-button:after{
   content:'';
   position:absolute;
   top:0;
@@ -65,13 +66,13 @@ button:before,button:after{
   background: #1AAB8A;
   transition:400ms ease all;
 }
-button:after{
+.fade-button:after{
   right:inherit;
   top:inherit;
   left:0;
   bottom:0;
 }
-button:hover:before,button:hover:after{
+.fade-button:hover:before,.fade-button:hover:after{
   width:100%;
   transition:800ms ease all;
 }
