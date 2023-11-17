@@ -4,10 +4,12 @@ import Typography from '@mui/material/Typography'
 import { useState } from 'react'
 
 import NavBar from '@/components/nav/NavBar'
+import getInputValidationError from '@/utils/getInputValidationError'
 
 export default function AddProgramSlides() {
   const [step, setStep] = useState(0)
-  const [answer, setAnser] = useState('')
+  const [inputValue, setInputValue] = useState('')
+  const [errorText, setErrorText] = useState('')
   const [answers, setAnswers] = useState({
     name: {
       label: 'What is the name of the program?', 
@@ -51,7 +53,7 @@ export default function AddProgramSlides() {
 
   const currentKey = answers[questionKeys[step]]
 
-  console.log(currentKey)
+  console.log(answers)
 
   return (
     <>
@@ -79,22 +81,40 @@ export default function AddProgramSlides() {
 
         <Box width="50%" display="flex" position="relative" bgcolor='rgb(245, 245, 245)'  alignItems="center" p={4}>
           <TextField
-            error
-            value={'weeeee'}
-            helperText="3 character minimum"
+            error={!!errorText}
+            helperText={errorText}
+            value={inputValue}
             sx={{
               '.MuiInputBase-input': {
                 minHeight: '75px', 
                 fontSize: 48, 
               }
             }}
-            onBlur={(event) => console.log(event.target.value)}
+            onChange={(event) => {
+              setInputValue(event.target.value)
+              setErrorText('')
+            }}
           />
 
           <Box position="absolute" bottom={50}>
             <button className='fade-button' onClick={() => {
+              const err = getInputValidationError(inputValue, currentKey.validation)
 
-              // setStep((prevState) => prevState + 1)
+              if (err) {
+                setErrorText(err)
+
+                return 
+              }
+
+              const objKey = questionKeys[step]
+              const currObj = {...currentKey, value: inputValue, validationMet: true}
+
+              setAnswers({
+                ...answers, 
+                [objKey]: {...currObj}
+              })
+              setStep((prevState) => prevState + 1)
+              setInputValue('')
             }}>Next question</button>
           </Box>
         </Box>
