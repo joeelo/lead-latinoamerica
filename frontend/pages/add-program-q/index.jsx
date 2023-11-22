@@ -21,17 +21,18 @@ export default function AddProgramSlides() {
     description: {
       label: 'A short description about the program', 
       type: 'text', 
-      value: ''
+      value: '', 
+      multiline: true,
     }, 
     keywords: {
       label: 'Labels to help identify the uses', 
-      subText: 'Use commas to create new label, ie: funding, scholarship, after-school, etc.',
+      infoText: 'Use commas to create new label, ie: funding, scholarship, after-school, etc.',
       type: 'text', 
       value: ''
     }, 
     programType: {
       label: 'What type of program is it?',
-      subText: 'Choose all that apply', 
+      infoText: 'Choose all that apply', 
       type: 'checkbox', 
       value: [],
       validationMet: false,
@@ -78,21 +79,31 @@ export default function AddProgramSlides() {
         </Box>
 
         <Box width="50%" display="flex" position="relative" bgcolor='rgb(245, 245, 245)'  alignItems="center" p={4}>
-          <TextField
-            error={!!errorText}
-            helperText={errorText}
-            value={inputValue}
-            sx={{
-              '.MuiInputBase-input': {
-                minHeight: '75px', 
-                fontSize: 48, 
-              }
-            }}
-            onChange={(event) => {
-              setInputValue(event.target.value)
-              setErrorText('')
-            }}
-          />
+          <Box>
+            <TextField
+              error={!!errorText}
+              helperText={errorText}
+              value={inputValue}
+              multiline={currentKey.multiline}
+              rows={currentKey.multiline ? 5 : ''}
+              sx={{
+                '.MuiInputBase-input': {
+                  minHeight: '75px', 
+                  fontSize: 36, 
+                  lineHeight: 1.1,
+                }
+              }}
+              onChange={(event) => {
+                setInputValue(event.target.value)
+                setErrorText('')
+              }}
+            />
+            {!!currentKey.infoText && (
+              <Typography color="GrayText">
+                {currentKey.infoText}
+              </Typography>
+            )}
+          </Box>
 
           <Box position="absolute" bottom={50}>
             <button className='fade-button' onClick={() => {

@@ -4,6 +4,10 @@
  */
 
 export default function getInputValidationError(value, validation) {
+  if (!validation) {
+    return ''
+  }
+
   const { min, max } = validation
 
   if (typeof value === 'string') {
