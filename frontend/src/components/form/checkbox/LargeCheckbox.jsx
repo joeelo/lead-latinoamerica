@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import { useState } from 'react'
+import { useEffect,useState } from 'react'
 
 export default function LargeCheckbox({
   isChecked, 
@@ -10,28 +10,37 @@ export default function LargeCheckbox({
 }) {
   const [clickPosition, setClickPosition] = useState({x: null, y: null})
 
+  useEffect(() => {
+    clearTimeout(timeout)
+
+    const timeout = setTimeout(() => {
+      setClickPosition({
+        x: null, 
+        y: null,
+      })
+    }, 1000)
+
+    return () => clearTimeout(timeout)
+  }, [clickPosition.x])
+
   return (
     <Box 
       border='1px solid lightgrey' 
       onClick={(e) => {
-        console.log(e.target.getBoundingClientRect())
+        clearTimeout()
 
-        console.log(e.clientX, e.target.offsetLeft)
+        const {
+          x, 
+          y, 
+        } = e.target.getBoundingClientRect()
 
-        let x = e.clientX - e.target.offsetLeft
-        let y = e.clientY - e.target.offsetTop
+        let xPx = e.clientX - x
+        let yPx = e.clientY - y
 
         setClickPosition({
-          x: `${x}px`, 
-          y: `${y}px`,
+          x: `${xPx}px`, 
+          y: `${yPx}px`,
         })
-
-        setTimeout(() => {
-          setClickPosition({
-            x: null, 
-            y: null
-          })
-        }, 1000)
 
         onChange()
       }}
@@ -51,8 +60,8 @@ export default function LargeCheckbox({
         <span 
           className="ripples" 
           style={{ 
-            left: 0, 
-            top: 0, 
+            left: clickPosition.x, 
+            top: clickPosition.y, 
             zIndex: 10, 
             position: 'absolute' 
           }}
