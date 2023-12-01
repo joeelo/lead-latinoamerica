@@ -77,3 +77,26 @@ p, div, span, textarea, a {
   transition:800ms ease all;
 }
 
+.ripples {
+  background-color: #000; 
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  min-width: 100px; 
+  min-height: 100px; 
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: animate 1s linear infinite; 
+}
+
+@keyframes animate {
+  0% {
+    min-width: 0px; 
+    min-height: 0px; 
+    opacity: 0.5;
+  }
+  100% {
+    min-width: 500px; 
+    min-height: 500px; 
+    opacity: 0;
+  }
+}

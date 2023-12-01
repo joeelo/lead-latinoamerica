@@ -3,12 +3,14 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import { useState } from 'react'
 
+import LargeCheckbox from '@/components/form/checkbox/LargeCheckbox'
 import NavBar from '@/components/nav/NavBar'
 import getInputValidationError from '@/utils/getInputValidationError'
 
 export default function AddProgramSlides() {
   const [step, setStep] = useState(0)
   const [inputValue, setInputValue] = useState('')
+  const [checkboxValues, setCheckboxValues] = useState([])
   const [errorText, setErrorText] = useState('')
   const [answers, setAnswers] = useState({
     name: {
@@ -34,6 +36,12 @@ export default function AddProgramSlides() {
       label: 'What type of program is it?',
       infoText: 'Choose all that apply', 
       type: 'checkbox', 
+      options: [
+        {label: 'Summer', value: 'summer'}, 
+        {label: 'Program', value: 'program',}, 
+        {label: 'Internship', value: 'internship',}, 
+        {label: 'Scholarship', value: 'scholarship',}
+      ],
       value: [],
       validationMet: false,
       validation: { min: 1 }
@@ -79,25 +87,55 @@ export default function AddProgramSlides() {
         </Box>
 
         <Box width="50%" display="flex" position="relative" bgcolor='rgb(245, 245, 245)'  alignItems="center" p={4}>
-          <Box>
-            <TextField
-              error={!!errorText}
-              helperText={errorText}
-              value={inputValue}
-              multiline={currentKey.multiline}
-              rows={currentKey.multiline ? 5 : ''}
-              sx={{
-                '.MuiInputBase-input': {
-                  minHeight: '75px', 
-                  fontSize: 36, 
-                  lineHeight: 1.1,
-                }
-              }}
-              onChange={(event) => {
-                setInputValue(event.target.value)
-                setErrorText('')
-              }}
-            />
+          <Box width="100%">
+
+            {currentKey.type === 'checkbox' && (
+              <Box display="flex" flexWrap="wrap">
+                {currentKey.options.map((option) => {
+                  return (
+                    <LargeCheckbox 
+                      key={option.value}
+                      isChecked={checkboxValues.includes(option.value)}
+                      onChange={() => {
+                        if (!checkboxValues.includes(option.value)) {
+                          setCheckboxValues([...checkboxValues, option.value])
+                        } else {
+                          const newValues = checkboxValues.filter((val) => val !== option.value)
+                          setCheckboxValues(newValues)
+                        }
+                      }}
+                      label={option.label}
+                      style={{ width: '45%', marginBottom: 16, marginRight: 16, }}
+                    />
+                  )
+                })}
+              </Box>
+            )}
+
+            {currentKey.type === 'text' && (
+              <TextField
+                error={!!errorText}
+                helperText={errorText}
+                value={inputValue}
+                fullWidth
+                multiline={currentKey.multiline}
+                rows={currentKey.multiline ? 5 : ''}
+                sx={{
+                  '.MuiInputBase-input': {
+                    minHeight: '75px', 
+                    fontSize: 36, 
+                    lineHeight: 1.1,
+                  }
+                }}
+                onChange={(event) => {
+                  setInputValue(event.target.value)
+                  setErrorText('')
+                }}
+              />
+            )}
+
+            
+
             {!!currentKey.infoText && (
               <Typography color="GrayText">
                 {currentKey.infoText}
