@@ -50,15 +50,10 @@ export default function AddProgramSlides() {
       label: 'Does this opportunity have a url?', 
       type: 'text', 
       value: ''
-    }, 
-    expirationDate: {
-      label: 'Does this program have an expiration date?', 
-      type: 'date', 
-      value: ''
-    }, 
+    }
   })
 
-  const questionKeys = ['name', 'description', 'keywords', 'programType', 'partnerUrl', 'expirationDate']
+  const questionKeys = ['name', 'description', 'keywords', 'programType', 'partnerUrl']
 
   const currentKey = answers[questionKeys[step]]
 
@@ -88,7 +83,6 @@ export default function AddProgramSlides() {
 
         <Box width="50%" display="flex" position="relative" bgcolor='rgb(245, 245, 245)'  alignItems="center" p={4}>
           <Box width="100%">
-
             {currentKey.type === 'checkbox' && (
               <Box display="flex" flexWrap="wrap">
                 {currentKey.options.map((option) => {
@@ -144,25 +138,39 @@ export default function AddProgramSlides() {
           </Box>
 
           <Box position="absolute" bottom={50}>
-            <button className='fade-button' onClick={() => {
-              const err = getInputValidationError(inputValue, currentKey.validation)
+            <button 
+              className='fade-button' 
+              onClick={() => {
+                
+                let value = inputValue 
 
-              if (err) {
-                setErrorText(err)
+                if (currentKey.type === 'checkbox') {
+                  value = checkboxValues
+                }
 
-                return 
-              }
+                const err = getInputValidationError(value, currentKey.validation)
 
-              const objKey = questionKeys[step]
-              const currObj = {...currentKey, value: inputValue, validationMet: true}
+                if (err) {
+                  setErrorText(err)
 
-              setAnswers({
-                ...answers, 
-                [objKey]: {...currObj}
-              })
-              setStep((prevState) => prevState + 1)
-              setInputValue('')
-            }}>Next question</button>
+                  return 
+                }
+
+                const objKey = questionKeys[step]
+                const currObj = {...currentKey, value, validationMet: true}
+
+                setAnswers({
+                  ...answers, 
+                  [objKey]: {...currObj}
+                })
+                setStep((prevState) => prevState + 1)
+                setInputValue('')
+                setErrorText('')
+                setCheckboxValues([])
+              }}
+            >
+              Next question
+            </button>
           </Box>
         </Box>
       </Box>

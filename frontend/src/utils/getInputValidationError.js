@@ -8,16 +8,25 @@ export default function getInputValidationError(value, validation) {
     return ''
   }
 
+  console.log(value)
+
+  const isString = typeof value === 'string'
+  const isArray = Array.isArray(value)
+
   const { min, max } = validation
 
-  if (typeof value === 'string') {
-    const inputLength = value.length
+  if (isString || isArray) {
+    const valueLength = value.length
 
-    if (min && inputLength < min) {
+    if (min && valueLength < min && isString) {
       return `Must be longer than ${min} characters`
     }
 
-    if (max && inputLength > max) {
+    if (min && valueLength < min && isArray) {
+      return `Must select at least one option`
+    }
+
+    if (max && valueLength > max && isString) {
       return `Must be short than ${max} characters`
     }
   }

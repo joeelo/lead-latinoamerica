@@ -13,7 +13,7 @@ export default function DaConfetti() {
 
   return (
     <div ref={confetiRef}>
-      <Confetti numberOfPieces={200} width={width} height={height} initialVelocityY={5}/>
+      <Confetti numberOfPieces={150} width={width} height={height} initialVelocityY={3}/>
     </div>
   );
 }
