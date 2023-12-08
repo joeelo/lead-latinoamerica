@@ -109,7 +109,7 @@ export default function AddProgramSlides() {
     <>
       <NavBar />
 
-      <Box minHeight={!isMobile ? '90vh' : ''}>
+      <Box minHeight={!isMobile ? '90vh' : ''} display={!isMobile ? 'flex' : ''}>
         <Box 
           width={!isMobile ? '50%' : '100%'} 
           display="flex" 
