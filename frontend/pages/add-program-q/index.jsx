@@ -1,6 +1,9 @@
+// Inspo, redbull form - https://elementor.com/blog/website-form-design-examples/
+
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
@@ -11,6 +14,7 @@ import getIsValidUrl from '@/utils/getIsValidUrl'
 
 export default function AddProgramSlides() {
   const router = useRouter()
+  const isMobile = useMediaQuery('(max-width:600px)')
   const [step, setStep] = useState(0)
   const [inputValue, setInputValue] = useState('')
   const [checkboxValues, setCheckboxValues] = useState([])
@@ -67,17 +71,53 @@ export default function AddProgramSlides() {
     return router.push('congrats')
   }
 
+  const onNextClick = () => {
+    let value = inputValue 
+
+    if (currentKey.type === 'checkbox') {
+      value = checkboxValues
+    }
+
+    const err = getInputValidationError(value, currentKey.validation)
+
+    
+    if (err) {
+      setErrorText(err)
+
+      return 
+    }
+
+    const objKey = questionKeys[step]
+    const currObj = {...currentKey, value, validationMet: true}
+
+    setAnswers({
+      ...answers, 
+      [objKey]: {...currObj}
+    })
+    setStep((prevState) => prevState + 1)
+    setInputValue('')
+    setErrorText('')
+    setCheckboxValues([])
+  }
+
   return (
     <>
       <NavBar />
 
-      <Box display="flex" minHeight='90vh'>
-        <Box width="50%" display="flex" justifyContent="center" alignItems="center" position="relative">
-          <Box p={4}>
+      <Box minHeight={!isMobile ? '90vh' : ''}>
+        <Box 
+          width={!isMobile ? '50%' : '100%'} 
+          display="flex" 
+          justifyContent="center" 
+          alignItems="center" 
+          position="relative"
+          mt={isMobile ? 12 : 0}
+        >
+          <Box p={4} textAlign={isMobile ? 'center' : ''}>
             <Typography>
               Question {step + 1} out of {questionKeys.length}
             </Typography>
-            <Typography variant='h1' fontWeight={600}>
+            <Typography variant={isMobile ? 'h3' : 'h1'} fontWeight={600}>
               {currentKey.label}
             </Typography>
           </Box>
@@ -92,7 +132,15 @@ export default function AddProgramSlides() {
           )}
         </Box>
 
-        <Box width="50%" display="flex" position="relative" bgcolor='rgb(245, 245, 245)'  alignItems="center" p={4}>
+        <Box 
+          width={!isMobile ? '50%' : '100%'} 
+          display="flex" 
+          position="relative" 
+          marginTop={isMobile ? 8 : ''}
+          bgcolor={!isMobile ? 'rgb(245, 245, 245)' : ''}  
+          alignItems="center" 
+          p={4}
+        >
           <Box width="100%">
             {currentKey.type === 'checkbox' && (
               <>
@@ -134,8 +182,14 @@ export default function AddProgramSlides() {
                 rows={currentKey.multiline ? 5 : ''}
                 sx={{
                   '.MuiInputBase-input': {
-                    minHeight: '75px', 
-                    fontSize: 36, 
+                    minHeight: {
+                      lg: '75px', 
+                      md: '32px'
+                    }, 
+                    fontSize: {
+                      lg: 36, 
+                      md: 24
+                    }, 
                     lineHeight: 1.1,
                   }
                 }}
@@ -146,8 +200,6 @@ export default function AddProgramSlides() {
               />
             )}
 
-            
-
             {!!currentKey.infoText && (
               <Typography color="GrayText">
                 {currentKey.infoText}
@@ -155,44 +207,29 @@ export default function AddProgramSlides() {
             )}
           </Box>
 
-          <Box position="absolute" bottom={50}>
-            <button 
-              className='fade-button' 
-              onClick={() => {
-                
-                let value = inputValue 
-
-                if (currentKey.type === 'checkbox') {
-                  value = checkboxValues
-                }
-
-                const err = getInputValidationError(value, currentKey.validation)
-
-                
-                if (err) {
-                  setErrorText(err)
-
-                  return 
-                }
-
-                const objKey = questionKeys[step]
-                const currObj = {...currentKey, value, validationMet: true}
-
-                setAnswers({
-                  ...answers, 
-                  [objKey]: {...currObj}
-                })
-                setStep((prevState) => prevState + 1)
-                setInputValue('')
-                setErrorText('')
-                setCheckboxValues([])
-              }}
-            >
-              {step === questionKeys.length - 1 ? 'Submit' : 'Next Question'}
-            </button>
-          </Box>
+          {!isMobile && (
+            <Box position="absolute" bottom={50}>
+              <button 
+                className='fade-button' 
+                onClick={onNextClick}
+              >
+                {step === questionKeys.length - 1 ? 'Submit' : 'Next Question'}
+              </button>
+            </Box>
+          )}
         </Box>
       </Box>
+
+      {isMobile && (
+        <Box display="flex" justifyContent="center">
+          <button 
+            className='fade-button' 
+            onClick={onNextClick}
+          >
+            {step === questionKeys.length - 1 ? 'Submit' : 'Next Question'}
+          </button>
+        </Box>
+      )}
     </>
   )
 }
