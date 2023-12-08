@@ -83,7 +83,6 @@ const StyledInput = styled.input`
   -moz-appearance: none;
   overflow: hidden;
   display: flex;
-  font-weight: lighter;
   align-items: center;
   padding-left: 10px;
   font-size: 16px;
@@ -99,7 +98,6 @@ const StyledOptionDropdown = styled.div`
   width: 100%;
   position: absolute;
   top: 60px;
-  font-weight: lighter;
   max-width: 352px;
   left: -1px;
   z-index: 10;
@@ -117,7 +115,6 @@ const StyledOption = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-top: 0;
   background-color: white;
-  font-weight: lighter;
 
   :hover {
     cursor: pointer;

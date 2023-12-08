@@ -1,13 +1,16 @@
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 import LargeCheckbox from '@/components/form/checkbox/LargeCheckbox'
 import NavBar from '@/components/nav/NavBar'
 import getInputValidationError from '@/utils/getInputValidationError'
+import getIsValidUrl from '@/utils/getIsValidUrl'
 
 export default function AddProgramSlides() {
+  const router = useRouter()
   const [step, setStep] = useState(0)
   const [inputValue, setInputValue] = useState('')
   const [checkboxValues, setCheckboxValues] = useState([])
@@ -49,13 +52,20 @@ export default function AddProgramSlides() {
     partnerUrl: {
       label: 'Does this opportunity have a url?', 
       type: 'text', 
-      value: ''
+      value: '', 
+      validation: (value) => {
+        return getIsValidUrl(value)
+      }
     }
   })
 
   const questionKeys = ['name', 'description', 'keywords', 'programType', 'partnerUrl']
 
   const currentKey = answers[questionKeys[step]]
+
+  if (!currentKey) {
+    return router.push('congrats')
+  }
 
   return (
     <>
@@ -76,6 +86,7 @@ export default function AddProgramSlides() {
             <Box position="absolute" bottom={50} right={32}>
               <button className='fade-button' onClick={() => {
                 setStep((prevState) => prevState - 1 )
+                setErrorText('')
               }}>Previous question</button>
             </Box>
           )}
@@ -84,26 +95,33 @@ export default function AddProgramSlides() {
         <Box width="50%" display="flex" position="relative" bgcolor='rgb(245, 245, 245)'  alignItems="center" p={4}>
           <Box width="100%">
             {currentKey.type === 'checkbox' && (
-              <Box display="flex" flexWrap="wrap">
-                {currentKey.options.map((option) => {
-                  return (
-                    <LargeCheckbox 
-                      key={option.value}
-                      isChecked={checkboxValues.includes(option.value)}
-                      onChange={() => {
-                        if (!checkboxValues.includes(option.value)) {
-                          setCheckboxValues([...checkboxValues, option.value])
-                        } else {
-                          const newValues = checkboxValues.filter((val) => val !== option.value)
-                          setCheckboxValues(newValues)
-                        }
-                      }}
-                      label={option.label}
-                      style={{ width: '45%', marginBottom: 16, marginRight: 16, }}
-                    />
-                  )
-                })}
-              </Box>
+              <>
+                <Box display="flex" flexWrap="wrap">
+                  {currentKey.options.map((option) => {
+                    return (
+                      <LargeCheckbox 
+                        key={option.value}
+                        isChecked={checkboxValues.includes(option.value)}
+                        onChange={() => {
+                          if (!checkboxValues.includes(option.value)) {
+                            setCheckboxValues([...checkboxValues, option.value])
+                          } else {
+                            const newValues = checkboxValues.filter((val) => val !== option.value)
+                            setCheckboxValues(newValues)
+                          }
+                        }}
+                        label={option.label}
+                        style={{ width: '45%', marginBottom: 16, marginRight: 16, }}
+                      />
+                    )
+                  })}
+                </Box>
+                {errorText && (
+                  <Typography color="#d32f2f" fontSize="0.75rem">
+                    {errorText}
+                  </Typography>
+                )}
+              </>
             )}
 
             {currentKey.type === 'text' && (
@@ -150,6 +168,7 @@ export default function AddProgramSlides() {
 
                 const err = getInputValidationError(value, currentKey.validation)
 
+                
                 if (err) {
                   setErrorText(err)
 
@@ -169,7 +188,7 @@ export default function AddProgramSlides() {
                 setCheckboxValues([])
               }}
             >
-              Next question
+              {step === questionKeys.length - 1 ? 'Submit' : 'Next Question'}
             </button>
           </Box>
         </Box>

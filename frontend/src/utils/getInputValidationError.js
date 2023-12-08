@@ -8,12 +8,15 @@ export default function getInputValidationError(value, validation) {
     return ''
   }
 
-  console.log(value)
-
   const isString = typeof value === 'string'
   const isArray = Array.isArray(value)
+  const isValidationFunction = typeof validation === 'function' 
 
   const { min, max } = validation
+
+  if (isValidationFunction) {
+    return validation()
+  }
 
   if (isString || isArray) {
     const valueLength = value.length
