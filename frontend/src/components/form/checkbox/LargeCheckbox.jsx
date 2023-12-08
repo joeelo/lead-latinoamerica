@@ -48,7 +48,12 @@ export default function LargeCheckbox({
       alignItems="center"
       justifyContent="center"
       borderRadius={2}
-      fontSize={36}
+      sx={{
+        fontSize: 36, 
+        '@media screen and (max-width: 768px)': {
+          fontSize: 24,
+        },
+      }}
       height={150}
       bgcolor={isChecked ? '#2196F3' : 'white'}
       color={isChecked ? 'white' : 'inherit'}

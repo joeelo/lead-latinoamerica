@@ -100,6 +100,11 @@ export default function AddProgramSlides() {
     setCheckboxValues([])
   }
 
+  const onPrevClick = () => {
+    setStep((prevState) => prevState - 1)
+    setErrorText('')
+  }
+
   return (
     <>
       <NavBar />
@@ -111,23 +116,21 @@ export default function AddProgramSlides() {
           justifyContent="center" 
           alignItems="center" 
           position="relative"
-          mt={isMobile ? 12 : 0}
         >
-          <Box p={4} textAlign={isMobile ? 'center' : ''}>
-            <Typography>
-              Question {step + 1} out of {questionKeys.length}
+          <Box p={4} mt={isMobile ? 8 : 0} textAlign={isMobile ? 'center' : ''}>
+            <Typography mb={isMobile ? 2 : 0}>
+              Question {step + 1} of {questionKeys.length}
             </Typography>
             <Typography variant={isMobile ? 'h3' : 'h1'} fontWeight={600}>
               {currentKey.label}
             </Typography>
           </Box>
 
-          {step > 0 && (
+          {(step > 0 && !isMobile) && (
             <Box position="absolute" bottom={50} right={32}>
-              <button className='fade-button' onClick={() => {
-                setStep((prevState) => prevState - 1 )
-                setErrorText('')
-              }}>Previous question</button>
+              <button className='fade-button' onClick={onPrevClick}>
+                Previous question
+              </button>
             </Box>
           )}
         </Box>
@@ -136,7 +139,6 @@ export default function AddProgramSlides() {
           width={!isMobile ? '50%' : '100%'} 
           display="flex" 
           position="relative" 
-          marginTop={isMobile ? 8 : ''}
           bgcolor={!isMobile ? 'rgb(245, 245, 245)' : ''}  
           alignItems="center" 
           p={4}
@@ -221,14 +223,26 @@ export default function AddProgramSlides() {
       </Box>
 
       {isMobile && (
-        <Box display="flex" justifyContent="center">
-          <button 
-            className='fade-button' 
-            onClick={onNextClick}
-          >
-            {step === questionKeys.length - 1 ? 'Submit' : 'Next Question'}
-          </button>
-        </Box>
+        <>
+
+          {step > 0 && (
+            <Box display="flex" justifyContent="center" mb={3}>
+              <button className='fade-button' onClick={onPrevClick} style={{ width: 260, padding: 0  }}>
+                Previous question
+              </button>
+            </Box>
+          )}
+
+          <Box display="flex" justifyContent="center">
+            <button 
+              className='fade-button' 
+              onClick={onNextClick}
+            >
+              {step === questionKeys.length - 1 ? 'Submit' : 'Next Question'}
+            </button>
+          </Box>
+        </>
+
       )}
     </>
   )
