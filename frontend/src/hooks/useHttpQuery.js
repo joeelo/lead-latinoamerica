@@ -13,5 +13,10 @@ export default function useHttpQuery({
     ...config
   })
 
+  console.groupCollapsed('query')
+  console.log('Params ', apiFnArgs)
+  console.log('Query Data ', query.data)
+  console.groupEnd()
+
   return query
 }

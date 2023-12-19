@@ -20,14 +20,12 @@ async function getAllProgramsTest(queryContext) {
   }
 }
 
-async function getAllPrograms(queryContext) {
-  const { queryKey } = queryContext
-  if (!queryKey) return
-  const email = queryKey[1]
+async function getAllPrograms() {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DB_LOCATION}/user/${email}/programs`
+      `${process.env.NEXT_PUBLIC_DB_LOCATION}/programs`
     )
+
     const json = await response.json()
     return json
   } catch (error) {

@@ -1,22 +1,26 @@
 import Box from '@mui/material/Box'
 
+import Footer from '@/components/footer/Footer'
+import NavBar from '@/components/nav/NavBar'
 import ProgramRequests from '@/fetch/program/ProgramRequests'
 import useHttpQuery from '@/hooks/useHttpQuery'
 
 export default function AllResourcesPage() {
   const programsQuery = useHttpQuery({
-    key: 'programs', 
+    key: 'all-programs', 
     apiFnArgs: [{
       summer: true,
     }],
-    apiFn: ProgramRequests.getAllProgramsTest
+    apiFn: ProgramRequests.getAllPrograms
   })
 
-  console.log(programsQuery)
-
   return (
-    <Box>
-      
-    </Box>
+    <>
+      <NavBar />
+        <Box>
+          
+        </Box>
+      <Footer />
+    </>
   )
 }
