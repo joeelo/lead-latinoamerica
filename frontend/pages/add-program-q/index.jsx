@@ -54,7 +54,7 @@ export default function AddProgramSlides() {
       validation: { min: 1 }
     },  
     partnerUrl: {
-      label: 'Does this opportunity have a url?', 
+      label: 'Link/URL for opportunity', 
       type: 'text', 
       value: '', 
       validation: (value) => {

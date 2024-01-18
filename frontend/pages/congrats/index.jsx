@@ -38,11 +38,11 @@ export default function CongratsPage() {
         }}
       >
 
-        <Box maxWidth={700} textAlign="center">
-          <Typography fontSize={72}>
+        <Box maxWidth={800} textAlign="center">
+          <Typography fontSize={90}>
             THANK YOU! 
           </Typography>
-          <Typography fontSize={14} fontWeight={400}>
+          <Typography fontSize={22} fontWeight={400}>
             We will review the opportunity shortly and reach out if we have any questions! 
           </Typography>
         </Box>
