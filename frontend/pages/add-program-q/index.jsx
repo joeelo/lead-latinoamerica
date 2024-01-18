@@ -95,14 +95,20 @@ export default function AddProgramSlides() {
       [objKey]: {...currObj}
     })
     setStep((prevState) => prevState + 1)
-    setInputValue('')
+
+    const inputtedValue = answers[questionKeys[step + 1]]?.value || ''
+
+    setInputValue(inputtedValue)
     setErrorText('')
     setCheckboxValues([])
   }
 
   const onPrevClick = () => {
+    const oldValue = answers[questionKeys[step - 1]].value
+
     setStep((prevState) => prevState - 1)
     setErrorText('')
+    setInputValue(oldValue)
   }
 
   return (
