@@ -1,3 +1,4 @@
+import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 
 import FullScreenBack from '@/components/background/FullScreenBack'
@@ -19,26 +20,36 @@ export default function AllResourcesPage() {
     <Layout>
       <FullScreenBack 
         src='/images/heylagostechie-IgUR1iX0mqM-unsplash.jpg'
-				height="40vh"
+        height="40vh"
         title='Programs'
-				titleInfo={{ 
-					show: true, 
-					backgroundColor: '#0077B6', 
-					color: 'white' 
-				}}
+        titleInfo={{ 
+          show: true, 
+          backgroundColor: '#0077B6', 
+          color: 'white' 
+        }}
       />
-      
-      <Grid container>
-        {programs.map((program) => {
-          return (
-            <Grid key={program._id} item xs={12} md={4} lg={4}>
-              <PhotoWithTextBox 
-                program={program}
-              />
-            </Grid>
-          )
-        })}
-      </Grid>
+
+      <Box 
+        display='flex'
+        justifyContent='center'
+        mb={2} 
+        sx={{
+          mt: [-6, 0, 2, 2, 2],
+          p: [4, 4, 2, 2, 2]
+        }}
+      >
+        <Grid container maxWidth={1200}>
+          {programs.map((program) => {
+            return (
+              <Grid key={program._id} item xs={12} sm={12} md={6} lg={4} xl={4}>
+                <PhotoWithTextBox 
+                  program={program}
+                />
+              </Grid>
+            )
+          })}
+        </Grid>
+      </Box>
     </Layout>
   )
 }

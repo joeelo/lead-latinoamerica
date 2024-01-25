@@ -36,7 +36,7 @@ const PhotoWithTextBox = ({
             pt={2}
             right={0}
             pr={2}
-            fontSize={24}
+            fontSize={28}
           >
             {name}
           </Typography>
