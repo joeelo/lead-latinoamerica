@@ -10,7 +10,7 @@ const PhotoWithTextBox = ({
 }) => {
   const router = useRouter()
   const clickHandler = () => {
-    router.push(`/resources-a/${href.toLowerCase()}`)
+    router.push(`/resources/${href.toLowerCase()}`)
   }
 
   const now = new Date().toISOString()
