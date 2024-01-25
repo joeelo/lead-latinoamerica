@@ -113,10 +113,7 @@ export default function DesktopNav() {
       {anchorEl && anchorEl.dataset.name === 'resources' && (
         <Popover anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
           <Box className="link-container" display="flex" flexDirection="column">
-            <Link href="/resources/program">{t.programs}</Link>
-            <Link href="/resources/scholarships">{t.scholarships}</Link>
-            <Link href="/resources/internships">{t.internships}</Link>
-            <Link href="/resources/summer">{t.summer}</Link>
+            <Link href="/all-resources">{t.programs}</Link>
             <Link href="/local-resources">Local Resources</Link>
           </Box>
         </Popover>
