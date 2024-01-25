@@ -11,7 +11,6 @@ import es from '@/language/locales/es/footer.json'
 export default function Footer({
   showQuote = true,
   style = {},
-  noMarginTop = false,
 }) {
   const theme = useTheme()
   const t = useLocale() === 'en' ? en : es
@@ -25,7 +24,7 @@ export default function Footer({
       position="relative"
       bottom={0}
       style={{ ...style }}
-      mt={noMarginTop ? 0 : 20}
+      mt='auto'
       className="footer"
     >
       {showQuote && <DynamicQuote />}

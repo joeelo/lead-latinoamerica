@@ -51,6 +51,7 @@ export default function FullScreenBack({
           className="titleContainer"
           position="relative"
           zIndex={10}
+          marginBottom={8}
         >
           <TitleWithBackground
             text={headline || title}
