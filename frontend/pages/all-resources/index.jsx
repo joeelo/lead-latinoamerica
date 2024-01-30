@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
+import Skeleton from '@mui/material/Skeleton'
 
 import FullScreenBack from '@/components/background/FullScreenBack'
 import PhotoWithTextBox from '@/components/content/PhotoWithTextBox'
@@ -14,10 +15,12 @@ export default function AllResourcesPage() {
     apiFnArgs: []
   })
 
-  const programs = programsQuery?.data?.message || []
+  const isLoading = programsQuery.isLoading
+  const programs = programsQuery.data?.message || []
 
   return (
     <Layout>
+
       <FullScreenBack 
         src='/images/heylagostechie-IgUR1iX0mqM-unsplash.jpg'
         height="40vh"
@@ -39,15 +42,33 @@ export default function AllResourcesPage() {
         }}
       >
         <Grid container maxWidth={1200}>
-          {programs.map((program) => {
-            return (
-              <Grid key={program._id} item xs={12} sm={12} md={6} lg={4} xl={4}>
-                <PhotoWithTextBox 
-                  program={program}
-                />
+          {isLoading ? (
+            <>
+              <Grid item xs={12} sm={12} md={6} lg={4} xl={4} justifyContent='center' display='flex'>
+                <Skeleton animation="wave" variant="rectangular" height={350} width='80%'/>
               </Grid>
-            )
-          })}
+              <Grid item xs={12} sm={12} md={6} lg={4} xl={4} justifyContent='center' display='flex'>
+                <Skeleton animation="wave" variant="rectangular" height={350} width='80%'/>
+              </Grid>
+              <Grid item xs={12} sm={12} md={6} lg={4} xl={4} justifyContent='center' display='flex'>
+                <Skeleton animation="wave" variant="rectangular" height={350} width='80%'/>
+              </Grid>
+            </>
+          ) : (
+            <>
+              {programs.map((program) => {
+                return (
+                  <Grid key={program._id} item xs={12} sm={12} md={6} lg={4} xl={4}>
+                    <PhotoWithTextBox 
+                      program={program}
+                    />
+                  </Grid>
+                )
+              })}
+            </>
+          )}
+
+          
         </Grid>
       </Box>
     </Layout>
