@@ -45,12 +45,14 @@ export default function Footer({
           pr={!isMobile ? '' : 3}
           fontSize={!isMobile ? 22 : 18}
           width="100%"
+          pb={4}
         >
           <p
             style={{
               fontSize: !isMobile ? 24 : 20,
               fontWeight: 'bold',
               marginBottom: 16,
+              marginTop: isMobile ? 16 : 0,
               color: 'black',
             }}
           >

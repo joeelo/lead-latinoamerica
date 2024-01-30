@@ -3,7 +3,7 @@ import { useQuery } from "react-query"
 export default function useHttpQuery({
   key, 
   apiFn, 
-  apiFnArgs, 
+  apiFnArgs = [], 
   ...config
 }) {
 

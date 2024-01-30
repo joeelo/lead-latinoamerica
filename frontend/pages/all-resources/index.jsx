@@ -1,18 +1,20 @@
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Skeleton from '@mui/material/Skeleton'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import Image from 'next/image'
 
-import FullScreenBack from '@/components/background/FullScreenBack'
 import PhotoWithTextBox from '@/components/content/PhotoWithTextBox'
 import Layout from '@/components/layout/Layout'
 import ProgramRequests from '@/fetch/program/ProgramRequests'
 import useHttpQuery from '@/hooks/useHttpQuery'
 
 export default function AllResourcesPage() {
+  const isMobile = useMediaQuery('(max-width:768px)')
+
   const programsQuery = useHttpQuery({
     key: 'all-programs', 
     apiFn: ProgramRequests.getAllPrograms, 
-    apiFnArgs: []
   })
 
   const isLoading = programsQuery.isLoading
@@ -21,16 +23,18 @@ export default function AllResourcesPage() {
   return (
     <Layout>
 
-      <FullScreenBack 
-        src='/images/heylagostechie-IgUR1iX0mqM-unsplash.jpg'
-        height="40vh"
-        title='Programs'
-        titleInfo={{ 
-          show: true, 
-          backgroundColor: '#0077B6', 
-          color: 'white' 
-        }}
-      />
+      <Box style={{width: '100%', height: '40vw', position: 'relative', marginBottom: isMobile ? 32 : 16 }}>
+        <Box position='absolute' top={20} left={20} color="white" fontSize={isMobile ? 24 : 56} zIndex={100} fontWeight={600}>
+          Lead Programs
+        </Box>
+        <Image 
+          src='/images/heylagostechie-IgUR1iX0mqM-unsplash.jpg'
+          width={0}
+          objectFit='cover'
+          layout='fill'
+          alt="high school students studying"
+        />
+      </Box>
 
       <Box 
         display='flex'
