@@ -105,7 +105,7 @@ export default function Footer({
 
           <LinkUnderlineEffect
             size="md"
-            hrefFormatted="/add-program"
+            hrefFormatted="/add-program-q"
             text={t.addYourOrg}
             color="#222"
           />

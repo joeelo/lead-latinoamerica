@@ -55,7 +55,7 @@ const SlidePanel = ({ navOpen }) => {
       {!session && (
         <LinkUnderlineEffect hrefFormatted="/sign-in" text={t.signIn} />
       )}
-      <LinkUnderlineEffect hrefFormatted="/add-program" text={t.addOrg} />
+      <LinkUnderlineEffect hrefFormatted="/add-program-q" text={t.addOrg} />
       <LinkUnderlineEffect hrefFormatted="/" text={t.home} />
       <LinkUnderlineEffect
         openInNewTab

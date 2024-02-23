@@ -1,7 +1,6 @@
 // Inspo, redbull form - https://elementor.com/blog/website-form-design-examples/
 
 import Box from '@mui/material/Box'
-import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useRouter } from 'next/navigation'
@@ -12,6 +11,22 @@ import NavBar from '@/components/nav/NavBar'
 import getInputValidationError from '@/utils/getInputValidationError'
 import getIsValidUrl from '@/utils/getIsValidUrl'
 
+import Step1 from './Step1'
+
+export const textInputStyle = {
+  '.MuiInputBase-input': {
+    minHeight: {
+      lg: '75px', 
+      md: '32px'
+    }, 
+    fontSize: {
+      lg: 36, 
+      md: 24
+    }, 
+    lineHeight: 1.1,
+  }
+}
+
 export default function AddProgramSlides() {
   const router = useRouter()
   const isMobile = useMediaQuery('(max-width:600px)')
@@ -19,6 +34,7 @@ export default function AddProgramSlides() {
   const [inputValue, setInputValue] = useState('')
   const [checkboxValues, setCheckboxValues] = useState([])
   const [errorText, setErrorText] = useState('')
+  const [step1Value, setStep1Value] = useState('')
   const [answers, setAnswers] = useState({
     name: {
       label: 'What is the name of the program?', 
@@ -180,7 +196,7 @@ export default function AddProgramSlides() {
               </>
             )}
 
-            {currentKey.type === 'text' && (
+            {/* {currentKey.type === 'text' && (
               <TextField
                 error={!!errorText}
                 helperText={errorText}
@@ -204,6 +220,16 @@ export default function AddProgramSlides() {
                 onChange={(event) => {
                   setInputValue(event.target.value)
                   setErrorText('')
+                }}
+              />
+            )} */}
+
+            {step === 0 && (
+              <Step1 
+                errorText=''
+                value={step1Value}
+                onChange={(event) => {
+                  setStep1Value(event.target.value)
                 }}
               />
             )}
@@ -230,7 +256,6 @@ export default function AddProgramSlides() {
 
       {isMobile && (
         <>
-
           {step > 0 && (
             <Box display="flex" justifyContent="center" mb={3}>
               <button className='fade-button' onClick={onPrevClick} style={{ width: 260, padding: 0  }}>

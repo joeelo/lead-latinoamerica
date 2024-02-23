@@ -17,6 +17,8 @@ export default function AllResourcesPage() {
     apiFn: ProgramRequests.getAllPrograms, 
   })
 
+  console.log(programsQuery)
+
   const isLoading = programsQuery.isLoading
   const programs = programsQuery.data?.message || []
 
