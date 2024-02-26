@@ -27,11 +27,12 @@ export default function DesktopNav() {
     <Box
       width='100%'
       background-color='white'
-      padding='30px 0'
+      boxShadow='1px 1px 15px 0px rgba(0, 0, 0, 0.3)'
+      padding='20px 0'
       position='relative'
-      fontSize='18px'
+      fontSize='16px'
       display='flex'
-      borderBottom='1px solid rgba(0, 0, 0, 0.1)'
+      borderBottom='1px solid rgba(0, 0, 0, 0.2)'
       sx={{
       'a': {
           color: 'black',
@@ -56,7 +57,7 @@ export default function DesktopNav() {
           onPointerEnter={handleMouseEnter}
           data-name="get-involved"
           style={{ cursor: 'pointer' }}
-          mr={4}
+          mr={1}
         >
           {t.portal}
         </Box>
@@ -65,7 +66,7 @@ export default function DesktopNav() {
           onPointerEnter={handleMouseEnter}
           data-name="resources"
           style={{ cursor: 'pointer' }}
-          mr={4}
+          mr={1}
         >
           {t.resources}
         </Box>
@@ -73,7 +74,7 @@ export default function DesktopNav() {
           style={{ cursor: 'pointer' }}
           width="80px"
           onPointerEnter={handleExternalMouseEnter}
-          mr={4}
+          mr={1}
         >
           <Link href="/">{t.home}</Link>
         </Box>
@@ -81,7 +82,7 @@ export default function DesktopNav() {
           width="100px"
           onPointerEnter={handleExternalMouseEnter}
           style={{ cursor: 'pointer' }}
-          mr={2}
+          mr={1}
         >
           {!session ? (
             <Link className="link" href="/sign-in">

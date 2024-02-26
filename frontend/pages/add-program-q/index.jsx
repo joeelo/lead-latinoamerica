@@ -18,11 +18,11 @@ import Step5 from './Step5'
 export const textInputStyle = {
   '.MuiInputBase-input': {
     minHeight: {
-      lg: '75px', 
+      lg: '55px', 
       md: '32px'
     }, 
     fontSize: {
-      lg: 36, 
+      lg: 32, 
       md: 24
     }, 
     lineHeight: 1.1,
@@ -32,69 +32,30 @@ export const textInputStyle = {
 export default function AddProgramSlides() {
   const router = useRouter()
   const isMobile = useMediaQuery('(max-width:600px)')
-  const [step, setStep] = useState(3)
-  const [inputValue, setInputValue] = useState('')
-  const [checkboxValues, setCheckboxValues] = useState([])
+  const [step, setStep] = useState(0)
+
   const [errorText, setErrorText] = useState('')
   const [step1Value, setStep1Value] = useState('')
   const [step2Value, setStep2Value] = useState('')
   const [step3Value, setStep3Value] = useState('')
   const [step4Value, setStep4Value] = useState([])
   const [step5Value, setStep5Value] = useState('')
-  const [answers, setAnswers] = useState({
-    name: {
-      label: 'What is the name of the program?', 
-      type: 'text', 
-      value: '', 
-      validation: { min: 3 }, 
-      validationMet: false
-    }, 
-    description: {
-      label: 'A short description about the program', 
-      type: 'text', 
-      value: '', 
-      multiline: true,
-    }, 
-    keywords: {
-      label: 'Labels to help identify the uses', 
-      infoText: 'Use commas to create new label, ie: funding, scholarship, after-school, etc.',
-      type: 'text', 
-      value: ''
-    }, 
-    programType: {
-      label: 'What type of program is it?',
-      infoText: 'Choose all that apply', 
-      type: 'checkbox', 
-      options: [
-        {label: 'Summer', value: 'summer'}, 
-        {label: 'Program', value: 'program',}, 
-        {label: 'Internship', value: 'internship',}, 
-        {label: 'Scholarship', value: 'scholarship',}
-      ],
-      value: [],
-      validationMet: false,
-      validation: { min: 1 }
-    },  
-    partnerUrl: {
-      label: 'Link/URL for opportunity', 
-      type: 'text', 
-      value: '', 
-      validation: (value) => {
-        return getIsValidUrl(value)
-      }
-    }
-  })
 
-  const questionKeys = ['name', 'description', 'keywords', 'programType', 'partnerUrl']
+  const questionKeys = [
+    { label: 'What is the name of the program?' }, 
+    { label: 'A short description about the program' }, 
+    { label: 'Labels to help identify the uses', infoText: 'Use commas to create new label, ie: funding, scholarship, after-school, etc.', }, 
+    { label: 'What type of program is it?', infoText: 'Choose all that apply',  }, 
+    { label: 'Link/URL for opportunity',  }, 
+  ]
 
-  const currentKey = answers[questionKeys[step]]
+  const currentQuestion = questionKeys[step]
 
-  if (!currentKey) {
+  if (!currentQuestion) {
     return router.push('congrats')
   }
 
   const onNextClick = () => {
-    let value = inputValue 
     let inputError = ''
 
     if (step === 0) {
@@ -116,7 +77,7 @@ export default function AddProgramSlides() {
     }
 
     if (step === 4) {
-      if (!getIsValidUrl(value)) {
+      if (!getIsValidUrl(step5Value)) {
         inputError = 'Please enter a valid URL'
       }
     }
@@ -127,28 +88,14 @@ export default function AddProgramSlides() {
       return 
     }
 
-    const objKey = questionKeys[step]
-    const currObj = {...currentKey, value, validationMet: true}
-
-    setAnswers({
-      ...answers, 
-      [objKey]: {...currObj}
-    })
     setStep((prevState) => prevState + 1)
 
-    const inputtedValue = answers[questionKeys[step + 1]]?.value || ''
-
-    setInputValue(inputtedValue)
     setErrorText('')
-    setCheckboxValues([])
   }
 
   const onPrevClick = () => {
-    const oldValue = answers[questionKeys[step - 1]].value
-
     setStep((prevState) => prevState - 1)
     setErrorText('')
-    setInputValue(oldValue)
   }
 
   return (
@@ -163,12 +110,12 @@ export default function AddProgramSlides() {
           alignItems="center" 
           position="relative"
         >
-          <Box p={4} mt={isMobile ? 8 : 0} textAlign={isMobile ? 'center' : ''}>
+          <Box p={4} mt={isMobile ? 8 : 1} textAlign={isMobile ? 'center' : ''}>
             <Typography mb={isMobile ? 2 : 0}>
               Question {step + 1} of {questionKeys.length}
             </Typography>
-            <Typography variant={isMobile ? 'h3' : 'h1'} fontWeight={600}>
-              {currentKey.label}
+            <Typography variant={isMobile ? 'h3' : 'h2'} fontWeight={600}>
+              {currentQuestion.label}
             </Typography>
           </Box>
 
@@ -251,9 +198,9 @@ export default function AddProgramSlides() {
               />
             )}
 
-            {!!currentKey.infoText && (
+            {!!currentQuestion.infoText && (
               <Typography color="GrayText">
-                {currentKey.infoText}
+                {currentQuestion.infoText}
               </Typography>
             )}
           </Box>

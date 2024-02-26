@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import { useEffect,useState } from 'react'
+import { useEffect, useRef,useState } from 'react'
 
 export default function LargeCheckbox({
   isChecked, 
@@ -9,23 +9,31 @@ export default function LargeCheckbox({
   ...props
 }) {
   const [clickPosition, setClickPosition] = useState({x: null, y: null})
+  const timerId = useRef(null)
+
+  const clickPosFunc = () => {
+    clearTimeout(timerId.current)
+    timerId.current = null
+    setClickPosition({
+      x: null, 
+      y: null,
+    })
+  }
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setClickPosition({
-        x: null, 
-        y: null,
-      })
-    }, 1000)
+    timerId.current = window.setTimeout(clickPosFunc, 800)
 
-    return () => clearTimeout(timeout)
-
+    return () => {
+      clearTimeout(timerId.current)
+    }
   }, [clickPosition.x])
 
   return (
     <Box 
       border='1px solid lightgrey' 
       onClick={(e) => {
+        clearTimeout()
+
         const {
           x, 
           y, 
