@@ -6,12 +6,14 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-import LargeCheckbox from '@/components/form/checkbox/LargeCheckbox'
 import NavBar from '@/components/nav/NavBar'
-import getInputValidationError from '@/utils/getInputValidationError'
 import getIsValidUrl from '@/utils/getIsValidUrl'
 
 import Step1 from './Step1'
+import Step2 from './Step2'
+import Step3 from './Step3'
+import Step4 from './Step4'
+import Step5 from './Step5'
 
 export const textInputStyle = {
   '.MuiInputBase-input': {
@@ -30,11 +32,15 @@ export const textInputStyle = {
 export default function AddProgramSlides() {
   const router = useRouter()
   const isMobile = useMediaQuery('(max-width:600px)')
-  const [step, setStep] = useState(0)
+  const [step, setStep] = useState(3)
   const [inputValue, setInputValue] = useState('')
   const [checkboxValues, setCheckboxValues] = useState([])
   const [errorText, setErrorText] = useState('')
   const [step1Value, setStep1Value] = useState('')
+  const [step2Value, setStep2Value] = useState('')
+  const [step3Value, setStep3Value] = useState('')
+  const [step4Value, setStep4Value] = useState([])
+  const [step5Value, setStep5Value] = useState('')
   const [answers, setAnswers] = useState({
     name: {
       label: 'What is the name of the program?', 
@@ -89,16 +95,34 @@ export default function AddProgramSlides() {
 
   const onNextClick = () => {
     let value = inputValue 
+    let inputError = ''
 
-    if (currentKey.type === 'checkbox') {
-      value = checkboxValues
+    if (step === 0) {
+      if (step1Value <= 3) {
+        inputError = '3 character mininum'
+      }
     }
 
-    const err = getInputValidationError(value, currentKey.validation)
+    if (step === 1) {
+      if (!step2Value) {
+        inputError = 'Required'
+      }
+    }
 
-    
-    if (err) {
-      setErrorText(err)
+    if (step === 3) {
+      if (!step4Value.length) {
+        inputError = 'Please select one'
+      }
+    }
+
+    if (step === 4) {
+      if (!getIsValidUrl(value)) {
+        inputError = 'Please enter a valid URL'
+      }
+    }
+
+    if (inputError) {
+      setErrorText(inputError)
 
       return 
     }
@@ -166,70 +190,63 @@ export default function AddProgramSlides() {
           p={4}
         >
           <Box width="100%">
-            {currentKey.type === 'checkbox' && (
-              <>
-                <Box display="flex" flexWrap="wrap">
-                  {currentKey.options.map((option) => {
-                    return (
-                      <LargeCheckbox 
-                        key={option.value}
-                        isChecked={checkboxValues.includes(option.value)}
-                        onChange={() => {
-                          if (!checkboxValues.includes(option.value)) {
-                            setCheckboxValues([...checkboxValues, option.value])
-                          } else {
-                            const newValues = checkboxValues.filter((val) => val !== option.value)
-                            setCheckboxValues(newValues)
-                          }
-                        }}
-                        label={option.label}
-                        style={{ width: '45%', marginBottom: 16, marginRight: 16, }}
-                      />
-                    )
-                  })}
-                </Box>
-                {errorText && (
-                  <Typography color="#d32f2f" fontSize="0.75rem">
-                    {errorText}
-                  </Typography>
-                )}
-              </>
-            )}
-
-            {/* {currentKey.type === 'text' && (
-              <TextField
-                error={!!errorText}
-                helperText={errorText}
-                value={inputValue}
-                fullWidth
-                multiline={currentKey.multiline}
-                rows={currentKey.multiline ? 5 : ''}
-                sx={{
-                  '.MuiInputBase-input': {
-                    minHeight: {
-                      lg: '75px', 
-                      md: '32px'
-                    }, 
-                    fontSize: {
-                      lg: 36, 
-                      md: 24
-                    }, 
-                    lineHeight: 1.1,
-                  }
-                }}
-                onChange={(event) => {
-                  setInputValue(event.target.value)
-                  setErrorText('')
-                }}
-              />
-            )} */}
-
             {step === 0 && (
               <Step1 
-                errorText=''
+                errorText={errorText}
                 value={step1Value}
                 onChange={(event) => {
                   setStep1Value(event.target.value)
+
+                  setErrorText('')
+                }}
+              />
+            )}
+
+            {step === 1 && (
+              <Step2 
+                errorText={errorText}
+                value={step2Value}
+                onChange={(event) => {
+                  setStep2Value(event.target.value)
+
+                  setErrorText('')
+                }}
+              />
+            )}
+
+            {step === 2 && (
+              <Step3
+                errorText={errorText}
+                value={step3Value}
+                onChange={(event) => {
+                  setStep3Value(event.target.value)
+                }}
+              />
+            )}
+
+            {step === 3 && (
+              <Step4
+                errorText={errorText}
+                value={step4Value}
+                onChange={(value) => { 
+                  console.log(value)
+                  if (step4Value.includes(value)) {
+                    const newValues = step4Value.filter((v) => v !== value)
+
+                    setStep4Value(newValues)
+                  } else {
+                    setStep4Value([...step4Value, value])
+                  }
+                }}
+              />
+            )}
+
+            {step === 4 && (
+              <Step5
+                errorText={errorText}
+                value={step5Value}
+                onChange={(event) => {
+                  setStep5Value(event.target.value)
                 }}
               />
             )}

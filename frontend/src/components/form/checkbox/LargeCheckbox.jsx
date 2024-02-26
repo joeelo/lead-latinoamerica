@@ -11,8 +11,6 @@ export default function LargeCheckbox({
   const [clickPosition, setClickPosition] = useState({x: null, y: null})
 
   useEffect(() => {
-    clearTimeout(timeout)
-
     const timeout = setTimeout(() => {
       setClickPosition({
         x: null, 
@@ -21,14 +19,13 @@ export default function LargeCheckbox({
     }, 1000)
 
     return () => clearTimeout(timeout)
+
   }, [clickPosition.x])
 
   return (
     <Box 
       border='1px solid lightgrey' 
       onClick={(e) => {
-        clearTimeout()
-
         const {
           x, 
           y, 

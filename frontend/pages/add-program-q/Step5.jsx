@@ -2,7 +2,7 @@ import TextField from '@mui/material/TextField'
 
 import { textInputStyle } from './index'
 
-export default function Step1({
+export default function Step5({
   errorText, 
   value, 
   onChange
