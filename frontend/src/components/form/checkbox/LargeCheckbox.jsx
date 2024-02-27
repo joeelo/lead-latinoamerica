@@ -9,6 +9,7 @@ export default function LargeCheckbox({
   ...props
 }) {
   const [clickPosition, setClickPosition] = useState({x: null, y: null})
+  // https://stackoverflow.com/questions/71499969/settimeout-and-cleartimeout-in-react
   const timerId = useRef(null)
 
   const clickPosFunc = () => {

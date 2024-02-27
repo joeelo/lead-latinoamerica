@@ -27,17 +27,18 @@ export default function DesktopNav() {
     <Box
       width='100%'
       background-color='white'
-      boxShadow='1px 1px 15px 0px rgba(0, 0, 0, 0.3)'
+      boxShadow='-11px -11px 9px 3px rgba(0, 0, 0, 0.2)'
       padding='20px 0'
       position='relative'
       fontSize='16px'
       display='flex'
+      zIndex='100'
       borderBottom='1px solid rgba(0, 0, 0, 0.2)'
       sx={{
       'a': {
           color: 'black',
           textDecoration: 'none',
-          margin: '3px 0',
+          margin: '5px 0',
         }
       }}
     >
@@ -54,21 +55,27 @@ export default function DesktopNav() {
       >
         <Box
           width="120px"
-          onPointerEnter={handleMouseEnter}
-          data-name="get-involved"
           style={{ cursor: 'pointer' }}
           mr={1}
         >
-          {t.portal}
+          <span
+            onPointerEnter={handleMouseEnter}
+            data-name="get-involved"
+          >
+            {t.portal}
+          </span>
         </Box>
         <Box
           width="110px"
-          onPointerEnter={handleMouseEnter}
-          data-name="resources"
           style={{ cursor: 'pointer' }}
           mr={1}
         >
-          {t.resources}
+          <span
+            data-name="resources"
+            onPointerEnter={handleMouseEnter}
+          >
+            {t.resources}
+          </span>
         </Box>
         <Box
           style={{ cursor: 'pointer' }}

@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 import NavBar from '@/components/nav/NavBar'
+import { postToDatabase } from '@/fetch/requests'
 import getIsValidUrl from '@/utils/getIsValidUrl'
 
 import Step1 from './Step1'
@@ -46,12 +47,26 @@ export default function AddProgramSlides() {
     { label: 'A short description about the program' }, 
     { label: 'Labels to help identify the uses', infoText: 'Use commas to create new label, ie: funding, scholarship, after-school, etc.', }, 
     { label: 'What type of program is it?', infoText: 'Choose all that apply',  }, 
-    { label: 'Link/URL for opportunity',  }, 
+    { label: 'Link/URL for opportunity', }, 
   ]
 
   const currentQuestion = questionKeys[step]
 
-  if (!currentQuestion) {
+  if (!currentQuestion) { // After step 5
+    const programType = {}
+
+    step4Value.forEach((val) => programType[val] = true)
+
+    const data = {
+      name: step1Value, 
+      bio: step2Value, 
+      helpsWith: step3Value, 
+      programType, 
+      partnerUrl: step5Value, 
+    }
+
+    postToDatabase(data, '/programs/add')
+
     return router.push('congrats')
   }
 
@@ -96,6 +111,10 @@ export default function AddProgramSlides() {
   const onPrevClick = () => {
     setStep((prevState) => prevState - 1)
     setErrorText('')
+  }
+
+  if (!currentQuestion) { // This should never be hit
+    return <>finished</>
   }
 
   return (
@@ -176,7 +195,6 @@ export default function AddProgramSlides() {
                 errorText={errorText}
                 value={step4Value}
                 onChange={(value) => { 
-                  console.log(value)
                   if (step4Value.includes(value)) {
                     const newValues = step4Value.filter((v) => v !== value)
 
@@ -193,6 +211,8 @@ export default function AddProgramSlides() {
                 errorText={errorText}
                 value={step5Value}
                 onChange={(event) => {
+                  setErrorText('')
+
                   setStep5Value(event.target.value)
                 }}
               />

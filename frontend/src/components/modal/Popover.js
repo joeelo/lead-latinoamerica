@@ -1,7 +1,7 @@
+import Box from '@mui/material/Box'
 import debounce from 'lodash/debounce'
 import PropTypes from 'prop-types'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-import styled from 'styled-components'
 
 import useMousePosition from '@/hooks/useMousePosition'
 
@@ -12,7 +12,7 @@ Popover.propTypes = {
 
 function Popover({ anchorEl, setAnchorEl, children }) {
   const updateInnerWidth = useMemo(() => {
-    debounce(() => setInnerWidth(window.innerWidth), 50)
+    debounce(() => setInnerWidth(window.innerWidth), 25)
   }, [])
 
   const containerRef = useRef(null)
@@ -68,24 +68,22 @@ function Popover({ anchorEl, setAnchorEl, children }) {
   }, [mousePosition])
 
   return (
-    <Container left={left} ref={containerRef}>
+    <Box 
+      position='absolute'
+      transition='0.4s ease-in-out all'
+      zIndex={100000}
+      bgcolor='white'
+      top='70px'
+      boxShadow='4px 15px 12px 7px rgba(0, 0, 0, 0.15)'
+      padding='20px'
+      cursor='auto'
+      borderRadius={2}
+      left={left} 
+      ref={containerRef}
+    >
       {children}
-    </Container>
+    </Box>
   )
 }
 
 export default Popover
-
-const Container = styled.div`
-  position: absolute;
-  left: ${(props) => props.left}px;
-  transition: 0.4s ease-in-out all;
-  opacity: ${(props) => (props.left ? 1 : 0)};
-  background-color: white;
-  z-index: 1000;
-  top: 70px;
-  box-shadow: 5px 5px 6px -2px rgba(0, 0, 0, 0.5);
-  padding: 20px;
-  cursor: auto;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-`
