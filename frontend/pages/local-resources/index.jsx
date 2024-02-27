@@ -1,8 +1,8 @@
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 import useMediaQuery from '@mui/material/useMediaQuery'
+import Image from "next/image"
 
-import FullScreenBack from "@/components/background/FullScreenBack"
 import Footer from "@/components/footer/Footer"
 import ResourceCard from "@/components/generic/ResourceCard"
 import NavBar from "@/components/nav/NavBar"
@@ -21,17 +21,18 @@ export default function LocalResourcesPage() {
     <>
       <NavBar />
 
-      <FullScreenBack 
-				height="40vh"
-        src="/images/hannah-busing-compressed.jpg"
-        title={t.resources}
-        titleInfo={{ 
-					show: true, 
-					backgroundColor: '#0077B6', 
-					color: 'white' 
-				}}
-        noMarginBottom={false}
-      />
+      <Box style={{width: '100%', height: '40vh', position: 'relative', marginBottom: isMobile ? 32 : 16 }}>
+        <Box position='absolute' top={20} left={20} color="white" fontSize={isMobile ? 24 : 56} zIndex={100} fontWeight={600}>
+          Resources
+        </Box>
+        <Image
+          src='/images/hannah-busing-compressed.jpg'
+          width={0}
+          objectFit='cover'
+          layout='fill'
+          alt="hands in a circle"
+        />
+      </Box>
 
       <Box display="flex" justifyContent="center">
         <Box 

@@ -23,7 +23,7 @@ export default function AllResourcesPage() {
   return (
     <Layout>
 
-      <Box style={{width: '100%', height: '40vw', position: 'relative', marginBottom: isMobile ? 32 : 16 }}>
+      <Box style={{width: '100%', height: '40vh', position: 'relative', marginBottom: isMobile ? 32 : 16 }}>
         <Box position='absolute' top={20} left={20} color="white" fontSize={isMobile ? 24 : 56} zIndex={100} fontWeight={600}>
           Lead Programs
         </Box>
