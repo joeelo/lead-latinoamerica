@@ -27,10 +27,10 @@ export default function DesktopNav() {
     <Box
       width='100%'
       background-color='white'
-      boxShadow='-11px -11px 9px 3px rgba(0, 0, 0, 0.2)'
+      boxShadow='-11px -11px 11px 3px rgba(200, 200, 200, 0.3)'
       padding='20px 0'
       position='relative'
-      fontSize='16px'
+      fontSize='18px'
       display='flex'
       zIndex='100'
       borderBottom='1px solid rgba(0, 0, 0, 0.2)'
@@ -61,6 +61,7 @@ export default function DesktopNav() {
           <span
             onPointerEnter={handleMouseEnter}
             data-name="get-involved"
+            style={{ padding: '4px 0'}}
           >
             {t.portal}
           </span>
@@ -73,6 +74,7 @@ export default function DesktopNav() {
           <span
             data-name="resources"
             onPointerEnter={handleMouseEnter}
+            style={{ padding: '4px 0'}}
           >
             {t.resources}
           </span>
