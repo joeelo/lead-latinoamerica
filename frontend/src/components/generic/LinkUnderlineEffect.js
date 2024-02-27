@@ -23,7 +23,6 @@ export default function LinkUnderlineEffect({
           backgroundSize: '0% 2px',
           textDecoration: 'none',
           backgroundRepeat: 'no-repeat',
-
           '&:hover': {
             backgroundPosition: '100% 100%' /*OR bottom right*/,
             backgroundSize: '100% 2px',

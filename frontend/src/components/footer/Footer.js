@@ -11,7 +11,6 @@ import es from '@/language/locales/es/footer.json'
 export default function Footer({
   showQuote = true,
   style = {},
-  noMarginTop = false,
 }) {
   const theme = useTheme()
   const t = useLocale() === 'en' ? en : es
@@ -25,7 +24,7 @@ export default function Footer({
       position="relative"
       bottom={0}
       style={{ ...style }}
-      mt={noMarginTop ? 0 : 20}
+      mt='auto'
       className="footer"
     >
       {showQuote && <DynamicQuote />}
@@ -46,12 +45,14 @@ export default function Footer({
           pr={!isMobile ? '' : 3}
           fontSize={!isMobile ? 22 : 18}
           width="100%"
+          pb={4}
         >
           <p
             style={{
               fontSize: !isMobile ? 24 : 20,
               fontWeight: 'bold',
               marginBottom: 16,
+              marginTop: isMobile ? 16 : 0,
               color: 'black',
             }}
           >
@@ -104,7 +105,7 @@ export default function Footer({
 
           <LinkUnderlineEffect
             size="md"
-            hrefFormatted="/add-program"
+            hrefFormatted="/add-program-q"
             text={t.addYourOrg}
             color="#222"
           />

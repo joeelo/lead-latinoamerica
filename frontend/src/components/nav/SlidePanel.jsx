@@ -33,20 +33,7 @@ const SlidePanel = ({ navOpen }) => {
       <LanguageButtons />
 
       <SectionHeader> {t.resources} </SectionHeader>
-      <LinkUnderlineEffect
-        hrefFormatted="/resources/program"
-        text={t.programs}
-      />
-      <LinkUnderlineEffect
-        hrefFormatted="/resources/scholarships"
-        text={t.scholarships}
-      />
-      <LinkUnderlineEffect
-        hrefFormatted="/resources/internships"
-        text={t.internships}
-      />
-  
-      <LinkUnderlineEffect hrefFormatted="/resources/summer" text={t.summer} />
+      <LinkUnderlineEffect hrefFormatted="/all-resources/" text={t.programs} />
 
       <LinkUnderlineEffect
         hrefFormatted="/local-resources"
@@ -68,7 +55,7 @@ const SlidePanel = ({ navOpen }) => {
       {!session && (
         <LinkUnderlineEffect hrefFormatted="/sign-in" text={t.signIn} />
       )}
-      <LinkUnderlineEffect hrefFormatted="/add-program" text={t.addOrg} />
+      <LinkUnderlineEffect hrefFormatted="/add-program-q" text={t.addOrg} />
       <LinkUnderlineEffect hrefFormatted="/" text={t.home} />
       <LinkUnderlineEffect
         openInNewTab

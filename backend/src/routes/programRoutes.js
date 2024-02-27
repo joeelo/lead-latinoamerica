@@ -8,10 +8,25 @@ const { emailApprovedProgram } = require('../email/emailApprovedProgram')
 const translateText = require('../translation/translator')
 
 const logError = (error) => {
-  console.log(error)
+  console.error(error)
+  console.log(JSON.stringify(error))
 }
 
 const isLocalEnv = process.env.DEPLOY_ENV === 'local'
+
+router.get('/programs', async (_req, res) => {
+  try {
+    const programs = await Program.find({
+      approved: true,
+      expirationDate: { $gt: new Date().toISOString() }
+    }).lean()
+    
+    res.send({ message: programs })
+  } catch (error) {
+    logError(error)
+    res.send({ success: false, message: error })
+  }
+})
 
 router.post('/programs/add', async (req, res) => {
   try {
@@ -64,11 +79,8 @@ router.post('/programs/add', async (req, res) => {
       res.send({ success: true, message: 'success' })
     } 
   } catch (error) {
-    res.send({ 
-      errorMessage: error, 
-      error: true, 
-      success: false 
-    })
+    logError(error)
+    res.send({ success: false, message: error })
   }
 })
 
@@ -89,6 +101,7 @@ router.get('/program/:href', async (req, res) => {
     res.send({ message: 'success', program })
   } catch (error) {
     logError(error)
+    res.send({ success: false, message: error })
   }
 })
 
@@ -97,6 +110,7 @@ router.get('/new-programs', async (req, res) => {
     res.send({ success: true, message: '' })
   } catch (error) {
     logError(error)
+    res.send({ success: false, message: error })
   }
 })
 
@@ -115,18 +129,7 @@ router.get('/programs/resources', async (req, res) => {
     res.send({ success: true, message: programs })
   } catch (error) {
     logError(error)
-    res.send({ message: error })
-  }
-})
-
-router.get('/programs', async (_req, res) => {
-  try {
-    const programs = await Program.find({}).lean()
-
-    res.send({ message: programs })
-  } catch (error) {
-    logError(error)
-    res.send({ success: true, message: error })
+    res.send({ success: false, message: error })
   }
 })
 
@@ -149,7 +152,7 @@ router.put('/program/edit/:href/:approve', async (req, res) => {
       (error) => {
         if (error) {
           logError(error)
-          res.send({ success: false, message: error, error: true })
+          res.send({ success: false, message: error })
         }
       }
     )

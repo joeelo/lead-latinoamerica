@@ -38,3 +38,66 @@ p, div, span, textarea, a {
   height: 100%; 
   position: relative;
 }
+
+/* https://codepen.io/onediv/pen/jEmjap */
+.fade-button{
+  background:#1AAB8A;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition: 400ms ease all;
+  outline:none;
+  border-radius: 4px;
+}
+.fade-button:hover{
+  background:#fff;
+  color:#1AAB8A;
+}
+.fade-button:before,.fade-button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition: 200ms ease all;
+}
+.fade-button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.fade-button:hover:before,.fade-button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+.ripples {
+  background-color: #000; 
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  min-width: 100px; 
+  min-height: 100px; 
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: animate 1s linear infinite; 
+}
+
+@keyframes animate {
+  0% {
+    min-width: 0px; 
+    min-height: 0px; 
+    opacity: 0.5;
+  }
+  100% {
+    min-width: 500px; 
+    min-height: 500px; 
+    opacity: 0;
+  }
+}

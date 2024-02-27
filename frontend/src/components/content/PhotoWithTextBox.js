@@ -10,7 +10,7 @@ const PhotoWithTextBox = ({
 }) => {
   const router = useRouter()
   const clickHandler = () => {
-    router.push(`${router.asPath}/${href.toLowerCase()}`)
+    router.push(`/resources/${href.toLowerCase()}`)
   }
 
   const now = new Date().toISOString()
@@ -36,7 +36,7 @@ const PhotoWithTextBox = ({
             pt={2}
             right={0}
             pr={2}
-            fontSize={24}
+            fontSize={28}
           >
             {name}
           </Typography>
