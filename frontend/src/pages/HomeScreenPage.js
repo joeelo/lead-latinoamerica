@@ -48,7 +48,7 @@ const HomeScreenPage = () => {
         </Typography>
 
         <Box display="flex" flexWrap="wrap" justifyContent="center" alignItems="center" minHeight={725} >
-          <Box width={!isMobile ? '50%' : '100%'} p={4} maxWidth={500} sx={{ marginRight: [0, 0 , 4, 4, 4]}}>
+          <Box width={!isMobile ? '50%' : '100%'} p={4} maxWidth={650} sx={{ marginRight: [0, 0, 4, 4, 4]}}>
             <Typography mb={3} fontSize={20}>
               {t.purposeArray.sentence1}
             </Typography>
@@ -68,6 +68,63 @@ const HomeScreenPage = () => {
               style={{ maxWidth: '100%', maxHeight: '100%', borderRadius: 12, boxShadow: '15px 15px 12px 7px rgba(0, 0, 0, 0.15)' }}
               height={600}
             />
+          </Box>
+        </Box>
+      </Box>
+
+      <Box display="flex" mt={2} flexWrap='wrap'>
+        <Box width={!isMobile ? '50%' : '100%'} height='35vw'>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/hari-nandakumar-fbJr86YN574-unsplash.jpg" alt="mission mural" width="100%" height="100%"/>
+        </Box>
+
+        <Box bgcolor='#1C68F0' width={!isMobile ? '50%' : '100%'} px={5} py={8}>
+          <Box display="flex" alignItems="center">
+            <Typography variant="h1">
+              {/* https://kinsta.com/blog/css-text-outline/ */}
+              <span style={{ WebkitTextStrokeWidth: '1px', color:'#1C68F0', WebkitTextStrokeColor: 'white' }}>
+                80%
+              </span>
+            </Typography>
+            <Typography pl={2} fontSize={22} color="white">
+              of students graduate from Mission high. 
+            </Typography>
+          </Box>
+
+          <Box display="flex" alignItems="center">
+            <Typography variant="h1" pl={6}>
+              {/* https://kinsta.com/blog/css-text-outline/ */}
+              <span style={{ WebkitTextStrokeWidth: '1px', color:'#1C68F0', WebkitTextStrokeColor: 'white' }}>
+                58%
+              </span>
+            </Typography>
+            <Typography pl={2} fontSize={22} color="white">
+              Percentage of graduates who meet UC/CSU entrance requirements
+            </Typography>
+          </Box>
+          
+          <Box display="flex" alignItems="center">
+            <Typography variant="h1" pl={3}>
+              {/* https://kinsta.com/blog/css-text-outline/ */}
+              <span style={{ WebkitTextStrokeWidth: '1px', color:'#1C68F0', WebkitTextStrokeColor: 'white' }}>
+                25%
+              </span>
+            </Typography>
+            <Typography pl={2} fontSize={22} color="white">
+              SAT 12th grade college readiness rate
+            </Typography>
+          </Box>
+
+          <Box display="flex" alignItems="center">
+            <Typography pl={2} fontSize={22} color="white">
+              We aim to bring this number to 
+            </Typography>
+            <Typography variant="h1" pl={3}>
+              {/* https://kinsta.com/blog/css-text-outline/ */}
+              <span style={{ WebkitTextStrokeWidth: '1px', color:'#1C68F0', WebkitTextStrokeColor: 'white' }}>
+                100%
+              </span>
+            </Typography>
           </Box>
         </Box>
       </Box>
