@@ -1,16 +1,15 @@
 'use client'
 import Box from '@mui/material/Box'
 import { useTheme } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
+import Image from 'next/image'
 import styled from 'styled-components'
 
 import FullScreenBack from '@/components/background/FullScreenBack'
 import VideoBackground from '@/components/background/VideoBackground'
-import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
 import ContentWithSideImage from '@/components/content/ContentWithSideImage'
-import TitleAndPhotoLinkBox from '@/components/content/TitleAndPhotoLinkBox'
 import Footer from '@/components/footer/Footer'
-import CenterFlexContainer from '@/components/generic/CenterFlexContainer'
 import FadeInText from '@/components/generic/FadeInText'
 import NavBar from '@/components/nav/NavBar'
 import useGetRandomQuote from '@/hooks/useGetRandomQuote'
@@ -23,37 +22,6 @@ const HomeScreenPage = () => {
   const quote = useGetRandomQuote()
   const isMobile = useMediaQuery('(max-width:600px)')
   const t = useLocale() === 'en' ? en : es
-
-  const opportunityInfo = [
-    {
-      title: t.scholarships.headline,
-      text: t.scholarships.bio,
-      footer: t.scholarships.link,
-      svg: '/images/svg/scholarship-svgrepo-com.svg',
-      link: 'scholarships',
-    },
-    {
-      title: t.summer.headline,
-      text: t.summer.bio,
-      footer: t.summer.link,
-      svg: '/images/svg/summer-svgrepo-com.svg',
-      link: 'summer',
-    },
-    {
-      title: t.internships.headline,
-      text: t.internships.bio,
-      footer: t.internships.link,
-      svg: '/images/svg/learning-svgrepo-com.svg',
-      link: 'internships',
-    },
-    {
-      title: t.programs.headline,
-      text: t.programs.bio,
-      footer: t.programs.link,
-      svg: '/images/svg/online-class-svgrepo-com.svg',
-      link: 'program',
-    },
-  ]
 
   return (
     <Box position="relative">
@@ -70,54 +38,39 @@ const HomeScreenPage = () => {
         </RelativeTextContainer>
       </FullScreenBack>
 
-      <CenterFlexContainer
-        backgroundColor={theme.colors.cultured}
-        minHeight="auto"
-        padding={60}
+      <Box
+        pt={3}
+        maxWidth={isMobile ? '1200' : '90%'}
+        margin='0 auto'
       >
-        <ChangingBackgroundText
-          onlyRunOneTransition
-          initialColor={theme.colors.cultured}
-          secondaryColor={theme.colors.darkBlue}
-          text={t.missionDistrict}
-          fontColorInitial={theme.colors.darkBlue}
-          fontColorSecondary={theme.colors.cultured}
-        />
-      </CenterFlexContainer>
+        <Typography variant='h1' fontWeight={500} textAlign='center' mt={4}>
+          {t.purpose}
+        </Typography>
 
-      <CenterFlexContainer backgroundColor={theme.colors.cultured}>
-        {opportunityInfo.map((info) => (
-          <TitleAndPhotoLinkBox
-            key={info.title}
-            size="halves"
-            content={info}
-            color={theme.colors.darkText}
-            backgroundColor={theme.white}
-            minHeight={420}
-          />
-        ))}
-      </CenterFlexContainer>
+        <Box display="flex" flexWrap="wrap" justifyContent="center" alignItems="center" minHeight={725} >
+          <Box width={!isMobile ? '50%' : '100%'} p={4} maxWidth={500} sx={{ marginRight: [0, 0 , 4, 4, 4]}}>
+            <Typography mb={3} fontSize={20}>
+              {t.purposeArray.sentence1}
+            </Typography>
+            <Typography mb={3} fontSize={20}>
+              {t.purposeArray.sentence2}
+            </Typography>
+            <Typography mb={3} fontSize={20}> 
+              {t.purposeArray.sentence3}
+            </Typography>
+          </Box>
 
-      <CenterFlexContainer
-        backgroundColor={theme.colors.darkBlue}
-        padding="padTop"
-      >
-        <ChangingBackgroundText
-          onlyRunOneTransition
-          secondaryColor="white"
-          text={t.purpose}
-        />
-        <ContentWithSideImage
-          backgroundColor={theme.colors.darkBlue}
-          imageStyle={{ borderRadius: 16 }}
-          imageSrc={'/images/tony-luginsland-yXnnR9smke0-unsplash.jpg'}
-          text={[
-            t.purposeArray.sentence1,
-            t.purposeArray.sentence2,
-            t.purposeArray.sentence3,
-          ]}
-        />
-      </CenterFlexContainer>
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <Image 
+              src="/images/tony-luginsland-yXnnR9smke0-unsplash.jpg" 
+              alt="mission-female-student-graduate" 
+              width={400} 
+              style={{ maxWidth: '100%', maxHeight: '100%', borderRadius: 12, boxShadow: '15px 15px 12px 7px rgba(0, 0, 0, 0.15)' }}
+              height={600}
+            />
+          </Box>
+        </Box>
+      </Box>
 
       <VideoBackground src="/pexels-rodnae-productions-8419363.mp4">
         <Box display="flex" p={isMobile ? 3 : 12}>
