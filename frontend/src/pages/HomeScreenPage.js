@@ -1,6 +1,5 @@
 'use client'
 import Box from '@mui/material/Box'
-import { useTheme } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import Image from 'next/image'
@@ -8,7 +7,6 @@ import styled from 'styled-components'
 
 import FullScreenBack from '@/components/background/FullScreenBack'
 import VideoBackground from '@/components/background/VideoBackground'
-import ContentWithSideImage from '@/components/content/ContentWithSideImage'
 import Footer from '@/components/footer/Footer'
 import FadeInText from '@/components/generic/FadeInText'
 import NavBar from '@/components/nav/NavBar'
@@ -18,10 +16,12 @@ import en from '@/language/locales/en/common.json'
 import es from '@/language/locales/es/common.json'
 
 const HomeScreenPage = () => {
-  const theme = useTheme()
   const quote = useGetRandomQuote()
-  const isMobile = useMediaQuery('(max-width:600px)')
+  const isMobile = useMediaQuery('(max-width:768px)')
+  const isTablet = useMediaQuery('(max-width:1008px)')
   const t = useLocale() === 'en' ? en : es
+
+  const mobileColumnFlex = isMobile ? 'column' : 'row'
 
   return (
     <Box position="relative">
@@ -47,7 +47,7 @@ const HomeScreenPage = () => {
           {t.purpose}
         </Typography>
 
-        <Box display="flex" flexWrap="wrap" justifyContent="center" alignItems="center" minHeight={725} >
+        <Box display="flex" flexWrap="wrap" justifyContent="center" alignItems="center" minHeight={700} >
           <Box width={!isMobile ? '50%' : '100%'} p={4} maxWidth={650} sx={{ marginRight: [0, 0, 4, 4, 4]}}>
             <Typography mb={3} fontSize={20}>
               {t.purposeArray.sentence1}
@@ -60,7 +60,7 @@ const HomeScreenPage = () => {
             </Typography>
           </Box>
 
-          <Box display="flex" alignItems="center" justifyContent="center">
+          <Box display="flex" alignItems="center" justifyContent="center" mb={isMobile ? 4 : 0}>
             <Image 
               src="/images/tony-luginsland-yXnnR9smke0-unsplash.jpg" 
               alt="mission-female-student-graduate" 
@@ -72,50 +72,50 @@ const HomeScreenPage = () => {
         </Box>
       </Box>
 
-      <Box display="flex" mt={2} flexWrap='wrap'>
-        <Box width={!isMobile ? '50%' : '100%'} height='35vw'>
+      <Box display="flex" mt={2} flexWrap='wrap' minHeight={750}>
+        <Box width={!isTablet ? '60%' : '100%'} minHeight='35vw'>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/hari-nandakumar-fbJr86YN574-unsplash.jpg" alt="mission mural" width="100%" height="100%"/>
+          <img src="/images/hari-nandakumar-fbJr86YN574-unsplash.jpg" alt="mission mural" width="100%" height="100%" style={{ minHeight: '100%' }}/>
         </Box>
 
-        <Box bgcolor='#1C68F0' width={!isMobile ? '50%' : '100%'} px={5} py={8}>
-          <Box display="flex" alignItems="center">
+        <Box bgcolor='#1C68F0' width={!isTablet ? '40%' : '100%'} px={5} py={8} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+          <Box display="flex" alignItems="center" flexDirection={mobileColumnFlex}>
             <Typography variant="h1">
               {/* https://kinsta.com/blog/css-text-outline/ */}
               <span style={{ WebkitTextStrokeWidth: '1px', color:'#1C68F0', WebkitTextStrokeColor: 'white' }}>
                 80%
               </span>
             </Typography>
-            <Typography pl={2} fontSize={22} color="white">
+            <Typography pl={2} fontSize={22} color="white" textAlign={isMobile ? 'center' : 'left'}>
               of students graduate from Mission high. 
             </Typography>
           </Box>
 
-          <Box display="flex" alignItems="center">
+          <Box display="flex" alignItems="center" flexDirection={mobileColumnFlex}>
             <Typography variant="h1" pl={6}>
               {/* https://kinsta.com/blog/css-text-outline/ */}
               <span style={{ WebkitTextStrokeWidth: '1px', color:'#1C68F0', WebkitTextStrokeColor: 'white' }}>
                 58%
               </span>
             </Typography>
-            <Typography pl={2} fontSize={22} color="white">
+            <Typography pl={2} fontSize={22} color="white" textAlign={isMobile ? 'center' : 'left'}>
               Percentage of graduates who meet UC/CSU entrance requirements
             </Typography>
           </Box>
           
-          <Box display="flex" alignItems="center">
+          <Box display="flex" alignItems="center" flexDirection={mobileColumnFlex}>
             <Typography variant="h1" pl={3}>
               {/* https://kinsta.com/blog/css-text-outline/ */}
               <span style={{ WebkitTextStrokeWidth: '1px', color:'#1C68F0', WebkitTextStrokeColor: 'white' }}>
                 25%
               </span>
             </Typography>
-            <Typography pl={2} fontSize={22} color="white">
+            <Typography pl={2} fontSize={22} color="white" textAlign={isMobile ? 'center' : 'left'}>
               SAT 12th grade college readiness rate
             </Typography>
           </Box>
 
-          <Box display="flex" alignItems="center">
+          <Box display="flex" alignItems="center" flexDirection={mobileColumnFlex} mt={isMobile ? 5 : 0}>
             <Typography pl={2} fontSize={22} color="white">
               We aim to bring this number to 
             </Typography>
