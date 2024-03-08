@@ -1,10 +1,9 @@
-const express = require('express')
-const User = require('../models/User')
-const Program = require('../models/Program')
+import express from 'express'
+import { User } from '../models/User.mjs'
+import { Program } from '../models/Program.mjs'
 const router = express.Router()
 
 const isLocalEnv = process.env.DEPLOY_ENV === 'local'
-
 
 router.post('/users/sign-up', async (req, res) => {
   try {
@@ -215,4 +214,6 @@ router.get('/users/email-list', async (_req, res) => {
   }
 })
 
-module.exports = router
+const userRoutes = router
+
+export { userRoutes }

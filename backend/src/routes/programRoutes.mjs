@@ -1,16 +1,26 @@
-const express = require('express')
-const Program = require('../models/Program')
-const User = require('../models/User')
+import express from 'express'
+import { Program } from '../models/Program.mjs'
+import { User } from '../models/User.mjs'
+import getAwsEmailContent from '../email/getAwsEmailContent.mjs'
+import { translateText } from '../translation/translator.mjs'
+import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses"
+
 const router = express.Router()
-const sendMail = require('../email/sendGrid')
-const { emailFormatter } = require('../email/emailFormatter')
-const { emailApprovedProgram } = require('../email/emailApprovedProgram')
-const translateText = require('../translation/translator')
 
 const logError = (error) => {
   console.error(error)
   console.log(JSON.stringify(error))
 }
+
+const SES_CONFIG = {
+  credentials: {
+    accessKeyId: process.env.S3_ACCESS_SECRET,
+    secretAccessKey: process.env.S3_ACCESS_KEY,
+  }, 
+  region: 'us-west-2',
+}
+
+const client = new SESClient(SES_CONFIG)
 
 const isLocalEnv = process.env.DEPLOY_ENV === 'local'
 
@@ -74,8 +84,6 @@ router.post('/programs/add', async (req, res) => {
     const savedProgram = await newProgram.save()
 
     if (savedProgram) {
-      const formattedMessageAndOptions = emailFormatter(req.body, href)
-      await sendMail(formattedMessageAndOptions)
       res.send({ success: true, message: 'success' })
     } 
   } catch (error) {
@@ -186,8 +194,6 @@ router.put('/program/edit/:href/:approve', async (req, res) => {
         ? users.map((user) => user.email)
         : ['joeephus@gmail.com']
 
-      const emailMessage = emailApprovedProgram(userEmails, updatedProgram)
-      await sendMail(emailMessage)
     }
 
     res.send({
@@ -236,4 +242,23 @@ router.delete('/programs/erase-all', async (_, res) => {
   }
 })
 
-module.exports = router
+router.post('/programs/submit/test', async (req, res) => {
+  const { program } = req.body
+  try {
+    const emailContent = getAwsEmailContent(program)
+  
+    const command = new SendEmailCommand(emailContent)
+    const response = await client.send(command)
+
+    res.send({ message: response })
+  } catch (error) {
+    console.log(error)
+
+    res.send({ message: error })
+  }
+
+})
+
+const programRoutes = router 
+
+export { programRoutes }

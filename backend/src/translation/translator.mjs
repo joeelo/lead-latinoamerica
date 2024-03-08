@@ -1,7 +1,8 @@
-const { Translate } = require('@google-cloud/translate').v2
+// @ts-nocheck
+import { v2 } from '@google-cloud/translate'
 
 // Creates a client
-const translate = new Translate()
+const translate = new v2.Translate()
 
 async function translateText(text) {
   try {
@@ -19,4 +20,4 @@ async function translateText(text) {
   }
 }
 
-module.exports = translateText
+export { translateText }

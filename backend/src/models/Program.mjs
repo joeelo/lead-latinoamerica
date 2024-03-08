@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose'
 
-const orgSchema = new mongoose.Schema({
-  organization: {
+const programSchema = new mongoose.Schema({
+  name: {
     type: String,
     required: true,
   },
@@ -10,11 +10,9 @@ const orgSchema = new mongoose.Schema({
     max: 200,
     required: true,
   },
-  missionStatement: {
+  bioEs: {
     type: String,
-    default: '',
-    max: 500,
-  },
+  }, 
   helpsWith: {
     type: Array,
   },
@@ -25,10 +23,10 @@ const orgSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  email: {
-    type: String,
-    required: true,
-  },
+  organization: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Organization', 
+  }],
   tags: {
     type: Array,
     default: [],
@@ -40,9 +38,9 @@ const orgSchema = new mongoose.Schema({
   partnerUrl: {
     type: String,
   },
-  orgLogo: {
-    type: String, 
-  },
+  expirationDate: {
+    type: String,
+  }, 
   programType: {
     program: {
       type: Boolean,
@@ -61,8 +59,15 @@ const orgSchema = new mongoose.Schema({
       default: false,
     },
   },
-});
+  approvalEmailSent: {
+    type: Boolean, 
+    default: false,
+  }
+  
+}, {
+  timestamps: true 
+})
 
-const Organization = new mongoose.model('Organization', orgSchema, 'programs');
+// @ts-ignore
+export const Program = new mongoose.model('Program', programSchema, 'programs')
 
-module.exports = Organization;

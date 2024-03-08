@@ -1,8 +1,8 @@
-const express = require('express')
-const Program = require('../models/Program')
+import express from 'express'
+import { Program } from '../models/Program'
+import dayjs from 'dayjs'
+import { User} from '../models/User'
 const router = express.Router()
-const dayjs = require('dayjs')
-const User = require('../models/User')
 
 router.get('/stats/programs', async (_, res) => {
   try {
