@@ -1,12 +1,12 @@
 import Box from '@mui/material/Box'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
-export default function VideoBackground({ children, src }) {
+export default function VideoBackground({ children, src, height = 700 }) {
   const isDestktopOrGreater = useMediaQuery('(max-width:1400px)')
 
   return (
     <Box
-      minHeight={isDestktopOrGreater ? 650 : 800}
+      minHeight={isDestktopOrGreater ? 650 : height}
       minWidth="100vw"
       position="relative"
       overflow="hidden"
