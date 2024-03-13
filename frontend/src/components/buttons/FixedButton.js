@@ -1,23 +1,21 @@
-import styled from 'styled-components'
+import Box from '@mui/material/Box'
 
 import { findProgramAndUpdate } from '@/fetch/requests'
 
-const FixedButton = ({
-  approve,
-  deny,
+export default function FixedButton({
+  approve = false,
   text,
   bgColor,
   bgColorHover,
   href,
   onSuccess,
-}) => {
+}){
   const handleClick = async () => {
-    if (approve || deny) {
-      const bool = approve ? true : false
+    if (approve) {
       try {
         const result = await findProgramAndUpdate(
           {},
-          `/program/edit/${href}/${bool}`
+          `/program/edit/${href}/${approve}`
         )
         if (result.message === 'success') {
           onSuccess(true)
@@ -29,31 +27,27 @@ const FixedButton = ({
   }
 
   return (
-    <Button onClick={handleClick} {...{ bgColor, approve, bgColorHover }}>
+    <Box 
+      onClick={handleClick} 
+      top={approve ? '100px' : '160px'}
+      right='100px'
+      width='200px'
+      position='fixed'
+      bgcolor={bgColor}
+      zIndex={10000}
+      color='white'
+      borderRadius={2}
+      textAlign='center'
+      padding={1}
+      sx={{
+        cursor: 'pointer', 
+        transition: '0.4s ease-in-out all', 
+        ':hover': {
+          bgcolor: bgColorHover
+        }
+      }}
+    >
       {text}
-    </Button>
+    </Box>
   )
 }
-
-export default FixedButton
-
-const Button = styled.div`
-  position: fixed;
-  top: ${(props) => (props.approve ? '100px' : '160px')};
-  right: 100px;
-  width: 100px;
-  padding: 10px;
-  width: 150px;
-  text-align: center;
-  background-color: ${(props) => props.bgColor};
-  z-index: 10000;
-  color: white;
-  border-radius: 4px;
-  font-size: 18px;
-  transition: 0.4s ease-in-out all;
-
-  :hover {
-    cursor: pointer;
-    background-color: ${(props) => props.bgColorHover};
-  }
-`

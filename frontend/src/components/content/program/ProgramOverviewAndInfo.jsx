@@ -69,7 +69,7 @@ export default function ProgramOverviewAndInfo({
         display='flex'
         width='95%'
         maxWidth={1200}
-        padding='40px 20px'
+        padding='80px 20px'
         margin='0 auto'
         justifyContent='space-between'
         flexDirection={isMobile ? 'column-reverse' : 'inherit'}

@@ -45,12 +45,14 @@ config.autoAddCss = false;
 
 const clientSideEmotionCache = createEmotionCache()
 
-const App = ({ Component, pageProps, emotionCache = clientSideEmotionCache }) => {
+export default function App ({ Component, pageProps, emotionCache = clientSideEmotionCache }) {
 
 	const props = pageProps || {}
 
 	const [queryClient] = useState(() => new QueryClient())
 	// TODO: Import user context when it's necessary. 
+
+	const isDevelopment = process.env.NEXT_PUBLIC_ENV === 'dev'
 
 	return (
 		<>
@@ -68,7 +70,11 @@ const App = ({ Component, pageProps, emotionCache = clientSideEmotionCache }) =>
 							<CssBaseline />
 							<LanguageWrapper>
 								<Component {...pageProps} />
-								<Analytics />
+
+								{!isDevelopment && (
+									<Analytics />
+								)}
+
 							</LanguageWrapper>
 						</ThemeProvider>
 					</AuthProvider>
@@ -84,5 +90,3 @@ App.getInitialProps = async ({ctx}) => {
 	const session = await getSession(ctx)
 	return ({props: {session}})
 }
-
-export default App;

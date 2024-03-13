@@ -47,7 +47,7 @@ const ApproveProgramPage = () => {
 			/>
 			<FixedButton 
 				text="Deny Program"
-				deny={true} 
+				approve={false} 
 				bgColor="#FF4F3D" 
 				href={program.href}
 				bgColorHover="#E82C4A"
