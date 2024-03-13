@@ -41,14 +41,14 @@ const FadeInContent = ({
           '@keyframes fade-in': {
             '0%': {
               opacity: 0,
-              top: '30px',
+              top: '20px',
             },
             '100%': {
               opacity: 1,
               top: 0,
             },
           },
-          animation: 'fade-in 2s',
+          animation: 'fade-in 1.2s',
           animationIterationCount: 1,
           position: 'relative',
         }}
