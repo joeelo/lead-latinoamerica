@@ -22,6 +22,22 @@ export default function HomeScreenPage () {
 
   const mobileColumnFlex = isMobile ? 'column' : 'row'
 
+  const renderPercent = (percent, text) => {
+    return (
+      <Box display="flex" alignItems="center" flexDirection={mobileColumnFlex} mb={1} textAlign='center'>
+        <Typography variant="h2">
+          {/* https://kinsta.com/blog/css-text-outline/ */}
+          <span style={{ WebkitTextStrokeWidth: '1px', color:'#1C68F0', WebkitTextStrokeColor: 'white' }}>
+          {`${percent}%`}
+          </span>
+        </Typography>
+        <Typography pl={2} fontSize={22} color="white" textAlign={isMobile ? 'center' : 'left'}>
+          {text}
+        </Typography>
+      </Box>
+    )
+  }
+
   return (
     <Box position="relative">
       <NavBar />
@@ -130,43 +146,12 @@ export default function HomeScreenPage () {
           justifyContent="center"
         >
           <FadeInContent>
-            <Box display="flex" alignItems="center" flexDirection={mobileColumnFlex} mb={1}>
-              <Typography variant="h2">
-                {/* https://kinsta.com/blog/css-text-outline/ */}
-                <span style={{ WebkitTextStrokeWidth: '1px', color:'#1C68F0', WebkitTextStrokeColor: 'white' }}>
-                  80%
-                </span>
-              </Typography>
-              <Typography pl={2} fontSize={22} color="white" textAlign={isMobile ? 'center' : 'left'}>
-                of students graduate from Mission high. 
-              </Typography>
-            </Box>
+            <Box></Box>
+            {renderPercent(80, 'of students graduate from Mission high.')}
+            {renderPercent(58, 'Percentage of graduates who meet UC/CSU entrance requirements.')}
+            {renderPercent(25, 'SAT 12th grade college readiness rate.')}
 
-            <Box display="flex" alignItems="center" flexDirection={mobileColumnFlex} mb={1}>
-              <Typography variant="h2" pl={6}>
-                {/* https://kinsta.com/blog/css-text-outline/ */}
-                <span style={{ WebkitTextStrokeWidth: '1px', color:'#1C68F0', WebkitTextStrokeColor: 'white' }}>
-                  58%
-                </span>
-              </Typography>
-              <Typography pl={2} fontSize={22} color="white" textAlign={isMobile ? 'center' : 'left'}>
-                Percentage of graduates who meet UC/CSU entrance requirements
-              </Typography>
-            </Box>
-            
-            <Box display="flex" alignItems="center" flexDirection={mobileColumnFlex} mb={1}>
-              <Typography variant="h2" pl={3}>
-                {/* https://kinsta.com/blog/css-text-outline/ */}
-                <span style={{ WebkitTextStrokeWidth: '1px', color:'#1C68F0', WebkitTextStrokeColor: 'white' }}>
-                  25%
-                </span>
-              </Typography>
-              <Typography pl={2} fontSize={22} color="white" textAlign={isMobile ? 'center' : 'left'}>
-                SAT 12th grade college readiness rate
-              </Typography>
-            </Box>
-
-            <Box display="flex" alignItems="center" flexDirection={mobileColumnFlex} mt={isMobile ? 5 : 0}>
+            <Box display="flex" alignItems="center" flexDirection={mobileColumnFlex} mt={isMobile ? 5 : 0} textAlign='center'>
               <Typography pl={2} fontSize={22} color="white">
                 We aim to bring this number to 
               </Typography>
