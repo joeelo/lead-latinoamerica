@@ -1,4 +1,6 @@
-export default function getAwsEmailContent(program = {}) {
+// https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/ses/command/SendEmailCommand/
+
+export default function getAwsEmailContent(href) {
   return {
     Destination: {
       BccAddresses: [], 
@@ -13,21 +15,18 @@ export default function getAwsEmailContent(program = {}) {
           Html: {
           Charset: "UTF-8", 
           Data: `
-            This message body contains HTML formatting. <br>
-            The test program is ${program.name || 'test-program'}
-            It can, for example, contain links like this one:
-              <a class="ulink" href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide" target="_blank">Amazon SES Developer Guide</a>. <br>
-            This is a test
+            A new opportunity was just uploaded
+            <a class="ulink" href="http://leadgo.org/approve/${href}" target="_blank">Click here to approve program</a>. <br>
           `
           }, 
           Text: {
           Charset: "UTF-8", 
-          Data: "This is the email text content describing the test"
+          Data: `A link to ${href}`
           }
         }, 
         Subject: {
           Charset: "UTF-8", 
-          Data: "Test email"
+          Data: "New Opportunity"
         }
       }, 
       ReplyToAddresses: ['melias@leadlatinoamerica.org'], 
