@@ -14,12 +14,13 @@ const logError = (error) => {
 
 const SES_CONFIG = {
   credentials: {
-    accessKeyId: process.env.S3_ACCESS_SECRET,
-    secretAccessKey: process.env.S3_ACCESS_KEY,
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   }, 
-  region: 'us-west-2',
+  region: 'us-west-1',
 }
 
+// @ts-ignore this is the correct config for SES but throws type error
 const client = new SESClient(SES_CONFIG)
 
 const isLocalEnv = process.env.DEPLOY_ENV === 'local'
@@ -46,7 +47,6 @@ router.post('/programs/add', async (req, res) => {
       helpsWith,
       partnerUrl,
       programType = {},
-      expirationDate,
     } = req.body
 
     const href = name.split(' ').join('-').toLowerCase()
@@ -76,10 +76,14 @@ router.post('/programs/add', async (req, res) => {
       helpsWith,
       href,
       partnerUrl,
-      expirationDate,
       programType: programTypes,
       coverImage: images[betweenZeroAndFour()]
     })
+
+    const emailContent = getAwsEmailContent(href)
+    const command = new SendEmailCommand(emailContent)
+
+    await client.send(command)
 
     const savedProgram = await newProgram.save()
 

@@ -12,6 +12,10 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  optedIn: {
+    type: Boolean, 
+    default: false, 
+  },
   preferredName: {
     type: String,
   },
