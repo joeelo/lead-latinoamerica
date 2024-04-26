@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 import { useRouter } from 'next/router'
 
 import useLocale from '@/hooks/useLocale'
@@ -16,14 +17,15 @@ const LanguageButtons = () => {
   }
 
   return (
-    <Box display="flex" alignItems="center">
-      <Box 
+    <Box display="flex" alignItems="center" bgcolor="white">
+      <Typography 
         fontSize={30}
         style={{ cursor: 'pointer' }}
+        color="black"
         fontWeight={t === 'en' ? 500 : 300}
         component="span" 
         onClick={() => handleClick('en')}
-      > EN </Box>
+      > EN </Typography>
 
       <div style={{
           minHeight: 30,
@@ -33,13 +35,14 @@ const LanguageButtons = () => {
         }}
       />
 
-      <Box 
+      <Typography 
         fontSize={30}
         style={{ cursor: 'pointer' }}
         fontWeight={t === 'es' ? 500 : 300}
         component="span" 
+        color="black"
         onClick={() => handleClick('es')}
-      > ES </Box>
+      > ES </Typography>
     </Box>
   )
 }

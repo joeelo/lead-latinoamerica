@@ -60,7 +60,7 @@ export default function AddProgramSlides() {
     const data = {
       name: step1Value, 
       bio: step2Value, 
-      helpsWith: step3Value, 
+      helpsWith: step3Value.split(','), 
       programType, 
       partnerUrl: step5Value, 
     }

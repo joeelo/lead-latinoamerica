@@ -28,7 +28,7 @@ export default function ResourceCard({
           alt={`image-src-${src}`}
           src={src}
           height={275}
-          width={400}
+          width={500}
           style={{ 
             maxWidth: '100%',
             height: '100%',
