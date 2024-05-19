@@ -179,7 +179,17 @@ export default function HomeScreenPage () {
       >
         <FadeInContent>
           <Box>
-            <Typography variant="h2" fontWeight={500}> Why Lead Exists?</Typography>  
+            <Typography 
+              variant="h2" 
+              fontWeight={500}
+              sx={{
+                textAlign: 'left', 
+                '@media screen and (max-width: 768px)': {
+                  textAlign: 'center',
+                  marginTop: 5, 
+                },
+              }}
+            > Why Lead Exists?</Typography>  
             <Box display="flex" alignItems="center" mt={4}>
               <RadioButtonChecked />
               <Typography ml={1.5} fontSize={22}> We want every parent to know what their child can qualify for</Typography>
@@ -207,8 +217,23 @@ export default function HomeScreenPage () {
       <VideoBackground src="/pexels-rodnae-productions-8419363.mp4" height='75vh'>
         <Box display="flex" p={isMobile ? 3 : 12}>
           <FadeInContent>
-            <Typography variant="h2" color="white" width="80%">
-              {`${quote.text} - ${quote.author}`}
+            <Typography 
+              variant="h3" 
+              color="white" 
+              width="80%" 
+              style={{ fontWeight: 300 }}
+              sx={{
+                fontSize: 48, 
+                '@media screen and (max-width: 768px)': {
+                  fontSize: 32,
+                },
+              }}
+            >
+              {`${quote.text} - `}
+              <br />
+              <span>
+                {quote.author}
+              </span>
             </Typography>
           </FadeInContent>
         </Box>

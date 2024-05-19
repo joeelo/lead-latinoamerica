@@ -6,7 +6,6 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-import NavBar from '@/components/nav/NavBar'
 import { postToDatabase } from '@/fetch/requests'
 import getIsValidUrl from '@/utils/getIsValidUrl'
 
@@ -119,9 +118,7 @@ export default function AddProgramSlides() {
 
   return (
     <>
-      <NavBar />
-
-      <Box minHeight={!isMobile ? '90vh' : ''} display={!isMobile ? 'flex' : ''}>
+      <Box minHeight='80vh' display={!isMobile ? 'flex' : ''}>
         <Box 
           width={!isMobile ? '50%' : '100%'} 
           display="flex" 
@@ -248,7 +245,7 @@ export default function AddProgramSlides() {
             </Box>
           )}
 
-          <Box display="flex" justifyContent="center">
+          <Box display="flex" justifyContent="center" mb={5}>
             <button 
               className='fade-button' 
               onClick={onNextClick}

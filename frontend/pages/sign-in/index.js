@@ -19,7 +19,7 @@ export default function Signup() {
   const [session] = useSession()
 
   return (
-    <Box position="relative" minHeight="100vh" height="100vh" minWidth="100vw">
+    <Box>
       <Box 
         display="flex" 
         maxWidth="100%" 
