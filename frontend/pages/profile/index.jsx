@@ -89,45 +89,69 @@ export default function ProfilePage() {
   return (
     <Box>
       <Box
-        minHeight={300}
+        minHeight={400}
         minWidth="100vw"
         position="relative"
       >
-        <Image
-          src="/images/profile-images/david-marcu-unsplash-nature.jpg"
-          alt="nature photo banner"
-          fill
-          style={{ objectFit: "cover" }}
-        />
-      </Box>
-
-      <Box width="100%"  position='relative' justifyContent="center">
-        {userName.initials && (
-          <Box
+        <Box 
+          position="absolute" 
+          display="inline-flex"
+          justifyContent="center"
+          style={{ inset: 0 }}
+        >
+          <Box 
             sx={{
-              position: 'absolute',
-              width: '150px',
-              height: '150px',
-              borderRadius: '50%',
-              border: '1px solid #888',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              top: '-75px',
-              backgroundColor: '#1f2041',
-              color: 'white',
-              fontSize: '36px',
-              '@media screen and (max-width: 768px)': {
-                height: '120px',
-                width: '120px',
-                fontSize: '30px',
-                top: '-60px',
+              width: 400,
+              height: 400,
+              backgroundColor: 'teal',
+              borderRadius: '9999px', 
+              opacity: 0.5,
+              '@keyframes fade': {
+                '0%': { left: 0, top: 0},
+                '25%': { left: -100, top: 70 },
+                '50%': { left: 20, top: 150 },
+                '75%': { left: 50, top: 100 },
+                '100%': { left: 0, top: 0 },
               },
+              filter: 'blur(90px)', 
+              animation: 'fade 10s infinite',
             }}
-          >
-            {userName.initials}
-          </Box>
-        )}
+          />
+          <Box 
+            sx={{
+              width: 300,
+              height: 300,
+              backgroundColor: 'blue',
+              borderRadius: '9999px', 
+              '@keyframes fade': {
+                '0%': { left: 0, top: 0},
+                '25%': { left: -100, top: 70 },
+                '50%': { left: 20, top: 150 },
+                '75%': { left: 50, top: 100 },
+                '100%': { left: 0, top: 0 },
+              },
+              filter: 'blur(90px)', 
+              animation: 'fade 9s infinite',
+            }}
+          />
+          <Box 
+            sx={{
+              width: 300,
+              height: 300,
+              backgroundColor: 'rgb(100, 100, 255)',
+              borderRadius: '9999px', 
+              '@keyframes fade': {
+                '0%': { left: 0, top: 0},
+                '25%': { left: -100, top: 70 },
+                '50%': { left: 20, top: 150 },
+                '75%': { left: 50, top: 100 },
+                '100%': { left: 0, top: 0 },
+              },
+              filter: 'blur(90px)', 
+              animation: 'fade 9s infinite',
+            }}
+          />
+        </Box>
       </Box>
 
       <Box
