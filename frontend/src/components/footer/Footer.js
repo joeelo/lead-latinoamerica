@@ -22,9 +22,6 @@ export default function Footer({
       bgcolor="white"
       display="flex"
       flexDirection="column"
-      position="absolute"
-      bottom={0}
-      flexShrink={0}
       width="100%"
       style={{ ...style }}
     >

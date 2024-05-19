@@ -11,9 +11,7 @@ import { useForm } from 'react-hook-form'
 import { useQuery } from 'react-query'
 
 import Button from '@/components/buttons/Button'
-import Footer from '@/components/footer/Footer'
 import TextInput from '@/components/form/text-input/TextInput'
-import NavBar from '@/components/nav/NavBar'
 import UserSavedPrograms from '@/components/programs/UserSavedPrograms'
 import { editProfile, getProfile } from '@/fetch/profile/ProfileRequests'
 import ProgramRequests from '@/fetch/program/ProgramRequests'
@@ -89,9 +87,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <Box position="relative" height="100vh">
-      <NavBar />
-
+    <Box>
       <Box
         minHeight={300}
         minWidth="100vw"
@@ -194,8 +190,6 @@ export default function ProfilePage() {
           <UserSavedPrograms programs={data?.programs} />
         </div>
       </Box>
-
-      <Footer />
     </Box>
   )
 }

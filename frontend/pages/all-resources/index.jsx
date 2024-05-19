@@ -5,7 +5,6 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import Image from 'next/image'
 
 import PhotoWithTextBox from '@/components/content/PhotoWithTextBox'
-import Layout from '@/components/layout/Layout'
 import ProgramRequests from '@/fetch/program/ProgramRequests'
 import useHttpQuery from '@/hooks/useHttpQuery'
 
@@ -21,8 +20,7 @@ export default function AllResourcesPage() {
   const programs = programsQuery.data?.message || []
 
   return (
-    <Layout>
-
+    <Box>
       <Box style={{width: '100%', height: '40vh', position: 'relative', marginBottom: isMobile ? 32 : 16 }}>
         <Box position='absolute' top={20} left={20} color="white" fontSize={isMobile ? 24 : 56} zIndex={100} fontWeight={600}>
           Lead Programs
@@ -71,10 +69,8 @@ export default function AllResourcesPage() {
               })}
             </>
           )}
-
-          
         </Grid>
       </Box>
-    </Layout>
+    </Box>
   )
 }

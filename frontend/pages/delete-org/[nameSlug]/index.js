@@ -5,9 +5,7 @@ import { useEffect, useState } from "react"
 import FaButton from "@/components/buttons/FaButton"
 import ProgramOverviewAndInfo from "@/components/content/program/ProgramOverviewAndInfo"
 import ProgramTitleAndPhoto from "@/components/content/program/ProgramTitleAndPhoto"
-import Footer from "@/components/footer/Footer"
 import Modal from "@/components/modal/Modal"
-import NavBar from "@/components/nav/NavBar"
 import { getProgramBySlug } from "@/fetch/requests"
 
 const DeleteOrgPage = () => {
@@ -38,8 +36,6 @@ const DeleteOrgPage = () => {
 
 	return (
 		<>
-			<NavBar />
-
 			<ProgramTitleAndPhoto program={program} router={router}/>
 			<ProgramOverviewAndInfo program={program} marginTop={true}/>
 			<Box 
@@ -59,7 +55,6 @@ const DeleteOrgPage = () => {
 				<FaButton size="2x" color="white"/>
 			</Box>
 			<Modal isOpen={isModalOpen} setOpen={setIsModalOpen}> truth fam </Modal>
-			<Footer />
 		</>
 	)
 }

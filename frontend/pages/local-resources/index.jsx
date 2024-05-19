@@ -3,9 +3,7 @@ import Typography from "@mui/material/Typography"
 import useMediaQuery from '@mui/material/useMediaQuery'
 import Image from "next/image"
 
-import Footer from "@/components/footer/Footer"
 import ResourceCard from "@/components/generic/ResourceCard"
-import NavBar from "@/components/nav/NavBar"
 import ResourceData from '@/data/resourceData'
 import useLocale from '@/hooks/useLocale'
 
@@ -19,8 +17,6 @@ export default function LocalResourcesPage() {
 
   return (
     <>
-      <NavBar />
-
       <Box style={{width: '100%', height: '40vh', position: 'relative', marginBottom: isMobile ? 32 : 16 }}>
         <Box position='absolute' top={20} left={20} color="white" fontSize={isMobile ? 24 : 56} zIndex={100} fontWeight={600}>
           Resources
@@ -64,7 +60,6 @@ export default function LocalResourcesPage() {
           </Box>
         </Box>
       </Box>
-      <Footer />
     </>
   )
 }

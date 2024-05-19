@@ -5,8 +5,6 @@ import ProgramRequests from 'src/fetch/program/ProgramRequests'
 import FixedButton from "@/components/buttons/FixedButton"
 import ProgramOverviewAndInfo from "@/components/content/program/ProgramOverviewAndInfo"
 import ProgramTitleAndPhoto from "@/components/content/program/ProgramTitleAndPhoto"
-import Footer from "@/components/footer/Footer"
-import NavBar from "@/components/nav/NavBar"
 import getToast from '@/utils/getToast'
 
 const ApproveProgramPage = () => {
@@ -36,7 +34,6 @@ const ApproveProgramPage = () => {
 	
 	return (
 		<>
-			<NavBar />
 			<FixedButton 
 				text="Approve Program"
 				approve={true} 
@@ -56,8 +53,6 @@ const ApproveProgramPage = () => {
 			
 			<ProgramTitleAndPhoto program={program} router={router}/>
 			<ProgramOverviewAndInfo program={program} marginTop={true}/>
-
-			<Footer/>
 		</>
 	)
 }

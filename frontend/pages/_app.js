@@ -15,6 +15,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { ToastContainer } from "react-toastify"
 
+import Layout from '@/components/layout/Layout';
 import { LanguageWrapper } from '@/context/LanguageContext'
 import createEmotionCache from '@/createEmotionCache'
 
@@ -49,6 +50,8 @@ export default function App ({ Component, pageProps, emotionCache = clientSideEm
 
 	const props = pageProps || {}
 
+	console.log(pageProps)
+
 	const [queryClient] = useState(() => new QueryClient())
 	// TODO: Import user context when it's necessary. 
 
@@ -69,7 +72,9 @@ export default function App ({ Component, pageProps, emotionCache = clientSideEm
 						<ThemeProvider theme={theme}>
 							<CssBaseline />
 							<LanguageWrapper>
-								<Component {...pageProps} />
+								<Layout>
+									<Component {...pageProps} />
+								</Layout>
 
 								{!isDevelopment && (
 									<Analytics />

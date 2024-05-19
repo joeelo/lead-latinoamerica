@@ -3,12 +3,15 @@ import Typography from '@mui/material/Typography'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
 
+import useLocale from '@/hooks/useLocale'
 import getDiff from '@/utils/getDiff'
 
 const PhotoWithTextBox = ({
-  program: { name = '', coverImage, bio, href, expirationDate },
+  program: { name = '', coverImage, bio, href, expirationDate, bioEs },
 }) => {
   const router = useRouter()
+  const isEnglish = useLocale() === 'en'
+  
   const clickHandler = () => {
     router.push(`/resources/${href.toLowerCase()}`)
   }
@@ -18,7 +21,9 @@ const PhotoWithTextBox = ({
 
   const isInNextTwoWeeks = Math.abs(diff.days) < 14
 
-  const truncatedString = bio.length < 150 ? bio : `${bio.slice(0, 150)}...`
+  const bioInLang = isEnglish ? bio : bioEs
+
+  const truncatedString = bio.length < 150 ? bio : `${bioInLang.slice(0, 150)}...`
   const imageSrc = coverImage || '/images/pexels-cottonbro-6209356.jpg'
 
   return (

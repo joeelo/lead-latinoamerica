@@ -7,7 +7,6 @@ import styled from 'styled-components'
 
 import Button from '@/components/buttons/Button'
 import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
-import Footer from '@/components/footer/Footer'
 import CheckboxGroup from '@/components/form/checkbox/CheckboxGroup'
 import DateInput from '@/components/form/date-input/DateInput'
 import InputErrorMessage from '@/components/form/errors/InputErrorMessage' 
@@ -206,8 +205,6 @@ const AddProgram = () => {
 
 				</Box>
 			</Box>
-
-			<Footer />
 		</>
 	)
 }

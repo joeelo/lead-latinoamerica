@@ -7,7 +7,6 @@ import { Tooltip } from 'react-tooltip'
 import styled from 'styled-components'
 
 import Button from '@/components/buttons/Button'
-import Footer from '@/components/footer/Footer'
 import DateInput from '@/components/form/date-input/DateInput'
 import InputErrorMessage from '@/components/form/errors/InputErrorMessage' 
 import StyledSectionHeading from '@/components/form/section/StyledSectionHeading'
@@ -16,7 +15,6 @@ import TextInput from '@/components/form/text-input/TextInput'
 import WordSelectInput from '@/components/form/word-select/WordSelectInput'
 import Box from '@/components/generic/Box'
 import LoadingSpinner from '@/components/generic/LoadingSpinner'
-import NavBar from '@/components/nav/NavBar'
 import ProgramRequests from '@/fetch/program/ProgramRequests'
 import { findProgramAndUpdate } from '@/fetch/requests'
 import getToast from '@/utils/getToast'
@@ -106,7 +104,6 @@ const EditOrg = () => {
 	if (!programData) {
 		return (
 			<>
-				<NavBar />
 				{isLoading ? (
 					<LoadingSpinner />
 				) : (
@@ -115,15 +112,12 @@ const EditOrg = () => {
 						<p style={{ marginTop: 20 }}>Please try another program name or check the spelling.</p>
 					</Box>
 				)}
-				<Footer />
 			</>
 		)
 	}
 
 	return (
 		<>
-			<NavBar />
-
 			<Box stackOnMobile display='flex' fd='column' center pt='60px' p='10px'>
         <Box display='flex' fd='column' center justify='center' align='center'>
           <h1>Editing</h1>
@@ -207,7 +201,6 @@ const EditOrg = () => {
 					</Form>
 				</Box>
 			</Box>			
-			<Footer />
 		</>
 	)
 }

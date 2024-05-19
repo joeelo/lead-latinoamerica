@@ -4,9 +4,7 @@ import { useQuery } from 'react-query'
 
 import ProgramOverviewAndInfo from '@/components/content/program/ProgramOverviewAndInfo'
 import ProgramTitleAndPhoto from '@/components/content/program/ProgramTitleAndPhoto'
-import Footer from '@/components/footer/Footer'
 import LoadingSpinner from '@/components/generic/LoadingSpinner'
-import NavBar from '@/components/nav/NavBar'
 import ProgramRequests from '@/fetch/program/ProgramRequests'
 
 const ResourcePage = () => {
@@ -29,7 +27,6 @@ const ResourcePage = () => {
 
   return (
     <>
-      <NavBar />
       {isCurrentlyLoading ? (
         <LoadingSpinner />
       ) : (
@@ -42,7 +39,6 @@ const ResourcePage = () => {
           />
         </>
       )}
-      <Footer />
     </>
   )
 }

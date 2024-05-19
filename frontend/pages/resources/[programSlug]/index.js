@@ -1,13 +1,10 @@
-import Box from '@mui/material/Box'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
 import { useQuery } from 'react-query'
 
 import ProgramOverviewAndInfo from '@/components/content/program/ProgramOverviewAndInfo'
 import ProgramTitleAndPhoto from '@/components/content/program/ProgramTitleAndPhoto'
-import Footer from '@/components/footer/Footer'
 import LoadingSpinner from '@/components/generic/LoadingSpinner'
-import NavBar from '@/components/nav/NavBar'
 import ProgramRequests from '@/fetch/program/ProgramRequests'
 
 export default function ProgramPage() {
@@ -30,7 +27,6 @@ export default function ProgramPage() {
 
   return (
     <>
-      <NavBar />
       {isCurrentlyLoading ? (
         <LoadingSpinner />
       ) : (
@@ -43,9 +39,6 @@ export default function ProgramPage() {
           />
         </>
       )}
-
-      <Box mb={15}/>
-      <Footer />
     </>
   )
 }

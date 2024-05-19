@@ -3,16 +3,12 @@ import { useTheme } from '@mui/material/styles'
 
 import DaConfetti from '@/components/confetti/DaConfetti'
 import ChangingBackgroundText from '@/components/content/ChangingBackgroundText'
-import Footer from '@/components/footer/Footer'
-import NavBar from '@/components/nav/NavBar'
 
 const ThanksPartnerPage = () => {
   const theme = useTheme()
 
   return (
     <Box position="relative" height="100vh">
-      <NavBar />
-
       <DaConfetti />
 
       <Box align="center" justifyContent="center" mt="100px">
@@ -36,8 +32,6 @@ const ThanksPartnerPage = () => {
           </span>
         </Box>
       </Box>
-      
-      <Footer />
     </Box>
   )
 }

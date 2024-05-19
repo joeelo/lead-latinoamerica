@@ -6,9 +6,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import Image from 'next/image'
 
 import VideoBackground from '@/components/background/VideoBackground'
-import Footer from '@/components/footer/Footer'
 import FadeInContent from '@/components/generic/FadeInContent'
-import NavBar from '@/components/nav/NavBar'
 import useGetRandomQuote from '@/hooks/useGetRandomQuote'
 import useLocale from '@/hooks/useLocale'
 import en from '@/language/locales/en/common.json'
@@ -41,7 +39,6 @@ export default function HomeScreenPage () {
   return (
     <>
     <Box>
-      <NavBar />
       <VideoBackground src="/images/pexels-offrideli-14623516.mp4">
         <Box
           position= 'relative'
@@ -217,8 +214,6 @@ export default function HomeScreenPage () {
         </Box>
       </VideoBackground>
     </Box>
-
-      <Footer showQuote={false} />
     </>
   )
 }
