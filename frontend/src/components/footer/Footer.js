@@ -18,14 +18,15 @@ export default function Footer({
 
   return (
     <Box
+      className="footer"
+      bgcolor="white"
       display="flex"
       flexDirection="column"
-      width="100%"
-      position="relative"
+      position="absolute"
       bottom={0}
+      flexShrink={0}
+      width="100%"
       style={{ ...style }}
-      mt='auto'
-      className="footer"
     >
       {showQuote && <DynamicQuote />}
 

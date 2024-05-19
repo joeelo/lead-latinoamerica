@@ -9,7 +9,6 @@ import { useSession } from 'next-auth/client'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useQuery } from 'react-query'
-import styled from 'styled-components'
 
 import Button from '@/components/buttons/Button'
 import Footer from '@/components/footer/Footer'
@@ -26,7 +25,7 @@ import getToast from '@/utils/getToast'
 //   { ssr: false }
 // ) // TODO: Put back when we have more data
 
-const ProfilePage = () => {
+export default function ProfilePage() {
   const [session] = useSession()
   const [isEditing, setIsEditing] = useState(false)
   const router = useRouter()
@@ -90,31 +89,60 @@ const ProfilePage = () => {
   }
 
   return (
-    <>
+    <Box position="relative" height="100vh">
       <NavBar />
 
-      <PhotoContainer>
+      <Box
+        minHeight={300}
+        minWidth="100vw"
+        position="relative"
+      >
         <Image
           src="/images/profile-images/david-marcu-unsplash-nature.jpg"
           alt="nature photo banner"
           fill
-          style={{ objectFit: 'cover' }}
+          style={{ objectFit: "cover" }}
         />
-      </PhotoContainer>
+      </Box>
 
-      <Box width="90%" center position='relative' ml={isMobile ? 2 : 10}>
-        {userName.initials && <NameCircle>{userName.initials}</NameCircle>}
+      <Box width="100%"  position='relative' justifyContent="center">
+        {userName.initials && (
+          <Box
+            sx={{
+              position: 'absolute',
+              width: '150px',
+              height: '150px',
+              borderRadius: '50%',
+              border: '1px solid #888',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              top: '-75px',
+              backgroundColor: '#1f2041',
+              color: 'white',
+              fontSize: '36px',
+              '@media screen and (max-width: 768px)': {
+                height: '120px',
+                width: '120px',
+                fontSize: '30px',
+                top: '-60px',
+              },
+            }}
+          >
+            {userName.initials}
+          </Box>
+        )}
       </Box>
 
       <Box
         display="flex"
-        width='90%'
         flexDirection="column"
-        ml={isMobile ? 2 : 12}
+        pr={5}
+        pl={isMobile ? 2 : 6}
         justify="space-between"
         maxWidth={1000}
       >
-        <Box center mt="80px" mb="40px">
+        <Box justifyContent="center" mt={15} mb={10}>
           {!isEditing ? (
             <>
               {userData.preferredName && (
@@ -168,36 +196,6 @@ const ProfilePage = () => {
       </Box>
 
       <Footer />
-    </>
+    </Box>
   )
 }
-
-export default ProfilePage
-
-const PhotoContainer = styled.div`
-  min-height: 300px;
-  min-width: 100vw;
-  position: relative;
-`
-
-const NameCircle = styled.div`
-  position: absolute;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 1px solid #888;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: -75px;
-  background-color: #1f2041;
-  color: white;
-  font-size: 36px;
-
-  @media screen and (max-width: 768px) {
-    height: 120px; 
-    width: 120px; 
-    font-size: 30; 
-    top: -60px;
-  }
-`

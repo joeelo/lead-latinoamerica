@@ -39,7 +39,8 @@ export default function HomeScreenPage () {
   }
 
   return (
-    <Box position="relative">
+    <>
+    <Box>
       <NavBar />
       <VideoBackground src="/images/pexels-offrideli-14623516.mp4">
         <Box
@@ -202,7 +203,7 @@ export default function HomeScreenPage () {
         </FadeInContent>
 
         <Box maxWidth={!isTablet ? 600 : 400} marginLeft='auto'>
-          <img src="/images/backpack-rochak-shukla.jpg" alt="backpack-svg" style={{ maxWidth: '100%', maxHeight: '100%' }}/>
+          <img src="/images/backpack-rochak-shukla.png" alt="backpack-svg" style={{ maxWidth: '100%', maxHeight: '100%' }}/>
         </Box>
       </Box>
 
@@ -215,8 +216,9 @@ export default function HomeScreenPage () {
           </FadeInContent>
         </Box>
       </VideoBackground>
-
-      <Footer showQuote={false} noMarginTop />
     </Box>
+
+      <Footer showQuote={false} />
+    </>
   )
 }
