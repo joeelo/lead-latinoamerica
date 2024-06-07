@@ -34,17 +34,23 @@ export default function ProfilePage() {
 
   const { register, handleSubmit, setValue } = useForm()
 
-  const { data } = useQuery({
+  const userProgramsQuery = useQuery({
     queryKey: ['userPrograms', session?.user?.email],
     queryFn: ProgramRequests.getAllPrograms,
     enabled: !!session,
   })
+
+  console.log(userProgramsQuery)
 
   const user = useQuery({
     queryKey: ['userData', session], 
     queryFn: getProfile, 
     enabled: !!session
   })
+
+  const userPrograms = userProgramsQuery.data 
+    ? userProgramsQuery.data.message 
+    : []
 
   const userData = user.data || {}
 
@@ -137,7 +143,7 @@ export default function ProfilePage() {
         pr={5}
         pl={isMobile ? 2 : 6}
         justify="space-between"
-        maxWidth={1000}
+        maxWidth={1100}
       >
         <Box justifyContent="center" mt={15} mb={10}>
           {!isEditing ? (
@@ -154,7 +160,7 @@ export default function ProfilePage() {
                 uploaded! If you wish to opt-in and start receiving weekly emails when we start please click the edit button 
               </Typography>
 
-              <Button label="Edit" onClick={handleClick} />
+              <Button maxWidth={165} label="Edit" onClick={handleClick} />
             </>
           ) : (
             <Box maxWidth={600} mr="40px">
@@ -188,7 +194,7 @@ export default function ProfilePage() {
         </Box>
 
         <div>
-          <UserSavedPrograms programs={data?.programs} />
+          <UserSavedPrograms programs={userPrograms} />
         </div>
       </Box>
     </Box>

@@ -29,10 +29,10 @@ export default function ProgramCardSimple ({
     <Box
       position="relative"
       mr={!isMobile ? 2.5 : 'auto'}
-      maxWidth={300}
+      width={300}
       tabIndex="0"
     >
-      <Link href={`/resource/${program.href}`}>
+      <Link href={`/resource/${program.href}`} style={{ textDecoration: 'none' }}>
         <Box
           borderRadius={4}
           minHeight={200}
@@ -57,6 +57,7 @@ export default function ProgramCardSimple ({
           <h3>{program.name}</h3>
         </Box>
       </Link>
+
       {showDeleteButton && (
         <>
           <Box

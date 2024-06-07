@@ -1,3 +1,4 @@
+// TODO: Update this page with spanish text
 import Box from '@mui/material/Box'
 import { useSession } from 'next-auth/client'
 import PropTypes from 'prop-types'
@@ -20,7 +21,7 @@ const UserSavedPrograms = ({ programs }) => {
   const handleRemoveSuccess = () => {
     queryClient.invalidateQueries('userPrograms')
 
-    getToast({ message: 'succesfully removed!' })
+    getToast({ message: 'succesfully removed opportunity' })
   }
 
   return (
