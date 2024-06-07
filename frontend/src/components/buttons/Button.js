@@ -1,16 +1,47 @@
+import Box from '@mui/material/Box'
 import Image from 'next/image'
 import React from 'react'
-import styled from 'styled-components'
 
 export default function Button({
   label,
   color = '#1F2041',
+  hoverColor = '#3a3970', 
   onClick,
+  marginTop = '30px',
   isSubmitting = false,
+  noBoxShadow = false,
   ...props
 }) {
   return (
-    <Container onClick={onClick} {...{ color }} {...props}>
+    <Box 
+      minWidth={160}
+      height={60}
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      bgcolor={color}
+      fontSize={18}
+      borderRadius={2}
+      mt={marginTop}
+      sx={{
+        border: 0,
+        color: 'white', 
+        cursor: 'pointer',
+        outline: '1px solid rgba(0, 0, 0, 0.2)',
+        transition: '0.4s ease all', 
+
+        ':hover': {
+          bgcolor: hoverColor,
+          boxShadow: noBoxShadow ? '' : '2px 3px 12px 3px rgba(184,177,184, .6)',
+        }
+      }}
+      onClick={() => {
+        if (onClick) {
+          onClick()
+        }
+      }} 
+      {...props}
+    >
       <span>
         {isSubmitting ? (
           <Image
@@ -26,27 +57,6 @@ export default function Button({
           label
         )}
       </span>
-    </Container>
+    </Box>
   )
 }
-
-const Container = styled.button`
-  width: 160px;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  outline: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  background-color: ${(props) => (props.color ? props.color : 'blue')};
-  border: 0;
-  margin-top: 30px;
-  color: white;
-  transition: 0.4s ease all;
-  font-size: 18px;
-
-  :hover {
-    cursor: pointer;
-    background-color: #3a3970;
-  }
-`

@@ -25,6 +25,7 @@ export default function ProgramOverviewAndInfo({
   const [session] = useSession()
   const router = useRouter()
 
+  console.log(session)
 
   const handleClick = async () => {
     const response = await UpdateUsersSavedPrograms(email, program._id)
@@ -90,12 +91,17 @@ export default function ProgramOverviewAndInfo({
           {(!preview && !!session) ? (
             <Box display={!isMobile ? 'flex' : 'inherit'}>
               {program.partnerUrl && (
-                <ExternalLink href={program.partnerUrl} label={t.seeDetails} />
+                <ExternalLink 
+                  bgColor="#5783db"
+                  hoverColor="#55c2da"
+                  href={program.partnerUrl} 
+                  label={t.seeDetails} 
+                />
               )}
 
               <Button
                 label={t.saveToProfile}
-                color="#0055B6"
+                color="#5783db"
                 onClick={handleClick}
                 style={{ marginLeft: isMobile ? 0 : 20 }}
               />

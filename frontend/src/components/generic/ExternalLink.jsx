@@ -21,7 +21,11 @@ const ExternalLink = ({
       }}
       {...props}
     >
-      <Button {...{ bgColor, hoverColor }} label={label}/>
+      <Button
+        label={label}
+        color={bgColor}
+        hoverColor={hoverColor}
+      />
         
     </a>
   )

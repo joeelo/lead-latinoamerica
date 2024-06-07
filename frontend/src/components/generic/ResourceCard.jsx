@@ -14,7 +14,7 @@ export default function ResourceCard({
   const isMobile = useMediaQuery('(max-width:800px)')
 
   return (
-    <Box display="flex" flexWrap="wrap">
+    <Box display="flex" flexWrap="wrap" alignItems="center">
       <Box 
         height={275} 
         width={350} 
