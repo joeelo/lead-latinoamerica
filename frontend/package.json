@@ -43,6 +43,7 @@
     "react-dropzone": "^11.5.1",
     "react-hook-form": "^7.25.0",
     "react-is": "^16.8.0",
+    "react-lottie": "^1.2.4",
     "react-query": "^3.34.12",
     "react-spring": "^9.4.2",
     "react-toastify": "^8.1.0",

@@ -3,14 +3,18 @@ import RadioButtonChecked from '@mui/icons-material/RadioButtonChecked'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
+import dynamic from 'next/dynamic';
 import Image from 'next/image'
 
+const Lottie = dynamic(() => import('react-lottie'), { ssr: false });
 import VideoBackground from '@/components/background/VideoBackground'
 import FadeInContent from '@/components/generic/FadeInContent'
 import useGetRandomQuote from '@/hooks/useGetRandomQuote'
 import useLocale from '@/hooks/useLocale'
 import en from '@/language/locales/en/common.json'
 import es from '@/language/locales/es/common.json'
+
+import animationData from '../../public/lotti/lottie-animation-thanhlocgp.json'
 
 export default function HomeScreenPage () {
   const quote = useGetRandomQuote() || {}
@@ -23,7 +27,7 @@ export default function HomeScreenPage () {
   const renderPercent = (percent, text) => {
     return (
       <Box display="flex" alignItems="center" flexDirection={mobileColumnFlex} mb={1} textAlign='center'>
-        <Typography variant="h2">
+        <Typography variant="h2" fontSize={isMobile ? '42px' : '78px'}>
           {/* https://kinsta.com/blog/css-text-outline/ */}
           <span style={{ WebkitTextStrokeWidth: '1px', color:'#1C68F0', WebkitTextStrokeColor: 'white' }}>
           {`${percent}%`}
@@ -128,32 +132,27 @@ export default function HomeScreenPage () {
       </Box>
 
       <Box display="flex" mt={isMobile ? 5 : 2} flexWrap='wrap' minHeight={700}>
-        <Box width={!isTablet ? '60%' : '100%'} minHeight='35vw'>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/hari-nandakumar-fbJr86YN574-unsplash.jpg" alt="mission mural" width="100%" height="100%" style={{ minHeight: '100%' }}/>
-        </Box>
-
         <Box 
           bgcolor='#1C68F0' 
-          width={!isTablet ? '40%' : '100%'} 
           px={5} 
           py={8} 
           display="flex" 
+          width="100%"
           flexDirection="column" 
           alignItems="center" 
           justifyContent="center"
         >
           <FadeInContent>
             <Box></Box>
-            {renderPercent(80, 'of students graduate from Mission high.')}
+            {renderPercent(80, 'of students graduate from High School in Oakland.')}
             {renderPercent(58, 'Percentage of graduates who meet UC/CSU entrance requirements.')}
             {renderPercent(25, 'SAT 12th grade college readiness rate.')}
 
             <Box display="flex" alignItems="center" flexDirection={mobileColumnFlex} mt={isMobile ? 5 : 0} textAlign='center'>
-              <Typography pl={2} fontSize={22} color="white">
+              <Typography pl={2} fontSize={40} color="white">
                 We aim to bring this number to 
               </Typography>
-              <Typography variant="h2" pl={3}>
+              <Typography variant="h2" pl={3} fontSize={isMobile ? '50px' : '108px'}>
                 {/* https://kinsta.com/blog/css-text-outline/ */}
                 <span style={{ WebkitTextStrokeWidth: '1px', color:'#1C68F0', WebkitTextStrokeColor: 'white' }}>
                   100%
@@ -177,40 +176,49 @@ export default function HomeScreenPage () {
         justifyContent="space-around" 
         flexDirection={isTablet ? 'column-reverse' : 'row'}
       >
-        <FadeInContent>
-          <Box>
-            <Typography 
-              variant="h2" 
-              fontWeight={500}
-              sx={{
-                textAlign: 'left', 
-                '@media screen and (max-width: 768px)': {
-                  textAlign: 'center',
-                  marginTop: 5, 
-                },
-              }}
-            > Why Lead Exists?</Typography>  
-            <Box display="flex" alignItems="center" mt={4}>
-              <RadioButtonChecked />
-              <Typography ml={1.5} fontSize={22}> We want every parent to know what their child can qualify for</Typography>
-            </Box>
-            <Box display="flex" alignItems="center" mt={4}>
-              <RadioButtonChecked />
-              <Typography ml={1.5} fontSize={22}> Every kid deserves a chance at all opportunities available</Typography>
-            </Box>
-            <Box display="flex" alignItems="center" mt={4}>
-              <RadioButtonChecked />
-              <Typography ml={1.5} fontSize={22}> To bridge the gap between information and application</Typography>
-            </Box>
-            <Box display="flex" alignItems="center" mt={4}>
-              <RadioButtonChecked />
-              <Typography ml={1.5} fontSize={22}> To break down language barriers and make all information accessible</Typography>
-            </Box>
+        <Box>
+          <Typography 
+            variant="h2" 
+            fontWeight={500}
+            sx={{
+              textAlign: 'left', 
+              '@media screen and (max-width: 768px)': {
+                textAlign: 'center',
+                marginTop: 5, 
+              },
+            }}
+          > Why Lead Exists?</Typography>  
+          <Box display="flex" alignItems="center" mt={4}>
+            <RadioButtonChecked />
+            <Typography ml={1.5} fontSize={22}> We want every parent to know what their child can qualify for</Typography>
           </Box>
-        </FadeInContent>
+          <Box display="flex" alignItems="center" mt={4}>
+            <RadioButtonChecked />
+            <Typography ml={1.5} fontSize={22}> Every kid deserves a chance at all opportunities available</Typography>
+          </Box>
+          <Box display="flex" alignItems="center" mt={4}>
+            <RadioButtonChecked />
+            <Typography ml={1.5} fontSize={22}> To bridge the gap between information and application</Typography>
+          </Box>
+          <Box display="flex" alignItems="center" mt={4}>
+            <RadioButtonChecked />
+            <Typography ml={1.5} fontSize={22}> To break down language barriers and make all information accessible</Typography>
+          </Box>
+        </Box>
 
         <Box maxWidth={!isTablet ? 600 : 400} marginLeft='auto'>
-          <img src="/images/backpack-rochak-shukla.png" alt="backpack-svg" style={{ maxWidth: '100%', maxHeight: '100%' }}/>
+          {typeof window !== 'undefined' && (
+            <Lottie 
+              options={{
+                loop: true,
+                autoplay: true, 
+                animationData: animationData,
+                rendererSettings: {
+                  preserveAspectRatio: 'xMidYMid slice'
+                }
+              }}
+            />
+          )}
         </Box>
       </Box>
 
