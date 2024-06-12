@@ -3,7 +3,7 @@ import RadioButtonChecked from '@mui/icons-material/RadioButtonChecked'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import dynamic from 'next/dynamic';
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 
 const Lottie = dynamic(() => import('react-lottie'), { ssr: false });
@@ -15,6 +15,7 @@ import en from '@/language/locales/en/common.json'
 import es from '@/language/locales/es/common.json'
 
 import animationData from '../../public/lotti/lottie-animation-thanhlocgp.json'
+import animationData2 from '../../public/lotti/lottie-santos.json'
 
 export default function HomeScreenPage () {
   const quote = useGetRandomQuote() || {}
@@ -163,62 +164,119 @@ export default function HomeScreenPage () {
         </Box>
       </Box>
 
-      <Box 
-        p={5} 
-        color='#1C68F0' 
-        mb={5} 
-        minHeight={600} 
-        maxWidth='80%'
-        display="flex" 
-        mr="auto"
-        ml="auto"
-        alignItems="center" 
-        justifyContent="space-around" 
-        flexDirection={isTablet ? 'column-reverse' : 'row'}
-      >
-        <Box>
-          <Typography 
-            variant="h2" 
-            fontWeight={500}
-            sx={{
-              textAlign: 'left', 
-              '@media screen and (max-width: 768px)': {
-                textAlign: 'center',
-                marginTop: 5, 
-              },
-            }}
-          > Why Lead Exists?</Typography>  
-          <Box display="flex" alignItems="center" mt={4}>
-            <RadioButtonChecked />
-            <Typography ml={1.5} fontSize={22}> We want every parent to know what their child can qualify for</Typography>
+      <Box display="flex" flexDirection="column" alignItems="center">
+        <Box 
+          p={5} 
+          color='#1C68F0' 
+          maxWidth={isMobile ? '100%' : '80%'}
+          mb={5} 
+          minHeight={600} 
+          display="flex" 
+          alignItems="center" 
+          justifyContent="space-around" 
+          flexDirection={isTablet ? 'column-reverse' : 'row'}
+        >
+          <Box mr={isMobile ? '0' : 5}>
+            <Typography 
+              variant="h2" 
+              fontWeight={500}
+              sx={{
+                textAlign: 'left', 
+                '@media screen and (max-width: 768px)': {
+                  textAlign: 'center',
+                  marginTop: 5, 
+                },
+              }}
+            > Why Lead Exists?</Typography>  
+            <Box display="flex" alignItems="center" mt={4}>
+              <RadioButtonChecked />
+              <Typography ml={1.5} fontSize={22}> We want every parent to know what their child can qualify for</Typography>
+            </Box>
+            <Box display="flex" alignItems="center" mt={4}>
+              <RadioButtonChecked />
+              <Typography ml={1.5} fontSize={22}> Every kid deserves a chance at all opportunities available</Typography>
+            </Box>
+            <Box display="flex" alignItems="center" mt={4}>
+              <RadioButtonChecked />
+              <Typography ml={1.5} fontSize={22}> To bridge the gap between information and application</Typography>
+            </Box>
+            <Box display="flex" alignItems="center" mt={4}>
+              <RadioButtonChecked />
+              <Typography ml={1.5} fontSize={22}> To break down language barriers and make all information accessible</Typography>
+            </Box>
           </Box>
-          <Box display="flex" alignItems="center" mt={4}>
-            <RadioButtonChecked />
-            <Typography ml={1.5} fontSize={22}> Every kid deserves a chance at all opportunities available</Typography>
-          </Box>
-          <Box display="flex" alignItems="center" mt={4}>
-            <RadioButtonChecked />
-            <Typography ml={1.5} fontSize={22}> To bridge the gap between information and application</Typography>
-          </Box>
-          <Box display="flex" alignItems="center" mt={4}>
-            <RadioButtonChecked />
-            <Typography ml={1.5} fontSize={22}> To break down language barriers and make all information accessible</Typography>
+
+          <Box maxWidth={!isTablet ? 600 : 400} marginLeft='auto'>
+            {typeof window !== 'undefined' && (
+              <Lottie 
+                options={{
+                  loop: true,
+                  autoplay: true, 
+                  animationData: animationData2,
+                  rendererSettings: {
+                    preserveAspectRatio: 'xMidYMid slice'
+                  }
+                }}
+              />
+            )}
           </Box>
         </Box>
 
-        <Box maxWidth={!isTablet ? 600 : 400} marginLeft='auto'>
-          {typeof window !== 'undefined' && (
-            <Lottie 
-              options={{
-                loop: true,
-                autoplay: true, 
-                animationData: animationData,
-                rendererSettings: {
-                  preserveAspectRatio: 'xMidYMid slice'
-                }
+        <Box 
+          p={5} 
+          color='#1C68F0' 
+          mb={5} 
+          minHeight={600} 
+          display="flex" 
+          alignItems="center" 
+          maxWidth={isMobile ? '100%' : '80%'}
+          justifyContent="space-around" 
+          flexDirection={isTablet ? 'column' : 'row-reverse'}
+        >
+          <Box ml={isMobile ? '0' : 5}>
+            <Typography 
+              variant="h2" 
+              fontWeight={500}
+              sx={{
+                textAlign: 'left', 
+                '@media screen and (max-width: 768px)': {
+                  textAlign: 'center',
+                  marginTop: 5, 
+                },
               }}
-            />
-          )}
+            > Why Lead Exists?</Typography>  
+            <Box display="flex" alignItems="center" mt={4}>
+              <RadioButtonChecked />
+              <Typography ml={1.5} fontSize={22}> We want every parent to know what their child can qualify for</Typography>
+            </Box>
+            <Box display="flex" alignItems="center" mt={4}>
+              <RadioButtonChecked />
+              <Typography ml={1.5} fontSize={22}> Every kid deserves a chance at all opportunities available</Typography>
+            </Box>
+            <Box display="flex" alignItems="center" mt={4}>
+              <RadioButtonChecked />
+              <Typography ml={1.5} fontSize={22}> To bridge the gap between information and application</Typography>
+            </Box>
+            <Box display="flex" alignItems="center" mt={4}>
+              <RadioButtonChecked />
+              <Typography ml={1.5} fontSize={22}> To break down language barriers and make all information accessible</Typography>
+            </Box>
+          </Box>
+
+          <Box maxWidth={!isTablet ? 600 : 400} right='auto'>
+            {typeof window !== 'undefined' && (
+              <Lottie 
+                options={{
+                  loop: true,
+                  autoplay: true, 
+                  animationData: animationData,
+                  rendererSettings: {
+                    preserveAspectRatio: 'xMidYMid slice'
+                  }
+                }}
+              />
+            )}
+          </Box>
         </Box>
       </Box>
 
