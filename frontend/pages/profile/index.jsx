@@ -72,9 +72,7 @@ export default function ProfilePage() {
     setIsEditing(true)
   }
 
-  const handleCancel = (event) => {
-    event.preventDefault()
-
+  const handleCancel = () => {
     setIsEditing(false)
     scrollTo({ top: 100 })
   }
@@ -166,12 +164,12 @@ export default function ProfilePage() {
             <Box maxWidth={600} mr="40px">
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Box mb="30px" display="flex" alignItems="center">
-                  <Typography style={titleHeadingStyle}>Opt-in to weekly emails?</Typography>
-                  <Checkbox checked={userData.optedIn} style={{ marginTop: 0 }}/>
+                  <Typography fontSize={22}>Opt-in to weekly emails?</Typography>
+                  <Checkbox checked={userData.optedIn} style={{ marginLeft: 8 }}/>
                 </Box>
                 
                 <Box mb="30px" maxWidth={400}>
-                  <Typography style={titleHeadingStyle}>What is your preferred name?</Typography>
+                  <Typography fontSize={22}>What is your preferred name?</Typography>
                   <TextInput
                     name="preferredName"
                     register={register}

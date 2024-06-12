@@ -61,7 +61,7 @@ const PhotoWithTextBox = ({
             {' '}
             - {truncatedString}{' '}
           </Typography>
-          <Typography fontSize={18}> explore {name} </Typography>
+          <Typography fontSize={18}> Explore {name} </Typography>
         </Box>
       </Container>
     </Box>

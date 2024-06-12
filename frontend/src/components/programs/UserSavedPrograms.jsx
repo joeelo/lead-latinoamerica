@@ -1,15 +1,14 @@
 // TODO: Update this page with spanish text
 import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 import { useSession } from 'next-auth/client'
-import PropTypes from 'prop-types'
 import React from 'react'
 import { useQueryClient } from 'react-query'
-import styled from 'styled-components'
 
 import ProgramCardSimple from '@/components/content/program/ProgramCardSimple'
 import getToast from '@/utils/getToast'
 
-const UserSavedPrograms = ({ programs }) => {
+export default function UserSavedPrograms({ programs }) {
   const [session] = useSession()
   const { user } = session || {}
   const queryClient = useQueryClient()
@@ -26,7 +25,20 @@ const UserSavedPrograms = ({ programs }) => {
 
   return (
     <Box display="flex" flexDirection="column" mb={2.5}>
-      <TitleHeading>Your Saved Opportunities</TitleHeading>
+      <Typography
+        fontSize='28px'
+        mb={2.5}
+        fontWeight={500}
+        sx={{
+          '@media screen and (max-width: 768px)': {
+            display: 'flex',
+            justifyContent: 'center', 
+            width: '100%'
+          }
+        }}
+      >
+        Your Saved Opportunities
+      </Typography>
       <div style={{ display: 'flex', flexWrap: 'wrap', width: '100%' }}>
         {programs.length === 0 ? (
           <p>You haven`t saved any opportunities yet!</p>
@@ -48,22 +60,3 @@ const UserSavedPrograms = ({ programs }) => {
     </Box>
   )
 }
-
-UserSavedPrograms.propTypes = {
-  programs: PropTypes.array,
-}
-
-export default UserSavedPrograms
-
-const TitleHeading = styled.p`
-  font-size: 28px;
-  margin-bottom: 10px;
-  font-weight: 500;
-  margin-top: 20px;
-
-  @media screen and (max-width: 768px) {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-`
