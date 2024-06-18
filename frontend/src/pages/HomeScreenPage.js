@@ -168,7 +168,6 @@ export default function HomeScreenPage () {
         <FadeInContent>
           <Box 
             p={5} 
-            mb={-25}
             color='#1C68F0' 
             width="100%"
             minHeight={600} 
@@ -207,12 +206,14 @@ export default function HomeScreenPage () {
               </Box>
             </Box>
 
-            <Box maxWidth={!isTablet ? 600 : 400} marginLeft='auto'>
+            <Box maxWidth={!isTablet ? 600 : 400} marginLeft={isMobile ? '' : 'auto'}>
               {typeof window !== 'undefined' && (
                 <Lottie 
+                  speed={.75}
                   options={{
-                    autoplay: true, 
+                    autoplay: true,
                     animationData: animationData2,
+                    
                     rendererSettings: {
                       preserveAspectRatio: 'xMidYMid slice'
                     }
@@ -232,7 +233,7 @@ export default function HomeScreenPage () {
             display="flex" 
             alignItems="center" 
             justifyContent="space-around" 
-            flexDirection={isTablet ? 'column' : 'row-reverse'}
+            flexDirection={isTablet ? 'column-reverse' : 'row-reverse'}
           >
             <Box ml={isMobile ? '0' : 5}>
               <Typography 
