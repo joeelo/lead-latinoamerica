@@ -39,9 +39,9 @@ export default function UserSavedPrograms({ programs }) {
       >
         Your Saved Opportunities
       </Typography>
-      <div style={{ display: 'flex', flexWrap: 'wrap', width: '100%' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', width: '100%', marginBottom: 40 }}>
         {programs.length === 0 ? (
-          <p>You haven`t saved any opportunities yet!</p>
+          <p>You haven&apos;t saved any opportunities yet!</p>
         ) : (
           <>
             {programs.map((program) => {
