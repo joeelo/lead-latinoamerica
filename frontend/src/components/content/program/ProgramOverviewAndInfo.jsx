@@ -9,7 +9,7 @@ import ExternalLink from '@/components/generic/ExternalLink'
 import useLocale from '@/hooks/useLocale'
 import en from '@/language/locales/en/overview.json'
 import es from '@/language/locales/es/overview.json'
-import { updateUserPrograms } from '@/requests/UserRequests'
+import UserRequests from '@/requests/UserRequests'
 import getToast from '@/utils/getToast'
 
 import Tiles from './Tiles'
@@ -26,8 +26,10 @@ export default function ProgramOverviewAndInfo({
   const router = useRouter()
 
   const handleClick = async () => {
-    const response = await updateUserPrograms(email, program._id)
-    if (response.success) {
+    const response = await UserRequests.updateUserPrograms(email, program._id)
+    console.log(response)
+
+    if (response) {
       getToast({ message: 'Successfully saved to profile!' })
     } else {
       getToast({

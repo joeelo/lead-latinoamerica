@@ -1,7 +1,6 @@
 const ProgramRequests = {
   getAllPrograms,
   getProgram,
-  getPrograms,
 }
 
 async function getAllPrograms() {

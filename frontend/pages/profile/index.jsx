@@ -47,7 +47,7 @@ export default function ProfilePage() {
   })
 
   const userPrograms = userProgramsQuery.data 
-    ? userProgramsQuery.data.message 
+    ? userProgramsQuery.data.programs 
     : []
 
   const userData = user.data || {}
