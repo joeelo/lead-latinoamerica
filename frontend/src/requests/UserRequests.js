@@ -1,12 +1,22 @@
+/* eslint-disable import/no-anonymous-default-export */
 import { LeadInstance } from "./LeadInstance"
 
-export {
+export default {
   getUserPrograms,
+  updateUserPrograms,
   deleteUserProgram
 }
 
 function getUserPrograms(email) {
-  const url = `/user/${email}/programs`
+  const url = `/users/${email}/programs`
+
+  const response = LeadInstance.get(url)
+
+  return response.data
+}
+
+function updateUserPrograms() {
+  const url = `/users/programs/${email}/${programId}`
 
   const response = LeadInstance.get(url)
 
@@ -14,7 +24,7 @@ function getUserPrograms(email) {
 }
 
 function deleteUserProgram(email, programId) {
-  const url = `/user/programs/${email}/${programId}`
+  const url = `/users/programs/${email}/${programId}`
 
   const response = LeadInstance.delete(url)
 

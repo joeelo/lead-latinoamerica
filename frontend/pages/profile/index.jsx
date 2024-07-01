@@ -14,7 +14,7 @@ import Button from '@/components/buttons/Button'
 import TextInput from '@/components/form/text-input/TextInput'
 import UserSavedPrograms from '@/components/programs/UserSavedPrograms'
 import { editProfile, getProfile } from '@/fetch/profile/ProfileRequests'
-import ProgramRequests from '@/fetch/program/ProgramRequests'
+import UserRequests from '@/requests/UserRequests'
 import getFullName from '@/utils/getFullName'
 import getToast from '@/utils/getToast'
 
@@ -35,12 +35,10 @@ export default function ProfilePage() {
   const { register, handleSubmit, setValue } = useForm()
 
   const userProgramsQuery = useQuery({
-    queryKey: ['userPrograms', session?.user?.email],
-    queryFn: ProgramRequests.getAllPrograms,
-    enabled: !!session,
+    queryKey: ['userPrograms'],
+    queryFn: () => UserRequests.getUserPrograms(email),
+    enabled: !!email,
   })
-
-  console.log(userProgramsQuery)
 
   const user = useQuery({
     queryKey: ['userData', session], 
@@ -55,9 +53,6 @@ export default function ProfilePage() {
   const userData = user.data || {}
 
   const onSubmit = async (data) => {
-    console.log(data)
-
-
     // const response = await editProfile(apiData, email)
 
     // if (response.success) {

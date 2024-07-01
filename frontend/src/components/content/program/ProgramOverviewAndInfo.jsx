@@ -6,10 +6,10 @@ import { useSession } from 'next-auth/client'
 
 import Button from '@/components/buttons/Button'
 import ExternalLink from '@/components/generic/ExternalLink'
-import { UpdateUsersSavedPrograms } from '@/fetch/user/UserRequests'
 import useLocale from '@/hooks/useLocale'
 import en from '@/language/locales/en/overview.json'
 import es from '@/language/locales/es/overview.json'
+import { updateUserPrograms } from '@/requests/UserRequests'
 import getToast from '@/utils/getToast'
 
 import Tiles from './Tiles'
@@ -25,10 +25,8 @@ export default function ProgramOverviewAndInfo({
   const [session] = useSession()
   const router = useRouter()
 
-  console.log(session)
-
   const handleClick = async () => {
-    const response = await UpdateUsersSavedPrograms(email, program._id)
+    const response = await updateUserPrograms(email, program._id)
     if (response.success) {
       getToast({ message: 'Successfully saved to profile!' })
     } else {

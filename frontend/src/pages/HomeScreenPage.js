@@ -171,6 +171,7 @@ export default function HomeScreenPage () {
             color='#1C68F0' 
             width="100%"
             minHeight={600} 
+            mb={isMobile ? - 10 : -15}
             display="flex" 
             alignItems="center" 
             justifyContent="space-around" 
@@ -226,9 +227,9 @@ export default function HomeScreenPage () {
 
         <FadeInContent>
           <Box 
-            p={5} 
             color='#1C68F0' 
             mb={5} 
+            p={5}
             minHeight={600} 
             display="flex" 
             alignItems="center" 

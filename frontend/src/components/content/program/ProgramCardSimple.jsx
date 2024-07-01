@@ -4,8 +4,8 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 
-import { RemoveUserSavedProgram } from '@/fetch/user/UserRequests'
 import useIsMobile from '@/hooks/useIsMobile'
+import UserRequests from '@/requests/UserRequests'
 
 export default function ProgramCardSimple ({
   program,
@@ -16,7 +16,7 @@ export default function ProgramCardSimple ({
   const [isHovered, setIsHovered] = useState(false)
 
   const handleRemoveClick = async () => {
-    const response = await RemoveUserSavedProgram(user.email, program._id)
+    const response = await UserRequests.deleteUserProgram(user.email, program._id)
 
     if (response.success) {
       onSuccess()

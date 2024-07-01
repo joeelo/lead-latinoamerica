@@ -50,8 +50,6 @@ export default function App ({ Component, pageProps, emotionCache = clientSideEm
 
 	const props = pageProps || {}
 
-	console.log(pageProps)
-
 	const [queryClient] = useState(() => new QueryClient())
 	// TODO: Import user context when it's necessary. 
 
