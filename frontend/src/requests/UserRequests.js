@@ -28,7 +28,7 @@ async function updateUserPrograms(email, programId) {
 }
 
 async function deleteUserProgram(email, programId) {
-  const url = `/users/programs/${email}/${programId}`
+  const url = `/user/programs/${email}/${programId}`
 
   const response = await LeadInstance.delete(url)
 
