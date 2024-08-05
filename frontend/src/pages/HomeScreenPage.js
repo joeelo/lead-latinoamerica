@@ -14,8 +14,8 @@ import useLocale from '@/hooks/useLocale'
 import en from '@/language/locales/en/common.json'
 import es from '@/language/locales/es/common.json'
 
+import animationData2 from '../../public/lotti/lotti-student-walking.json'
 import animationData from '../../public/lotti/lottie-animation-thanhlocgp.json'
-import animationData2 from '../../public/lotti/lottie-santos.json'
 
 export default function HomeScreenPage () {
   const quote = useGetRandomQuote() || {}
@@ -164,7 +164,7 @@ export default function HomeScreenPage () {
         </Box>
       </Box>
 
-      <Box display="flex" flexDirection="column" alignItems="center">
+      <Box display="flex" flexDirection="column" alignItems="center" width="90%" margin="0 auto">
         <FadeInContent>
           <Box 
             p={5} 
@@ -207,10 +207,9 @@ export default function HomeScreenPage () {
               </Box>
             </Box>
 
-            <Box maxWidth={!isTablet ? 600 : 400} marginLeft={isMobile ? '' : 'auto'}>
+            <Box maxWidth={!isTablet ? 400 : 300} marginLeft={isMobile ? '' : 'auto'}>
               {typeof window !== 'undefined' && (
                 <Lottie 
-                  speed={.75}
                   options={{
                     autoplay: true,
                     animationData: animationData2,
@@ -233,10 +232,10 @@ export default function HomeScreenPage () {
             minHeight={600} 
             display="flex" 
             alignItems="center" 
-            justifyContent="space-around" 
+            justifyContent="space-between" 
             flexDirection={isTablet ? 'column-reverse' : 'row-reverse'}
           >
-            <Box ml={isMobile ? '0' : 5}>
+            <Box ml={isMobile ? '0' : 10}>
               <Typography 
                 variant="h2" 
                 fontWeight={500}
@@ -266,7 +265,7 @@ export default function HomeScreenPage () {
               </Box>
             </Box>
 
-            <Box maxWidth={!isTablet ? 600 : 400} right='auto'>
+            <Box maxWidth={!isTablet ? 400 : 300} right='auto'>
               {typeof window !== 'undefined' && (
                 <Lottie 
                   options={{
