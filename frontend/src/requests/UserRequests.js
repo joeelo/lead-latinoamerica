@@ -2,12 +2,12 @@
 import { LeadInstance } from "./LeadInstance"
 
 export default {
-  getUserPrograms,
-  updateUserPrograms,
-  deleteUserProgram
+  getPrograms,
+  updatePrograms,
+  deleteProgram
 }
 
-async function getUserPrograms(email) {
+async function getPrograms(email) {
   const url = `/user/${email}/programs`
 
   const response = await LeadInstance.get(url)
@@ -17,17 +17,15 @@ async function getUserPrograms(email) {
   return response.data
 }
 
-async function updateUserPrograms(email, programId) {
+async function updatePrograms(email, programId) {
   const url = `/user/programs/${email}/${programId}`
 
   const response = await LeadInstance.get(url)
 
-
-
   return response.data
 }
 
-async function deleteUserProgram(email, programId) {
+async function deleteProgram(email, programId) {
   const url = `/user/programs/${email}/${programId}`
 
   const response = await LeadInstance.delete(url)

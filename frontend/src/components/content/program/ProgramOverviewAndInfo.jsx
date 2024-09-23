@@ -26,14 +26,13 @@ export default function ProgramOverviewAndInfo({
   const router = useRouter()
 
   const handleClick = async () => {
-    const response = await UserRequests.updateUserPrograms(email, program._id)
-    console.log(response)
+    const response = await UserRequests.updatePrograms(email, program._id)
 
     if (response) {
       getToast({ message: 'Successfully saved to profile!' })
     } else {
       getToast({
-        message: 'Something went wrong, check the logs!',
+        message: 'Something went wrong, please try again later.',
         variant: 'error',
       })
     }

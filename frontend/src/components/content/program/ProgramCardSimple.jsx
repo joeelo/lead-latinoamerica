@@ -16,10 +16,15 @@ export default function ProgramCardSimple ({
   const [isHovered, setIsHovered] = useState(false)
 
   const handleRemoveClick = async () => {
-    const response = await UserRequests.deleteUserProgram(user.email, program._id)
+    const response = await UserRequests.deleteProgram(user.email, program._id)
 
     if (response.success) {
       onSuccess()
+    } else {
+      getToast({
+        message: 'Something went wrong, please try again later.',
+        variant: 'error',
+      })
     }
   }
 
