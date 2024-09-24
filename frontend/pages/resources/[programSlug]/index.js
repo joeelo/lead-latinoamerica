@@ -16,7 +16,7 @@ export default function ProgramPage() {
   const isLoadingSession = loading
 
   const programQuery = useQuery({
-		queryKey: [QueryKeys.PROGRAM], 
+		queryKey: QueryKeys.PROGRAM, 
 		queryFn: () => ProgramRequests.getBySlug(name)
 	})
 

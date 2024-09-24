@@ -12,7 +12,7 @@ const ApproveProgramPage = () => {
 	const router = useRouter() 
 
 	const programQuery = useQuery({
-		queryKey: [QueryKeys.PROGRAM], 
+		queryKey: QueryKeys.PROGRAM, 
 		queryFn: () => ProgramRequests.getBySlug(router.query.nameSlug), 
 		enabled: !!router.query.nameSlug
 	})

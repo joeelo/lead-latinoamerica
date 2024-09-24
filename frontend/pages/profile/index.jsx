@@ -13,6 +13,7 @@ import { useQuery } from 'react-query'
 import Button from '@/components/buttons/Button'
 import TextInput from '@/components/form/text-input/TextInput'
 import UserSavedPrograms from '@/components/programs/UserSavedPrograms'
+import { QueryKeys } from '@/config/QueryKeys'
 import { editProfile, getProfile } from '@/fetch/profile/ProfileRequests'
 import UserRequests from '@/requests/UserRequests'
 import getFullName from '@/utils/getFullName'
@@ -35,13 +36,13 @@ export default function ProfilePage() {
   const { register, handleSubmit, setValue } = useForm()
 
   const userProgramsQuery = useQuery({
-    queryKey: ['userPrograms'],
+    queryKey: QueryKeys.USER_PROGRAMS,
     queryFn: () => UserRequests.getUserPrograms(email),
     enabled: !!email,
   })
 
   const user = useQuery({
-    queryKey: ['userData', session], 
+    queryKey: QueryKeys.USER_DETAILS, 
     queryFn: getProfile, 
     enabled: !!session
   })

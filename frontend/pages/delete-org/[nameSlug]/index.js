@@ -16,7 +16,7 @@ const DeleteOrgPage = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	const programQuery = useQuery({
-		queryKey: [QueryKeys.PROGRAM], 
+		queryKey: QueryKeys.PROGRAM, 
 		queryFn: () => ProgramRequests.getBySlug(router.query.nameSlug),
 		enabled: !!router.query && !!router.query.nameSlug
 	})

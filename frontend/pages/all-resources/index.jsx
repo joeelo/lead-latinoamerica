@@ -13,7 +13,7 @@ export default function AllResourcesPage() {
   const isMobile = useMediaQuery('(max-width:768px)')
 
   const programsQuery = useQuery({
-    queryKey: [QueryKeys.ALL_PROGRAMS], 
+    queryKey: QueryKeys.ALL_PROGRAMS, 
     queryFn: ProgramRequests.getAll, 
   })
 

@@ -15,9 +15,9 @@ const ResourcePage = () => {
   const isLoadingSession = loading
 
   const programQuery = useQuery({
-    queryKey: ['resourcePrograms', { name }],
-    queryFn: ProgramRequests.getProgram,
-  })
+		queryKey: QueryKeys.PROGRAM, 
+		queryFn: () => ProgramRequests.getBySlug(name)
+	})
 
   const { isLoading } = programQuery
 

@@ -15,8 +15,9 @@ import TextInput from '@/components/form/text-input/TextInput'
 import WordSelectInput from '@/components/form/word-select/WordSelectInput'
 import Box from '@/components/generic/Box'
 import LoadingSpinner from '@/components/generic/LoadingSpinner'
-import ProgramRequests from '@/fetch/program/ProgramRequests'
+import { QueryKeys } from '@/config/QueryKeys'
 import { findProgramAndUpdate } from '@/fetch/requests'
+import ProgramRequests from '@/requests/ProgramRequests'
 import getToast from '@/utils/getToast'
 
 const EditOrg = () => {
@@ -25,8 +26,8 @@ const EditOrg = () => {
 	const router = useRouter()
 
   const { data: programData, isLoading } = useQuery({
-    queryKey: ['program', { name: router.query.nameSlug }], 
-    queryFn:  ProgramRequests.getProgram, 
+    queryKey: QueryKeys.PROGRAM, 
+    queryFn:  () => ProgramRequests.getBySlug(router.query.nameSlug), 
   })
 
   const { 
