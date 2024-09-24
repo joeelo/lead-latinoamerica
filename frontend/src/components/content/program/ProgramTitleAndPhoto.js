@@ -9,6 +9,7 @@ const ProgramTitleAndPhoto = ({ program }) => {
         <Heading> {program.name} </Heading>
         <MissionStatement> {program.missionStatement} </MissionStatement>
       </TextContainer>
+      
       <ImageContainer>
         <StyledImage
           src={`${coverImage}`}

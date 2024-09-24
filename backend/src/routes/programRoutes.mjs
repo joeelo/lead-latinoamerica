@@ -20,6 +20,7 @@ const SES_CONFIG = {
   region: 'us-west-2',
 }
 
+// @ts-ignore
 const client = new SESClient(SES_CONFIG)
 
 const isLocalEnv = process.env.DEPLOY_ENV === 'local'
@@ -92,7 +93,7 @@ router.post('/programs/add', async (req, res) => {
   }
 })
 
-router.get('/program/:href', async (req, res) => {
+router.get('/programs/:href', async (req, res) => {
   try {
     const program = await Program.findOne({
       href: req.params.href,
@@ -106,7 +107,7 @@ router.get('/program/:href', async (req, res) => {
       return
     }
 
-    res.send({ message: 'success', program })
+    res.send(program)
   } catch (error) {
     logError(error)
     res.send({ success: false, message: error })

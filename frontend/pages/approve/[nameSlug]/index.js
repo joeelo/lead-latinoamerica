@@ -1,18 +1,19 @@
 import { useRouter } from 'next/router'
 import { useQuery } from "react-query"
-import ProgramRequests from 'src/fetch/program/ProgramRequests'
 
 import FixedButton from "@/components/buttons/FixedButton"
 import ProgramOverviewAndInfo from "@/components/content/program/ProgramOverviewAndInfo"
 import ProgramTitleAndPhoto from "@/components/content/program/ProgramTitleAndPhoto"
+import { QueryKeys } from '@/config/QueryKeys'
+import ProgramRequests from '@/requests/ProgramRequests'
 import getToast from '@/utils/getToast'
 
 const ApproveProgramPage = () => {
 	const router = useRouter() 
 
-	const { data } = useQuery({
-		queryKey: ['fetchProgram', {name: router.query.nameSlug}], 
-		queryFn: ProgramRequests.getProgram, 
+	const programQuery = useQuery({
+		queryKey: [QueryKeys.PROGRAM], 
+		queryFn: () => ProgramRequests.getBySlug(router.query.nameSlug), 
 		enabled: !!router.query.nameSlug
 	})
 
@@ -24,7 +25,7 @@ const ApproveProgramPage = () => {
 		}
 	}
 
-	
+	const { data } = programQuery
 
 	if (!data) {
 		return <>Loading...</>

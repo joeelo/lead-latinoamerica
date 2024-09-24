@@ -149,7 +149,6 @@ router.get('/user/programs/:email/:programId', async (req, res) => {
     res.send({ 
       message: 'This program is already saved!', 
       success: true, 
-      warningMessage: 'This program is already saved!' 
     }) 
 
   } catch (error) {
@@ -157,13 +156,13 @@ router.get('/user/programs/:email/:programId', async (req, res) => {
   }
 })
 
+// get all users programs
 router.get('/user/:email/programs', async (req, res) => {
   try {
     const { email } = req.params
     const user = await User.findOne({ email })
-    const programs = user.savedPrograms 
 
-    if (programs.length) {
+    if (user.savedPrograms.length) {
       const records = await Program.find({ '_id': { $in: user.savedPrograms } })
 
       res.send({ programs: records, success: true })
@@ -176,13 +175,13 @@ router.get('/user/:email/programs', async (req, res) => {
   }
 })
 
+// Delete user program 
 router.delete('/user/programs/:email/:programId', async (req, res) => {
   try {
     const { email, programId } = req.params 
     const user = await User.findOne({ email })
-    const programs = user.savedPrograms
 
-    const updatedPrograms = programs.filter((program) => program.toString() !== programId) 
+    const updatedPrograms = user.savedPrograms.filter((program) => program.toString() !== programId) 
 
     user.savedPrograms = updatedPrograms 
     await user.save() 

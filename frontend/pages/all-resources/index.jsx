@@ -3,21 +3,24 @@ import Grid from '@mui/material/Grid'
 import Skeleton from '@mui/material/Skeleton'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import Image from 'next/image'
+import { useQuery } from 'react-query'
 
 import PhotoWithTextBox from '@/components/content/PhotoWithTextBox'
-import ProgramRequests from '@/fetch/program/ProgramRequests'
-import useHttpQuery from '@/hooks/useHttpQuery'
+import { QueryKeys } from '@/config/QueryKeys'
+import ProgramRequests from '@/requests/ProgramRequests'
 
 export default function AllResourcesPage() {
   const isMobile = useMediaQuery('(max-width:768px)')
 
-  const programsQuery = useHttpQuery({
-    key: 'all-programs', 
-    apiFn: ProgramRequests.getAllPrograms, 
+  const programsQuery = useQuery({
+    queryKey: [QueryKeys.ALL_PROGRAMS], 
+    queryFn: ProgramRequests.getAll, 
   })
 
   const isLoading = programsQuery.isLoading
   const programs = programsQuery.data?.message || []
+
+  console.log(programsQuery)
 
   return (
     <Box>
@@ -46,13 +49,13 @@ export default function AllResourcesPage() {
         <Grid container maxWidth={1200}>
           {isLoading ? (
             <>
-              <Grid item xs={12} sm={12} md={6} lg={4} xl={4} justifyContent='center' display='flex'>
+              <Grid item xs={12} sm={12} md={6} lg={4} xl={4} justifyContent='center' display='flex' mt={1}>
                 <Skeleton animation="wave" variant="rectangular" height={350} width='80%'/>
               </Grid>
-              <Grid item xs={12} sm={12} md={6} lg={4} xl={4} justifyContent='center' display='flex'>
+              <Grid item xs={12} sm={12} md={6} lg={4} xl={4} justifyContent='center' display='flex' mt={1}>
                 <Skeleton animation="wave" variant="rectangular" height={350} width='80%'/>
               </Grid>
-              <Grid item xs={12} sm={12} md={6} lg={4} xl={4} justifyContent='center' display='flex'>
+              <Grid item xs={12} sm={12} md={6} lg={4} xl={4} justifyContent='center' display='flex' mt={1}>
                 <Skeleton animation="wave" variant="rectangular" height={350} width='80%'/>
               </Grid>
             </>

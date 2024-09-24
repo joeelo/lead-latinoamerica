@@ -1,34 +1,27 @@
+// TODO: Come back to this file
 import Box from "@mui/material/Box"
 import { useRouter } from 'next/router'
-import { useEffect, useState } from "react"
+import { useState } from "react"
+import { useQuery } from "react-query"
 
 import FaButton from "@/components/buttons/FaButton"
 import ProgramOverviewAndInfo from "@/components/content/program/ProgramOverviewAndInfo"
 import ProgramTitleAndPhoto from "@/components/content/program/ProgramTitleAndPhoto"
 import Modal from "@/components/modal/Modal"
-import { getProgramBySlug } from "@/fetch/requests"
+import { QueryKeys } from "@/config/QueryKeys"
+import ProgramRequests from "@/requests/ProgramRequests"
 
 const DeleteOrgPage = () => {
 	const router = useRouter()
-	const [program, setProgram] = useState({}) 
 	const [isModalOpen, setIsModalOpen] = useState(false)
 
-	const getProgram = async () => {
-		try {
-			const fetchedProgram = await getProgramBySlug(`program/${ router.query.nameSlug }`)
-			setProgram(fetchedProgram.program)
-			return fetchedProgram 
-		} catch (error) {
-			console.log(error)
-		}
-	}
+	const programQuery = useQuery({
+		queryKey: [QueryKeys.PROGRAM], 
+		queryFn: () => ProgramRequests.getBySlug(router.query.nameSlug),
+		enabled: !!router.query && !!router.query.nameSlug
+	})
 
-	useEffect(() => {
-			if (!router.isReady) return
-			getProgram() 
-			
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [router.isReady])
+	const { data: program } = programQuery
 
 	if (!program) {
 		return null
@@ -37,7 +30,9 @@ const DeleteOrgPage = () => {
 	return (
 		<>
 			<ProgramTitleAndPhoto program={program} router={router}/>
+
 			<ProgramOverviewAndInfo program={program} marginTop={true}/>
+
 			<Box 
 				width={75} 
 				height={75} 
@@ -54,6 +49,7 @@ const DeleteOrgPage = () => {
 			>
 				<FaButton size="2x" color="white"/>
 			</Box>
+			
 			<Modal isOpen={isModalOpen} setOpen={setIsModalOpen}> truth fam </Modal>
 		</>
 	)
