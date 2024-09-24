@@ -145,7 +145,8 @@ const EditOrg = () => {
 
 						<Box>
 							<StyledSectionHeading>A description about the opportunity</StyledSectionHeading>
-							<Textarea 
+							<TextInput 
+								rows={5}
 								register={register}
 								name='bio'
 								rules={{
@@ -186,14 +187,17 @@ const EditOrg = () => {
 
 						<Box>
 							<StyledSectionHeading>Does this opportunity have a deadline?</StyledSectionHeading>
-							<DateInput 
-								register={register}
-								setValue={setValue}
-								name="expirationDate"
-								placeHolder="mm/dd/yyyy"
-								watch={watch}
-								errors={errors}
-							/>
+
+							<Box style={{ marginTop: 10 }}>
+								<DateInput 
+									register={register}
+									setValue={setValue}
+									name="expirationDate"
+									placeHolder="mm/dd/yyyy"
+									watch={watch}
+									errors={errors}
+								/>
+							</Box>
 						</Box>
 
 						<Box display='flex' justify='flex-end'>
