@@ -1,16 +1,15 @@
-import { useQuery } from "react-query"
+import { useQuery } from 'react-query'
 
 export default function useHttpQuery({
-  key, 
-  apiFn, 
-  apiFnArgs = [], 
+  key,
+  apiFn,
+  apiFnArgs = [],
   ...config
 }) {
-
   const query = useQuery({
-    queryKey: [key, ...apiFnArgs], 
+    queryKey: [key, ...apiFnArgs],
     queryFn: apiFn,
-    ...config
+    ...config,
   })
 
   console.groupCollapsed('query')

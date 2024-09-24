@@ -11,7 +11,7 @@ const PhotoWithTextBox = ({
 }) => {
   const router = useRouter()
   const isEnglish = useLocale() === 'en'
-  
+
   const clickHandler = () => {
     router.push(`/resources/${href.toLowerCase()}`)
   }
@@ -23,7 +23,8 @@ const PhotoWithTextBox = ({
 
   const bioInLang = isEnglish ? bio : bioEs
 
-  const truncatedString = bio.length < 150 ? bio : `${bioInLang.slice(0, 150)}...`
+  const truncatedString =
+    bio.length < 150 ? bio : `${bioInLang.slice(0, 150)}...`
   const imageSrc = coverImage || '/images/pexels-cottonbro-6209356.jpg'
 
   return (

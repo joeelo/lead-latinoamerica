@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { LeadInstance } from "./LeadInstance"
+import { LeadInstance } from './LeadInstance'
 
 export default {
   getAll,

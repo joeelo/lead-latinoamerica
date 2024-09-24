@@ -8,10 +8,7 @@ import useLocale from '@/hooks/useLocale'
 import en from '@/language/locales/en/footer.json'
 import es from '@/language/locales/es/footer.json'
 
-export default function Footer({
-  showQuote = true,
-  style = {},
-}) {
+export default function Footer({ showQuote = true, style = {} }) {
   const theme = useTheme()
   const t = useLocale() === 'en' ? en : es
   const isMobile = useMediaQuery('(max-width:768px)')

@@ -1,6 +1,6 @@
 /**
- * @param {string | []} value 
- * @param {{ min: number, max: number}} validation 
+ * @param {string | []} value
+ * @param {{ min: number, max: number}} validation
  */
 
 export default function getInputValidationError(value, validation) {
@@ -10,7 +10,7 @@ export default function getInputValidationError(value, validation) {
 
   const isString = typeof value === 'string'
   const isArray = Array.isArray(value)
-  const isValidationFunction = typeof validation === 'function' 
+  const isValidationFunction = typeof validation === 'function'
 
   const { min, max } = validation
 

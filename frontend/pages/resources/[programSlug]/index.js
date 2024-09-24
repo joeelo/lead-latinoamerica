@@ -9,16 +9,16 @@ import { QueryKeys } from '@/config/QueryKeys'
 import ProgramRequests from '@/requests/ProgramRequests'
 
 export default function ProgramPage() {
-  const router = useRouter() 
-  const { programSlug: name } = router.query  || {}
+  const router = useRouter()
+  const { programSlug: name } = router.query || {}
 
   const [session, loading] = useSession()
   const isLoadingSession = loading
 
   const programQuery = useQuery({
-		queryKey: QueryKeys.PROGRAM, 
-		queryFn: () => ProgramRequests.getBySlug(name)
-	})
+    queryKey: QueryKeys.PROGRAM,
+    queryFn: () => ProgramRequests.getBySlug(name),
+  })
 
   const { isLoading } = programQuery
 
@@ -34,10 +34,10 @@ export default function ProgramPage() {
         <LoadingSpinner />
       ) : (
         <>
-          <ProgramTitleAndPhoto program={program} router={router}/>
-          <ProgramOverviewAndInfo 
-            program={program} 
-            marginTop={true} 
+          <ProgramTitleAndPhoto program={program} router={router} />
+          <ProgramOverviewAndInfo
+            program={program}
+            marginTop={true}
             email={session?.user?.email}
           />
         </>

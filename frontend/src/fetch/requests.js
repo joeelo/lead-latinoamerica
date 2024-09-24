@@ -37,7 +37,7 @@ async function postToDatabase(data, endpoint, query = {}) {
   }
 
   data.query = query
-  
+
   try {
     const options = {
       method: 'POST',

@@ -1,10 +1,10 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { LeadInstance } from "./LeadInstance"
+import { LeadInstance } from './LeadInstance'
 
 export default {
   getPrograms,
   updatePrograms,
-  deleteProgram
+  deleteProgram,
 }
 
 async function getPrograms(email) {
