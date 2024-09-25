@@ -6,7 +6,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-import { postToDatabase } from '@/fetch/requests'
+import ProgramRequests from '@/requests/ProgramRequests'
 import getIsValidUrl from '@/utils/getIsValidUrl'
 
 import Step1 from './Step1'
@@ -51,6 +51,14 @@ export default function AddProgramSlides() {
 
   const currentQuestion = questionKeys[step]
 
+  async function checkResponse(data) {
+    const result = await ProgramRequests.create(data)
+
+    console.log(result)
+
+    return router.push('congrats')
+  }
+
   if (!currentQuestion) { // After step 5
     const programType = {}
 
@@ -64,9 +72,7 @@ export default function AddProgramSlides() {
       partnerUrl: step5Value, 
     }
 
-    postToDatabase(data, '/programs/add')
-
-    return router.push('congrats')
+    checkResponse(data)
   }
 
   const onNextClick = () => {

@@ -4,10 +4,9 @@ import { useRouter } from 'next/router'
 import styled from 'styled-components'
 
 import useLocale from '@/hooks/useLocale'
-import getDiff from '@/utils/getDiff'
 
 const PhotoWithTextBox = ({
-  program: { name = '', coverImage, bio, href, expirationDate, bioEs },
+  program: { name = '', coverImage, bio, href, bioEs },
 }) => {
   const router = useRouter()
   const isEnglish = useLocale() === 'en'
@@ -15,11 +14,6 @@ const PhotoWithTextBox = ({
   const clickHandler = () => {
     router.push(`/resources/${href.toLowerCase()}`)
   }
-
-  const now = new Date().toISOString()
-  const diff = expirationDate && getDiff(expirationDate, now)
-
-  const isInNextTwoWeeks = Math.abs(diff.days) < 14
 
   const bioInLang = isEnglish ? bio : bioEs
 
@@ -46,10 +40,6 @@ const PhotoWithTextBox = ({
           >
             {name}
           </Typography>
-
-          {isInNextTwoWeeks && (
-            <StyledBellImage src="/images/bell-icon-white.png" />
-          )}
         </PhotoWithTextOverlay>
         <Box
           height={215}
@@ -115,11 +105,4 @@ const StyledImage = styled.img`
   position: absolute;
   left: 0;
   top: 0;
-`
-
-const StyledBellImage = styled.img`
-  bottom: 10px;
-  right: 10px;
-  width: 40px;
-  position: absolute;
 `

@@ -14,7 +14,7 @@ import StyledSectionHeading from '@/components/form/section/StyledSectionHeading
 import TextInput from '@/components/form/text-input/TextInput'
 import WordSelectInput from '@/components/form/word-select/WordSelectInput'
 import NavBar from '@/components/nav/NavBar'
-import { postToDatabase } from '@/fetch/requests'
+import ProgramRequests from '@/requests/ProgramRequests'
 import getToast from '@/utils/getToast'
 
 const AddProgram = () => {
@@ -69,7 +69,7 @@ const AddProgram = () => {
         data.expirationDate = expirationDate.toISOString()
       }
 
-      const response = await postToDatabase(data, '/programs/add')
+      const response = await ProgramRequests.create
 
       if (response.errorMessage) {
         setApiError(response.errorMessage)

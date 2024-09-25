@@ -57,13 +57,6 @@ export default function ProgramOverviewAndInfo({
     day: 'numeric',
   })
 
-  const expDate = new Date(program.expirationDate).toLocaleDateString('en-us', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  })
-
   return (
       <Box
         display='flex'
@@ -122,22 +115,6 @@ export default function ProgramOverviewAndInfo({
               {t.categories} 
           </Typography>
           <Tiles adjectives={program.helpsWith} />
-
-          {program.expirationDate && (
-            <>
-              <Typography 
-                variant="h3" 
-                mt={2.5} 
-                style={{ 
-                  textDecoration: 'underline', 
-                  fontWeight: 300 
-                }}  
-              > 
-                {t.deadline} 
-              </Typography>
-              <Typography>{expDate}</Typography>
-            </>
-          )}
         </Box>
       </Box>
   )
