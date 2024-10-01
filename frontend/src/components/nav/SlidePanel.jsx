@@ -25,11 +25,7 @@ const SlidePanel = ({ navOpen }) => {
   }, [navOpen])
 
   return (
-    <Container
-      className="slide-panel"
-      navOpen={navOpen}
-      ref={wrapperRef}
-    >
+    <Container className="slide-panel" navOpen={navOpen} ref={wrapperRef}>
       <LanguageButtons />
 
       <SectionHeader> {t.resources} </SectionHeader>

@@ -10,7 +10,7 @@ const TextInput = ({
   label,
   placeHolder,
   initialVal,
-  rows, 
+  rows,
   ...props
 }) => {
   // register and hasError are properties of parent
@@ -22,38 +22,43 @@ const TextInput = ({
     if (initialVal) {
       setValue(name, initialVal)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialVal])
 
   const style = {
-    width: '100%', 
-    minHeight: 40, 
-    height: 40, 
-    fontSize: 16, 
-    padding: '5px 5px 2px 5px', 
-    marginBottom: 10, 
-    border: 0, 
+    width: '100%',
+    minHeight: 40,
+    height: 40,
+    fontSize: 16,
+    padding: '5px 5px 2px 5px',
+    marginBottom: 10,
+    border: 0,
     outline: 'none',
-    minHeight: rows ? rows * 30 : '' 
+    minHeight: rows ? rows * 30 : '',
+    resize: 'none',
   }
 
   return (
-    <Box 
-      style={{ 
-        paddingLeft: 10, 
-        paddingTop: 10,  
-        transition: '0.4s ease-in-out all', 
-        borderRadius: 4, 
-        boxShadow: isInFocus 
+    <Box
+      style={{
+        paddingLeft: 10,
+        paddingTop: 10,
+        transition: '0.4s ease-in-out all',
+        borderRadius: 4,
+        boxShadow: isInFocus
           ? '1px 2px 13px 0px rgba(184, 177, 184, 1)'
           : '1px 1px 4px 0px rgba(184, 177, 184, 1)',
       }}
     >
       {label && (
-        <label 
-          style={{ color: theme.colors.darkBlue, paddingLeft: 5, textTransform: 'capitalize' }}
-        > 
-          {label} 
+        <label
+          style={{
+            color: theme.colors.darkBlue,
+            paddingLeft: 5,
+            textTransform: 'capitalize',
+          }}
+        >
+          {label}
         </label>
       )}
 
@@ -79,7 +84,6 @@ const TextInput = ({
           style={style}
         />
       )}
-
     </Box>
   )
 }

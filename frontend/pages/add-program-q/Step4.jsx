@@ -1,18 +1,14 @@
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 
-import LargeCheckbox from "@/components/form/checkbox/LargeCheckbox"
+import LargeCheckbox from '@/components/form/checkbox/LargeCheckbox'
 
-export default function Step4({
-  onChange, 
-  value, 
-  errorText, 
-}) {
+export default function Step4({ onChange, value, errorText }) {
   const options = [
-    {label: 'Summer', value: 'summer'}, 
-    {label: 'Program', value: 'program',}, 
-    {label: 'Internship', value: 'internship',}, 
-    {label: 'Scholarship', value: 'scholarship',}
+    { label: 'Summer', value: 'summer' },
+    { label: 'Program', value: 'program' },
+    { label: 'Internship', value: 'internship' },
+    { label: 'Scholarship', value: 'scholarship' },
   ]
 
   return (
@@ -20,7 +16,7 @@ export default function Step4({
       <Box display="flex" flexWrap="wrap">
         {options.map((option) => {
           return (
-            <LargeCheckbox 
+            <LargeCheckbox
               key={option.value}
               isChecked={value.includes(option.value)}
               onChange={() => {
@@ -33,7 +29,7 @@ export default function Step4({
                 onChange(option.value)
               }}
               label={option.label}
-              style={{ width: '45%', marginBottom: 16, marginRight: 16, }}
+              style={{ width: '45%', marginBottom: 16, marginRight: 16 }}
             />
           )
         })}

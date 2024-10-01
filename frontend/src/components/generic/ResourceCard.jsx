@@ -1,38 +1,33 @@
-import Box from "@mui/material/Box"
-import Typography from "@mui/material/Typography"
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import Image from "next/image"
+import Image from 'next/image'
 
-import ExternalLink from "./ExternalLink"
+import ExternalLink from './ExternalLink'
 
-export default function ResourceCard({
-  src, 
-  name, 
-  description, 
-  href, 
-}) {
+export default function ResourceCard({ src, name, description, href }) {
   const isMobile = useMediaQuery('(max-width:800px)')
 
   return (
     <Box display="flex" flexWrap="wrap" alignItems="center">
-      <Box 
-        height={275} 
-        width={350} 
-        mr={isMobile ? 0 : 5} 
+      <Box
+        height={275}
+        width={350}
+        mr={isMobile ? 0 : 5}
         margin={isMobile ? '0 auto 16px auto' : ''}
-        borderRadius={4} 
-        overflow="hidden" 
+        borderRadius={4}
+        overflow="hidden"
         boxShadow="12px 12px 20px 4px rgba(0,0,0,0.2)"
       >
-        <Image 
+        <Image
           alt={`image-src-${src}`}
           src={src}
           height={275}
           width={500}
-          style={{ 
+          style={{
             maxWidth: '100%',
             height: '100%',
-            objectFit: 'cover'
+            objectFit: 'cover',
           }}
         />
       </Box>
@@ -41,14 +36,10 @@ export default function ResourceCard({
         <Typography variant="h4" fontWeight="bold" mt={isMobile ? 2 : 0}>
           {name}
         </Typography>
-        <Typography mt={2}>
-          {description}
-        </Typography>
-        <Typography mt={2}>
-          {href}
-        </Typography>
+        <Typography mt={2}>{description}</Typography>
+        <Typography mt={2}>{href}</Typography>
         <Box mt="auto">
-          <ExternalLink label="Learn more" href={href}/>
+          <ExternalLink label="Learn more" href={href} />
         </Box>
       </Box>
     </Box>

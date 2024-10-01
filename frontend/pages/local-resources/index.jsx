@@ -1,9 +1,9 @@
-import Box from "@mui/material/Box"
-import Typography from "@mui/material/Typography"
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import Image from "next/image"
+import Image from 'next/image'
 
-import ResourceCard from "@/components/generic/ResourceCard"
+import ResourceCard from '@/components/generic/ResourceCard'
 import ResourceData from '@/data/resourceData'
 import useLocale from '@/hooks/useLocale'
 
@@ -17,42 +17,61 @@ export default function LocalResourcesPage() {
 
   return (
     <>
-      <Box style={{width: '100%', height: '40vh', position: 'relative', marginBottom: isMobile ? 32 : 16 }}>
-        <Box position='absolute' top={20} left={20} color="white" fontSize={isMobile ? 24 : 56} zIndex={100} fontWeight={600}>
+      <Box
+        style={{
+          width: '100%',
+          height: '40vh',
+          position: 'relative',
+          marginBottom: isMobile ? 32 : 16,
+        }}
+      >
+        <Box
+          position="absolute"
+          top={20}
+          left={20}
+          color="white"
+          fontSize={isMobile ? 24 : 56}
+          zIndex={100}
+          fontWeight={600}
+        >
           Resources
         </Box>
         <Image
-          src='/images/hannah-busing-compressed.jpg'
+          src="/images/hannah-busing-compressed.jpg"
           width={0}
-          objectFit='cover'
-          layout='fill'
+          objectFit="cover"
+          layout="fill"
           alt="hands in a circle"
         />
       </Box>
 
       <Box display="flex" justifyContent="center">
-        <Box 
+        <Box
           maxWidth={1000}
-          width="90%" 
-          mt={isMobile ? -2 : 4 }
+          width="90%"
+          mt={isMobile ? -2 : 4}
           textAlign={isMobile ? 'center' : ''}
-        > 
-          <Typography fontSize={22}>
-            {t.blurb}
-          </Typography>
+        >
+          <Typography fontSize={22}>{t.blurb}</Typography>
 
           <Box mt={6} maxWidth={1000}>
             {ResourceData.resources.map((data, index) => (
-              <Box 
-                key={data.href} 
+              <Box
+                key={data.href}
                 mb={6}
-                borderBottom={index === ResourceData.resources.length - 1 ? '' : "1px solid rgba(0, 0, 0, .2)" }
+                borderBottom={
+                  index === ResourceData.resources.length - 1
+                    ? ''
+                    : '1px solid rgba(0, 0, 0, .2)'
+                }
                 pb={5}
               >
-                <ResourceCard 
+                <ResourceCard
                   src={data.src}
                   name={data.name}
-                  description={isEnglish ? data.description : data.descriptionEs}
+                  description={
+                    isEnglish ? data.description : data.descriptionEs
+                  }
                   href={data.href}
                 />
               </Box>

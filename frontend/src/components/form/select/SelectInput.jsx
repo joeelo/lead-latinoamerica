@@ -4,11 +4,11 @@ import styled from 'styled-components'
 
 import useHandleClickOutside from '@/hooks/useHandleClickOutside'
 
-export default function SelectInput({ 
-  options = [], 
-  register, 
-  setValue, 
-  name, 
+export default function SelectInput({
+  options = [],
+  register,
+  setValue,
+  name,
   initialVal,
 }) {
   const wrapperRef = useRef(null)
@@ -27,7 +27,7 @@ export default function SelectInput({
       setSelectedOption(foundInitialOption)
       setValue(name, initialVal)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialVal])
 
   const cb = () => {
@@ -38,11 +38,11 @@ export default function SelectInput({
 
   useEffect(() => {
     setInitialValue()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialVal])
 
   return (
-    <Box position='relative'>
+    <Box position="relative">
       <StyledInput
         {...register(name)}
         readOnly
@@ -52,7 +52,7 @@ export default function SelectInput({
         focused={showOptions}
       />
       {showOptions && (
-        <Box maxWidth={350} display='flex' flexDirection='column'>
+        <Box maxWidth={350} display="flex" flexDirection="column">
           <StyledOptionDropdown focused={showOptions}>
             {options.map((opt) => {
               return (

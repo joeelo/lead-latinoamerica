@@ -130,7 +130,7 @@ const DateInput = ({
     if (trueLength === 4 && date[5] !== '/' && !isBackspace) {
       setValue(name, `${date}/`)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date])
 
   useEffect(() => {

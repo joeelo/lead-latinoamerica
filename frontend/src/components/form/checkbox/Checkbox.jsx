@@ -17,9 +17,7 @@ const Checkbox = ({ option, register, checkOnLoad = false }) => {
     config: config.gentle,
   })
 
-  if (!option?.value) return (
-    <></>
-  )
+  if (!option?.value) return <></>
 
   return (
     <Box display="flex">

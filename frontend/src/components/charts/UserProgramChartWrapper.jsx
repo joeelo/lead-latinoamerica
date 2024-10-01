@@ -40,7 +40,7 @@ function UserProgramChartWrapper() {
 
     return {
       stats,
-      categories, 
+      categories,
       seriesData,
     }
   }, [data.message])
@@ -109,8 +109,8 @@ function UserProgramChartWrapper() {
     <div>
       <h1>Number of opportunities added by month</h1>
       <p style={{ marginBottom: 20 }}>
-        How many opportunities have been added vs how many you&apos;ve saved month
-        over month
+        How many opportunities have been added vs how many you&apos;ve saved
+        month over month
       </p>
 
       <div

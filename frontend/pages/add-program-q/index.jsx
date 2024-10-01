@@ -18,15 +18,15 @@ import Step5 from './Step5'
 export const textInputStyle = {
   '.MuiInputBase-input': {
     minHeight: {
-      lg: '55px', 
-      md: '32px'
-    }, 
+      lg: '55px',
+      md: '32px',
+    },
     fontSize: {
-      lg: 32, 
-      md: 24
-    }, 
+      lg: 32,
+      md: 24,
+    },
     lineHeight: 1.1,
-  }
+  },
 }
 
 export default function AddProgramSlides() {
@@ -42,11 +42,15 @@ export default function AddProgramSlides() {
   const [step5Value, setStep5Value] = useState('')
 
   const questionKeys = [
-    { label: 'What is the name of the program?' }, 
-    { label: 'A short description about the program' }, 
-    { label: 'Labels to help identify the uses', infoText: 'Use commas to create new label, ie: funding, scholarship, after-school, etc.', }, 
-    { label: 'What type of program is it?', infoText: 'Choose all that apply',  }, 
-    { label: 'Link/URL for opportunity', }, 
+    { label: 'What is the name of the program?' },
+    { label: 'A short description about the program' },
+    {
+      label: 'Labels to help identify the uses',
+      infoText:
+        'Use commas to create new label, ie: funding, scholarship, after-school, etc.',
+    },
+    { label: 'What type of program is it?', infoText: 'Choose all that apply' },
+    { label: 'Link/URL for opportunity' },
   ]
 
   const currentQuestion = questionKeys[step]
@@ -59,17 +63,18 @@ export default function AddProgramSlides() {
     return router.push('congrats')
   }
 
-  if (!currentQuestion) { // After step 5
+  if (!currentQuestion) {
+    // After step 5
     const programType = {}
 
-    step4Value.forEach((val) => programType[val] = true)
+    step4Value.forEach((val) => (programType[val] = true))
 
     const data = {
-      name: step1Value, 
-      bio: step2Value, 
-      helpsWith: step3Value.split(','), 
-      programType, 
-      partnerUrl: step5Value, 
+      name: step1Value,
+      bio: step2Value,
+      helpsWith: step3Value.split(','),
+      programType,
+      partnerUrl: step5Value,
     }
 
     checkResponse(data)
@@ -105,7 +110,7 @@ export default function AddProgramSlides() {
     if (inputError) {
       setErrorText(inputError)
 
-      return 
+      return
     }
 
     setStep((prevState) => prevState + 1)
@@ -118,18 +123,19 @@ export default function AddProgramSlides() {
     setErrorText('')
   }
 
-  if (!currentQuestion) { // This should never be hit
+  if (!currentQuestion) {
+    // This should never be hit
     return <>finished</>
   }
 
   return (
     <>
-      <Box minHeight='80vh' display={!isMobile ? 'flex' : ''}>
-        <Box 
-          width={!isMobile ? '50%' : '100%'} 
-          display="flex" 
-          justifyContent="center" 
-          alignItems="center" 
+      <Box minHeight="80vh" display={!isMobile ? 'flex' : ''}>
+        <Box
+          width={!isMobile ? '50%' : '100%'}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
           position="relative"
         >
           <Box p={4} mt={isMobile ? 8 : 1} textAlign={isMobile ? 'center' : ''}>
@@ -141,26 +147,26 @@ export default function AddProgramSlides() {
             </Typography>
           </Box>
 
-          {(step > 0 && !isMobile) && (
+          {step > 0 && !isMobile && (
             <Box position="absolute" bottom={50} right={32}>
-              <button className='fade-button' onClick={onPrevClick}>
+              <button className="fade-button" onClick={onPrevClick}>
                 Previous question
               </button>
             </Box>
           )}
         </Box>
 
-        <Box 
-          width={!isMobile ? '50%' : '100%'} 
-          display="flex" 
-          position="relative" 
-          bgcolor={!isMobile ? 'rgb(245, 245, 245)' : ''}  
-          alignItems="center" 
+        <Box
+          width={!isMobile ? '50%' : '100%'}
+          display="flex"
+          position="relative"
+          bgcolor={!isMobile ? 'rgb(245, 245, 245)' : ''}
+          alignItems="center"
           p={4}
         >
           <Box width="100%">
             {step === 0 && (
-              <Step1 
+              <Step1
                 errorText={errorText}
                 value={step1Value}
                 onChange={(event) => {
@@ -172,7 +178,7 @@ export default function AddProgramSlides() {
             )}
 
             {step === 1 && (
-              <Step2 
+              <Step2
                 errorText={errorText}
                 value={step2Value}
                 onChange={(event) => {
@@ -197,7 +203,7 @@ export default function AddProgramSlides() {
               <Step4
                 errorText={errorText}
                 value={step4Value}
-                onChange={(value) => { 
+                onChange={(value) => {
                   if (step4Value.includes(value)) {
                     const newValues = step4Value.filter((v) => v !== value)
 
@@ -230,10 +236,7 @@ export default function AddProgramSlides() {
 
           {!isMobile && (
             <Box position="absolute" bottom={50}>
-              <button 
-                className='fade-button' 
-                onClick={onNextClick}
-              >
+              <button className="fade-button" onClick={onNextClick}>
                 {step === questionKeys.length - 1 ? 'Submit' : 'Next Question'}
               </button>
             </Box>
@@ -245,22 +248,22 @@ export default function AddProgramSlides() {
         <>
           {step > 0 && (
             <Box display="flex" justifyContent="center" mb={3}>
-              <button className='fade-button' onClick={onPrevClick} style={{ width: 260, padding: 0  }}>
+              <button
+                className="fade-button"
+                onClick={onPrevClick}
+                style={{ width: 260, padding: 0 }}
+              >
                 Previous question
               </button>
             </Box>
           )}
 
           <Box display="flex" justifyContent="center" mb={5}>
-            <button 
-              className='fade-button' 
-              onClick={onNextClick}
-            >
+            <button className="fade-button" onClick={onNextClick}>
               {step === questionKeys.length - 1 ? 'Submit' : 'Next Question'}
             </button>
           </Box>
         </>
-
       )}
     </>
   )

@@ -18,16 +18,20 @@ const LanguageButtons = () => {
 
   return (
     <Box display="flex" alignItems="center" bgcolor="white">
-      <Typography 
+      <Typography
         fontSize={30}
         style={{ cursor: 'pointer' }}
         color="black"
         fontWeight={t === 'en' ? 500 : 300}
-        component="span" 
+        component="span"
         onClick={() => handleClick('en')}
-      > EN </Typography>
+      >
+        {' '}
+        EN{' '}
+      </Typography>
 
-      <div style={{
+      <div
+        style={{
           minHeight: 30,
           width: 1,
           backgroundColor: 'black',
@@ -35,14 +39,17 @@ const LanguageButtons = () => {
         }}
       />
 
-      <Typography 
+      <Typography
         fontSize={30}
         style={{ cursor: 'pointer' }}
         fontWeight={t === 'es' ? 500 : 300}
-        component="span" 
+        component="span"
         color="black"
         onClick={() => handleClick('es')}
-      > ES </Typography>
+      >
+        {' '}
+        ES{' '}
+      </Typography>
     </Box>
   )
 }

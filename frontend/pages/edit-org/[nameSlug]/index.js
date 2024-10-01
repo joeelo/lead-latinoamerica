@@ -1,26 +1,24 @@
+import Box from '@mui/material/Box'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { useQuery } from 'react-query'
 import { Tooltip } from 'react-tooltip'
-import styled from 'styled-components'
 
 import Button from '@/components/buttons/Button'
 import DateInput from '@/components/form/date-input/DateInput'
 import InputErrorMessage from '@/components/form/errors/InputErrorMessage'
 import StyledSectionHeading from '@/components/form/section/StyledSectionHeading'
-import Textarea from '@/components/form/text-input/TextArea'
 import TextInput from '@/components/form/text-input/TextInput'
 import WordSelectInput from '@/components/form/word-select/WordSelectInput'
-import Box from '@/components/generic/Box'
 import LoadingSpinner from '@/components/generic/LoadingSpinner'
 import { QueryKeys } from '@/config/QueryKeys'
 import { findProgramAndUpdate } from '@/fetch/requests'
 import ProgramRequests from '@/requests/ProgramRequests'
 import getToast from '@/utils/getToast'
 
-const EditOrg = () => {
+export default function EditOrg() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [wordList, setWordList] = useState([])
   const router = useRouter()
@@ -128,15 +126,29 @@ const EditOrg = () => {
   }
 
   return (
-    <>
-      <Box stackOnMobile display="flex" fd="column" center pt="60px" p="10px">
-        <Box display="flex" fd="column" center justify="center" align="center">
+    <Box display="flex" justifyContent="center">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        mt={10}
+        p={3}
+        sx={{ boxShadow: 6 }}
+        mb={6}
+        borderRadius={3}
+      >
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+        >
           <h1>Editing</h1>
           <p>{router.query.nameSlug}</p>
         </Box>
 
         <Box display="flex">
-          <Form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Box>
               <StyledSectionHeading>
                 Name of the scholarship, internship, or program
@@ -229,38 +241,12 @@ const EditOrg = () => {
               </Box>
             </Box>
 
-            <Box display="flex" justify="flex-end">
+            <Box display="flex" justifyContent="flex-end">
               <Button label="Submit" isSubmitting={isSubmitting} />
             </Box>
-          </Form>
+          </form>
         </Box>
       </Box>
-    </>
+    </Box>
   )
 }
-
-export default EditOrg
-
-const Form = styled.form`
-  margin-left: 50px;
-  margin-top: 50px;
-  box-shadow: 5px 5px 15px -4px rgba(0, 0, 0, 0.5);
-  min-width: 300px;
-  width: 90vw;
-  min-height: 600px;
-  max-width: 600px;
-  border-radius: 10px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  margin: 40px auto;
-  background-color: white;
-  maxwidth: 600px;
-  margin: 40px auto 40px auto;
-
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    margin: 0 auto;
-    padding: 0px;
-  }
-`

@@ -1,4 +1,3 @@
-
 import Box from '@mui/material/Box'
 import Checkbox from '@mui/material/Checkbox'
 import Typography from '@mui/material/Typography'
@@ -42,20 +41,19 @@ export default function ProfilePage() {
   })
 
   const user = useQuery({
-    queryKey: QueryKeys.USER_DETAILS, 
-    queryFn: getProfile, 
-    enabled: !!session
+    queryKey: QueryKeys.USER_DETAILS,
+    queryFn: getProfile,
+    enabled: !!session,
   })
 
-  const userPrograms = userProgramsQuery.data 
-    ? userProgramsQuery.data.programs 
+  const userPrograms = userProgramsQuery.data
+    ? userProgramsQuery.data.programs
     : []
 
   const userData = user.data || {}
 
   const onSubmit = async (data) => {
     // const response = await editProfile(apiData, email)
-
     // if (response.success) {
     //   setIsEditing(false)
     //   getToast({ message: 'Successfully Updated!' })
@@ -77,7 +75,7 @@ export default function ProfilePage() {
     if (!session) {
       router.push('sign-in')
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session])
 
   const titleHeadingStyle = {
@@ -88,20 +86,16 @@ export default function ProfilePage() {
 
   return (
     <Box>
-      <Box
-        minHeight={300}
-        minWidth="100vw"
-        position="relative"
-      >
+      <Box minHeight={300} minWidth="100vw" position="relative">
         <Image
           src="/images/profile-images/david-marcu-unsplash-nature.jpg"
           alt="nature photo banner"
           fill
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: 'cover' }}
         />
       </Box>
 
-      <Box width="100%"  position='relative' justifyContent="center">
+      <Box width="100%" position="relative" justifyContent="center">
         {userName.initials && (
           <Box
             sx={{
@@ -148,10 +142,11 @@ export default function ProfilePage() {
                 </Typography>
               )}
 
-              <Typography style={{...titleHeadingStyle, fontSize: 18}}>
-                We&apos;re bringing notifications to the profile page soon. So you
-                can opt-in to get weekly emails on programs that have been
-                uploaded! If you wish to opt-in and start receiving weekly emails when we start please click the edit button 
+              <Typography style={{ ...titleHeadingStyle, fontSize: 18 }}>
+                We&apos;re bringing notifications to the profile page soon. So
+                you can opt-in to get weekly emails on programs that have been
+                uploaded! If you wish to opt-in and start receiving weekly
+                emails when we start please click the edit button
               </Typography>
 
               <Button maxWidth={165} label="Edit" onClick={handleClick} />
@@ -160,12 +155,19 @@ export default function ProfilePage() {
             <Box maxWidth={600} mr="40px">
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Box mb="30px" display="flex" alignItems="center">
-                  <Typography fontSize={22}>Opt-in to weekly emails?</Typography>
-                  <Checkbox checked={userData.optedIn} style={{ marginLeft: 8 }}/>
+                  <Typography fontSize={22}>
+                    Opt-in to weekly emails?
+                  </Typography>
+                  <Checkbox
+                    checked={userData.optedIn}
+                    style={{ marginLeft: 8 }}
+                  />
                 </Box>
-                
+
                 <Box mb="30px" maxWidth={400}>
-                  <Typography fontSize={22}>What is your preferred name?</Typography>
+                  <Typography fontSize={22}>
+                    What is your preferred name?
+                  </Typography>
                   <TextInput
                     name="preferredName"
                     register={register}

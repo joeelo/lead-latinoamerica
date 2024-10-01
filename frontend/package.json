@@ -11,7 +11,7 @@
     "lint:fix": "yarn run lint -- --fix",
     "pre-commit-lint": "yarn run lint-staged",
     "prepare": "cd .. && husky install frontend/.husky",
-    "prettier:fix": "yarn run prettier 'src/**/*.{js,ts,mjs,cjs,json}' --write",
+    "prettier:fix": "yarn run prettier --write --ignore-path .gitignore .",
     "lint-staged": "next lint"
   },
   "dependencies": {

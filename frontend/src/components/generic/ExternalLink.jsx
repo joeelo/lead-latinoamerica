@@ -3,13 +3,7 @@ import React from 'react'
 
 import Button from '@/components/buttons/Button'
 
-const ExternalLink = ({
-  bgColor,
-  label,
-  href,
-  hoverColor,
-  ...props
-}) => {
+const ExternalLink = ({ bgColor, label, href, hoverColor, ...props }) => {
   return (
     <a
       href={href}
@@ -21,12 +15,7 @@ const ExternalLink = ({
       }}
       {...props}
     >
-      <Button
-        label={label}
-        color={bgColor}
-        hoverColor={hoverColor}
-      />
-        
+      <Button label={label} color={bgColor} hoverColor={hoverColor} />
     </a>
   )
 }

@@ -10,9 +10,7 @@
         "ignoreRestSiblings": false
       }
     ],
-    "simple-import-sort/imports": "error", 
-    "no-restricted-imports": [
-      "error"
-    ]
+    "simple-import-sort/imports": "error",
+    "no-restricted-imports": ["error"]
   }
 }

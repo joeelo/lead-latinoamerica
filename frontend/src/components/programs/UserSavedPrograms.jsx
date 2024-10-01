@@ -26,20 +26,27 @@ export default function UserSavedPrograms({ programs }) {
   return (
     <Box display="flex" flexDirection="column" mb={2.5}>
       <Typography
-        fontSize='28px'
+        fontSize="28px"
         mb={2.5}
         fontWeight={500}
         sx={{
           '@media screen and (max-width: 768px)': {
             display: 'flex',
-            justifyContent: 'center', 
-            width: '100%'
-          }
+            justifyContent: 'center',
+            width: '100%',
+          },
         }}
       >
         Your Saved Opportunities
       </Typography>
-      <div style={{ display: 'flex', flexWrap: 'wrap', width: '100%', marginBottom: 40 }}>
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          width: '100%',
+          marginBottom: 40,
+        }}
+      >
         {programs.length === 0 ? (
           <p>You haven&apos;t saved any opportunities yet!</p>
         ) : (

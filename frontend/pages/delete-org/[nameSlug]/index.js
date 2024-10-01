@@ -13,7 +13,10 @@ const DeleteOrgPage = () => {
   const router = useRouter()
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const programQuery = useGetProgramBySlug({ slug: router.query.nameSlug, enabled: !!router.query })
+  const programQuery = useGetProgramBySlug({
+    slug: router.query.nameSlug,
+    enabled: !!router.query,
+  })
 
   const { data: program } = programQuery
 

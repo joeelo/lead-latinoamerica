@@ -3,11 +3,11 @@ import { useMemo } from 'react'
 
 import Checkbox from './Checkbox'
 
-export default function CheckboxGroup ({ 
-  options, 
-  register, 
-  checkedOnLoad = [] 
-}){
+export default function CheckboxGroup({
+  options,
+  register,
+  checkedOnLoad = [],
+}) {
   const initialValues = useMemo(() => {
     const initialObj = {}
 
@@ -23,12 +23,7 @@ export default function CheckboxGroup ({
   }, [checkedOnLoad, options])
 
   return (
-    <Box
-      display="flex"
-      width='100%'
-      flexDirection='column'
-      fontSize={22}
-    >
+    <Box display="flex" width="100%" flexDirection="column" fontSize={22}>
       {options.map((opt) => (
         <Checkbox
           key={opt.value}
