@@ -13,15 +13,9 @@ import Button from '@/components/buttons/Button'
 import TextInput from '@/components/form/text-input/TextInput'
 import UserSavedPrograms from '@/components/programs/UserSavedPrograms'
 import { QueryKeys } from '@/config/QueryKeys'
-import { editProfile, getProfile } from '@/fetch/profile/ProfileRequests'
+import { getProfile } from '@/fetch/profile/ProfileRequests'
 import UserRequests from '@/requests/UserRequests'
 import getFullName from '@/utils/getFullName'
-import getToast from '@/utils/getToast'
-
-// const UserProgramChartWrapper = dynamic(
-//   () => import('@/components/charts/UserProgramChartWrapper'),
-//   { ssr: false }
-// ) // TODO: Put back when we have more data
 
 export default function ProfilePage() {
   const [session] = useSession()
@@ -42,7 +36,7 @@ export default function ProfilePage() {
 
   const user = useQuery({
     queryKey: QueryKeys.USER_DETAILS,
-    queryFn: getProfile,
+    queryFn: () => UserRequests.getUser(email),
     enabled: !!session,
   })
 
@@ -53,13 +47,13 @@ export default function ProfilePage() {
   const userData = user.data || {}
 
   const onSubmit = async (data) => {
-    // const response = await editProfile(apiData, email)
-    // if (response.success) {
-    //   setIsEditing(false)
-    //   getToast({ message: 'Successfully Updated!' })
-    //   scrollTo({ top: 100 })
-    //   setUserData(response.user)
-    // }
+    const response = await UserRequests.editProfile(apiData, email)
+    if (response.success) {
+      setIsEditing(false)
+      getToast({ message: 'Successfully Updated!' })
+      scrollTo({ top: 100 })
+      setUserData(response.user)
+    }
   }
 
   const handleClick = () => {

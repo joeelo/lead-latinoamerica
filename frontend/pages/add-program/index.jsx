@@ -1,5 +1,4 @@
 // Inspo, redbull form - https://elementor.com/blog/website-form-design-examples/
-
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'

@@ -107,7 +107,7 @@ export default function DesktopNav() {
               flexDirection="column"
               display="flex"
             >
-              <Link href="/add-program-q">{t.addOrg}</Link>
+              <Link href="/add-program">{t.addOrg}</Link>
               {session && <Link href="/profile">{t.profile}</Link>}
               <a
                 target="_blank"
@@ -135,3 +135,4 @@ export default function DesktopNav() {
     </>
   )
 }
+

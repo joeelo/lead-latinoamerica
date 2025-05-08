@@ -1,7 +1,6 @@
+import Box from '@mui/material/Box'
 import { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
-
-import Box from '@/components/generic/Box'
 
 const WordSelectInput = ({ wordList, setWordList, placeHolder }) => {
   const [isInFocus, setIsInFocus] = useState(false)
@@ -58,7 +57,7 @@ const WordSelectInput = ({ wordList, setWordList, placeHolder }) => {
           placeholder={placeHolder}
         />
       </Container>
-      <Box mt="5px" display="flex" wrap="true">
+      <Box mt={1} display="flex" flexWrap="Wrap">
         {wordList.map((word, index) => {
           return (
             <StyledLabel key={index}>

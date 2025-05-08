@@ -2,9 +2,27 @@
 import { LeadInstance } from './LeadInstance'
 
 export default {
+  createProfile,
+  editProfile,
   getPrograms,
   updatePrograms,
   deleteProgram,
+}
+
+async function createProfile(session) {
+  const url = `/profile/create`
+
+  const response = await LeadInstance.post(url, session)
+
+  return response.data
+}
+
+async function editProfile(email, data) {
+  const url = `/user/profile/${email}/edit`
+
+  const response = await LeadInstance.put(url, data)
+
+  return response.data
 }
 
 async function getPrograms(email) {
