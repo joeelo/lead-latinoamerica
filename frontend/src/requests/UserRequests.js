@@ -3,6 +3,7 @@ import { LeadInstance } from './LeadInstance'
 
 export default {
   createProfile,
+  getProfile,
   editProfile,
   getPrograms,
   updatePrograms,
@@ -10,6 +11,14 @@ export default {
 }
 
 async function createProfile(session) {
+  const url = `/profile/create`
+
+  const response = await LeadInstance.post(url, session)
+
+  return response.data
+}
+
+async function getProfile(email, session) {
   const url = `/profile/create`
 
   const response = await LeadInstance.post(url, session)

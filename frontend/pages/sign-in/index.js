@@ -23,13 +23,11 @@ export default function Signup() {
       <Box
         display="flex"
         maxWidth="100%"
-        minHeight="65vh"
+        minHeight="67vh"        
         sx={{
-          flexDirection: {
-            sm: 'column',
-            xs: 'column',
-            md: 'row',
-          },
+          '@media screen and (max-width: 1000px)': {
+              flexDirection: 'column',
+            },
         }}
       >
         <Box
@@ -42,7 +40,7 @@ export default function Signup() {
             backgroundRepeat: 'no-repeat',
             display: 'flex',
             justifyContent: 'center',
-            '@media screen and (max-width: 768px)': {
+            '@media screen and (max-width: 1000px)': {
               width: '100%',
             },
           }}
@@ -67,7 +65,7 @@ export default function Signup() {
             paddingTop: '150px',
             width: '40%',
             display: 'flex',
-            '@media screen and (max-width: 768px)': {
+            '@media screen and (max-width: 1000px)': {
               width: '100%',
               paddingTop: '60px',
               marginBottom: '60px',

@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box'
 
-import { findProgramAndUpdate } from '@/fetch/requests'
+import ProgramRequests from '@/requests/ProgramRequests'
 
 export default function FixedButton({
   approve = false,
@@ -13,10 +13,7 @@ export default function FixedButton({
   const handleClick = async () => {
     if (approve) {
       try {
-        const result = await findProgramAndUpdate(
-          {},
-          `/program/edit/${href}/${approve}`
-        )
+        const result = await ProgramRequests.approve(href)
         if (result.message === 'success') {
           onSuccess(true)
         }

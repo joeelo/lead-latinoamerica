@@ -13,7 +13,6 @@ import Button from '@/components/buttons/Button'
 import TextInput from '@/components/form/text-input/TextInput'
 import UserSavedPrograms from '@/components/programs/UserSavedPrograms'
 import { QueryKeys } from '@/config/QueryKeys'
-import { getProfile } from '@/fetch/profile/ProfileRequests'
 import UserRequests from '@/requests/UserRequests'
 import getFullName from '@/utils/getFullName'
 
@@ -36,7 +35,7 @@ export default function ProfilePage() {
 
   const user = useQuery({
     queryKey: QueryKeys.USER_DETAILS,
-    queryFn: () => UserRequests.getUser(email),
+    queryFn: () => UserRequests.getProfile(email, session),
     enabled: !!session,
   })
 
@@ -46,7 +45,7 @@ export default function ProfilePage() {
 
   const userData = user.data || {}
 
-  const onSubmit = async (data) => {
+  const onSubmit = async () => {
     const response = await UserRequests.editProfile(apiData, email)
     if (response.success) {
       setIsEditing(false)

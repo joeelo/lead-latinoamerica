@@ -14,7 +14,6 @@ import TextInput from '@/components/form/text-input/TextInput'
 import WordSelectInput from '@/components/form/word-select/WordSelectInput'
 import LoadingSpinner from '@/components/generic/LoadingSpinner'
 import { QueryKeys } from '@/config/QueryKeys'
-import { findProgramAndUpdate } from '@/fetch/requests'
 import ProgramRequests from '@/requests/ProgramRequests'
 import getToast from '@/utils/getToast'
 
@@ -89,10 +88,7 @@ export default function EditOrg() {
       data.expirationDate = expirationDate.toISOString()
     }
 
-    const response = await findProgramAndUpdate(
-      data,
-      `/program/edit/${programData.href}`
-    )
+    const response = await ProgramRequests.update(programData.href, data)
     if (response.success) {
       getToast({ message: 'Successfully Updated!' })
       router.push(`/edit-org/${response.data.href}`)

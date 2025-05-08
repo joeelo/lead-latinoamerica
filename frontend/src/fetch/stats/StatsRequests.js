@@ -1,18 +1,25 @@
-const StatsRequests = {
+/* eslint-disable import/no-anonymous-default-export */
+import { LeadInstance } from 'src/requests/LeadInstance'
+
+export default {
   getProgramStats,
+  getAppProgramStats,
 }
 
-async function getProgramStats() {
-  const { queryKey } = queryContext
-  if (!queryKey) return
-  const email = queryKey[1]
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_DB_LOCATION}/stats/programs/${email}`
-  )
+async function getProgramStats(email) {
+  const url = `/stats/programs/${email}`
 
-  const json = await response.json()
+  const { data } = await LeadInstance.get(url)
 
-  return json
+  return data
 }
 
-export default StatsRequests
+
+async function getAppProgramStats() {
+  const url = `/stats/programs`
+
+  const { data } = await LeadInstance.get(url)
+
+  return data
+}
+
