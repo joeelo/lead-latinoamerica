@@ -29,7 +29,6 @@ router.get('/programs', async (_req, res) => {
   try {
     const programs = await Program.find({
       approved: true,
-      expirationDate: { $gt: new Date().toISOString() }
     }).lean()
     
     res.send({ message: programs })
@@ -39,7 +38,7 @@ router.get('/programs', async (_req, res) => {
   }
 })
 
-router.post('/programs/add', async (req, res) => {
+router.post('/programs', async (req, res) => {
   try {
     const {
       name,
@@ -49,6 +48,8 @@ router.post('/programs/add', async (req, res) => {
       programType = {},
       expirationDate,
     } = req.body
+
+    console.log(req.body)
 
     const href = name.split(' ').join('-').toLowerCase()
 
@@ -84,8 +85,10 @@ router.post('/programs/add', async (req, res) => {
 
     const savedProgram = await newProgram.save()
 
+    console.log(savedProgram)
+
     if (savedProgram) {
-      res.send({ success: true, message: 'success' })
+      res.send(savedProgram)
     } 
   } catch (error) {
     logError(error)
@@ -131,7 +134,6 @@ router.get('/programs/resources', async (req, res) => {
     .find({
       [key]: true,
       approved: true,
-      expirationDate: { $gt: new Date().toISOString() }
     })
     .lean()
 
