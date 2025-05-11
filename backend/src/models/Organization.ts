@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
-const programSchema = new mongoose.Schema({
-  name: {
+const orgSchema = new mongoose.Schema({
+  organization: {
     type: String,
     required: true,
   },
@@ -10,9 +10,11 @@ const programSchema = new mongoose.Schema({
     max: 200,
     required: true,
   },
-  bioEs: {
+  missionStatement: {
     type: String,
-  }, 
+    default: '',
+    max: 500,
+  },
   helpsWith: {
     type: Array,
   },
@@ -23,10 +25,10 @@ const programSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  organization: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Organization', 
-  }],
+  email: {
+    type: String,
+    required: true,
+  },
   tags: {
     type: Array,
     default: [],
@@ -38,9 +40,9 @@ const programSchema = new mongoose.Schema({
   partnerUrl: {
     type: String,
   },
-  expirationDate: {
-    type: String,
-  }, 
+  orgLogo: {
+    type: String, 
+  },
   programType: {
     program: {
       type: Boolean,
@@ -59,15 +61,9 @@ const programSchema = new mongoose.Schema({
       default: false,
     },
   },
-  approvalEmailSent: {
-    type: Boolean, 
-    default: false,
-  }
-  
-}, {
-  timestamps: true 
-})
+});
 
 // @ts-ignore
-export const Program = new mongoose.model('Program', programSchema, 'programs')
+const Organization = new mongoose.model('Organization', orgSchema, 'programs');
 
+export { Organization }

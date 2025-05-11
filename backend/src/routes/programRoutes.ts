@@ -1,13 +1,13 @@
+import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses'
 import express from 'express'
-import { Program } from '../models/Program.mjs'
-import { User } from '../models/User.mjs'
-import getAwsEmailContent from '../email/getAwsEmailContent.mjs'
-import { translateText } from '../translation/translator.mjs'
-import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses"
+import Program from 'src/models/Program'
+import User from 'src/models/User'
+import getAwsEmailContent from 'src/email/getAwsEmailContent'
+import { translateText } from 'src/translation/translator'
 
 const router = express.Router()
 
-const logError = (error) => {
+const logError = (error: any) => {
   console.error(error)
   console.log(JSON.stringify(error))
 }
@@ -16,7 +16,7 @@ const SES_CONFIG = {
   credentials: {
     accessKeyId: process.env.S3_ACCESS_SECRET,
     secretAccessKey: process.env.S3_ACCESS_KEY,
-  }, 
+  },
   region: 'us-west-2',
 }
 
@@ -30,7 +30,7 @@ router.get('/programs', async (_req, res) => {
     const programs = await Program.find({
       approved: true,
     }).lean()
-    
+
     res.send({ message: programs })
   } catch (error) {
     logError(error)
@@ -54,23 +54,21 @@ router.post('/programs', async (req, res) => {
     const href = name.split(' ').join('-').toLowerCase()
 
     const programTypeKeys = Object.keys(programType)
-    const programTypes = {} 
-    
-    programTypeKeys.forEach((key) => programTypes[key] = !!programType[key])
+    const programTypes = {} as any
 
-    const betweenZeroAndFour = () => {
-      return Math.floor(Math.random() * 5)
-    }
+    programTypeKeys.forEach((key) => (programTypes[key] = !!programType[key]))
+
+    const betweenZeroAndFour = () => Math.floor(Math.random() * 5)
 
     const images = [
-      'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80', 
-      'https://images.unsplash.com/photo-1532294220147-279399e4e00f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80', 
-      'https://images.unsplash.com/photo-1630025326456-1d384d371b24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1748&q=80', 
-      'https://images.unsplash.com/photo-1527484583355-9c200f59f0fd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80', 
+      'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+      'https://images.unsplash.com/photo-1532294220147-279399e4e00f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
+      'https://images.unsplash.com/photo-1630025326456-1d384d371b24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1748&q=80',
+      'https://images.unsplash.com/photo-1527484583355-9c200f59f0fd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
     ]
 
     const translatedText = await translateText(bio)
-    
+
     const newProgram = new Program({
       name,
       bio,
@@ -80,7 +78,7 @@ router.post('/programs', async (req, res) => {
       partnerUrl,
       expirationDate,
       programType: programTypes,
-      coverImage: images[betweenZeroAndFour()]
+      coverImage: images[betweenZeroAndFour()],
     })
 
     const savedProgram = await newProgram.save()
@@ -89,7 +87,7 @@ router.post('/programs', async (req, res) => {
 
     if (savedProgram) {
       res.send(savedProgram)
-    } 
+    }
   } catch (error) {
     logError(error)
     res.send({ success: false, message: error })
@@ -130,12 +128,10 @@ router.get('/programs/resources', async (req, res) => {
   try {
     const { programType } = req.query
     const key = `programType.${programType}`
-    const programs = await Program
-    .find({
+    const programs = await Program.find({
       [key]: true,
       approved: true,
-    })
-    .lean()
+    }).lean()
 
     res.send({ success: true, message: programs })
   } catch (error) {
@@ -160,7 +156,7 @@ router.put('/program/edit/:href/:approve', async (req, res) => {
       filter,
       update,
       options,
-      (error) => {
+      (error: any) => {
         if (error) {
           logError(error)
           res.send({ success: false, message: error })
@@ -168,11 +164,12 @@ router.put('/program/edit/:href/:approve', async (req, res) => {
       }
     )
 
-    // only look for users if the email hasn't been sent to save a call. 
+    // only look for users if the email hasn't been sent to save a call.
     if (!hasEmailBeenSent) {
       const programArr = []
 
-      const { summer, internship, scholarship, program } = updatedProgram.programType
+      const { summer, internship, scholarship, program } =
+        updatedProgram.programType
 
       if (summer) {
         programArr.push('summer')
@@ -190,13 +187,10 @@ router.put('/program/edit/:href/:approve', async (req, res) => {
         programArr.push('program')
       }
 
-      const users = await User
-        .find({ interests: { $in: programArr }})
-        .lean()
-      const userEmails = !isLocalEnv 
-        ? users.map((user) => user.email)
+      const users = await User.find({ interests: { $in: programArr } }).lean()
+      const userEmails = !isLocalEnv
+        ? users.map((user: any) => user.email)
         : ['joeephus@gmail.com']
-
     }
 
     res.send({
@@ -209,12 +203,12 @@ router.put('/program/edit/:href/:approve', async (req, res) => {
   }
 })
 
-router.put('/program/edit/:href', async(req, res) => {
+router.put('/program/edit/:href', async (req, res) => {
   try {
     const { href } = req.params
     const newHref = req.body.name.split(' ').join('-').toLowerCase()
     const filter = { href }
-    const update = {...req.body, href: newHref}
+    const update = { ...req.body, href: newHref }
     const options = {
       returnOriginal: false,
       strict: false,
@@ -223,14 +217,17 @@ router.put('/program/edit/:href', async(req, res) => {
     const updatedProgram = await Program.findOneAndUpdate(
       filter,
       update,
-      options,
+      options
     )
 
-    res.send({ success: true, message: 'success', data: {...updatedProgram, href: newHref } })
-
+    res.send({
+      success: true,
+      message: 'success',
+      data: { ...updatedProgram, href: newHref },
+    })
   } catch (error) {
     logError(error)
-    res.send({error: true, message: error})
+    res.send({ error: true, message: error })
   }
 })
 
@@ -247,9 +244,10 @@ router.delete('/programs/erase-all', async (_, res) => {
 
 router.post('/programs/submit/test', async (req, res) => {
   const { program } = req.body
+
   try {
     const emailContent = getAwsEmailContent(program)
-  
+
     const command = new SendEmailCommand(emailContent)
     const response = await client.send(command)
 
@@ -259,9 +257,8 @@ router.post('/programs/submit/test', async (req, res) => {
 
     res.send({ message: error })
   }
-
 })
 
-const programRoutes = router 
+const programRoutes = router
 
 export { programRoutes }

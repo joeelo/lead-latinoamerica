@@ -1,4 +1,4 @@
-import mongoose from 'mongoose' 
+import mongoose from 'mongoose'
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   pronouns: {
-    type: String, 
+    type: String,
   },
   nationality: {
     type: Array,
@@ -27,20 +27,22 @@ const userSchema = new mongoose.Schema({
   interests: {
     type: Array,
   },
-  savedPrograms: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Program', 
-  }],
+  savedPrograms: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Program',
+    },
+  ],
   savedProgramDates: {
-    type: Array
+    type: Array,
   },
   isAdmin: {
-    type: Boolean, 
+    type: Boolean,
     default: false,
-  }
+  },
 })
 
 // @ts-ignore
 const User = new mongoose.model('User', userSchema)
 
-export { User }
+export default User
