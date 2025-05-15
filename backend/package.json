@@ -8,7 +8,8 @@
     "start": "node dist/index.js",
     "dev": "nodemon",
     "format": "eslint --fix \"src/**/*.js\"",
-    "build": "npx tsc && tsc-alias"
+    "build": "npx tsc && tsc-alias",
+    "postinstall": "npm run build"
   },
   "keywords": [],
   "author": "",
@@ -49,5 +50,8 @@
     "tsconfig-paths": "^4.2.0",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": "20.x"
   }
 }
