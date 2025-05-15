@@ -13,10 +13,6 @@ const server = `mongodb://joeeloee:${process.env.DB_PASSWORD}@cluster0-shard-00-
 // const database = 'lead-latinoamerica';
 
 mongoose.connect(server, {
-  useCreateIndex: true,
-  useNewUrlParser: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true,
   ssl: true,
 })
 
