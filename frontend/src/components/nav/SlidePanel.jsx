@@ -25,11 +25,7 @@ const SlidePanel = ({ navOpen }) => {
   }, [navOpen])
 
   return (
-    <Container
-      className="slide-panel"
-      navOpen={navOpen}
-      ref={wrapperRef}
-    >
+    <Container className="slide-panel" navOpen={navOpen} ref={wrapperRef}>
       <LanguageButtons />
 
       <SectionHeader> {t.resources} </SectionHeader>
@@ -55,7 +51,7 @@ const SlidePanel = ({ navOpen }) => {
       {!session && (
         <LinkUnderlineEffect hrefFormatted="/sign-in" text={t.signIn} />
       )}
-      <LinkUnderlineEffect hrefFormatted="/add-program-q" text={t.addOrg} />
+      <LinkUnderlineEffect hrefFormatted="/add-program" text={t.addOrg} />
       <LinkUnderlineEffect hrefFormatted="/" text={t.home} />
       <LinkUnderlineEffect
         openInNewTab

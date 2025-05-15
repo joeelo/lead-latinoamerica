@@ -7,26 +7,26 @@ import es from '@/language/locales/es/common.json'
 
 import TitleWithBackground from '../generic/TitleWithBackground'
 
-export default function FullScreenBack({ 
-  src = '', 
-  children = '', 
-  titleInfo = {}, 
-  height, 
-  title, 
-  noMarginBottom = true, 
+export default function FullScreenBack({
+  src = '',
+  children = '',
+  titleInfo = {},
+  height,
+  title,
+  noMarginBottom = true,
 }) {
   const t = useLocale() === 'en' ? en : es
   const { text, backgroundColor, color, show } = titleInfo
 
   const blurDataUrl = 'LKDvT59~E2af~pIuNHodIVt6s:WC'
-  const { headline } = (t[text] || { headline: '' } || titleInfo)
+  const { headline } = t[text] || { headline: '' } || titleInfo
 
   return (
     <Box position="relative" mb={noMarginBottom ? 0 : 10}>
-      <Box 
+      <Box
         position="relative"
         height={height || '70vh'}
-        minWidth='100vw'
+        minWidth="100vw"
         bgcolor="azure"
         style={{ overFlowX: 'hidden' }}
       >
@@ -37,16 +37,16 @@ export default function FullScreenBack({
           fill
           placeholder="blur"
           blurDataURL={blurDataUrl}
-          style={{ 
-            position: 'absolute', 
-            objectFit: 'cover'
+          style={{
+            position: 'absolute',
+            objectFit: 'cover',
           }}
         />
         <div style={{ zIndex: 10, position: 'relative' }}>{children}</div>
       </Box>
 
       {show && (
-        <Box 
+        <Box
           bottom={60}
           className="titleContainer"
           position="relative"
@@ -65,4 +65,3 @@ export default function FullScreenBack({
     </Box>
   )
 }
-

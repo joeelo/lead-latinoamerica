@@ -4,10 +4,10 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 import { Tooltip } from 'react-tooltip'
 
-import { RemoveUserSavedProgram } from '@/fetch/user/UserRequests'
 import useIsMobile from '@/hooks/useIsMobile'
+import UserRequests from '@/requests/UserRequests'
 
-export default function ProgramCardSimple ({
+export default function ProgramCardSimple({
   program,
   showDeleteButton = true,
   user,
@@ -16,10 +16,15 @@ export default function ProgramCardSimple ({
   const [isHovered, setIsHovered] = useState(false)
 
   const handleRemoveClick = async () => {
-    const response = await RemoveUserSavedProgram(user.email, program._id)
+    const response = await UserRequests.deleteProgram(user.email, program._id)
 
     if (response.success) {
       onSuccess()
+    } else {
+      getToast({
+        message: 'Something went wrong, please try again later.',
+        variant: 'error',
+      })
     }
   }
 
@@ -32,7 +37,10 @@ export default function ProgramCardSimple ({
       width={300}
       tabIndex="0"
     >
-      <Link href={`/resource/${program.href}`} style={{ textDecoration: 'none' }}>
+      <Link
+        href={`/resource/${program.href}`}
+        style={{ textDecoration: 'none' }}
+      >
         <Box
           borderRadius={4}
           minHeight={200}
@@ -40,13 +48,15 @@ export default function ProgramCardSimple ({
           mb={2.5}
           p={1.5}
           width="100%"
-          style={{ 
+          style={{
             transition: '0.4s ease',
-            boxShadow: isHovered 
+            boxShadow: isHovered
               ? '4px 5px 17px 5px rgba(184,177,184, .8)'
               : '1px 2px 15px 0px rgba(184,177,184, .4)',
             cursor: 'pointer',
-            backgroundImage: program.coverImage ? `url(${program.coverImage})` : '/images/pexels-cottonbro-6209356.jpg', 
+            backgroundImage: program.coverImage
+              ? `url(${program.coverImage})`
+              : '/images/pexels-cottonbro-6209356.jpg',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             color: 'white',
@@ -65,8 +75,8 @@ export default function ProgramCardSimple ({
             display="flex"
             alignItems="center"
             data-tooltip-id="delete-button"
-            data-tooltip-content='This will be removed from your saved programs'
-            data-tooltip-variant='warning'
+            data-tooltip-content="This will be removed from your saved programs"
+            data-tooltip-variant="warning"
             className="delete-button"
             bgcolor="white"
             width={25}
@@ -80,21 +90,19 @@ export default function ProgramCardSimple ({
             style={{
               transition: '0.075s ease-in-out all',
               opacity: isHovered ? 0.9 : 0,
-              cursor: 'pointer', 
-              borderRadius: '50%'
+              cursor: 'pointer',
+              borderRadius: '50%',
             }}
           >
-            <Image 
+            <Image
               alt="trash can svg"
               src="/images/svg/trash-icon.svg"
               width={13}
               height={13}
             />
           </Box>
-        
-          <Tooltip 
-            id="delete-button"
-          />
+
+          <Tooltip id="delete-button" />
         </>
       )}
     </Box>

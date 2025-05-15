@@ -3,24 +3,17 @@ import { useSession } from 'next-auth/client'
 import { useMemo } from 'react'
 import { useQuery } from 'react-query'
 
+import StatsRequests from '@/fetch/stats/StatsRequests'
+
 import BarChart from './BarChart'
 
 function UserProgramChartWrapper() {
   const [session] = useSession()
   const email = session?.user?.email
 
-  const programsAdded = async () => {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DB_LOCATION}/stats/programs/${email}`
-    )
-    const json = await response.json()
-
-    return json
-  }
-
   const programsAddedQuery = useQuery({
     key: 'report-programs',
-    queryFn: programsAdded,
+    queryFn: StatsRequests.getProgramStats,
     enabled: !!email,
   })
 
@@ -40,7 +33,7 @@ function UserProgramChartWrapper() {
 
     return {
       stats,
-      categories, 
+      categories,
       seriesData,
     }
   }, [data.message])
@@ -109,8 +102,8 @@ function UserProgramChartWrapper() {
     <div>
       <h1>Number of opportunities added by month</h1>
       <p style={{ marginBottom: 20 }}>
-        How many opportunities have been added vs how many you&apos;ve saved month
-        over month
+        How many opportunities have been added vs how many you&apos;ve saved
+        month over month
       </p>
 
       <div

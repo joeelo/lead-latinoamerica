@@ -68,17 +68,17 @@ function Popover({ anchorEl, setAnchorEl, children }) {
   }, [mousePosition])
 
   return (
-    <Box 
-      position='absolute'
-      transition='0.4s ease-in-out all'
+    <Box
+      position="absolute"
+      transition="0.4s ease-in-out all"
       zIndex={100000}
-      bgcolor='white'
-      top='70px'
-      boxShadow='4px 15px 12px 7px rgba(0, 0, 0, 0.15)'
-      padding='20px'
-      cursor='auto'
+      bgcolor="white"
+      top="70px"
+      boxShadow="4px 15px 12px 7px rgba(0, 0, 0, 0.15)"
+      padding="20px"
+      cursor="auto"
       borderRadius={2}
-      left={left} 
+      left={left}
       ref={containerRef}
     >
       {children}

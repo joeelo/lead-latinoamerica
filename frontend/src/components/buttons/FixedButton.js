@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box'
 
-import { findProgramAndUpdate } from '@/fetch/requests'
+import ProgramRequests from '@/requests/ProgramRequests'
 
 export default function FixedButton({
   approve = false,
@@ -9,14 +9,11 @@ export default function FixedButton({
   bgColorHover,
   href,
   onSuccess,
-}){
+}) {
   const handleClick = async () => {
     if (approve) {
       try {
-        const result = await findProgramAndUpdate(
-          {},
-          `/program/edit/${href}/${approve}`
-        )
+        const result = await ProgramRequests.approve(href)
         if (result.message === 'success') {
           onSuccess(true)
         }
@@ -27,24 +24,24 @@ export default function FixedButton({
   }
 
   return (
-    <Box 
-      onClick={handleClick} 
+    <Box
+      onClick={handleClick}
       top={approve ? '100px' : '160px'}
-      right='100px'
-      width='200px'
-      position='fixed'
+      right="100px"
+      width="200px"
+      position="fixed"
       bgcolor={bgColor}
       zIndex={10000}
-      color='white'
+      color="white"
       borderRadius={2}
-      textAlign='center'
+      textAlign="center"
       padding={1}
       sx={{
-        cursor: 'pointer', 
-        transition: '0.4s ease-in-out all', 
+        cursor: 'pointer',
+        transition: '0.4s ease-in-out all',
         ':hover': {
-          bgcolor: bgColorHover
-        }
+          bgcolor: bgColorHover,
+        },
       }}
     >
       {text}

@@ -1,50 +1,59 @@
 {
-	"env": {
-		"browser": true,
-		"commonjs": true,
-		"es2021": true
-	},
-	"extends": [
-		"plugin:prettier/recommended",
-		"airbnb-base", 
-		"prettier"
-	],
-	"parserOptions": {
-		"ecmaVersion": 2017,
-		"ecmaFeatures": {
-			"experimentalObjectRestSpread": true
-		}
-	},
-	"rules": {
-		// "new-cap": 0,
-		"no-plusplus": ["warn", { "allowForLoopAfterthoughts": true }],
-		"semi": ["warn", "always"],
-		"quotes": ["warn", "single"], 
-		"padding-line-between-statements": [
-			"error",
-			{ "blankLine": "always", "prev": "*", "next": "return" },
-			{ "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
-			{
-				"blankLine": "any",
-				"prev": ["const", "let", "var"],
-				"next": ["const", "let", "var"]
-			},
-			{
-				"blankLine": "always",
-				"prev": "expression",
-				"next": ["const", "let", "var"]
-			},
-			{
-				"blankLine": "always",
-				"prev": "block-like",
-				"next": "*"
-			}
-		],
-		"function-call-argument-newline": ["error", "consistent"], 
-		"prettier/prettier": {
-			"endOfLine": 0
-		}, 
-		"sort-imports": "error"
-	}, 
-	"plugins": ["prettier"]
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true
+  },
+  "extends": [
+    "plugin:prettier/recommended",
+    "airbnb-base",
+    "prettier",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "new-cap": 0,
+    "no-plusplus": ["warn", { "allowForLoopAfterthoughts": true }],
+    "semi": ["warn", "never"],
+    "quotes": ["warn", "single"],
+    "import/extensions": [
+      "error",
+      "always",
+      {
+        "js": "never",
+        "mjs": "never"
+      }
+    ],
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "*", "next": "return" },
+      { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
+      {
+        "blankLine": "any",
+        "prev": ["const", "let", "var"],
+        "next": ["const", "let", "var"]
+      },
+      {
+        "blankLine": "always",
+        "prev": "expression",
+        "next": ["const", "let", "var"]
+      },
+      {
+        "blankLine": "always",
+        "prev": "block-like",
+        "next": "*"
+      }
+    ],
+    "function-call-argument-newline": ["error", "consistent"],
+    "sort-imports": "error",
+    "prettier/prettier": ["error", { "semi": false }]
+  },
+  "plugins": ["prettier"]
 }

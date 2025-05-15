@@ -1,5 +1,5 @@
 // https://github.com/mui/material-ui/blob/master/examples/material-next/pages/_document.js
-// Check for latest example periodically, there may be changes to material injection. 
+// Check for latest example periodically, there may be changes to material injection.
 
 import createEmotionServer from '@emotion/server/create-instance'
 import { ServerStyleSheets } from '@mui/styles'
@@ -86,7 +86,7 @@ MyDocument.getInitialProps = async (ctx) => {
 
   return {
     ...initialProps,
-    styles: [...emotionStyleTags, sheets.getStyleElement()]
+    styles: [...emotionStyleTags, sheets.getStyleElement()],
   }
 }
 

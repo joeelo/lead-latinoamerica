@@ -1,5 +1,6 @@
+import Box from '@mui/material/Box'
 import { useContext, useEffect, useState } from 'react'
-import styled, { ThemeContext } from 'styled-components'
+import { ThemeContext } from 'styled-components'
 
 const TextInput = ({
   register,
@@ -9,6 +10,7 @@ const TextInput = ({
   label,
   placeHolder,
   initialVal,
+  rows,
   ...props
 }) => {
   // register and hasError are properties of parent
@@ -20,60 +22,70 @@ const TextInput = ({
     if (initialVal) {
       setValue(name, initialVal)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialVal])
 
-  return (
-    <Container focused={isInFocus}>
-      {label && <Label theme={theme}> {label} </Label>}
+  const style = {
+    width: '100%',
+    minHeight: 40,
+    height: 40,
+    fontSize: 16,
+    padding: '5px 5px 2px 5px',
+    marginBottom: 10,
+    border: 0,
+    outline: 'none',
+    minHeight: rows ? rows * 30 : '',
+    resize: 'none',
+  }
 
-      <StyledInput
-        {...register(name, rules)}
-        placeholder={placeHolder}
-        theme={theme}
-        onFocus={() => setIsInFocus(true)}
-        onBlur={() => setIsInFocus(false)}
-        {...props}
-      />
-    </Container>
+  return (
+    <Box
+      style={{
+        paddingLeft: 10,
+        paddingTop: 10,
+        transition: '0.4s ease-in-out all',
+        borderRadius: 4,
+        boxShadow: isInFocus
+          ? '1px 2px 13px 0px rgba(184, 177, 184, 1)'
+          : '1px 1px 4px 0px rgba(184, 177, 184, 1)',
+      }}
+    >
+      {label && (
+        <label
+          style={{
+            color: theme.colors.darkBlue,
+            paddingLeft: 5,
+            textTransform: 'capitalize',
+          }}
+        >
+          {label}
+        </label>
+      )}
+
+      {rows ? (
+        <textarea
+          {...register(name, rules)}
+          placeholder={placeHolder}
+          theme={theme}
+          onFocus={() => setIsInFocus(true)}
+          onBlur={() => setIsInFocus(false)}
+          rows={rows}
+          style={style}
+          {...props}
+        />
+      ) : (
+        <input
+          {...register(name, rules)}
+          placeholder={placeHolder}
+          theme={theme}
+          onFocus={() => setIsInFocus(true)}
+          onBlur={() => setIsInFocus(false)}
+          {...props}
+          style={style}
+        />
+      )}
+    </Box>
   )
 }
 
 export default TextInput
-
-const Container = styled.div`
-  margin-top: 20px;
-  padding-top: 10px;
-  padding-left: 10px;
-  transition: 0.4s ease-in-out all;
-  border-radius: 4px;
-  box-shadow: ${(props) =>
-    props.focused
-      ? '1px 2px 13px 0px rgba(184, 177, 184, 1)'
-      : '1px 1px 4px 0px rgba(184, 177, 184, 1)'};
-`
-
-const Label = styled.label`
-  font-size: ${(props) => props.theme.fontSizes.large};
-  color: ${(props) => props.theme.colors.darkBlue};
-  padding-left: 5px;
-  text-transform: capitalize;
-`
-
-const StyledInput = styled.input`
-  width: 100%;
-  min-height: 40px;
-  height: 40px;
-  font-size: 16px;
-  padding: 5px 5px 2px 5px;
-  margin-bottom: 10px;
-  border: 0px;
-
-  &:focus {
-    outline: none;
-  }
-
-  ::placeholder {
-    font-size: 14px;
-  }
-`

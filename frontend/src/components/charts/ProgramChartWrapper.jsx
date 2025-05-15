@@ -1,19 +1,13 @@
 import { useQuery } from 'react-query'
 
+import StatsRequests from '@/fetch/stats/StatsRequests'
+
 import BarChart from './BarChart'
 
 function ProgramChartWrapper() {
-  const programsAdded = async () => {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_DB_LOCATION}/stats/programs`
-    )
-    const json = await response.json()
-    return json
-  }
-
   const programsAddedQuery = useQuery({
     key: 'report-programs',
-    queryFn: programsAdded,
+    queryFn: StatsRequests.getAppProgramStats,
   })
 
   if (programsAddedQuery.isLoading || programsAddedQuery.error) {

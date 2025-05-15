@@ -1,6 +1,6 @@
 /**
- * 
- * @param { string } url 
+ *
+ * @param { string } url
  */
 
 export default function getIsValidUrl(url) {

@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js",
-    "format": "eslint --fix \"src/**/*.js\""
+    "start": "node dist/index.js",
+    "dev": "nodemon",
+    "format": "eslint --fix \"src/**/*.js\"",
+    "build": "npx tsc && tsc-alias"
   },
   "keywords": [],
   "author": "",
@@ -34,11 +35,19 @@
     "request": "^2.88.0"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.15.17",
     "eslint": "^8.3.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "2.5.0"
+    "prettier": "2.5.0",
+    "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.16",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
   }
 }

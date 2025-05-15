@@ -1,5 +1,5 @@
-import React, { useEffect,useRef, useState } from "react"
-import Confetti from "react-confetti"
+import React, { useEffect, useRef, useState } from 'react'
+import Confetti from 'react-confetti'
 
 export default function DaConfetti() {
   const [height, setHeight] = useState(null)
@@ -13,7 +13,12 @@ export default function DaConfetti() {
 
   return (
     <div ref={confetiRef}>
-      <Confetti numberOfPieces={150} width={width} height={height} initialVelocityY={3}/>
+      <Confetti
+        numberOfPieces={150}
+        width={width}
+        height={height}
+        initialVelocityY={3}
+      />
     </div>
-  );
+  )
 }

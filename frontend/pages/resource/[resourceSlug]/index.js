@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/client'
 import { useQuery } from 'react-query'
-
-import ProgramOverviewAndInfo from '@/components/content/program/ProgramOverviewAndInfo'
-import ProgramTitleAndPhoto from '@/components/content/program/ProgramTitleAndPhoto'
-import LoadingSpinner from '@/components/generic/LoadingSpinner'
-import ProgramRequests from '@/fetch/program/ProgramRequests'
+import ProgramOverviewAndInfo from 'src/components/content/program/ProgramOverviewAndInfo'
+import ProgramTitleAndPhoto from 'src/components/content/program/ProgramTitleAndPhoto'
+import LoadingSpinner from 'src/components/generic/LoadingSpinner'
+import ProgramRequests from 'src/requests/ProgramRequests'
 
 const ResourcePage = () => {
   const router = useRouter()
@@ -15,8 +14,8 @@ const ResourcePage = () => {
   const isLoadingSession = loading
 
   const programQuery = useQuery({
-    queryKey: ['resourcePrograms', { name }],
-    queryFn: ProgramRequests.getProgram,
+    queryKey: QueryKeys.PROGRAM,
+    queryFn: () => ProgramRequests.getBySlug(name),
   })
 
   const { isLoading } = programQuery

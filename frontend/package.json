@@ -8,10 +8,10 @@
     "test": "jest",
     "alt-port": "yarn run dev -- -p 3005",
     "lint": "next lint --fix",
-    "lint:fix": "npm run lint -- --fix",
+    "lint:fix": "yarn run lint -- --fix",
     "pre-commit-lint": "yarn run lint-staged",
     "prepare": "cd .. && husky install frontend/.husky",
-    "prettier:fix": "npx prettier 'src/**/*.{js,ts,mjs,cjs,json}' --write",
+    "prettier:fix": "yarn run prettier --write --ignore-path .gitignore .",
     "lint-staged": "next lint"
   },
   "dependencies": {
@@ -29,6 +29,7 @@
     "@mui/system": "^5.12.3",
     "@vercel/analytics": "^0.1.8",
     "apexcharts": "^3.37.1",
+    "axios": "^1.7.2",
     "eslint-plugin-react": "^7.32.2",
     "lodash": "^4.17.21",
     "luxon": "^2.3.1",
@@ -55,6 +56,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^11.2.7",
+    "@typescript-eslint/parser": "^8.32.0",
     "babel-jest": "^26.6.3",
     "babel-plugin-styled-components": "^1.13.3",
     "eslint": "8.40.0",
@@ -64,7 +66,9 @@
     "husky": "^8.0.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.3",
-    "mutationobserver-shim": "^0.3.7"
+    "mutationobserver-shim": "^0.3.7",
+    "prettier": "^3.3.3",
+    "typescript": "^5.8.3"
   },
   "license": "MIT"
 }

@@ -25,29 +25,24 @@ export default function DesktopNav() {
 
   return (
     <>
+      <Box height={70} width="100%" bgcolor="white" marginBottom={2} />
+
       <Box
-        height={70}
         width="100%"
         bgcolor="white"
-        marginBottom={2}
-      />
-        
-      <Box
-        width='100%'
-        bgcolor='white'
-        boxShadow='-11px 8px 11px 3px rgba(200, 200, 200, 0.3)'
-        padding='20px 0'
-        position='fixed'
-        fontSize='18px'
-        display='flex'
+        boxShadow="-11px 8px 11px 3px rgba(200, 200, 200, 0.3)"
+        padding="20px 0"
+        position="fixed"
+        fontSize="18px"
+        display="flex"
         zIndex={999999}
         top="0"
         sx={{
-        'a': {
+          a: {
             color: 'black',
             textDecoration: 'none',
             margin: '5px 0',
-          }
+          },
         }}
       >
         <Box display="flex" alignItems="flex-start" ml="20px" bgcolor="white">
@@ -61,28 +56,20 @@ export default function DesktopNav() {
           maxWidth="100%"
           alignItems="center"
         >
-          <Box
-            width="120px"
-            style={{ cursor: 'pointer' }}
-            mr={1}
-          >
+          <Box width="120px" style={{ cursor: 'pointer' }} mr={1}>
             <span
               onPointerEnter={handleMouseEnter}
               data-name="get-involved"
-              style={{ padding: '4px 0'}}
+              style={{ padding: '4px 0' }}
             >
               {t.portal}
             </span>
           </Box>
-          <Box
-            width="110px"
-            style={{ cursor: 'pointer' }}
-            mr={1}
-          >
+          <Box width="110px" style={{ cursor: 'pointer' }} mr={1}>
             <span
               data-name="resources"
               onPointerEnter={handleMouseEnter}
-              style={{ padding: '4px 0'}}
+              style={{ padding: '4px 0' }}
             >
               {t.resources}
             </span>
@@ -115,8 +102,12 @@ export default function DesktopNav() {
 
         {anchorEl && anchorEl.dataset.name === 'get-involved' && (
           <Popover anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
-            <Box className="link-container" flexDirection="column" display="flex">
-              <Link href="/add-program-q">{t.addOrg}</Link>
+            <Box
+              className="link-container"
+              flexDirection="column"
+              display="flex"
+            >
+              <Link href="/add-program">{t.addOrg}</Link>
               {session && <Link href="/profile">{t.profile}</Link>}
               <a
                 target="_blank"
@@ -130,7 +121,11 @@ export default function DesktopNav() {
 
         {anchorEl && anchorEl.dataset.name === 'resources' && (
           <Popover anchorEl={anchorEl} setAnchorEl={setAnchorEl}>
-            <Box className="link-container" display="flex" flexDirection="column">
+            <Box
+              className="link-container"
+              display="flex"
+              flexDirection="column"
+            >
               <Link href="/all-resources">{t.programs}</Link>
               <Link href="/local-resources">Local Resources</Link>
             </Box>
@@ -140,3 +135,4 @@ export default function DesktopNav() {
     </>
   )
 }
+
