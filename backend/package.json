@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "node dist/app.js",
     "dev": "nodemon",
     "format": "eslint --fix \"src/**/*.js\"",
     "build": "npx tsc && tsc-alias",
