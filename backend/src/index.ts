@@ -1,10 +1,9 @@
 import 'dotenv/config'
 import cors from 'cors'
 import express from 'express'
+import { userRoutes } from './routes/userRoutes'
+import { programRoutes } from './routes/programRoutes'
 import mongoose from 'mongoose'
-import { userRoutes } from 'src/routes/userRoutes'
-// eslint-disable-next-line semi
-import { programRoutes } from 'src/routes/programRoutes'
 
 const app = express()
 // import statsRoutes from './routes/statsRoutes'

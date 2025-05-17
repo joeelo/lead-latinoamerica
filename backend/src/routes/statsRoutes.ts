@@ -1,7 +1,7 @@
 import express from 'express'
 import dayjs from 'dayjs'
-import Program from 'src/models/Program'
-import User from 'src/models/User'
+import Program from '@/models/Program'
+import User from '@/models/User'
 
 const router = express.Router()
 

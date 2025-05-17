@@ -1,6 +1,6 @@
 import express from 'express'
-import Program from 'src/models/Program'
-import User from 'src/models/User'
+import Program from '@/models/Program'
+import User from '@/models/User'
 
 const router = express.Router()
 const isLocalEnv = process.env.DEPLOY_ENV === 'local'

@@ -1,9 +1,9 @@
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses'
 import express from 'express'
-import Program from 'src/models/Program'
-import User from 'src/models/User'
-import getAwsEmailContent from 'src/email/getAwsEmailContent'
-import { translateText } from 'src/translation/translator'
+import Program from '@/models/Program'
+import User from '@/models/User'
+import getAwsEmailContent from '@/email/getAwsEmailContent'
+import { translateText } from '@/translation/translator'
 
 const router = express.Router()
 

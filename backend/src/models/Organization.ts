@@ -41,7 +41,7 @@ const orgSchema = new mongoose.Schema({
     type: String,
   },
   orgLogo: {
-    type: String, 
+    type: String,
   },
   programType: {
     program: {
@@ -61,9 +61,9 @@ const orgSchema = new mongoose.Schema({
       default: false,
     },
   },
-});
+})
 
 // @ts-ignore
-const Organization = new mongoose.model('Organization', orgSchema, 'programs');
+const Organization = new mongoose.model('Organization', orgSchema, 'programs')
 
 export { Organization }
